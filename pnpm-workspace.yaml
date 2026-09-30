@@ -1,0 +1,19 @@
+# Supply-chain hardening. Only auth/registry settings belong in .npmrc.
+engineStrict: true
+# Do not install versions published less than 24 h ago.
+minimumReleaseAge: 1440
+# Fail if a package's provenance/trust level drops versus previous releases.
+trustPolicy: no-downgrade
+# Transitive deps may not come from git/tarball URLs.
+blockExoticSubdeps: true
+# Fail install when an unreviewed dependency wants to run build scripts.
+strictDepBuilds: true
+allowBuilds:
+  esbuild: true
+  sharp: true
+# Known false positives, pinned to the exact version (re-check when upgrading):
+# chokidar@4.0.3 was published without provenance after earlier attested releases (listed in pnpm docs).
+trustPolicyExclude:
+  - chokidar@4.0.3
+  # why-is-node-running@3.2.2 (vitest dep): same maintainer as attested 3.2.0/3.2.1, published 2025-01-08 without provenance.
+  - why-is-node-running@3.2.2
