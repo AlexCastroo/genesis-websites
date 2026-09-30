@@ -36,7 +36,7 @@ Plantilla Astro para arrancar la web de **cualquier negocio** con SEO técnico, 
 | Imágenes de marca                                                                          | `public/` (favicon, logo, OG) y `src/assets/`                         |
 | Analítica / formulario                                                                     | `.env` (ver `.env.example`)                                           |
 
-## Proyecto: UROZ Pilates (rama `feat/pilates-mova`)
+## Proyecto: UROZ Pilates (rama `feat/pilates-uroz`)
 
 Web del estudio boutique UROZ construida sobre esta base a partir del diseño de Google Stitch (referencia en `docs/design/stitch/`: HTML original, textos y capturas de las 4 pantallas).
 
