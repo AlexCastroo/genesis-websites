@@ -1,5 +1,5 @@
 ---
-import { ctaNav, mainNav } from '../../config/nav';
+import { mainNav, navHref } from '../../config/nav';
 import { SITE } from '../../config/site';
 import type { Lang } from '../../i18n/config';
 import { localizePath, useTranslations } from '../../i18n/utils';
@@ -31,7 +31,7 @@ const phoneHref = SITE.contact.phone
 const year = new Date().getFullYear();
 // Avoid "S.L.." when the legal name already ends with a period.
 const owner = SITE.legalName.endsWith('.') ? SITE.legalName : `${SITE.legalName}.`;
-const footerNav = [...mainNav, { route: ctaNav.route, label: 'nav.contact' as const }];
+const footerNav = [...mainNav, { route: 'contact' as const, label: 'nav.contact' as const }];
 ---
 
 <footer class="site-footer">
@@ -46,7 +46,7 @@ const footerNav = [...mainNav, { route: ctaNav.route, label: 'nav.contact' as co
       <ul role="list">
         {footerNav.map((item) => (
           <li>
-            <a href={localizePath(item.route, lang)}>{t(item.label)}</a>
+            <a href={navHref(item, lang, '')}>{t(item.label)}</a>
           </li>
         ))}
       </ul>

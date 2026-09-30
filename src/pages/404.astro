@@ -1,5 +1,5 @@
 ---
-import { mainNav } from '../config/nav';
+import { mainNav, navHref } from '../config/nav';
 import { defaultLocale, localeCodes, locales } from '../i18n/config';
 import { localizePath, useTranslations } from '../i18n/utils';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -34,7 +34,7 @@ const t = useTranslations(lang);
       ))}
       {mainNav.map((item) => (
         <li>
-          <a href={localizePath(item.route, lang)}>{t(item.label)}</a>
+          <a href={navHref(item, lang, '')}>{t(item.label)}</a>
         </li>
       ))}
     </ul>

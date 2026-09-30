@@ -11,7 +11,6 @@ export interface LocaleInfo {
 /** Add or remove a language here, then add its dictionary in ui/ and its routes in routes.ts. */
 export const locales = {
   es: { label: 'Español', hreflang: 'es', og: 'es_ES', dir: 'ltr' },
-  en: { label: 'English', hreflang: 'en', og: 'en_US', dir: 'ltr' },
 } as const satisfies Record<string, LocaleInfo>;
 
 export type Lang = keyof typeof locales;

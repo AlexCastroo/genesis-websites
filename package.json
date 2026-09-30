@@ -15,7 +15,8 @@
     "check:i18n": "tsx scripts/check-i18n.ts",
     "test": "vitest run",
     "verify": "tsx scripts/verify-dist.ts",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "screenshot": "tsx scripts/screenshot.ts"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",

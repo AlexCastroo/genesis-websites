@@ -27,6 +27,7 @@ const common = { lang: page.lang, path: page.path, alternates: page.alternates }
 
 {page.kind === 'home' && <HomeView {...common} />}
 {page.kind === 'services' && <ServicesView {...common} />}
+{page.kind === 'pricing' && <ServicesView {...common} />}
 {page.kind === 'about' && <AboutView {...common} />}
 {page.kind === 'contact' && <ContactView {...common} />}
 {page.kind === 'faq' && <FaqView {...common} />}

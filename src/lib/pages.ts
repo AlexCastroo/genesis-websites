@@ -7,6 +7,7 @@ import { entryLang, entrySlug } from './content';
 export const STATIC_PAGES = [
   'home',
   'services',
+  'pricing',
   'about',
   'contact',
   'faq',

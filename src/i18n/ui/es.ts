@@ -19,6 +19,9 @@ export const es = {
   'nav.blog': 'Blog',
   'nav.faq': 'Preguntas frecuentes',
   'nav.contact': 'Contacto',
+  'nav.pricing': 'Precios & Horarios',
+  'nav.whatsapp': 'WhatsApp',
+  'cta.trial': 'Reservar clase de prueba',
 
   'cta.contact': 'Pide presupuesto',
   'cta.services': 'Ver servicios',

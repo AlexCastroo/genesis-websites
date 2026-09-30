@@ -1,5 +1,5 @@
 ---
-import { ctaNav, mainNav } from '../../config/nav';
+import { ctaNav, mainNav, navHref } from '../../config/nav';
 import { SITE } from '../../config/site';
 import type { Lang } from '../../i18n/config';
 import { localizePath, useTranslations, type Alternates } from '../../i18n/utils';
@@ -51,7 +51,7 @@ const currentState = (href: string) => {
       <nav aria-label={t('a11y.mainNav')}>
         <ul role="list" class="site-menu__list">
           {mainNav.map((item) => {
-            const href = localizePath(item.route, lang);
+            const href = navHref(item, lang, `https://wa.me/${SITE.contact.whatsapp ?? ''}`);
             return (
               <li>
                 <a href={href} aria-current={currentState(href)}>
@@ -63,7 +63,7 @@ const currentState = (href: string) => {
         </ul>
       </nav>
       <LanguageSwitcher lang={lang} alternates={alternates} />
-      <Button href={localizePath(ctaNav.route, lang)} track="cta_header">
+      <Button href={navHref(ctaNav, lang, '')} track="cta_header">
         {t(ctaNav.label)}
       </Button>
     </div>
