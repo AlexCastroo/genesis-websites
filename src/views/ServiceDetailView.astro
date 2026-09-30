@@ -2,17 +2,23 @@
 import { Picture } from 'astro:assets';
 import { render, type CollectionEntry } from 'astro:content';
 import CtaBand from '../components/blocks/CtaBand.astro';
+import DisciplineCard from '../components/blocks/DisciplineCard.astro';
 import FaqList from '../components/blocks/FaqList.astro';
-import FeatureGrid from '../components/blocks/FeatureGrid.astro';
 import PageHeader from '../components/blocks/PageHeader.astro';
+import Icon from '../components/ui/Icon.astro';
 import Section from '../components/ui/Section.astro';
 import { SITE } from '../config/site';
 import { localizePath, useTranslations } from '../i18n/utils';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { entrySlug } from '../lib/content';
 import { formatDate, toIsoDate } from '../lib/dates';
 import { getServices } from '../lib/queries';
-import { breadcrumbNode, faqPageNode, serviceNode, webPageNode, type Crumb } from '../lib/schema';
+import {
+  breadcrumbNode,
+  faqPageNode,
+  serviceNode,
+  webPageNode,
+  type Crumb,
+} from '../lib/schema';
 import type { ViewProps } from './types';
 
 interface Props extends ViewProps {
@@ -22,91 +28,270 @@ interface Props extends ViewProps {
 const { lang, path, alternates, entry } = Astro.props;
 const t = useTranslations(lang);
 const { Content } = await render(entry);
-const { title, description, summary, faqs, updated, image, imageAlt } = entry.data;
-const related = (await getServices(lang)).filter((service) => service.id !== entry.id).slice(0, 3);
+const data = entry.data;
+const related = (await getServices(lang))
+  .filter((service) => service.id !== entry.id)
+  .slice(0, 2);
 const crumbs: Crumb[] = [
   { name: t('nav.home'), path: localizePath('home', lang) },
   { name: t('nav.services'), path: localizePath('services', lang) },
-  { name: title, path },
+  { name: data.title, path },
+];
+const facts = [
+  { label: t('service.duration'), value: t('service.minutes', { n: data.duration }) },
+  { label: t('service.intensity'), value: data.intensity },
+  { label: t('service.capacity'), value: data.capacity },
 ];
 const schema = [
   webPageNode(SITE, {
     path,
-    name: title,
-    description,
+    name: data.seoTitle ?? data.title,
+    description: data.description,
     lang,
     hasBreadcrumb: true,
-    dateModified: updated,
+    dateModified: data.updated,
   }),
   breadcrumbNode(SITE, path, crumbs),
-  serviceNode(SITE, { path, name: title, description: summary }),
-  ...(faqs.length > 0 ? [faqPageNode(SITE, path, faqs)] : []),
+  serviceNode(SITE, { path, name: data.title, description: data.summary, price: data.price }),
+  ...(data.faqs.length > 0 ? [faqPageNode(SITE, path, data.faqs)] : []),
 ];
 ---
 
 <BaseLayout
   lang={lang}
   path={path}
-  title={title}
-  description={description}
+  title={data.seoTitle ?? data.title}
+  description={data.description}
   alternates={alternates}
   schema={schema}
 >
-  <PageHeader lang={lang} crumbs={crumbs} title={title} lead={summary}>
-    <p class="text-muted">
-      <small>
-        {t('common.updated')} <time datetime={toIsoDate(updated)}>{formatDate(updated, lang)}</time>
-      </small>
-    </p>
-  </PageHeader>
+  <PageHeader
+    lang={lang}
+    crumbs={crumbs}
+    eyebrow={data.badge}
+    title={data.title}
+    accent={data.subtitle}
+  />
 
-  <div class="container section-pad detail">
-    {image && (
+  <section class="detail" aria-labelledby="detail-summary">
+    <div class="container detail__grid">
       <Picture
-        src={image}
-        alt={imageAlt ?? ''}
+        src={data.image}
+        alt={data.imageAlt}
         formats={['avif', 'webp']}
         widths={[480, 800, 1200]}
-        sizes="(min-width: 900px) 760px, 100vw"
-        class="detail__image"
+        sizes="(min-width: 900px) 55vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="detail__img"
       />
-    )}
-    <div class="prose">
-      <Content />
+      <aside class="detail__sheet">
+        <h2 id="detail-summary" class="visually-hidden">{data.title}</h2>
+        <p class="detail__summary">{data.summary}</p>
+        <dl class="detail__facts">
+          {
+            facts.map((fact) => (
+              <div>
+                <dt>{fact.label}</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <p class="detail__price">
+          <span class="detail__amount">{data.price}€</span>
+          <span class="detail__note">{data.priceNote}</span>
+        </p>
+        <a href={`${localizePath('pricing', lang)}#solicitud`} class="btn btn--primary" data-track="discipline_book">
+          {t('cta.book')}
+          <Icon name="arrow-right" size={16} />
+        </a>
+        <p class="detail__updated">
+          {t('common.updated')}{' '}
+          <time datetime={toIsoDate(data.updated)}>{formatDate(data.updated, lang)}</time>
+        </p>
+      </aside>
     </div>
-  </div>
+  </section>
 
-  {faqs.length > 0 && (
-    <Section id="faq" title={t('service.faq.title')} variant="muted" width="narrow">
-      <FaqList items={faqs} />
-    </Section>
-  )}
+  <section class="content" aria-label={data.title}>
+    <div class="container content__grid">
+      <div class="prose"><Content /></div>
+      {
+        data.highlights.length > 0 && (
+          <aside class="content__benefits" aria-labelledby="benefits-title">
+            <h2 id="benefits-title" class="eyebrow">
+              {t('service.benefits')}
+            </h2>
+            <ul role="list">
+              {data.highlights.map((item) => (
+                <li>
+                  <Icon name="check-circle" size={18} /> {item}
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )
+      }
+    </div>
+  </section>
 
-  {related.length > 0 && (
-    <Section id="related" title={t('service.related.title')}>
-      <FeatureGrid
-        items={related.map((service) => ({
-          title: service.data.title,
-          text: service.data.summary,
-          href: localizePath('services', lang, entrySlug(service.id)),
-        }))}
-      />
-    </Section>
-  )}
+  {
+    data.faqs.length > 0 && (
+      <Section id="faq" title={t('service.faq.title')} variant="subtle" width="narrow">
+        <FaqList items={data.faqs} />
+      </Section>
+    )
+  }
+
+  {
+    related.length > 0 && (
+      <Section id="related" title={t('service.related.title')}>
+        <ul role="list" class="related">
+          {related.map((service) => (
+            <li>
+              <DisciplineCard lang={lang} entry={service} headingLevel={3} />
+            </li>
+          ))}
+        </ul>
+      </Section>
+    )
+  }
 
   <CtaBand lang={lang} />
 </BaseLayout>
 
 <style>
   .detail {
-    display: grid;
-    gap: var(--space-l);
+    padding-block-end: var(--space-xl);
   }
 
-  .detail :global(.detail__image) {
+  .detail__grid {
+    display: grid;
+    gap: var(--space-l);
+    align-items: start;
+  }
+
+  .detail__grid :global(.detail__img) {
     width: 100%;
-    max-width: var(--container-narrow);
     height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+  }
+
+  .detail__sheet {
+    display: grid;
+    gap: var(--space-m);
+    justify-items: start;
+    padding: var(--space-l);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-xl);
+  }
+
+  .detail__summary {
+    font-size: var(--step-1);
+    font-weight: var(--fw-light);
+    line-height: var(--lh-normal);
+  }
+
+  .detail__facts {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: var(--space-m);
+  }
+
+  .detail__facts div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+  }
+
+  .detail__facts dt {
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+  }
+
+  .detail__facts dd {
+    font-size: var(--step--1);
+  }
+
+  .detail__price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2xs);
+  }
+
+  .detail__amount {
+    font-family: var(--font-serif);
+    font-size: var(--step-4);
+    line-height: 1;
+  }
+
+  .detail__note,
+  .detail__updated {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 900px) {
+    .detail__grid {
+      grid-template-columns: 1.4fr 1fr;
+    }
+  }
+
+  .content {
+    padding-block: var(--space-xl) var(--space-2xl);
+  }
+
+  .content__grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .content__benefits {
+    align-self: start;
+    display: grid;
+    gap: var(--space-s);
+    align-content: start;
+    padding: var(--space-l);
+    background: var(--color-bg-muted);
     border-radius: var(--radius-lg);
+  }
+
+  .content__benefits ul {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .content__benefits li {
+    display: flex;
+    gap: var(--space-2xs);
+    font-size: var(--step--1);
+  }
+
+  .content__benefits :global(.icon) {
+    flex: none;
+    color: var(--color-eyebrow);
+  }
+
+  @media (min-width: 900px) {
+    .content__grid {
+      grid-template-columns: 1.6fr 1fr;
+    }
+  }
+
+  .related {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  @media (min-width: 900px) {
+    .related {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 </style>

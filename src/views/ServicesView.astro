@@ -1,13 +1,17 @@
 ---
 import CtaBand from '../components/blocks/CtaBand.astro';
-import FeatureGrid from '../components/blocks/FeatureGrid.astro';
+import DisciplineCard from '../components/blocks/DisciplineCard.astro';
 import PageHeader from '../components/blocks/PageHeader.astro';
+import DisplayTitle from '../components/ui/DisplayTitle.astro';
+import Icon, { type IconName } from '../components/ui/Icon.astro';
 import { SITE } from '../config/site';
 import { localizePath, useTranslations } from '../i18n/utils';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { entrySlug } from '../lib/content';
+import { disciplineFilters } from '../lib/disciplines';
 import { getServices } from '../lib/queries';
 import { breadcrumbNode, webPageNode, type Crumb } from '../lib/schema';
+import { whatsappLink } from '../lib/whatsapp';
 import type { ViewProps } from './types';
 
 type Props = ViewProps;
@@ -15,6 +19,25 @@ type Props = ViewProps;
 const { lang, path, alternates } = Astro.props;
 const t = useTranslations(lang);
 const services = await getServices(lang);
+const featured = services.find((service) => service.data.featured) ?? services[0];
+const rest = services.filter((service) => service !== featured);
+const filters = disciplineFilters(services.map((service) => service.data.category));
+const steps = (
+  [
+    [1, 'tune'],
+    [2, 'hanger'],
+    [3, 'spa'],
+    [4, 'air'],
+  ] as const
+).map(([n, icon]) => ({
+  n,
+  icon: icon as IconName,
+  title: t(`services.first.${n}.title`),
+  body: t(`services.first.${n}.body`),
+  tag: t(`services.first.${n}.tag`),
+}));
+const compareColumns = ['strength', 'flexibility', 'calm'] as const;
+
 const title = t('meta.services.title');
 const description = t('meta.services.description');
 const crumbs: Crumb[] = [
@@ -32,6 +55,9 @@ const schema = [
   }),
   breadcrumbNode(SITE, path, crumbs),
 ];
+const whatsapp = SITE.contact.whatsapp
+  ? whatsappLink(SITE.contact.whatsapp, t('whatsapp.general'))
+  : localizePath('contact', lang);
 ---
 
 <BaseLayout
@@ -42,16 +68,408 @@ const schema = [
   alternates={alternates}
   schema={schema}
 >
-  <PageHeader lang={lang} crumbs={crumbs} title={t('services.title')} lead={t('services.lead')} />
-  <div class="container section-pad">
-    <FeatureGrid
-      headingLevel={2}
-      items={services.map((service) => ({
-        title: service.data.title,
-        text: service.data.summary,
-        href: localizePath('services', lang, entrySlug(service.id)),
-      }))}
-    />
-  </div>
-  <CtaBand lang={lang} />
+  <PageHeader
+    lang={lang}
+    crumbs={crumbs}
+    eyebrow={t('services.eyebrow')}
+    title={t('services.title')}
+    accent={t('services.accent')}
+    lead={t('services.lead')}
+  >
+    <p class="catalogue-note"><Icon name="leaf" size={16} /> {t('services.note')}</p>
+  </PageHeader>
+
+  <section class="catalogue" aria-labelledby="catalogue-title">
+    <div class="container">
+      <h2 id="catalogue-title" class="visually-hidden">{t('meta.services.title')}</h2>
+      <div class="js-only">
+      <div class="catalogue__filters" role="group" aria-label={t('a11y.filterPractices')} data-filter>
+        <button type="button" class="chip" data-value="all" aria-pressed="true">
+          {t('services.filterAll')}
+        </button>
+        {
+          filters.map((category) => (
+            <button type="button" class="chip" data-value={category} aria-pressed="false">
+              {t(`services.category.${category}`)}
+            </button>
+          ))
+        }
+      </div>
+      </div>
+      <p
+        class="visually-hidden"
+        aria-live="polite"
+        data-filter-status
+        data-template={t('services.count', { count: '{count}' })}
+      >
+      </p>
+
+      <ul role="list" class="catalogue__grid">
+        {
+          featured && (
+            <li class="catalogue__featured" data-filter-item data-category={featured.data.category}>
+              <DisciplineCard lang={lang} entry={featured} variant="featured" headingLevel={3} />
+            </li>
+          )
+        }
+        {
+          rest.map((service) => (
+            <li data-filter-item data-category={service.data.category}>
+              <DisciplineCard lang={lang} entry={service} headingLevel={3} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section class="compare" aria-labelledby="compare-title">
+    <div class="container">
+      <div class="compare__card">
+        <p class="eyebrow">{t('services.compare.eyebrow')}</p>
+        <h2 id="compare-title" class="compare__title">{t('services.compare.title')}</h2>
+        <p class="compare__lead">{t('services.compare.lead')}</p>
+        <div class="compare__scroll" role="region" aria-labelledby="compare-title" tabindex="0">
+          <table>
+            <caption class="visually-hidden">{t('a11y.compareTable')}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t('services.compare.discipline')}</th>
+                {compareColumns.map((column) => <th scope="col">{t(`services.compare.${column}`)}</th>)}
+                <th scope="col">{t('services.compare.level')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                services.map((service) => (
+                  <tr>
+                    <th scope="row">
+                      <a href={localizePath('services', lang, entrySlug(service.id))}>
+                        {service.data.title}
+                      </a>
+                    </th>
+                    {compareColumns.map((column) => {
+                      const score = service.data.compare[column];
+                      return (
+                        <td>
+                          <span class="dots" aria-hidden="true">
+                            {[1, 2, 3].map((n) => (
+                              <span class:list={['dot', { 'is-on': n <= score }]} />
+                            ))}
+                          </span>
+                          <span class="visually-hidden">
+                            {t('services.compare.score', { n: score })}
+                          </span>
+                        </td>
+                      );
+                    })}
+                    <td>{service.data.compare.level}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- First time -->
+  <section class="first" aria-labelledby="first-title">
+    <div class="container">
+      <div class="first__card">
+        <div class="first__intro">
+          <DisplayTitle
+            id="first-title"
+            size="card"
+            eyebrow={t('services.first.eyebrow')}
+            title={t('services.first.title')}
+            accent={t('services.first.accent')}
+          />
+          <p class="first__lead">{t('services.first.lead')}</p>
+          <aside class="first__notice">
+            <p class="first__notice-title">
+              <Icon name="clock" size={18} />
+              {t('services.first.arrival.title')}
+            </p>
+            <p>{t('services.first.arrival.body')}</p>
+          </aside>
+        </div>
+        <ol role="list" class="first__steps">
+          {
+            steps.map((step) => (
+              <li class="step">
+                <span class="step__number" aria-hidden="true">
+                  0{step.n}
+                </span>
+                <h3>{step.title}</h3>
+                <p class="step__body">{step.body}</p>
+                <p class="step__tag">
+                  <Icon name={step.icon} size={14} /> {step.tag}
+                </p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    lang={lang}
+    eyebrow={t('services.advice.eyebrow')}
+    title={t('services.advice.title')}
+    accent={t('services.advice.accent')}
+    lead={t('services.advice.lead')}
+    primary={{ label: t('cta.whatsapp'), href: whatsapp, external: whatsapp.startsWith('http') }}
+    secondary={{ label: t('cta.trial'), href: `${localizePath('pricing', lang)}#solicitud` }}
+    notes={[]}
+  />
 </BaseLayout>
+
+<script>
+  import { initDisciplineFilter } from '../lib/filter-client';
+
+  initDisciplineFilter();
+</script>
+
+<style>
+  .catalogue-note {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: 0.75rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+  }
+
+  .catalogue {
+    padding-block-end: var(--space-2xl);
+  }
+
+  .catalogue__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    margin-block-end: var(--space-l);
+  }
+
+  .chip {
+    padding: 0.625rem 1.125rem;
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+    background: var(--color-bg-muted);
+    border: 0;
+    border-radius: var(--radius-full);
+    transition:
+      background-color var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+  }
+
+  .chip:hover {
+    color: var(--color-text);
+    background: var(--color-surface-strong);
+  }
+
+  .chip[aria-pressed='true'] {
+    color: var(--color-text-inverse);
+    background: var(--color-bg-inverse);
+  }
+
+  .catalogue__grid {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  @media (min-width: 900px) {
+    .catalogue__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .catalogue__featured {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* ---------- Comparison ---------- */
+  .compare {
+    padding-block-end: var(--space-2xl);
+  }
+
+  .compare__card {
+    display: grid;
+    gap: var(--space-2xs);
+    padding: clamp(1.25rem, 0.5rem + 3vw, 3.5rem);
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-xl);
+  }
+
+  .compare__title {
+    font-size: var(--step-3);
+    font-weight: var(--fw-regular);
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+
+  .compare__lead {
+    margin-block-end: var(--space-m);
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+  }
+
+  .compare__scroll {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 40rem;
+    font-size: var(--step--1);
+  }
+
+  th,
+  td {
+    padding: var(--space-xs) var(--space-s) var(--space-xs) 0;
+    border-bottom-color: var(--color-border);
+  }
+
+  thead th {
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  tbody th {
+    font-weight: var(--fw-regular);
+  }
+
+  tbody th a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  tbody th a:hover {
+    text-decoration: underline;
+  }
+
+  .dots {
+    display: inline-flex;
+    gap: 0.25rem;
+  }
+
+  .dot {
+    width: 0.875rem;
+    height: 0.375rem;
+    background: var(--color-surface-strong);
+    border-radius: var(--radius-full);
+  }
+
+  .dot.is-on {
+    background: var(--color-eyebrow);
+  }
+
+  /* ---------- First time ---------- */
+  .first {
+    padding-block-end: var(--space-l);
+  }
+
+  .first__card {
+    display: grid;
+    gap: var(--space-xl);
+    padding: clamp(1.25rem, 0.5rem + 3.5vw, 4rem);
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+  }
+
+  .first__intro {
+    display: grid;
+    gap: var(--space-s);
+    align-content: start;
+  }
+
+  .first__lead {
+    font-size: var(--step--1);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .first__notice {
+    display: grid;
+    gap: var(--space-3xs);
+    padding: var(--space-s) var(--space-m);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    background: var(--color-bg-subtle);
+    border-inline-start: 2px solid var(--color-eyebrow);
+  }
+
+  .first__notice-title {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-weight: var(--fw-medium);
+    color: var(--color-text);
+  }
+
+  .first__steps {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  @media (min-width: 600px) {
+    .first__steps {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .first__card {
+      grid-template-columns: 1fr 1.4fr;
+    }
+  }
+
+  .step {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: var(--space-2xs);
+    padding: var(--space-m);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-sm);
+  }
+
+  .step__number {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.6875rem;
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-full);
+  }
+
+  .step h3 {
+    font-size: var(--step-1);
+    font-weight: var(--fw-medium);
+  }
+
+  .step__body {
+    font-size: 0.8125rem;
+    line-height: var(--lh-normal);
+    color: var(--color-text-muted);
+  }
+
+  .step__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    margin-block-start: var(--space-s);
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+  }
+</style>

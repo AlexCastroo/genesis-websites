@@ -1,0 +1,248 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import type { Lang } from '../../i18n/config';
+import { localizePath, useTranslations } from '../../i18n/utils';
+import { entrySlug } from '../../lib/content';
+import Icon from '../ui/Icon.astro';
+import Pill from '../ui/Pill.astro';
+
+interface Props {
+  lang: Lang;
+  entry: CollectionEntry<'services'>;
+  variant?: 'featured' | 'compact';
+  headingLevel?: 2 | 3;
+}
+
+const { lang, entry, variant = 'compact', headingLevel = 3 } = Astro.props;
+const t = useTranslations(lang);
+const data = entry.data;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+const href = localizePath('services', lang, entrySlug(entry.id));
+const bookHref = `${localizePath('pricing', lang)}#solicitud`;
+const featured = variant === 'featured';
+/** First Markdown paragraph = card description. */
+const intro = (entry.body ?? '').trim().split(/\n\s*\n/)[0] ?? '';
+---
+
+<article class:list={['discipline', `discipline--${variant}`, 'reveal']} data-category={data.category}>
+  <div class="discipline__media">
+    <Image
+      src={data.image}
+      alt={data.imageAlt}
+      widths={featured ? [480, 800, 1100] : [400, 700]}
+      sizes={featured ? '(min-width: 900px) 45vw, 100vw' : '(min-width: 900px) 40vw, 100vw'}
+      class="discipline__img"
+    />
+    <Pill tone="surface" dot={featured} class="discipline__badge">
+      {featured ? t('services.featured') : data.badge}
+    </Pill>
+    <Pill tone="surface" class="discipline__time">
+      {featured ? data.capacity : t('service.minutes', { n: data.duration })}
+    </Pill>
+  </div>
+
+  <div class="discipline__body">
+    <p class="discipline__meta">
+      <Pill tone="highlight">{featured ? data.badge : data.intensity}</Pill>
+      <span>
+        {
+          featured
+            ? `${t('service.minutes', { n: data.duration })} • ${data.intensity}`
+            : data.capacity
+        }
+      </span>
+    </p>
+    <Heading class="discipline__title">
+      <a href={href}>{data.title}</a>
+    </Heading>
+    <p class="discipline__subtitle">{data.subtitle}</p>
+    <p class="discipline__text">{intro}</p>
+    {
+      data.highlights.length > 0 && (
+        <ul role="list" class:list={['discipline__highlights', { 'is-grid': featured }]}>
+          {data.highlights.map((item) => (
+            <li>
+              {featured && <Icon name="check-circle" size={16} />}
+              {item}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+    <div class="discipline__footer">
+      <p class="discipline__price">
+        <span class="discipline__amount">{data.price}€</span>
+        <span class="discipline__note">{data.priceNote}</span>
+      </p>
+      <a
+        href={bookHref}
+        class:list={['btn', featured ? 'btn--primary' : 'btn--ghost', 'discipline__book']}
+        data-track="discipline_book"
+      >
+        {t('cta.book')}<span class="visually-hidden">: {data.title}</span>
+        <Icon name="arrow-right" size={16} />
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .discipline {
+    display: grid;
+    gap: var(--space-m);
+    align-content: start;
+    height: 100%;
+    padding: var(--space-m);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-xl);
+  }
+
+  .discipline--featured {
+    padding: clamp(1.25rem, 0.5rem + 3vw, 3.5rem);
+  }
+
+  @media (min-width: 900px) {
+    .discipline--featured {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+  }
+
+  .discipline__media {
+    position: relative;
+  }
+
+  .discipline__media :global(.discipline__img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+  }
+
+  .discipline--featured .discipline__media :global(.discipline__img) {
+    aspect-ratio: 4 / 3;
+  }
+
+  .discipline__media :global(.discipline__badge) {
+    position: absolute;
+    top: 0.875rem;
+    left: 0.875rem;
+  }
+
+  .discipline__media :global(.discipline__time) {
+    position: absolute;
+    right: 0.875rem;
+    bottom: 0.875rem;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  .discipline__body {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .discipline__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .discipline__title {
+    font-size: var(--step-2);
+  }
+
+  .discipline--featured .discipline__title {
+    font-size: var(--step-3);
+  }
+
+  .discipline__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .discipline__title a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+  }
+
+  .discipline__subtitle {
+    font-family: var(--font-serif);
+    font-size: var(--step-0);
+    font-style: italic;
+    color: var(--color-eyebrow);
+  }
+
+  .discipline__text {
+    font-size: var(--step--1);
+    font-weight: var(--fw-light);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .discipline__highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+  }
+
+  .discipline__highlights li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-full);
+  }
+
+  .discipline__highlights.is-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+  }
+
+  .discipline__highlights.is-grid li {
+    background: var(--color-surface);
+  }
+
+  .discipline__highlights.is-grid :global(.icon) {
+    color: var(--color-eyebrow);
+  }
+
+  .discipline__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding-block-start: var(--space-s);
+  }
+
+  .discipline__price {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2xs);
+  }
+
+  .discipline__amount {
+    font-family: var(--font-serif);
+    font-size: var(--step-3);
+    line-height: 1;
+  }
+
+  .discipline__note {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .discipline__book {
+    min-height: 2.5rem;
+  }
+</style>
