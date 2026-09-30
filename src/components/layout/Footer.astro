@@ -1,0 +1,164 @@
+---
+import { ctaNav, mainNav } from '../../config/nav';
+import { SITE } from '../../config/site';
+import type { Lang } from '../../i18n/config';
+import { localizePath, useTranslations } from '../../i18n/utils';
+import { entrySlug } from '../../lib/content';
+import { getLegal } from '../../lib/queries';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const legal = await getLegal(lang);
+const gaEnabled = Boolean(import.meta.env.PUBLIC_GA_ID);
+const socialLabels: Record<string, string> = {
+  linkedin: 'LinkedIn',
+  instagram: 'Instagram',
+  facebook: 'Facebook',
+  x: 'X',
+  youtube: 'YouTube',
+  tiktok: 'TikTok',
+};
+const socials = Object.entries(SITE.social).filter((entry): entry is [string, string] =>
+  Boolean(entry[1]),
+);
+const phoneHref = SITE.contact.phone
+  ? `tel:${SITE.contact.phone.replace(/[^\d+]/g, '')}`
+  : undefined;
+const year = new Date().getFullYear();
+const footerNav = [...mainNav, { route: ctaNav.route, label: 'nav.contact' as const }];
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__brand">
+      <p class="site-footer__name">{SITE.name}</p>
+      <p class="text-muted">{t('site.tagline')}</p>
+    </div>
+
+    <nav aria-label={t('a11y.footerNav')}>
+      <h2 class="site-footer__title">{t('footer.explore')}</h2>
+      <ul role="list">
+        {
+          footerNav.map((item) => (
+            <li>
+              <a href={localizePath(item.route, lang)}>{t(item.label)}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div>
+      <h2 class="site-footer__title">{t('footer.contact')}</h2>
+      <ul role="list">
+        <li>
+          <a href={`mailto:${SITE.contact.email}`} data-track="contact_email">{SITE.contact.email}</a>
+        </li>
+        {
+          phoneHref && (
+            <li>
+              <a href={phoneHref} data-track="contact_phone">
+                {SITE.contact.phone}
+              </a>
+            </li>
+          )
+        }
+      </ul>
+      {
+        socials.length > 0 && (
+          <>
+            <h2 class="site-footer__title">{t('footer.follow')}</h2>
+            <ul role="list">
+              {socials.map(([network, url]) => (
+                <li>
+                  <a href={url} target="_blank" rel="noopener noreferrer me">
+                    {socialLabels[network] ?? network}
+                    <span class="visually-hidden"> {t('a11y.newTab')}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+    </div>
+
+    <nav aria-label={t('a11y.legalNav')}>
+      <h2 class="site-footer__title">{t('footer.legal')}</h2>
+      <ul role="list">
+        {
+          legal.map((entry) => (
+            <li>
+              <a href={localizePath('legal', lang, entrySlug(entry.id))}>{entry.data.title}</a>
+            </li>
+          ))
+        }
+        {
+          gaEnabled && (
+            <li>
+              <button type="button" class="link-button" data-consent-open>
+                {t('cookies.settings')}
+              </button>
+            </li>
+          )
+        }
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p><small>© {year} {SITE.legalName}. {t('footer.rights')}</small></p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-block-start: auto;
+    padding-block: var(--space-xl) var(--space-m);
+    background: var(--color-bg-subtle);
+    border-top: var(--border-width) solid var(--color-border);
+  }
+
+  .site-footer__grid {
+    display: grid;
+    gap: var(--space-l);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  }
+
+  .site-footer__name {
+    font-size: var(--step-1);
+    font-weight: var(--fw-bold);
+  }
+
+  .site-footer__title {
+    margin-block: var(--space-s) var(--space-2xs);
+    font-size: var(--step--1);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .site-footer__title:first-child {
+    margin-block-start: 0;
+  }
+
+  ul {
+    display: grid;
+    gap: var(--space-3xs);
+  }
+
+  a {
+    color: var(--color-text);
+  }
+
+  .site-footer__bottom {
+    margin-block-start: var(--space-l);
+    padding-block-start: var(--space-s);
+    border-top: var(--border-width) solid var(--color-border);
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,22 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  /** GA4 event name sent on click (only with consent). */
+  track?: string;
+  external?: boolean;
+  class?: string;
+}
+
+const { href, variant = 'primary', track, external = false, class: className } = Astro.props;
+const externalAttrs = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+<a
+  href={href}
+  class:list={['btn', `btn--${variant}`, className]}
+  data-track={track}
+  {...externalAttrs}
+>
+  <slot />
+</a>

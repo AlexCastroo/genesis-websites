@@ -1,0 +1,111 @@
+---
+import { Font } from 'astro:assets';
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/utilities.css';
+import Footer from '../components/layout/Footer.astro';
+import Header from '../components/layout/Header.astro';
+import SkipLink from '../components/layout/SkipLink.astro';
+import JsonLd from '../components/seo/JsonLd.astro';
+import Seo from '../components/seo/Seo.astro';
+import { SITE } from '../config/site';
+import { locales, type Lang } from '../i18n/config';
+import { useTranslations, type Alternates } from '../i18n/utils';
+import { graph, organizationNode, websiteNode, type JsonLdNode } from '../lib/schema';
+import { absoluteUrl, pageTitle } from '../lib/seo';
+
+interface Props {
+  lang: Lang;
+  /** Public path of this page, e.g. '/servicios'. */
+  path: string;
+  title: string;
+  description: string;
+  alternates: Alternates;
+  ogImage?: string;
+  ogImageAlt?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  schema?: JsonLdNode[];
+  publishedTime?: string;
+  modifiedTime?: string;
+  /** Home uses its title verbatim (it already contains the brand). */
+  isHome?: boolean;
+}
+
+const {
+  lang,
+  path,
+  title,
+  description,
+  alternates,
+  ogImage = absoluteUrl(SITE.url, SITE.ogImage),
+  ogImageAlt = SITE.name,
+  ogType = 'website',
+  noindex = false,
+  schema = [],
+  publishedTime,
+  modifiedTime,
+  isHome = false,
+} = Astro.props;
+
+const t = useTranslations(lang);
+const fullTitle = isHome ? title : pageTitle(title, SITE.name);
+const jsonLd = graph([
+  websiteNode(SITE, { lang, description: t('site.description') }),
+  organizationNode(SITE, { description: t('site.description') }),
+  ...schema,
+]);
+---
+
+<!doctype html>
+<html lang={locales[lang].hreflang} dir={locales[lang].dir} class="no-js">
+  <head>
+    <Seo
+      lang={lang}
+      title={fullTitle}
+      description={description}
+      canonical={absoluteUrl(SITE.url, path)}
+      alternates={alternates}
+      ogImage={ogImage}
+      ogImageAlt={ogImageAlt}
+      ogType={ogType}
+      noindex={noindex}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+    />
+    <script is:inline>
+      document.documentElement.classList.replace('no-js', 'js');
+    </script>
+    <Font cssVariable="--font-inter" preload />
+    <JsonLd data={jsonLd} />
+    <slot name="head" />
+  </head>
+  <body>
+    <SkipLink lang={lang} />
+    <Header lang={lang} path={path} alternates={alternates} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+
+    <script>
+      const targets = document.querySelectorAll('.reveal');
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced || !('IntersectionObserver' in window)) {
+        targets.forEach((el) => el.classList.add('in'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add('in');
+              observer.unobserve(entry.target);
+            }
+          },
+          { rootMargin: '0px 0px -10% 0px' },
+        );
+        targets.forEach((el) => observer.observe(el));
+      }
+    </script>
+  </body>
+</html>

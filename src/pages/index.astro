@@ -1,9 +1,16 @@
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <title>Genesis</title>
-  </head>
-  <body>
-    <h1>Genesis</h1>
-  </body>
-</html>
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { defaultLocale } from '../i18n/config';
+import { staticAlternates } from '../i18n/utils';
+---
+
+<BaseLayout
+  lang={defaultLocale}
+  path="/"
+  title="Layout check"
+  description="Temporary page to verify the base layout."
+  alternates={staticAlternates('home')}
+  isHome
+>
+  <div class="container section-pad"><h1>Layout check</h1></div>
+</BaseLayout>

@@ -1,0 +1,233 @@
+---
+import { ctaNav, mainNav } from '../../config/nav';
+import { SITE } from '../../config/site';
+import type { Lang } from '../../i18n/config';
+import { localizePath, useTranslations, type Alternates } from '../../i18n/utils';
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  lang: Lang;
+  path: string;
+  alternates: Alternates;
+}
+
+const { lang, path, alternates } = Astro.props;
+const t = useTranslations(lang);
+
+const currentState = (href: string) => {
+  if (path === href) return 'page';
+  if (path.startsWith(`${href}/`)) return 'true';
+  return undefined;
+};
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href={localizePath('home', lang)} class="site-header__brand">
+      <svg aria-hidden="true" viewBox="0 0 64 64" width="32" height="32">
+        <rect width="64" height="64" rx="14" fill="currentColor"></rect>
+        <circle cx="32" cy="32" r="12" fill="var(--color-accent)"></circle>
+      </svg>
+      <span>{SITE.name}</span>
+    </a>
+
+    <button
+      type="button"
+      class="site-header__toggle"
+      aria-expanded="false"
+      aria-controls="site-menu"
+      aria-label={t('a11y.menuOpen')}
+      data-menu-toggle
+      data-label-open={t('a11y.menuOpen')}
+      data-label-close={t('a11y.menuClose')}
+    >
+      <Icon name="menu" size={24} class="icon-open" />
+      <Icon name="close" size={24} class="icon-close" />
+    </button>
+
+    <div id="site-menu" class="site-menu">
+      <nav aria-label={t('a11y.mainNav')}>
+        <ul role="list" class="site-menu__list">
+          {
+            mainNav.map((item) => {
+              const href = localizePath(item.route, lang);
+              return (
+                <li>
+                  <a href={href} aria-current={currentState(href)}>
+                    {t(item.label)}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </nav>
+      <LanguageSwitcher lang={lang} alternates={alternates} />
+      <Button href={localizePath(ctaNav.route, lang)} track="cta_header">{t(ctaNav.label)}</Button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.getElementById('site-menu');
+
+  if (toggle && menu) {
+    const desktop = window.matchMedia('(min-width: 900px)');
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute(
+        'aria-label',
+        (open ? toggle.dataset.labelClose : toggle.dataset.labelOpen) ?? '',
+      );
+      menu.toggleAttribute('data-open', open);
+    };
+
+    toggle.addEventListener('click', () => setOpen(!menu.hasAttribute('data-open')));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.hasAttribute('data-open')) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    menu.addEventListener('click', (event) => {
+      if ((event.target as Element).closest('a')) setOpen(false);
+    });
+    desktop.addEventListener('change', () => setOpen(false));
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    background: var(--color-bg);
+    border-bottom: var(--border-width) solid var(--color-border);
+  }
+
+  .site-header__inner {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    min-height: var(--header-height);
+  }
+
+  .site-header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: var(--step-1);
+    font-weight: var(--fw-bold);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .site-header__toggle {
+    display: inline-grid;
+    place-items: center;
+    width: var(--control-height);
+    height: var(--control-height);
+    background: transparent;
+    border: 0;
+    border-radius: var(--radius-sm);
+  }
+
+  .site-header__toggle[aria-expanded='true'] :global(.icon-open),
+  .site-header__toggle[aria-expanded='false'] :global(.icon-close) {
+    display: none;
+  }
+
+  /* Mobile: menu hidden until toggled. Without JS it is always visible (in flow). */
+  .site-menu {
+    display: none;
+  }
+
+  .site-menu[data-open] {
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    display: grid;
+    gap: var(--space-m);
+    max-height: calc(100svh - var(--header-height));
+    overflow-y: auto;
+    padding: var(--space-m) var(--container-pad) var(--space-l);
+    background: var(--color-bg);
+    border-bottom: var(--border-width) solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+  }
+
+  :global(.no-js) .site-header__toggle {
+    display: none;
+  }
+
+  :global(.no-js) .site-menu {
+    display: grid;
+    gap: var(--space-s);
+    width: 100%;
+    padding-block-end: var(--space-s);
+  }
+
+  .site-menu__list {
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  .site-menu__list a {
+    display: block;
+    padding-block: var(--space-2xs);
+    font-size: var(--step-2);
+    font-weight: var(--fw-semibold);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .site-menu__list a[aria-current] {
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 900px) {
+    .site-header__toggle,
+    :global(.no-js) .site-header__toggle {
+      display: none;
+    }
+
+    .site-menu,
+    .site-menu[data-open],
+    :global(.no-js) .site-menu {
+      position: static;
+      display: flex;
+      align-items: center;
+      gap: var(--space-m);
+      width: auto;
+      max-height: none;
+      overflow: visible;
+      padding: 0;
+      background: none;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .site-menu__list {
+      display: flex;
+      gap: var(--space-m);
+    }
+
+    .site-menu__list a {
+      padding-block: 0;
+      font-size: var(--step-0);
+    }
+
+    .site-menu__list a[aria-current] {
+      color: var(--color-text);
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.4em;
+    }
+  }
+</style>
