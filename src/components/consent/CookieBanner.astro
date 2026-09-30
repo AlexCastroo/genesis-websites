@@ -1,0 +1,108 @@
+---
+import type { Lang } from '../../i18n/config';
+import { localizePath, useTranslations } from '../../i18n/utils';
+import { entrySlug } from '../../lib/content';
+import { findLegal } from '../../lib/queries';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const enabled = Boolean(import.meta.env.PUBLIC_GA_ID);
+const cookiesPage = enabled ? await findLegal(lang, 'cookies') : undefined;
+---
+
+{
+  enabled && (
+    <section
+      class="cookie-banner"
+      data-cookie-banner
+      aria-labelledby="cookie-banner-title"
+      hidden
+    >
+      <div class="cookie-banner__text">
+        <h2 id="cookie-banner-title">{t('cookies.title')}</h2>
+        <p>
+          {t('cookies.body')}
+          {cookiesPage && (
+            <>
+              {' '}
+              <a href={localizePath('legal', lang, entrySlug(cookiesPage.id))}>
+                {t('cookies.more')}
+              </a>
+            </>
+          )}
+        </p>
+      </div>
+      <div class="cluster cookie-banner__actions">
+        <button type="button" class="btn btn--secondary" data-consent="denied">
+          {t('cookies.reject')}
+        </button>
+        <button type="button" class="btn btn--secondary" data-consent="granted">
+          {t('cookies.accept')}
+        </button>
+      </div>
+    </section>
+  )
+}
+
+<script>
+  import { setConsent, safeStorage } from '../../lib/analytics-client';
+  import { readConsent } from '../../lib/consent';
+
+  const banner = document.querySelector<HTMLElement>('[data-cookie-banner]');
+  if (banner) {
+    if (!readConsent(safeStorage())) banner.hidden = false;
+
+    banner.addEventListener('click', (event) => {
+      const button = (event.target as Element).closest<HTMLButtonElement>('[data-consent]');
+      if (!button) return;
+      setConsent(button.dataset.consent === 'granted' ? 'granted' : 'denied');
+      banner.hidden = true;
+    });
+
+    document.querySelectorAll('[data-consent-open]').forEach((trigger) =>
+      trigger.addEventListener('click', () => {
+        banner.hidden = false;
+        banner.querySelector('button')?.focus();
+      }),
+    );
+  }
+</script>
+
+<style>
+  /* Non-blocking bar: equal-weight buttons, no dark patterns. */
+  .cookie-banner {
+    position: fixed;
+    inset-inline: var(--space-s);
+    bottom: var(--space-s);
+    z-index: var(--z-toast);
+    display: grid;
+    gap: var(--space-s);
+    max-width: 44rem;
+    margin-inline: auto;
+    padding: var(--space-m);
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .cookie-banner h2 {
+    font-size: var(--step-1);
+  }
+
+  .cookie-banner p {
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 600px) {
+    .cookie-banner {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+  }
+</style>

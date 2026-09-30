@@ -1,4 +1,5 @@
 ---
+import ContactForm from '../components/blocks/ContactForm.astro';
 import ContactInfo from '../components/blocks/ContactInfo.astro';
 import PageHeader from '../components/blocks/PageHeader.astro';
 import { SITE } from '../config/site';
@@ -44,6 +45,7 @@ const schema = [
       <h2 id="contact-info-title">{t('contact.info.title')}</h2>
       <ContactInfo lang={lang} />
     </section>
+    <ContactForm lang={lang} />
   </div>
 </BaseLayout>
 

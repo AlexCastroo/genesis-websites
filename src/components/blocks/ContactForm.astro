@@ -1,0 +1,152 @@
+---
+import type { Lang } from '../../i18n/config';
+import { localizePath, useTranslations } from '../../i18n/utils';
+import { entrySlug } from '../../lib/content';
+import { findLegal } from '../../lib/queries';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const endpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT;
+const privacy = endpoint ? await findLegal(lang, 'privacy') : undefined;
+---
+
+{
+  endpoint && (
+    <section aria-labelledby="contact-form-title">
+      <h2 id="contact-form-title">{t('contact.form.title')}</h2>
+      <form
+        class="contact-form"
+        method="post"
+        action={endpoint}
+        data-contact-form
+        data-msg-sending={t('contact.form.sending')}
+        data-msg-success={t('contact.form.success')}
+        data-msg-error={t('contact.form.error')}
+      >
+        <div>
+          <label for="cf-name">{t('contact.form.name')}</label>
+          <input id="cf-name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div>
+          <label for="cf-email">{t('contact.form.email')}</label>
+          <input id="cf-email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div>
+          <label for="cf-phone">
+            {t('contact.form.phone')}{' '}
+            <span class="text-muted">{t('contact.form.optional')}</span>
+          </label>
+          <input id="cf-phone" name="phone" type="tel" autocomplete="tel" />
+        </div>
+        <div>
+          <label for="cf-message">{t('contact.form.message')}</label>
+          <textarea id="cf-message" name="message" rows="6" required></textarea>
+        </div>
+        <div class="contact-form__honeypot" aria-hidden="true">
+          <label for="cf-website">Website</label>
+          <input id="cf-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <div class="contact-form__consent">
+          <input id="cf-privacy" name="privacy" type="checkbox" value="accepted" required />
+          <label for="cf-privacy">
+            {t('contact.form.privacy')}{' '}
+            {privacy ? (
+              <a href={localizePath('legal', lang, entrySlug(privacy.id))}>
+                {t('contact.form.privacyLink')}
+              </a>
+            ) : (
+              t('contact.form.privacyLink')
+            )}
+          </label>
+        </div>
+        <button type="submit" class="btn btn--primary">
+          {t('contact.form.submit')}
+        </button>
+        <p class="contact-form__status" role="status" aria-live="polite" data-form-status></p>
+      </form>
+    </section>
+  )
+}
+
+<script>
+  import { trackEvent } from '../../lib/analytics-client';
+
+  document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
+    const status = form.querySelector<HTMLElement>('[data-form-status]');
+    const submit = form.querySelector<HTMLButtonElement>('[type="submit"]');
+
+    // Runs only after native validation passes; without JS the form posts normally.
+    form.addEventListener('submit', async (event) => {
+      if (!status || !submit) return;
+      event.preventDefault();
+      submit.disabled = true;
+      status.dataset.state = 'sending';
+      status.textContent = form.dataset.msgSending ?? '';
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        form.reset();
+        status.dataset.state = 'success';
+        status.textContent = form.dataset.msgSuccess ?? '';
+        trackEvent('generate_lead');
+      } catch {
+        status.dataset.state = 'error';
+        status.textContent = form.dataset.msgError ?? '';
+      } finally {
+        submit.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  h2 {
+    margin-block-end: var(--space-m);
+    font-size: var(--step-2);
+  }
+
+  .contact-form {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .contact-form__honeypot {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .contact-form__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2xs);
+  }
+
+  .contact-form__consent label {
+    margin: 0;
+    font-weight: var(--fw-regular);
+  }
+
+  .contact-form button {
+    justify-self: start;
+  }
+
+  .contact-form__status:empty {
+    display: none;
+  }
+
+  .contact-form__status[data-state='success'] {
+    color: var(--color-success);
+  }
+
+  .contact-form__status[data-state='error'] {
+    color: var(--color-error);
+  }
+</style>
