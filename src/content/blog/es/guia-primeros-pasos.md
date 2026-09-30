@@ -1,5 +1,5 @@
 ---
-title: Guía de primeros pasos para trabajar con nosotros
+title: Primeros pasos para trabajar con nosotros
 description: Qué ocurre desde que nos escribes hasta que empieza tu proyecto. Un resumen de ejemplo de cada fase, con plazos orientativos y lo que necesitamos de ti.
 translationKey: getting-started
 published: 2026-09-15

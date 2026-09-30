@@ -40,7 +40,7 @@ export const en: Record<UiKey, string> = {
   'meta.contact.title': 'Contact us for a free quote',
   'meta.contact.description':
     'Contact Nombre Comercial by email, phone or form. We reply within 24 business hours with a proposal tailored to your needs and your budget.',
-  'meta.faq.title': 'Frequently asked questions about our services',
+  'meta.faq.title': 'FAQ about our services',
   'meta.faq.description':
     'Clear answers to the most common questions: pricing, timelines, service area, payment methods and the guarantee on our professional services.',
   'meta.blog.title': 'Blog: guides and tips for your business',

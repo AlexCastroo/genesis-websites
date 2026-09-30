@@ -32,13 +32,13 @@ export const es = {
   'meta.services.title': 'Servicios profesionales para empresas',
   'meta.services.description':
     'Descubre nuestros servicios de ejemplo: consultoría, implantación y soporte continuo. Soluciones a medida con plazos claros y precios transparentes.',
-  'meta.about.title': 'Sobre nosotros: equipo y forma de trabajar',
+  'meta.about.title': 'Sobre nosotros: equipo y método',
   'meta.about.description':
     'Conoce al equipo de Nombre Comercial, nuestra historia y los valores con los que trabajamos cada proyecto. Experiencia, cercanía y resultados medibles.',
   'meta.contact.title': 'Contacto y presupuesto sin compromiso',
   'meta.contact.description':
     'Contacta con Nombre Comercial por email, teléfono o formulario. Te respondemos en menos de 24 horas laborables con una propuesta adaptada a ti.',
-  'meta.faq.title': 'Preguntas frecuentes sobre nuestros servicios',
+  'meta.faq.title': 'Preguntas frecuentes sobre servicios',
   'meta.faq.description':
     'Respuestas claras a las dudas más habituales: precios, plazos, zona de trabajo, formas de pago y garantía de nuestros servicios profesionales.',
   'meta.blog.title': 'Blog: guías y consejos para tu negocio',

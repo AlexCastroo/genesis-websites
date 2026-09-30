@@ -1,5 +1,5 @@
 ---
-title: Cómo elegir un proveedor de servicios para tu negocio
+title: Cómo elegir proveedor para tu negocio
 description: Guía de ejemplo con los cinco criterios que conviene revisar antes de contratar a un proveedor de servicios profesionales para tu empresa o negocio.
 translationKey: choosing-a-provider
 published: 2026-09-01

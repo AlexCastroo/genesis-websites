@@ -1,5 +1,5 @@
 ---
-title: How to choose a service provider for your business
+title: How to choose a service provider
 description: A sample guide to the five criteria worth checking before hiring a professional services provider for your company or your small business.
 translationKey: choosing-a-provider
 published: 2026-09-01
