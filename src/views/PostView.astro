@@ -1,0 +1,127 @@
+---
+import { getImage, Picture } from 'astro:assets';
+import { render, type CollectionEntry } from 'astro:content';
+import CtaBand from '../components/blocks/CtaBand.astro';
+import PageHeader from '../components/blocks/PageHeader.astro';
+import Button from '../components/ui/Button.astro';
+import { SITE } from '../config/site';
+import { localizePath, useTranslations } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatDate, toIsoDate } from '../lib/dates';
+import { articleNode, breadcrumbNode, webPageNode, type Crumb } from '../lib/schema';
+import { absoluteUrl, readingMinutes } from '../lib/seo';
+import type { ViewProps } from './types';
+
+interface Props extends ViewProps {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { lang, path, alternates, entry } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+const { title, description, published, updated, author, image, imageAlt } = entry.data;
+const minutes = readingMinutes(entry.body ?? '');
+const og = image
+  ? await getImage({ src: image, width: 1200, height: 630, format: 'jpg' })
+  : undefined;
+const ogImage = og ? absoluteUrl(SITE.url, og.src) : undefined;
+const crumbs: Crumb[] = [
+  { name: t('nav.home'), path: localizePath('home', lang) },
+  { name: t('nav.blog'), path: localizePath('blog', lang) },
+  { name: title, path },
+];
+const schema = [
+  webPageNode(SITE, {
+    path,
+    name: title,
+    description,
+    lang,
+    hasBreadcrumb: true,
+    datePublished: published,
+    dateModified: updated ?? published,
+  }),
+  breadcrumbNode(SITE, path, crumbs),
+  articleNode(SITE, {
+    path,
+    headline: title,
+    description,
+    lang,
+    published,
+    updated,
+    author,
+    image: ogImage,
+  }),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={title}
+  description={description}
+  alternates={alternates}
+  schema={schema}
+  ogType="article"
+  ogImage={ogImage}
+  ogImageAlt={imageAlt}
+  publishedTime={published.toISOString()}
+  modifiedTime={(updated ?? published).toISOString()}
+>
+  <PageHeader lang={lang} crumbs={crumbs} title={title} lead={description}>
+    <p class="cluster post-meta">
+      <span>{t('blog.by')} {author}</span>
+      <span
+        >{t('blog.published')}{' '}
+        <time datetime={toIsoDate(published)}>{formatDate(published, lang)}</time></span
+      >
+      {
+        updated && (
+          <span>
+            {t('blog.updated')}{' '}
+            <time datetime={toIsoDate(updated)}>{formatDate(updated, lang)}</time>
+          </span>
+        )
+      }
+      <span>{t('blog.readingTime', { minutes })}</span>
+    </p>
+  </PageHeader>
+
+  <article class="container section-pad post">
+    {
+      image && (
+        <Picture
+          src={image}
+          alt={imageAlt ?? ''}
+          formats={['avif', 'webp']}
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 900px) 760px, 100vw"
+          class="post__image"
+        />
+      )
+    }
+    <div class="prose"><Content /></div>
+    <p><Button href={localizePath('blog', lang)} variant="ghost">{t('cta.backToBlog')}</Button></p>
+  </article>
+
+  <CtaBand lang={lang} />
+</BaseLayout>
+
+<style>
+  .post-meta {
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+    --cluster-gap: var(--space-2xs) var(--space-m);
+  }
+
+  .post {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  .post :global(.post__image) {
+    width: 100%;
+    max-width: var(--container-narrow);
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+</style>

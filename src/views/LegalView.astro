@@ -1,0 +1,114 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+import PageHeader from '../components/blocks/PageHeader.astro';
+import { SITE } from '../config/site';
+import { localizePath, useTranslations } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatDate, toIsoDate } from '../lib/dates';
+import { breadcrumbNode, webPageNode, type Crumb } from '../lib/schema';
+import type { ViewProps } from './types';
+
+interface Props extends ViewProps {
+  entry: CollectionEntry<'legal'>;
+}
+
+const { lang, path, alternates, entry } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+const { title, description, updated, noindex, translationKey } = entry.data;
+const isLegalNotice = translationKey === 'legal-notice';
+const addressText = SITE.address
+  ? [
+      SITE.address.street,
+      `${SITE.address.postalCode} ${SITE.address.locality}`,
+      SITE.address.country,
+    ].join(', ')
+  : undefined;
+const crumbs: Crumb[] = [
+  { name: t('nav.home'), path: localizePath('home', lang) },
+  { name: title, path },
+];
+const schema = [
+  webPageNode(SITE, {
+    path,
+    name: title,
+    description,
+    lang,
+    hasBreadcrumb: true,
+    dateModified: updated,
+  }),
+  breadcrumbNode(SITE, path, crumbs),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={title}
+  description={description}
+  alternates={alternates}
+  schema={schema}
+  noindex={noindex}
+>
+  <PageHeader lang={lang} crumbs={crumbs} title={title}>
+    <p class="text-muted">
+      <small
+        >{t('common.updated')}{' '}
+        <time datetime={toIsoDate(updated)}>{formatDate(updated, lang)}</time></small
+      >
+    </p>
+  </PageHeader>
+
+  <div class="container container--narrow section-pad legal">
+    {
+      isLegalNotice && (
+        <section aria-labelledby="legal-identity">
+          <h2 id="legal-identity">{t('legal.identity')}</h2>
+          <dl class="legal-identity">
+            <dt>{t('legal.holder')}</dt>
+            <dd>{SITE.legalName}</dd>
+            {SITE.taxId && (
+              <>
+                <dt>{t('legal.taxId')}</dt>
+                <dd>{SITE.taxId}</dd>
+              </>
+            )}
+            {addressText && (
+              <>
+                <dt>{t('legal.address')}</dt>
+                <dd>{addressText}</dd>
+              </>
+            )}
+            <dt>{t('legal.email')}</dt>
+            <dd>
+              <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>
+            </dd>
+          </dl>
+        </section>
+      )
+    }
+    <div class="prose"><Content /></div>
+  </div>
+</BaseLayout>
+
+<style>
+  .legal {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .legal h2 {
+    margin-block-end: var(--space-s);
+    font-size: var(--step-2);
+  }
+
+  .legal-identity {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: var(--space-2xs) var(--space-m);
+  }
+
+  .legal-identity dt {
+    font-weight: var(--fw-semibold);
+  }
+</style>

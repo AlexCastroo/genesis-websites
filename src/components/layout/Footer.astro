@@ -29,6 +29,8 @@ const phoneHref = SITE.contact.phone
   ? `tel:${SITE.contact.phone.replace(/[^\d+]/g, '')}`
   : undefined;
 const year = new Date().getFullYear();
+// Avoid "S.L.." when the legal name already ends with a period.
+const owner = SITE.legalName.endsWith('.') ? SITE.legalName : `${SITE.legalName}.`;
 const footerNav = [...mainNav, { route: ctaNav.route, label: 'nav.contact' as const }];
 ---
 
@@ -111,7 +113,7 @@ const footerNav = [...mainNav, { route: ctaNav.route, label: 'nav.contact' as co
   </div>
 
   <div class="container site-footer__bottom">
-    <p><small>© {year} {SITE.legalName}. {t('footer.rights')}</small></p>
+    <p><small>© {year} {owner} {t('footer.rights')}</small></p>
   </div>
 </footer>
 

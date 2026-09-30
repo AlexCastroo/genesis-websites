@@ -1,0 +1,28 @@
+---
+import Card from '../ui/Card.astro';
+
+interface Item {
+  title: string;
+  text: string;
+  href?: string;
+}
+
+interface Props {
+  items: Item[];
+  headingLevel?: 2 | 3;
+}
+
+const { items, headingLevel = 3 } = Astro.props;
+---
+
+<ul role="list" class="grid-auto">
+  {
+    items.map((item) => (
+      <li class="reveal">
+        <Card title={item.title} href={item.href} headingLevel={headingLevel}>
+          <p>{item.text}</p>
+        </Card>
+      </li>
+    ))
+  }
+</ul>

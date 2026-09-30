@@ -1,0 +1,57 @@
+---
+import { mainNav } from '../config/nav';
+import { defaultLocale, localeCodes, locales } from '../i18n/config';
+import { localizePath, useTranslations } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const lang = defaultLocale;
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  lang={lang}
+  path="/404"
+  title={t('notFound.title')}
+  description={t('meta.notFound.description')}
+  alternates={{}}
+  noindex
+>
+  <div class="container container--narrow section-pad not-found">
+    <h1>{t('notFound.title')}</h1>
+    <p class="lead">{t('notFound.lead')}</p>
+    <p>{t('notFound.links')}</p>
+    <ul>
+      {
+        localeCodes.map((code) => (
+          <li>
+            <a
+              href={localizePath('home', code)}
+              hreflang={locales[code].hreflang}
+              lang={locales[code].hreflang}
+            >
+              {locales[code].label}
+            </a>
+          </li>
+        ))
+      }
+      {
+        mainNav.map((item) => (
+          <li>
+            <a href={localizePath(item.route, lang)}>{t(item.label)}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  ul {
+    padding-inline-start: 1.25em;
+  }
+</style>

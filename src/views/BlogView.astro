@@ -1,0 +1,63 @@
+---
+import PageHeader from '../components/blocks/PageHeader.astro';
+import PostList from '../components/blocks/PostList.astro';
+import Icon from '../components/ui/Icon.astro';
+import { SITE } from '../config/site';
+import { defaultLocale } from '../i18n/config';
+import { localizePath, useTranslations } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPosts } from '../lib/queries';
+import { breadcrumbNode, webPageNode, type Crumb } from '../lib/schema';
+import type { ViewProps } from './types';
+
+type Props = ViewProps;
+
+const { lang, path, alternates } = Astro.props;
+const t = useTranslations(lang);
+const posts = await getPosts(lang);
+const title = t('meta.blog.title');
+const description = t('meta.blog.description');
+const crumbs: Crumb[] = [
+  { name: t('nav.home'), path: localizePath('home', lang) },
+  { name: t('nav.blog'), path },
+];
+const rssHref = lang === defaultLocale ? '/rss.xml' : `/${lang}/rss.xml`;
+const schema = [
+  webPageNode(SITE, {
+    path,
+    type: 'CollectionPage',
+    name: title,
+    description,
+    lang,
+    hasBreadcrumb: true,
+  }),
+  breadcrumbNode(SITE, path, crumbs),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={title}
+  description={description}
+  alternates={alternates}
+  schema={schema}
+>
+  <PageHeader lang={lang} crumbs={crumbs} title={t('blog.title')} lead={t('blog.lead')}>
+    <p>
+      <a href={rssHref} class="rss-link"><Icon name="rss" size={16} /> {t('blog.rss')}</a>
+    </p>
+  </PageHeader>
+  <div class="container section-pad">
+    <PostList lang={lang} posts={posts} />
+  </div>
+</BaseLayout>
+
+<style>
+  .rss-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    font-size: var(--step--1);
+  }
+</style>

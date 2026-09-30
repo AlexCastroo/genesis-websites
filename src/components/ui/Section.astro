@@ -1,0 +1,49 @@
+---
+import { slugify } from '../../lib/content';
+
+interface Props {
+  id?: string;
+  title: string;
+  lead?: string;
+  variant?: 'default' | 'muted';
+  width?: 'default' | 'narrow';
+  /** Keep the heading for screen readers and outline, hide it visually. */
+  titleHidden?: boolean;
+}
+
+const {
+  id,
+  title,
+  lead,
+  variant = 'default',
+  width = 'default',
+  titleHidden = false,
+} = Astro.props;
+const titleId = `${id ?? slugify(title)}-title`;
+---
+
+<section id={id} class:list={['section', `section--${variant}`]} aria-labelledby={titleId}>
+  <div class:list={['container', { 'container--narrow': width === 'narrow' }]}>
+    <div class="section__header">
+      <h2 id={titleId} class:list={{ 'visually-hidden': titleHidden }}>{title}</h2>
+      {lead && <p class="lead">{lead}</p>}
+    </div>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    padding-block: var(--section-gap);
+  }
+
+  .section--muted {
+    background: var(--color-bg-subtle);
+  }
+
+  .section__header {
+    display: grid;
+    gap: var(--space-xs);
+    margin-block-end: var(--space-l);
+  }
+</style>

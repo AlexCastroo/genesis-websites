@@ -1,0 +1,74 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Lang } from '../../i18n/config';
+import { localizePath, useTranslations } from '../../i18n/utils';
+import { entrySlug } from '../../lib/content';
+import { formatDate, toIsoDate } from '../../lib/dates';
+
+interface Props {
+  lang: Lang;
+  posts: CollectionEntry<'blog'>[];
+  headingLevel?: 2 | 3;
+}
+
+const { lang, posts, headingLevel = 2 } = Astro.props;
+const t = useTranslations(lang);
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+---
+
+{
+  posts.length === 0 ? (
+    <p>{t('blog.empty')}</p>
+  ) : (
+    <ul role="list" class="post-list">
+      {posts.map((post) => (
+        <li class="reveal">
+          <article class="post-card">
+            <Heading class="post-card__title">
+              <a href={localizePath('blog', lang, entrySlug(post.id))}>{post.data.title}</a>
+            </Heading>
+            <p class="post-card__meta">
+              <time datetime={toIsoDate(post.data.published)}>
+                {formatDate(post.data.published, lang)}
+              </time>
+            </p>
+            <p>{post.data.description}</p>
+          </article>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<style>
+  .post-list {
+    display: grid;
+    gap: var(--space-l);
+    max-width: var(--container-narrow);
+  }
+
+  .post-card {
+    display: grid;
+    gap: var(--space-2xs);
+    padding-block-end: var(--space-l);
+    border-bottom: var(--border-width) solid var(--color-border);
+  }
+
+  .post-card__title {
+    font-size: var(--step-2);
+  }
+
+  .post-card__title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .post-card__title a:hover {
+    text-decoration: underline;
+  }
+
+  .post-card__meta {
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+  }
+</style>

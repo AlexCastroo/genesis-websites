@@ -1,0 +1,73 @@
+---
+import type { FaqItem } from '../../lib/schema';
+
+interface Props {
+  items: FaqItem[];
+  headingLevel?: 2 | 3;
+}
+
+const { items, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+---
+
+<div class="faq-list">
+  {
+    items.map((item) => (
+      <details class="faq">
+        <summary>
+          <Heading class="faq__q">{item.q}</Heading>
+        </summary>
+        <div class="faq__a">
+          <p>{item.a}</p>
+        </div>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq {
+    border-bottom: var(--border-width) solid var(--color-border);
+  }
+
+  .faq:first-child {
+    border-top: var(--border-width) solid var(--color-border);
+  }
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding-block: var(--space-s);
+    list-style: none;
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::after {
+    content: '+' / '';
+    flex: none;
+    font-size: var(--step-2);
+    line-height: 1;
+    color: var(--color-accent);
+  }
+
+  details[open] summary::after {
+    content: '−' / '';
+  }
+
+  .faq__q {
+    font-size: var(--step-1);
+    line-height: var(--lh-snug);
+  }
+
+  .faq__a {
+    max-width: var(--measure);
+    padding-block-end: var(--space-s);
+    color: var(--color-text-muted);
+  }
+</style>

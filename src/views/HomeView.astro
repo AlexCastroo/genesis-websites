@@ -1,0 +1,124 @@
+---
+import heroImage from '../assets/hero.jpg';
+import CtaBand from '../components/blocks/CtaBand.astro';
+import FaqList from '../components/blocks/FaqList.astro';
+import FeatureGrid from '../components/blocks/FeatureGrid.astro';
+import Hero from '../components/blocks/Hero.astro';
+import Button from '../components/ui/Button.astro';
+import Section from '../components/ui/Section.astro';
+import { SITE } from '../config/site';
+import { localizePath, useTranslations } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { entrySlug } from '../lib/content';
+import { getFaqs, getServices } from '../lib/queries';
+import { faqPageNode, webPageNode } from '../lib/schema';
+import type { ViewProps } from './types';
+
+type Props = ViewProps;
+
+const { lang, path, alternates } = Astro.props;
+const t = useTranslations(lang);
+const services = (await getServices(lang)).slice(0, 3);
+const faqs = (await getFaqs(lang)).slice(0, 3).map((faq) => ({ q: faq.data.q, a: faq.data.a }));
+const stats = ([1, 2, 3] as const).map((n) => ({
+  value: t(`home.stats.${n}.value`),
+  label: t(`home.stats.${n}.label`),
+}));
+
+const title = t('meta.home.title');
+const description = t('meta.home.description');
+const schema = [
+  webPageNode(SITE, { path, name: title, description, lang }),
+  ...(faqs.length > 0 ? [faqPageNode(SITE, path, faqs)] : []),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={title}
+  description={description}
+  alternates={alternates}
+  schema={schema}
+  isHome
+>
+  <Hero
+    eyebrow={t('home.hero.eyebrow')}
+    title={t('home.hero.title')}
+    lead={t('home.hero.lead')}
+    primary={{ label: t('cta.contact'), href: localizePath('contact', lang), track: 'cta_hero' }}
+    secondary={{ label: t('cta.services'), href: localizePath('services', lang) }}
+    image={heroImage}
+    imageAlt={t('home.hero.imageAlt')}
+  />
+
+  <Section id="services" title={t('home.services.title')} lead={t('home.services.lead')}>
+    <FeatureGrid
+      items={services.map((service) => ({
+        title: service.data.title,
+        text: service.data.summary,
+        href: localizePath('services', lang, entrySlug(service.id)),
+      }))}
+    />
+    <p class="section-more">
+      <Button href={localizePath('services', lang)} variant="secondary">{t('cta.allServices')}</Button>
+    </p>
+  </Section>
+
+  <Section id="results" title={t('home.stats.title')} variant="muted">
+    <dl class="stats">
+      {
+        stats.map((stat) => (
+          <div class="stats__item reveal">
+            <dt>{stat.label}</dt>
+            <dd>{stat.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </Section>
+
+  {
+    faqs.length > 0 && (
+      <Section id="faq" title={t('home.faq.title')} width="narrow">
+        <FaqList items={faqs} />
+        <p class="section-more">
+          <Button href={localizePath('faq', lang)} variant="ghost">
+            {t('cta.allFaq')}
+          </Button>
+        </p>
+      </Section>
+    )
+  }
+
+  <CtaBand lang={lang} />
+</BaseLayout>
+
+<style>
+  .section-more {
+    margin-block-start: var(--space-l);
+  }
+
+  .stats {
+    display: grid;
+    gap: var(--space-l);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  }
+
+  .stats__item {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--space-3xs);
+  }
+
+  .stats dd {
+    font-size: var(--step-5);
+    font-weight: var(--fw-bold);
+    line-height: 1;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .stats dt {
+    color: var(--color-text-muted);
+  }
+</style>

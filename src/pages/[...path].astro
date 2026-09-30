@@ -1,0 +1,36 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import { loadPages } from '../lib/load-pages';
+import AboutView from '../views/AboutView.astro';
+import BlogView from '../views/BlogView.astro';
+import ContactView from '../views/ContactView.astro';
+import FaqView from '../views/FaqView.astro';
+import HomeView from '../views/HomeView.astro';
+import LegalView from '../views/LegalView.astro';
+import PostView from '../views/PostView.astro';
+import ServiceDetailView from '../views/ServiceDetailView.astro';
+import ServicesView from '../views/ServicesView.astro';
+
+export const getStaticPaths = (async () => {
+  const pages = await loadPages();
+  return pages.map((page) => ({
+    params: { path: page.path === '/' ? undefined : page.path.slice(1) },
+    props: { page },
+  }));
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { page } = Astro.props;
+const common = { lang: page.lang, path: page.path, alternates: page.alternates };
+---
+
+{page.kind === 'home' && <HomeView {...common} />}
+{page.kind === 'services' && <ServicesView {...common} />}
+{page.kind === 'about' && <AboutView {...common} />}
+{page.kind === 'contact' && <ContactView {...common} />}
+{page.kind === 'faq' && <FaqView {...common} />}
+{page.kind === 'blog' && <BlogView {...common} />}
+{page.kind === 'service' && <ServiceDetailView {...common} entry={page.entry} />}
+{page.kind === 'post' && <PostView {...common} entry={page.entry} />}
+{page.kind === 'legal' && <LegalView {...common} entry={page.entry} />}

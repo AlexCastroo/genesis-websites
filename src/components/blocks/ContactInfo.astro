@@ -1,0 +1,126 @@
+---
+import { SITE } from '../../config/site';
+import type { Lang } from '../../i18n/config';
+import { useTranslations } from '../../i18n/utils';
+import Icon from '../ui/Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const { contact, address, openingHours } = SITE;
+const phoneHref = contact.phone ? `tel:${contact.phone.replace(/[^\d+]/g, '')}` : undefined;
+const whatsappHref = contact.whatsapp ? `https://wa.me/${contact.whatsapp}` : undefined;
+const addressText = address
+  ? [address.street, `${address.postalCode} ${address.locality}`, address.region]
+      .filter(Boolean)
+      .join(', ')
+  : undefined;
+const mapHref = addressText
+  ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${SITE.name}, ${addressText}`)}`
+  : undefined;
+---
+
+<address class="contact-info">
+  <dl>
+    <div>
+      <dt><Icon name="mail" /> {t('contact.email')}</dt>
+      <dd><a href={`mailto:${contact.email}`} data-track="contact_email">{contact.email}</a></dd>
+    </div>
+    {
+      phoneHref && (
+        <div>
+          <dt>
+            <Icon name="phone" /> {t('contact.phone')}
+          </dt>
+          <dd>
+            <a href={phoneHref} data-track="contact_phone">
+              {contact.phone}
+            </a>
+          </dd>
+        </div>
+      )
+    }
+    {
+      whatsappHref && (
+        <div>
+          <dt>
+            <Icon name="chat" /> {t('contact.whatsapp')}
+          </dt>
+          <dd>
+            <a
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track="contact_whatsapp"
+            >
+              +{contact.whatsapp}
+              <span class="visually-hidden"> {t('a11y.newTab')}</span>
+            </a>
+          </dd>
+        </div>
+      )
+    }
+    {
+      addressText && (
+        <div>
+          <dt>
+            <Icon name="map-pin" /> {t('contact.address')}
+          </dt>
+          <dd>
+            {addressText}
+            <br />
+            <a href={mapHref} target="_blank" rel="noopener noreferrer">
+              {t('contact.map')}
+              <span class="visually-hidden"> {t('a11y.newTab')}</span>
+            </a>
+          </dd>
+        </div>
+      )
+    }
+    {
+      openingHours && openingHours.length > 0 && (
+        <div>
+          <dt>
+            <Icon name="clock" /> {t('contact.hours')}
+          </dt>
+          <dd>
+            <ul role="list">
+              {openingHours.map((hours) => (
+                <li>
+                  {hours.days.map((day) => t(`days.${day}`)).join(', ')}: {hours.opens}–
+                  {hours.closes}
+                </li>
+              ))}
+            </ul>
+          </dd>
+        </div>
+      )
+    }
+  </dl>
+</address>
+
+<style>
+  .contact-info {
+    font-style: normal;
+  }
+
+  dl {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  dt {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-weight: var(--fw-semibold);
+  }
+
+  dd {
+    margin-inline-start: calc(20px + var(--space-2xs));
+    color: var(--color-text-muted);
+  }
+</style>

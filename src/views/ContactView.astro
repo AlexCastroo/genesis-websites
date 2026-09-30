@@ -1,0 +1,66 @@
+---
+import ContactInfo from '../components/blocks/ContactInfo.astro';
+import PageHeader from '../components/blocks/PageHeader.astro';
+import { SITE } from '../config/site';
+import { localizePath, useTranslations } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { breadcrumbNode, webPageNode, type Crumb } from '../lib/schema';
+import type { ViewProps } from './types';
+
+type Props = ViewProps;
+
+const { lang, path, alternates } = Astro.props;
+const t = useTranslations(lang);
+const title = t('meta.contact.title');
+const description = t('meta.contact.description');
+const crumbs: Crumb[] = [
+  { name: t('nav.home'), path: localizePath('home', lang) },
+  { name: t('nav.contact'), path },
+];
+const schema = [
+  webPageNode(SITE, {
+    path,
+    type: 'ContactPage',
+    name: title,
+    description,
+    lang,
+    hasBreadcrumb: true,
+  }),
+  breadcrumbNode(SITE, path, crumbs),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={title}
+  description={description}
+  alternates={alternates}
+  schema={schema}
+>
+  <PageHeader lang={lang} crumbs={crumbs} title={t('contact.title')} lead={t('contact.lead')} />
+  <div class="container section-pad contact-grid">
+    <section aria-labelledby="contact-info-title">
+      <h2 id="contact-info-title">{t('contact.info.title')}</h2>
+      <ContactInfo lang={lang} />
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    gap: var(--space-xl);
+  }
+
+  .contact-grid h2 {
+    margin-block-end: var(--space-m);
+    font-size: var(--step-2);
+  }
+
+  @media (min-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1.3fr;
+    }
+  }
+</style>

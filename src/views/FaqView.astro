@@ -1,0 +1,69 @@
+---
+import CtaBand from '../components/blocks/CtaBand.astro';
+import FaqList from '../components/blocks/FaqList.astro';
+import PageHeader from '../components/blocks/PageHeader.astro';
+import Section from '../components/ui/Section.astro';
+import { SITE } from '../config/site';
+import { localizePath, useTranslations } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { slugify } from '../lib/content';
+import { getFaqs } from '../lib/queries';
+import {
+  breadcrumbNode,
+  faqQuestions,
+  webPageNode,
+  type Crumb,
+  type FaqItem,
+} from '../lib/schema';
+import type { ViewProps } from './types';
+
+type Props = ViewProps;
+
+const { lang, path, alternates } = Astro.props;
+const t = useTranslations(lang);
+const faqs = await getFaqs(lang);
+const groups = new Map<string, FaqItem[]>();
+for (const faq of faqs) {
+  const category = faq.data.category ?? t('faq.general');
+  groups.set(category, [...(groups.get(category) ?? []), { q: faq.data.q, a: faq.data.a }]);
+}
+const allItems = [...groups.values()].flat();
+
+const title = t('meta.faq.title');
+const description = t('meta.faq.description');
+const crumbs: Crumb[] = [
+  { name: t('nav.home'), path: localizePath('home', lang) },
+  { name: t('nav.faq'), path },
+];
+const schema = [
+  webPageNode(SITE, {
+    path,
+    type: 'FAQPage',
+    name: title,
+    description,
+    lang,
+    hasBreadcrumb: true,
+    mainEntity: faqQuestions(allItems),
+  }),
+  breadcrumbNode(SITE, path, crumbs),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={title}
+  description={description}
+  alternates={alternates}
+  schema={schema}
+>
+  <PageHeader lang={lang} crumbs={crumbs} title={t('faq.title')} lead={t('faq.lead')} />
+  {
+    [...groups].map(([category, items]) => (
+      <Section id={slugify(category)} title={category} width="narrow">
+        <FaqList items={items} />
+      </Section>
+    ))
+  }
+  <CtaBand lang={lang} />
+</BaseLayout>

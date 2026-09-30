@@ -1,0 +1,123 @@
+---
+import { Picture } from 'astro:assets';
+import { render, type CollectionEntry } from 'astro:content';
+import CtaBand from '../components/blocks/CtaBand.astro';
+import FaqList from '../components/blocks/FaqList.astro';
+import FeatureGrid from '../components/blocks/FeatureGrid.astro';
+import PageHeader from '../components/blocks/PageHeader.astro';
+import Section from '../components/ui/Section.astro';
+import { SITE } from '../config/site';
+import { localizePath, useTranslations } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { entrySlug } from '../lib/content';
+import { formatDate, toIsoDate } from '../lib/dates';
+import { getServices } from '../lib/queries';
+import {
+  breadcrumbNode,
+  faqPageNode,
+  serviceNode,
+  webPageNode,
+  type Crumb,
+} from '../lib/schema';
+import type { ViewProps } from './types';
+
+interface Props extends ViewProps {
+  entry: CollectionEntry<'services'>;
+}
+
+const { lang, path, alternates, entry } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(entry);
+const { title, description, summary, faqs, updated, image, imageAlt } = entry.data;
+const related = (await getServices(lang)).filter((service) => service.id !== entry.id).slice(0, 3);
+const crumbs: Crumb[] = [
+  { name: t('nav.home'), path: localizePath('home', lang) },
+  { name: t('nav.services'), path: localizePath('services', lang) },
+  { name: title, path },
+];
+const schema = [
+  webPageNode(SITE, {
+    path,
+    name: title,
+    description,
+    lang,
+    hasBreadcrumb: true,
+    dateModified: updated,
+  }),
+  breadcrumbNode(SITE, path, crumbs),
+  serviceNode(SITE, { path, name: title, description: summary }),
+  ...(faqs.length > 0 ? [faqPageNode(SITE, path, faqs)] : []),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={title}
+  description={description}
+  alternates={alternates}
+  schema={schema}
+>
+  <PageHeader lang={lang} crumbs={crumbs} title={title} lead={summary}>
+    <p class="text-muted">
+      <small
+        >{t('common.updated')}{' '}
+        <time datetime={toIsoDate(updated)}>{formatDate(updated, lang)}</time></small
+      >
+    </p>
+  </PageHeader>
+
+  <div class="container section-pad detail">
+    {
+      image && (
+        <Picture
+          src={image}
+          alt={imageAlt ?? ''}
+          formats={['avif', 'webp']}
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 900px) 760px, 100vw"
+          class="detail__image"
+        />
+      )
+    }
+    <div class="prose"><Content /></div>
+  </div>
+
+  {
+    faqs.length > 0 && (
+      <Section id="faq" title={t('service.faq.title')} variant="muted" width="narrow">
+        <FaqList items={faqs} />
+      </Section>
+    )
+  }
+
+  {
+    related.length > 0 && (
+      <Section id="related" title={t('service.related.title')}>
+        <FeatureGrid
+          items={related.map((service) => ({
+            title: service.data.title,
+            text: service.data.summary,
+            href: localizePath('services', lang, entrySlug(service.id)),
+          }))}
+        />
+      </Section>
+    )
+  }
+
+  <CtaBand lang={lang} />
+</BaseLayout>
+
+<style>
+  .detail {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  .detail :global(.detail__image) {
+    width: 100%;
+    max-width: var(--container-narrow);
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+</style>

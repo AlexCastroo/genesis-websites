@@ -1,0 +1,48 @@
+---
+import CtaBand from '../components/blocks/CtaBand.astro';
+import FeatureGrid from '../components/blocks/FeatureGrid.astro';
+import PageHeader from '../components/blocks/PageHeader.astro';
+import Section from '../components/ui/Section.astro';
+import { SITE } from '../config/site';
+import { localizePath, useTranslations } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { breadcrumbNode, webPageNode, type Crumb } from '../lib/schema';
+import type { ViewProps } from './types';
+
+type Props = ViewProps;
+
+const { lang, path, alternates } = Astro.props;
+const t = useTranslations(lang);
+const title = t('meta.about.title');
+const description = t('meta.about.description');
+const crumbs: Crumb[] = [
+  { name: t('nav.home'), path: localizePath('home', lang) },
+  { name: t('nav.about'), path },
+];
+const values = ([1, 2, 3] as const).map((n) => ({
+  title: t(`about.values.${n}.title`),
+  text: t(`about.values.${n}.body`),
+}));
+const schema = [
+  webPageNode(SITE, { path, type: 'AboutPage', name: title, description, lang, hasBreadcrumb: true }),
+  breadcrumbNode(SITE, path, crumbs),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={title}
+  description={description}
+  alternates={alternates}
+  schema={schema}
+>
+  <PageHeader lang={lang} crumbs={crumbs} title={t('about.title')} lead={t('about.lead')} />
+  <Section id="story" title={t('about.story.title')} width="narrow">
+    <div class="prose"><p>{t('about.story.body')}</p></div>
+  </Section>
+  <Section id="values" title={t('about.values.title')} variant="muted">
+    <FeatureGrid items={values} />
+  </Section>
+  <CtaBand lang={lang} />
+</BaseLayout>

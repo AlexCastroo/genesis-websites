@@ -1,0 +1,35 @@
+---
+import type { Lang } from '../../i18n/config';
+import type { Crumb } from '../../lib/schema';
+import Breadcrumbs from '../layout/Breadcrumbs.astro';
+
+interface Props {
+  lang: Lang;
+  crumbs: Crumb[];
+  title: string;
+  lead?: string;
+}
+
+const { lang, crumbs, title, lead } = Astro.props;
+---
+
+<div class="page-header">
+  <div class="container page-header__inner">
+    <Breadcrumbs lang={lang} items={crumbs} />
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    <slot />
+  </div>
+</div>
+
+<style>
+  .page-header {
+    padding-block: var(--space-xl) var(--space-l);
+    border-bottom: var(--border-width) solid var(--color-border);
+  }
+
+  .page-header__inner {
+    display: grid;
+    gap: var(--space-s);
+  }
+</style>

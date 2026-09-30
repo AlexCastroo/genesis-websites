@@ -1,0 +1,79 @@
+---
+interface Props {
+  title: string;
+  /** When set, the whole card becomes clickable through the title link. */
+  href?: string;
+  headingLevel?: 2 | 3;
+}
+
+const { title, href, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+---
+
+<article class="card">
+  <div class="card__inner">
+    <Heading class="card__title">{href ? <a href={href}>{title}</a> : title}</Heading>
+    <div class="card__body"><slot /></div>
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    container-type: inline-size;
+    height: 100%;
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      box-shadow var(--duration-fast) var(--ease-out);
+  }
+
+  .card:has(a):hover {
+    border-color: var(--color-text);
+    box-shadow: var(--shadow-md);
+  }
+
+  .card:has(a:focus-visible) {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+  }
+
+  .card__inner {
+    display: grid;
+    gap: var(--space-xs);
+    align-content: start;
+    padding: var(--space-m);
+  }
+
+  @container (min-width: 28rem) {
+    .card__inner {
+      padding: var(--space-l);
+    }
+  }
+
+  .card__title {
+    font-size: var(--step-1);
+  }
+
+  .card__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .card__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .card__title a:focus-visible {
+    outline: none;
+  }
+
+  .card__body {
+    color: var(--color-text-muted);
+  }
+</style>
