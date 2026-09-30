@@ -1,6 +1,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import type { Lang } from '../i18n/config';
 import { entryLang, isPublished } from './content';
+import type { DaySchedule } from './schedule';
 
 const PRODUCTION = import.meta.env.PROD;
 
@@ -39,4 +40,33 @@ export async function findLegal(
   translationKey: string,
 ): Promise<CollectionEntry<'legal'> | undefined> {
   return (await getLegal(lang)).find((entry) => entry.data.translationKey === translationKey);
+}
+
+export async function getPlans(group?: 'bonos' | 'membresias'): Promise<CollectionEntry<'plans'>[]> {
+  const entries = await getCollection('plans', (entry) => !group || entry.data.group === group);
+  return entries.sort((a, b) => a.data.order - b.data.order);
+}
+
+/** The trial class is the single source of the price shown in every "book a trial" CTA. */
+export async function getTrialPlan(): Promise<CollectionEntry<'plans'>> {
+  const trial = (await getPlans()).find((entry) => entry.data.translationKey === 'trial');
+  if (!trial) throw new Error('Missing plan with translationKey "trial" in src/content/plans');
+  return trial;
+}
+
+export async function getSchedule(): Promise<DaySchedule[]> {
+  const entries = await getCollection('schedule');
+  return entries.map((entry) => ({ day: entry.data.day, slots: entry.data.slots }));
+}
+
+export async function getTeam(): Promise<CollectionEntry<'team'>[]> {
+  return (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
+}
+
+export async function getTestimonials(): Promise<CollectionEntry<'testimonials'>[]> {
+  return (await getCollection('testimonials')).sort((a, b) => a.data.order - b.data.order);
+}
+
+export async function getSpaces(): Promise<CollectionEntry<'spaces'>[]> {
+  return (await getCollection('spaces')).sort((a, b) => a.data.order - b.data.order);
 }

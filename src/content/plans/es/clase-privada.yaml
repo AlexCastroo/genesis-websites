@@ -1,0 +1,15 @@
+translationKey: "clase-privada"
+group: "membresias"
+order: 2
+eyebrow: "Personalizado & terapéutico"
+icon: "user"
+name: "Clase Privada One-on-One"
+description: "Sesión exclusiva enfocada en rehabilitación, perfeccionamiento biomecánico o preparación pre y postnatal."
+price: 65
+priceNote: "/ sesión de 60 min"
+features:
+  - "Atención 100 % dedicada con instructora máster"
+  - "Uso combinado de Cadillac, Reformer y Chair"
+  - "Plan de seguimiento postural personalizado"
+cta: "Consultar disponibilidad privada"
+highlight: "none"

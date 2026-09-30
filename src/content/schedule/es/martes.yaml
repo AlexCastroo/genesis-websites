@@ -1,0 +1,43 @@
+translationKey: "martes"
+day: "Tu"
+slots:
+  - time: "07:30"
+    className: "Mat Pilates Core"
+    instructor: "Elena Mas"
+    band: "morning"
+    spots: 3
+  - time: "09:00"
+    className: "Reformer Alignment"
+    instructor: "Sofía Serrano"
+    band: "morning"
+    spots: 2
+  - time: "10:30"
+    className: "Express Reformer"
+    instructor: "David Nogués"
+    band: "morning"
+    spots: 0
+  - time: "13:30"
+    className: "Estiramiento Miofascial"
+    instructor: "Carmen Soler"
+    band: "midday"
+    spots: 4
+  - time: "14:30"
+    className: "Reformer Athletic"
+    instructor: "Lucía Gómez"
+    band: "midday"
+    spots: 1
+  - time: "17:30"
+    className: "Reformer Dynamic"
+    instructor: "Elena Mas"
+    band: "evening"
+    spots: 3
+  - time: "18:45"
+    className: "Restorative Yin Yoga"
+    instructor: "Sofía Serrano"
+    band: "evening"
+    spots: 2
+  - time: "20:00"
+    className: "Reformer Flow"
+    instructor: "David Nogués"
+    band: "evening"
+    spots: 5

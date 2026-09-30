@@ -29,7 +29,17 @@ for (const file of readdirSync(uiDir).filter(
 }
 
 // 2. Content: file layout (error), translation parity and SEO lengths (warnings).
-for (const collection of ['services', 'blog', 'legal', 'faq']) {
+for (const collection of [
+  'services',
+  'blog',
+  'legal',
+  'faq',
+  'plans',
+  'schedule',
+  'team',
+  'testimonials',
+  'spaces',
+]) {
   const dir = join(root, 'src/content', collection);
   const files = (readdirSync(dir, { recursive: true }) as string[])
     .map((file) => file.replace(/\\/g, '/'))
@@ -42,7 +52,7 @@ for (const collection of ['services', 'blog', 'legal', 'faq']) {
       file: `${collection}/${file}`,
       lang: file.split('/')[0] ?? '',
       translationKey: data.translationKey ?? '',
-      title: data.title,
+      title: data.seoTitle || data.title,
       description: data.description,
     };
   });
@@ -66,7 +76,7 @@ for (const lang of localeCodes) {
   warnings.push(
     ...lengthWarnings(`ui/${lang} meta.home`, d['meta.home.title'], d['meta.home.description']),
   );
-  for (const page of ['services', 'about', 'contact', 'faq', 'blog'] as const) {
+  for (const page of ['services', 'about', 'pricing', 'contact', 'faq', 'blog'] as const) {
     warnings.push(
       ...lengthWarnings(
         `ui/${lang} meta.${page}`,

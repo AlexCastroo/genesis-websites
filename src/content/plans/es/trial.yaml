@@ -1,0 +1,16 @@
+translationKey: "trial"
+group: "bonos"
+order: 1
+eyebrow: "Bienvenida al estudio"
+icon: "spa"
+name: "Clase de Prueba Primerizos"
+description: "Tu primer contacto con MOVA. Evaluamos tu alineación corporal antes de adentrarte en el movimiento suave."
+price: 18
+priceNote: "/ sesión única"
+features:
+  - "Análisis postural de 15 minutos"
+  - "Elección entre Reformer o Mat Pilates"
+  - "Infusión herbal orgánica de bienvenida"
+cta: "Reservar mi primera clase"
+highlight: "recommended"
+badge: "Recomendado"

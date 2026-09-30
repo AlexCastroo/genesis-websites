@@ -1,0 +1,16 @@
+translationKey: "unlimited-sanctuary"
+group: "membresias"
+order: 1
+eyebrow: "Membresía integral"
+icon: "infinity"
+name: "Unlimited Sanctuary"
+description: "Una inmersión continua para quienes integran el movimiento como ritual matutino irrenunciable."
+price: 180
+priceNote: "/ mes sin permanencia"
+features:
+  - "Acceso ilimitado a clases de Mat Pilates & Yoga"
+  - "8 sesiones de Reformer Studio al mes"
+  - "Prioridad absoluta de lista de espera"
+  - "Acceso exclusivo a masterclasses y sonoterapia trimestral"
+cta: "Suscribirme al Sanctuary"
+highlight: "dark"
