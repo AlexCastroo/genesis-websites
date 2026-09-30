@@ -1,5 +1,6 @@
 ---
 import type { FaqItem } from '../../lib/schema';
+import Icon from '../ui/Icon.astro';
 
 interface Props {
   items: FaqItem[];
@@ -11,25 +12,30 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
 ---
 
 <div class="faq-list">
-  {items.map((item) => (
-    <details class="faq">
-      <summary>
-        <Heading class="faq__q">{item.q}</Heading>
-      </summary>
-      <div class="faq__a">
-        <p>{item.a}</p>
-      </div>
-    </details>
-  ))}
+  {
+    items.map((item) => (
+      <details class="faq">
+        <summary>
+          <Heading class="faq__q">{item.q}</Heading>
+          <Icon name="chevron-down" size={18} class="faq__chevron" />
+        </summary>
+        <div class="faq__a">
+          <p>{item.a}</p>
+        </div>
+      </details>
+    ))
+  }
 </div>
 
 <style>
-  .faq {
-    border-bottom: var(--border-width) solid var(--color-border);
+  .faq-list {
+    display: grid;
+    gap: var(--space-xs);
   }
 
-  .faq:first-child {
-    border-top: var(--border-width) solid var(--color-border);
+  .faq {
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-lg);
   }
 
   summary {
@@ -37,35 +43,37 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
     align-items: center;
     justify-content: space-between;
     gap: var(--space-s);
-    padding-block: var(--space-s);
+    padding: var(--space-s) var(--space-m);
     list-style: none;
     cursor: pointer;
+    border-radius: var(--radius-lg);
   }
 
   summary::-webkit-details-marker {
     display: none;
   }
 
-  summary::after {
-    content: '+' / '';
-    flex: none;
-    font-size: var(--step-2);
-    line-height: 1;
-    color: var(--color-accent);
-  }
-
-  details[open] summary::after {
-    content: '−' / '';
-  }
-
   .faq__q {
     font-size: var(--step-1);
+    font-weight: var(--fw-regular);
     line-height: var(--lh-snug);
+  }
+
+  summary :global(.faq__chevron) {
+    flex: none;
+    color: var(--color-text-muted);
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+
+  details[open] summary :global(.faq__chevron) {
+    transform: rotate(180deg);
   }
 
   .faq__a {
     max-width: var(--measure);
-    padding-block-end: var(--space-s);
+    padding: 0 var(--space-m) var(--space-m);
+    font-size: var(--step--1);
+    line-height: var(--lh-relaxed);
     color: var(--color-text-muted);
   }
 </style>

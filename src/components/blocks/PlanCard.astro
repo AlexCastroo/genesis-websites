@@ -1,0 +1,147 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Lang } from '../../i18n/config';
+import { localizePath } from '../../i18n/utils';
+import Icon, { type IconName } from '../ui/Icon.astro';
+
+interface Props {
+  lang: Lang;
+  plan: CollectionEntry<'plans'>;
+}
+
+const { lang, plan } = Astro.props;
+const data = plan.data;
+const dark = data.highlight === 'dark';
+---
+
+<article class:list={['plan', `plan--${data.highlight}`]}>
+  {data.badge && <p class="plan__badge">{data.badge}</p>}
+  <p class="plan__eyebrow">
+    <span>{data.eyebrow}</span>
+    <Icon name={data.icon as IconName} size={18} />
+  </p>
+  <h4 class="plan__name">{data.name}</h4>
+  <p class="plan__description">{data.description}</p>
+  <p class="plan__price">
+    <span class="plan__amount">{data.price}€</span>
+    <span class="plan__note">{data.priceNote}</span>
+  </p>
+  <ul role="list" class="plan__features">
+    {
+      data.features.map((feature) => (
+        <li>
+          <Icon name="check" size={16} /> {feature}
+        </li>
+      ))
+    }
+  </ul>
+  <a
+    href={`${localizePath('pricing', lang)}#solicitud`}
+    class:list={[
+      'btn',
+      'btn--block',
+      dark ? 'btn--light' : data.highlight === 'recommended' ? 'btn--primary' : 'btn--secondary',
+    ]}
+    data-plan={plan.data.translationKey}
+    data-track="plan_cta"
+  >
+    {data.cta}<span class="visually-hidden">: {data.name}</span>
+    <Icon name={dark ? 'arrow-up-right' : 'arrow-right'} size={16} />
+  </a>
+</article>
+
+<style>
+  .plan {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto auto auto auto 1fr auto;
+    gap: var(--space-xs);
+    height: 100%;
+    padding: var(--space-l) var(--space-m) var(--space-m);
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-lg);
+  }
+
+  .plan--dark {
+    color: var(--color-text-inverse);
+    background: var(--color-bg-inverse);
+  }
+
+  .plan__badge {
+    position: absolute;
+    top: 0;
+    right: var(--space-m);
+    padding: 0.375rem 0.875rem;
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-inverse);
+    background: var(--color-eyebrow);
+    border-radius: var(--radius-full);
+    transform: translateY(-50%);
+  }
+
+  .plan__eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+  }
+
+  .plan--dark .plan__eyebrow,
+  .plan--dark .plan__description,
+  .plan--dark .plan__note {
+    color: var(--color-text-inverse-muted);
+  }
+
+  .plan__name {
+    font-size: var(--step-2);
+  }
+
+  .plan__description {
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+  }
+
+  .plan__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2xs);
+    margin-block: var(--space-xs);
+  }
+
+  .plan__amount {
+    font-family: var(--font-serif);
+    font-size: var(--step-4);
+    line-height: 1;
+  }
+
+  .plan__note {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .plan__features {
+    display: grid;
+    gap: var(--space-2xs);
+    align-content: start;
+    margin-block-end: var(--space-s);
+    font-size: 0.8125rem;
+  }
+
+  .plan__features li {
+    display: flex;
+    gap: var(--space-2xs);
+  }
+
+  .plan__features :global(.icon) {
+    flex: none;
+    margin-block-start: 0.15rem;
+  }
+</style>

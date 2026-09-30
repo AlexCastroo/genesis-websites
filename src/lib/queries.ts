@@ -44,7 +44,12 @@ export async function findLegal(
 
 export async function getPlans(group?: 'bonos' | 'membresias'): Promise<CollectionEntry<'plans'>[]> {
   const entries = await getCollection('plans', (entry) => !group || entry.data.group === group);
-  return entries.sort((a, b) => a.data.order - b.data.order);
+  const groupOrder = ['bonos', 'membresias'];
+  return entries.sort(
+    (a, b) =>
+      groupOrder.indexOf(a.data.group) - groupOrder.indexOf(b.data.group) ||
+      a.data.order - b.data.order,
+  );
 }
 
 /** The trial class is the single source of the price shown in every "book a trial" CTA. */

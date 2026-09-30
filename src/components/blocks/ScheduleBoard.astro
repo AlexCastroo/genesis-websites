@@ -1,0 +1,284 @@
+---
+import { SITE } from '../../config/site';
+import type { Lang } from '../../i18n/config';
+import { localizePath, useTranslations } from '../../i18n/utils';
+import { getSchedule } from '../../lib/queries';
+import { groupSchedule, spotsStatus, type Band } from '../../lib/schedule';
+import { whatsappLink } from '../../lib/whatsapp';
+import Icon, { type IconName } from '../ui/Icon.astro';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const days = groupSchedule(await getSchedule());
+const bandIcon: Record<Band, IconName> = { morning: 'sunrise', midday: 'sun', evening: 'moon' };
+const phone = SITE.contact.whatsapp;
+const fallback = `${localizePath('pricing', lang)}#solicitud`;
+
+const statusLabel = (spots: number) => {
+  const { tone } = spotsStatus(spots);
+  if (tone === 'full') return t('pricing.spots.full');
+  if (tone === 'last') return t('pricing.spots.last');
+  return t('pricing.spots.open', { n: spots });
+};
+---
+
+<section id="horario" class="schedule" aria-labelledby="schedule-title">
+  <div class="container">
+    <div class="schedule__card" data-tabs data-tabs-initial="today">
+      <div class="schedule__header">
+        <div>
+          <p class="eyebrow">{t('pricing.schedule.eyebrow')}</p>
+          <h2 id="schedule-title" class="schedule__title">{t('pricing.schedule.title')}</h2>
+          <p class="schedule__lead">{t('pricing.schedule.lead')}</p>
+        </div>
+        <div class="js-only">
+          <div class="schedule__days" data-tablist aria-label={t('a11y.days')}>
+            {
+              days.map(({ day }) => (
+                <button type="button" class="day" data-tab={day}>
+                  <span aria-hidden="true">{t(`daysShort.${day}`)}</span>
+                  <span class="visually-hidden">{t(`days.${day}`)}</span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      {
+        days.map(({ day, bands }) => (
+          <div class="schedule__panel" data-tab-panel={day}>
+            <h3 class="schedule__day" data-tab-title>
+              {t(`days.${day}`)}
+            </h3>
+            {bands.map(({ band, slots }) => (
+              <div class="band">
+                <h4 class="band__title">
+                  <Icon name={bandIcon[band]} size={16} />
+                  {t(`pricing.band.${band}`)}
+                </h4>
+                <ul role="list" class="band__slots">
+                  {slots.map((slot) => {
+                    const status = spotsStatus(slot.spots);
+                    const action =
+                      status.action === 'waitlist'
+                        ? t('pricing.action.waitlist')
+                        : t('pricing.action.book');
+                    const vars = { className: slot.className, day: t(`days.${day}`), time: slot.time };
+                    const message =
+                      status.action === 'waitlist'
+                        ? t('whatsapp.waitlist', vars)
+                        : t('whatsapp.book', vars);
+                    const href = phone ? whatsappLink(phone, message) : fallback;
+                    return (
+                      <li class="slot">
+                        <div class="slot__top">
+                          <p class="slot__time">{slot.time}</p>
+                          <p class="slot__class">{slot.className}</p>
+                        </div>
+                        <p class="slot__instructor">{slot.instructor}</p>
+                        <div class="slot__bottom">
+                          <p class:list={['slot__status', `slot__status--${status.tone}`]}>
+                            <span class="slot__dot" aria-hidden="true" />
+                            {statusLabel(slot.spots)}
+                          </p>
+                          <a
+                            href={href}
+                            class="slot__action"
+                            data-track={`schedule_${status.action}`}
+                            {...(phone ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                          >
+                            <span aria-hidden="true">{action}</span>
+                            <span class="visually-hidden">
+                              {t('pricing.action.label', { action, ...vars })}
+                              {phone && ` ${t('a11y.newTab')}`}
+                            </span>
+                          </a>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initTabs } from '../../lib/tabs-client';
+
+  initTabs();
+</script>
+
+<style>
+  .schedule {
+    padding-block: var(--space-xl);
+  }
+
+  .schedule__card {
+    padding: clamp(1.25rem, 0.5rem + 3vw, 3.5rem);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-xl);
+  }
+
+  .schedule__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--space-m);
+    margin-block-end: var(--space-l);
+  }
+
+  .schedule__title {
+    font-size: var(--step-4);
+    font-weight: var(--fw-light);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .schedule__lead {
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+  }
+
+  .schedule__days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+  }
+
+  .day {
+    min-width: 3rem;
+    min-height: 2.25rem;
+    padding-inline: 0.875rem;
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    background: var(--color-bg-muted);
+    border: 0;
+    border-radius: var(--radius-full);
+  }
+
+  .day[aria-selected='true'] {
+    color: var(--color-text-inverse);
+    background: var(--color-bg-inverse);
+  }
+
+  .schedule__panel + .schedule__panel {
+    margin-block-start: var(--space-xl);
+  }
+
+  .schedule__day {
+    margin-block-end: var(--space-s);
+    font-size: var(--step-2);
+    font-weight: var(--fw-light);
+    text-transform: capitalize;
+  }
+
+  .band + .band {
+    margin-block-start: var(--space-l);
+  }
+
+  .band__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    margin-block-end: var(--space-s);
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .band__slots {
+    display: grid;
+    gap: var(--space-xs);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  }
+
+  .slot {
+    display: grid;
+    gap: var(--space-2xs);
+    padding: var(--space-s) var(--space-m);
+    background: var(--color-bg);
+    border-radius: var(--radius-sm);
+  }
+
+  .slot__top {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: var(--space-2xs);
+  }
+
+  .slot__time {
+    font-size: var(--step-2);
+    line-height: 1;
+  }
+
+  .slot__class {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-full);
+  }
+
+  .slot__instructor {
+    font-size: var(--step--1);
+  }
+
+  .slot__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2xs);
+  }
+
+  .slot__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .slot__dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: var(--radius-full);
+    background: var(--color-eyebrow);
+  }
+
+  .slot__status--last,
+  .slot__status--full {
+    color: var(--color-error);
+  }
+
+  .slot__status--last .slot__dot,
+  .slot__status--full .slot__dot {
+    background: var(--color-error);
+  }
+
+  .slot__action {
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text);
+    text-underline-offset: 0.3em;
+  }
+</style>

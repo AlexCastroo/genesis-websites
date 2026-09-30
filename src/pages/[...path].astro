@@ -8,6 +8,7 @@ import FaqView from '../views/FaqView.astro';
 import HomeView from '../views/HomeView.astro';
 import LegalView from '../views/LegalView.astro';
 import PostView from '../views/PostView.astro';
+import PricingView from '../views/PricingView.astro';
 import ServiceDetailView from '../views/ServiceDetailView.astro';
 import ServicesView from '../views/ServicesView.astro';
 
@@ -27,7 +28,7 @@ const common = { lang: page.lang, path: page.path, alternates: page.alternates }
 
 {page.kind === 'home' && <HomeView {...common} />}
 {page.kind === 'services' && <ServicesView {...common} />}
-{page.kind === 'pricing' && <ServicesView {...common} />}
+{page.kind === 'pricing' && <PricingView {...common} />}
 {page.kind === 'about' && <AboutView {...common} />}
 {page.kind === 'contact' && <ContactView {...common} />}
 {page.kind === 'faq' && <FaqView {...common} />}

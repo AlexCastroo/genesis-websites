@@ -1,0 +1,305 @@
+---
+import { Image } from 'astro:assets';
+import reformerImage from '../assets/mova/pricing-reformer.jpg';
+import savasanaImage from '../assets/mova/pricing-savasana.jpg';
+import FaqList from '../components/blocks/FaqList.astro';
+import PageHeader from '../components/blocks/PageHeader.astro';
+import PlanCard from '../components/blocks/PlanCard.astro';
+import RequestForm from '../components/blocks/RequestForm.astro';
+import ScheduleBoard from '../components/blocks/ScheduleBoard.astro';
+import { SITE } from '../config/site';
+import { localizePath, useTranslations } from '../i18n/utils';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getFaqs, getPlans } from '../lib/queries';
+import {
+  breadcrumbNode,
+  faqPageNode,
+  offerCatalogNode,
+  webPageNode,
+  type Crumb,
+} from '../lib/schema';
+import type { ViewProps } from './types';
+
+type Props = ViewProps;
+
+const { lang, path, alternates } = Astro.props;
+const t = useTranslations(lang);
+const [plans, faqs] = await Promise.all([getPlans(), getFaqs(lang)]);
+const groups = (['bonos', 'membresias'] as const).map((group) => ({
+  group,
+  label: t(`pricing.tab.${group}`),
+  plans: plans.filter((plan) => plan.data.group === group),
+}));
+const pricingFaqs = faqs
+  .filter((faq) => faq.data.category === t('pricing.faq.category'))
+  .map((faq) => ({ q: faq.data.q, a: faq.data.a }));
+
+const title = t('meta.pricing.title');
+const description = t('meta.pricing.description');
+const crumbs: Crumb[] = [
+  { name: t('nav.home'), path: localizePath('home', lang) },
+  { name: t('nav.pricing'), path },
+];
+const schema = [
+  webPageNode(SITE, { path, name: title, description, lang, hasBreadcrumb: true }),
+  breadcrumbNode(SITE, path, crumbs),
+  offerCatalogNode(SITE, {
+    path,
+    name: t('pricing.plans.title'),
+    plans: plans.map((plan) => ({
+      name: plan.data.name,
+      description: plan.data.description,
+      price: plan.data.price,
+    })),
+  }),
+  ...(pricingFaqs.length > 0 ? [faqPageNode(SITE, path, pricingFaqs)] : []),
+];
+---
+
+<BaseLayout
+  lang={lang}
+  path={path}
+  title={title}
+  description={description}
+  alternates={alternates}
+  schema={schema}
+>
+  <PageHeader
+    lang={lang}
+    crumbs={crumbs}
+    align="center"
+    eyebrow={t('pricing.eyebrow')}
+    title={t('pricing.title')}
+    accent={t('pricing.accent')}
+    lead={t('pricing.lead')}
+  />
+
+  <!-- Plans -->
+  <section class="plans" aria-labelledby="plans-title">
+    <div class="container" data-tabs>
+      <h2 id="plans-title" class="visually-hidden">{t('pricing.plans.title')}</h2>
+      <div class="js-only">
+        <div class="plans__tabs" data-tablist aria-label={t('a11y.planGroups')}>
+          {
+            groups.map(({ group, label }) => (
+              <button type="button" class="plans__tab" data-tab={group}>
+                {label}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+      {
+        groups.map(({ group, label, plans: groupPlans }) => (
+          <div class="plans__panel" data-tab-panel={group}>
+            <h3 class="plans__group" data-tab-title>
+              {label}
+            </h3>
+            <ul role="list" class="plans__grid">
+              {groupPlans.map((plan) => (
+                <li>
+                  <PlanCard lang={lang} plan={plan} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Commitment -->
+  <section class="commitment" aria-labelledby="commitment-title">
+    <div class="container">
+      <div class="commitment__card">
+        <div class="commitment__text">
+          <h2 id="commitment-title" class="eyebrow">{t('pricing.commitment.title')}</h2>
+          <blockquote class="commitment__quote">
+            <p>“{t('pricing.commitment.quote')}”</p>
+          </blockquote>
+          <p class="commitment__body">{t('pricing.commitment.body')}</p>
+        </div>
+        <div class="commitment__images">
+          <Image
+            src={savasanaImage}
+            alt={t('pricing.commitment.savasanaAlt')}
+            widths={[200, 400]}
+            sizes="10rem"
+            class="commitment__img commitment__img--round"
+          />
+          <Image
+            src={reformerImage}
+            alt={t('pricing.commitment.reformerAlt')}
+            widths={[240, 480]}
+            sizes="12rem"
+            class="commitment__img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ScheduleBoard lang={lang} />
+
+  <!-- FAQ + request form -->
+  <section class="closing" aria-labelledby="pricing-faq-title">
+    <div class="container closing__grid">
+      <div class="closing__faq">
+        <p class="eyebrow">{t('pricing.faq.eyebrow')}</p>
+        <h2 id="pricing-faq-title" class="closing__title">{t('pricing.faq.title')}</h2>
+        <p class="closing__lead">{t('pricing.faq.lead')}</p>
+        <FaqList items={pricingFaqs} />
+      </div>
+      <RequestForm lang={lang} />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ---------- Plans ---------- */
+  .plans {
+    padding-block-end: var(--space-xl);
+  }
+
+  .plans__tabs {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto var(--space-xl);
+    padding: 0.3rem;
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-full);
+  }
+
+  .plans__tab {
+    min-height: 2.25rem;
+    padding-inline: 1.125rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    background: transparent;
+    border: 0;
+    border-radius: var(--radius-full);
+  }
+
+  .plans__tab[aria-selected='true'] {
+    color: var(--color-text-inverse);
+    background: var(--color-bg-inverse);
+  }
+
+  .plans__panel + .plans__panel {
+    margin-block-start: var(--space-xl);
+  }
+
+  .plans__group {
+    margin-block-end: var(--space-m);
+    font-size: var(--step-2);
+    text-align: center;
+  }
+
+  .plans__grid {
+    display: grid;
+    gap: var(--space-l) var(--space-m);
+    padding-block-start: var(--space-s);
+  }
+
+  @media (min-width: 900px) {
+    .plans__grid {
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 22rem));
+      justify-content: center;
+    }
+  }
+
+  /* ---------- Commitment ---------- */
+  .commitment {
+    padding-block: var(--space-l);
+  }
+
+  .commitment__card {
+    display: grid;
+    gap: var(--space-l);
+    align-items: center;
+    padding: clamp(1.5rem, 0.5rem + 4vw, 4rem);
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-xl);
+  }
+
+  .commitment__text {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .commitment__quote {
+    font-size: var(--step-4);
+    font-style: normal;
+    line-height: 1.12;
+  }
+
+  .commitment__body {
+    max-width: 55ch;
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+  }
+
+  .commitment__images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .commitment__images :global(.commitment__img) {
+    width: 9rem;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+  }
+
+  .commitment__images :global(.commitment__img--round) {
+    position: relative;
+    z-index: 1;
+    width: 7rem;
+    margin-inline-end: -1.5rem;
+    border-radius: var(--radius-full);
+  }
+
+  @media (min-width: 900px) {
+    .commitment__card {
+      grid-template-columns: 1.6fr 1fr;
+    }
+  }
+
+  /* ---------- Closing ---------- */
+  .closing {
+    padding-block: var(--space-xl) var(--space-2xl);
+  }
+
+  .closing__grid {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .closing__faq {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .closing__title {
+    font-size: var(--step-4);
+    font-weight: var(--fw-light);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .closing__lead {
+    margin-block-end: var(--space-s);
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 900px) {
+    .closing__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
