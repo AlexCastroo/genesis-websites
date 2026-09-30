@@ -178,7 +178,7 @@ export function breadcrumbNode(site: SiteConfig, path: string, crumbs: Crumb[]):
 
 export function serviceNode(
   site: SiteConfig,
-  input: { path: string; name: string; description: string },
+  input: { path: string; name: string; description: string; price?: number },
 ): JsonLdNode {
   const url = absoluteUrl(site.url, input.path);
   return compact({
@@ -190,6 +190,37 @@ export function serviceNode(
     description: input.description,
     provider: { '@id': schemaIds(site).organization },
     areaServed: site.entity.areaServed,
+    offers:
+      input.price === undefined
+        ? undefined
+        : { '@type': 'Offer', price: input.price.toFixed(2), priceCurrency: 'EUR', url },
+  });
+}
+
+export interface CatalogPlan {
+  name: string;
+  description: string;
+  price: number;
+}
+
+export function offerCatalogNode(
+  site: SiteConfig,
+  input: { path: string; name: string; plans: CatalogPlan[] },
+): JsonLdNode {
+  const url = absoluteUrl(site.url, input.path);
+  return compact({
+    '@type': 'OfferCatalog',
+    '@id': `${url}#offers`,
+    name: input.name,
+    url,
+    provider: { '@id': schemaIds(site).organization },
+    itemListElement: input.plans.map((plan) => ({
+      '@type': 'Offer',
+      name: plan.name,
+      description: plan.description,
+      price: plan.price.toFixed(2),
+      priceCurrency: 'EUR',
+    })),
   });
 }
 

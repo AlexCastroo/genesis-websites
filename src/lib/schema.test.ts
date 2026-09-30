@@ -6,6 +6,7 @@ import {
   compact,
   faqPageNode,
   graph,
+  offerCatalogNode,
   organizationNode,
   schemaIds,
   serializeJsonLd,
@@ -167,5 +168,33 @@ describe('serializeJsonLd', () => {
     expect(json).not.toContain('<');
     expect(json).toContain('\\u003c/script>');
     expect(JSON.parse(json)).toEqual({ text: 'a </script><img src=x onerror=alert(1)>' });
+  });
+});
+
+describe('offers', () => {
+  it('adds an EUR Offer to services with a price', () => {
+    expect(
+      serviceNode(base, { path: '/d/a', name: 'A', description: 'D', price: 28 }).offers,
+    ).toEqual({
+      '@type': 'Offer',
+      price: '28.00',
+      priceCurrency: 'EUR',
+      url: 'https://example.com/d/a',
+    });
+  });
+
+  it('builds an OfferCatalog of plans linked to the organization', () => {
+    const node = offerCatalogNode(base, {
+      path: '/precios',
+      name: 'Tarifas',
+      plans: [{ name: 'Bono 5', description: '5 sesiones', price: 120 }],
+    });
+    expect(node).toMatchObject({
+      '@type': 'OfferCatalog',
+      provider: { '@id': 'https://example.com/#organization' },
+      itemListElement: [
+        { '@type': 'Offer', name: 'Bono 5', price: '120.00', priceCurrency: 'EUR' },
+      ],
+    });
   });
 });
