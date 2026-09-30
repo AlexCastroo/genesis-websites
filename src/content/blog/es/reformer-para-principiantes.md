@@ -3,8 +3,8 @@ title: 'Reformer para principiantes: tu primera clase'
 description: Qué es el Pilates Reformer, qué vas a sentir en tu primera sesión y cómo prepararte para empezar con seguridad en un grupo reducido.
 translationKey: reformer-para-principiantes
 published: 2026-09-10
-author: MOVA
-image: ../../../assets/mova/practice-reformer.jpg
+author: UROZ
+image: ../../../assets/uroz/practice-reformer.jpg
 imageAlt: Carro de reformer de madera de arce con correas de cuero crema en un estudio iluminado por el sol
 tags: [reformer, principiantes]
 ---

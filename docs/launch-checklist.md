@@ -8,9 +8,9 @@
 - [ ] Redirecciones 301 de URLs antiguas en `src/config/redirects.ts`
 - [ ] Contenido de ejemplo sustituido; ninguna página dice «de ejemplo»
 
-### MOVA
+### UROZ
 
-- [ ] Sustituir las imágenes de maqueta generadas por IA (`src/assets/mova/`) por fotografía real del estudio y del equipo
+- [ ] Sustituir las imágenes de maqueta generadas por IA (`src/assets/uroz/`) por fotografía real del estudio y del equipo
 - [ ] Confirmar razón social, NIF, teléfono, WhatsApp, email, coordenadas y redes en `src/config/site.ts` (son de ejemplo)
 - [ ] Revisar precios (`plans`, disciplinas) y el horario semanal real (solo el lunes procede de Stitch)
 - [ ] Confirmar las cifras del estudio (m², aforos) y los nombres y fotos de las instructoras

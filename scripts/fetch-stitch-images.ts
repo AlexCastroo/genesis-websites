@@ -1,6 +1,6 @@
 /**
  * One-off: downloads the Stitch mock-up images listed in docs/design/stitch/images.json
- * into src/assets/mova/ (re-encoded JPEG, max 1600 px wide). They are AI-generated
+ * into src/assets/uroz/ (re-encoded JPEG, max 1600 px wide). They are AI-generated
  * placeholders — replace them with real photography before launch.
  *   pnpm tsx scripts/fetch-stitch-images.ts
  */
@@ -46,7 +46,7 @@ const root = new URL('..', import.meta.url);
 const list = JSON.parse(
   readFileSync(new URL('docs/design/stitch/images.json', root), 'utf8'),
 ) as StitchImage[];
-const outDir = fileURLToPath(new URL('src/assets/mova/', root));
+const outDir = fileURLToPath(new URL('src/assets/uroz/', root));
 mkdirSync(outDir, { recursive: true });
 
 let count = 0;
@@ -70,4 +70,4 @@ for (const image of list) {
   count += 1;
 }
 
-console.log(`${count} images → src/assets/mova/`);
+console.log(`${count} images → src/assets/uroz/`);

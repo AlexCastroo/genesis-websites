@@ -4,7 +4,7 @@ seoTitle: 'Reformer Core & Align: clase de Reformer'
 description: Clase de Reformer Pilates en grupos de 6 en Salamanca, Madrid. Alineación postural, core profundo y tono muscular sin impacto. 55 minutos, todos los niveles.
 translationKey: reformer-core-align
 order: 1
-summary: Reformer Core & Align es la clase insignia de MOVA. Durante 55 minutos y en grupos de máximo seis personas, trabajamos sobre el reformer con resortes de tensión graduada para alinear la postura, descomprimir la columna lumbar y fortalecer la musculatura profunda del core sin impacto articular. Es apta para todos los niveles.
+summary: Reformer Core & Align es la clase insignia de UROZ. Durante 55 minutos y en grupos de máximo seis personas, trabajamos sobre el reformer con resortes de tensión graduada para alinear la postura, descomprimir la columna lumbar y fortalecer la musculatura profunda del core sin impacto articular. Es apta para todos los niveles.
 subtitle: Alineación postural, elongación dinámica y tono muscular sin impacto.
 category: reformer
 badge: Multinivel consciente
@@ -29,9 +29,9 @@ homeTeaser:
   title: Reformer Pilates
   text: Fuerza profunda, alineación postural de columna y resistencia fluida guiada por muelles de tensión regulable.
   meta: 55 min • Nivel todos
-  image: ../../../assets/mova/practice-reformer.jpg
+  image: ../../../assets/uroz/practice-reformer.jpg
   imageAlt: Carro de reformer de madera de arce con correas de cuero crema en un estudio iluminado por el sol
-image: ../../../assets/mova/discipline-reformer-core.jpg
+image: ../../../assets/uroz/discipline-reformer-core.jpg
 imageAlt: Estudio de reformer de estilo japandi con techos de roble, cortinas de lino y camas de reformer de abedul claro
 updated: 2026-09-30
 faqs:

@@ -36,9 +36,9 @@ Plantilla Astro para arrancar la web de **cualquier negocio** con SEO técnico, 
 | Imágenes de marca                                                                          | `public/` (favicon, logo, OG) y `src/assets/`                         |
 | Analítica / formulario                                                                     | `.env` (ver `.env.example`)                                           |
 
-## Proyecto: MOVA Pilates (rama `feat/pilates-mova`)
+## Proyecto: UROZ Pilates (rama `feat/pilates-mova`)
 
-Web del estudio boutique MOVA construida sobre esta base a partir del diseño de Google Stitch (referencia en `docs/design/stitch/`: HTML original, textos y capturas de las 4 pantallas).
+Web del estudio boutique UROZ construida sobre esta base a partir del diseño de Google Stitch (referencia en `docs/design/stitch/`: HTML original, textos y capturas de las 4 pantallas).
 
 | Qué actualizar                                                               | Dónde                                                 |
 | ---------------------------------------------------------------------------- | ----------------------------------------------------- |
@@ -47,8 +47,8 @@ Web del estudio boutique MOVA construida sobre esta base a partir del diseño de
 | Horario semanal y plazas (`spots: 0` = completo, `1` = última plaza)         | `src/content/schedule/es/<dia>.yaml`                  |
 | Instructoras, testimonios y espacios                                         | `src/content/{team,testimonials,spaces}/es/*.yaml`    |
 | Textos de las páginas                                                        | `src/i18n/ui/es.ts`                                   |
-| Paleta y tipografía MOVA                                                     | `src/styles/tokens.css`, fuentes en `astro.config.ts` |
-| Imágenes (de maqueta, generadas por IA)                                      | `src/assets/mova/` — sustituir por fotos reales       |
+| Paleta y tipografía UROZ                                                     | `src/styles/tokens.css`, fuentes en `astro.config.ts` |
+| Imágenes (de maqueta, generadas por IA)                                      | `src/assets/uroz/` — sustituir por fotos reales       |
 | Iconos, logo e imagen OG                                                     | `pnpm tsx scripts/generate-placeholders.ts`           |
 
 Comprobación visual local: `pnpm build && pnpm preview` y en otra terminal `pnpm screenshot disciplinas --width=375` (capturas en `.superpowers/shots/`).
