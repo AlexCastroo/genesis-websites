@@ -20,12 +20,21 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
-      name: 'Inter',
-      cssVariable: '--font-inter',
-      weights: [400, 500, 600, 700],
+      name: 'Plus Jakarta Sans',
+      cssVariable: '--font-jakarta',
+      weights: [300, 400, 500, 600],
       styles: ['normal'],
       subsets: ['latin'],
       fallbacks: ['sans-serif'],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: 'EB Garamond',
+      cssVariable: '--font-garamond',
+      weights: [400],
+      styles: ['normal', 'italic'],
+      subsets: ['latin'],
+      fallbacks: ['serif'],
     },
   ],
   integrations: [

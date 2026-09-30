@@ -22,6 +22,7 @@ html {
 
 body {
   min-height: 100svh;
+  font-weight: var(--fw-regular);
   display: flex;
   flex-direction: column;
   background: var(--color-bg);
@@ -48,10 +49,16 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: var(--fw-bold);
   line-height: var(--lh-tight);
-  letter-spacing: var(--tracking-tight);
   text-wrap: balance;
+}
+
+/* Stitch display style: light, uppercase, generous tracking. */
+h1,
+h2 {
+  font-weight: var(--fw-light);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
 }
 
 h1 {
@@ -59,16 +66,29 @@ h1 {
 }
 
 h2 {
-  font-size: var(--step-3);
+  font-size: var(--step-4);
+}
+
+h3,
+h4 {
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.02em;
 }
 
 h3 {
-  font-size: var(--step-1);
+  font-size: var(--step-2);
   line-height: var(--lh-snug);
 }
 
 h4 {
-  font-size: var(--step-0);
+  font-size: var(--step-1);
+  line-height: var(--lh-snug);
+}
+
+blockquote,
+q {
+  font-family: var(--font-serif);
+  font-style: italic;
 }
 
 p,

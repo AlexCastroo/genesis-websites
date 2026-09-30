@@ -16,7 +16,7 @@ const option = (name: string, fallback: string) =>
   args.find((arg) => arg.startsWith(`--${name}=`))?.split('=')[1] ?? fallback;
 const width = Number(option('width', '1280'));
 const height = Number(option('height', '4000'));
-const base = option('base', 'http://localhost:4321');
+const base = option('base', 'http://127.0.0.1:4321');
 const noJs = args.includes('--no-js');
 
 const candidates = [
@@ -30,6 +30,13 @@ const candidates = [
 const chrome = candidates.find((candidate) => existsSync(candidate));
 if (!chrome) {
   console.error('Chrome not found: set CHROME_PATH');
+  process.exit(1);
+}
+
+// Chrome exits 0 even when the page fails to load: check the server first.
+const probe = await fetch(`${base}${path}`).catch(() => undefined);
+if (!probe?.ok) {
+  console.error(`${base}${path} is not reachable (HTTP ${probe?.status ?? 'no response'}). Start pnpm preview first.`);
   process.exit(1);
 }
 

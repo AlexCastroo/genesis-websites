@@ -1,0 +1,68 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+
+interface Props {
+  icon?: IconName;
+  tone?: 'light' | 'glass' | 'highlight' | 'surface' | 'dark';
+  dot?: boolean;
+  class?: string;
+}
+
+const { icon, tone = 'light', dot = false, class: className } = Astro.props;
+---
+
+<span class:list={['pill', `pill--${tone}`, className]}>
+  {dot && <span class="pill__dot" aria-hidden="true"></span>}
+  {icon && <Icon name={icon} size={14} />}
+  <slot />
+</span>
+
+<style>
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: fit-content;
+    padding: 0.375rem 0.875rem;
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: var(--radius-full);
+  }
+
+  .pill--light {
+    background: var(--color-bg-muted);
+    color: var(--color-text-muted);
+  }
+
+  .pill--surface {
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .pill--glass {
+    background: rgb(255 255 255 / 0.85);
+    color: var(--color-text);
+    backdrop-filter: blur(12px);
+  }
+
+  .pill--highlight {
+    background: var(--color-highlight);
+    color: var(--color-bg-inverse);
+  }
+
+  .pill--dark {
+    background: rgb(51 37 29 / 0.6);
+    color: var(--color-text-inverse);
+    backdrop-filter: blur(12px);
+  }
+
+  .pill__dot {
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: var(--radius-full);
+    background: currentColor;
+  }
+</style>

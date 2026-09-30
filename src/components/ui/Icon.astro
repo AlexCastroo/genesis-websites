@@ -12,29 +12,129 @@ const paths = {
   chat: [
     'M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z',
   ],
+  whatsapp: [
+    'M3 21l1.65-4.8A8.5 8.5 0 1 1 7.9 19.4L3 21z',
+    'M9 8.5c0 3.5 3 6.5 6.5 6.5l1.2-1.6-2-1-1 1a4.5 4.5 0 0 1-3.1-3.1l1-1-1-2L9 8.5z',
+  ],
   'map-pin': [
     'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z',
     'M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',
   ],
   clock: ['M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z', 'M12 6v6l4 2'],
   'arrow-right': ['M5 12h14', 'M12 5l7 7-7 7'],
+  'arrow-down': ['M12 5v14', 'M19 12l-7 7-7-7'],
+  'arrow-up-right': ['M7 17L17 7', 'M8 7h9v9'],
+  'chevron-down': ['M6 9l6 6 6-6'],
+  'chevron-right': ['M9 6l6 6-6 6'],
   external: [
     'M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6',
     'M15 3h6v6',
     'M10 14L21 3',
   ],
   rss: ['M4 11a9 9 0 0 1 9 9', 'M4 4a16 16 0 0 1 16 16', 'M5 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2z'],
+  check: ['M20 6L9 17l-5-5'],
+  'check-circle': ['M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z', 'M8 12l3 3 5-6'],
+  star: [
+    'M12 3l2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3z',
+  ],
+  infinity: [
+    'M12 12c-2-2.7-3.6-4-5.5-4a4 4 0 0 0 0 8c1.9 0 3.5-1.3 5.5-4zm0 0c2 2.7 3.6 4 5.5 4a4 4 0 0 0 0-8c-1.9 0-3.5 1.3-5.5 4z',
+  ],
+  user: ['M20 21a8 8 0 0 0-16 0', 'M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8z'],
+  group: [
+    'M17 21a5 5 0 0 0-10 0',
+    'M12 13a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z',
+    'M22 19a4 4 0 0 0-4.5-4',
+    'M17.5 5.2a3 3 0 0 1 0 5.6',
+    'M2 19a4 4 0 0 1 4.5-4',
+    'M6.5 5.2a3 3 0 0 0 0 5.6',
+  ],
+  spa: [
+    'M12 20c-4 0-8-2.5-9-7 3.5-.5 6.5.8 9 4 2.5-3.2 5.5-4.5 9-4-1 4.5-5 7-9 7z',
+    'M12 17c-1.7-2.2-2.5-4.5-2.5-7S10.5 5 12 3c1.5 2 2.5 4.5 2.5 7s-.8 4.8-2.5 7z',
+  ],
+  leaf: [
+    'M5 19c0-8 5-14 15-15-1 10-7 15-15 15z',
+    'M5 19l8-8',
+  ],
+  coffee: [
+    'M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z',
+    'M17 10h1.5a2.5 2.5 0 0 1 0 5H17',
+    'M8 3v2',
+    'M12 3v2',
+  ],
+  sun: [
+    'M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
+    'M12 2v2',
+    'M12 20v2',
+    'M4.9 4.9l1.4 1.4',
+    'M17.7 17.7l1.4 1.4',
+    'M2 12h2',
+    'M20 12h2',
+    'M4.9 19.1l1.4-1.4',
+    'M17.7 6.3l1.4-1.4',
+  ],
+  sunrise: [
+    'M17 18a5 5 0 0 0-10 0',
+    'M12 2v7',
+    'M4.2 10.2l1.4 1.4',
+    'M2 18h2',
+    'M20 18h2',
+    'M18.4 11.6l1.4-1.4',
+    'M22 22H2',
+    'M8 6l4-4 4 4',
+  ],
+  moon: ['M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z'],
+  air: [
+    'M3 8h10a3 3 0 1 0-3-3',
+    'M3 12h15a3 3 0 1 1-3 3',
+    'M3 16h7',
+  ],
+  tune: [
+    'M4 21v-7',
+    'M4 10V3',
+    'M12 21v-9',
+    'M12 8V3',
+    'M20 21v-5',
+    'M20 12V3',
+    'M1 14h6',
+    'M9 8h6',
+    'M17 16h6',
+  ],
+  hanger: [
+    'M12 6a2 2 0 1 1 2 2c-1 .4-2 1-2 2',
+    'M12 10l-9 7a1.5 1.5 0 0 0 1 2.5h16a1.5 1.5 0 0 0 1-2.5l-9-7',
+  ],
+  'shield-check': ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', 'M9 12l2 2 4-4'],
+  meditation: [
+    'M12 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
+    'M4 20c2-1 5-1.5 8-1.5s6 .5 8 1.5',
+    'M12 9v5',
+    'M6 13l6 1 6-1',
+    'M8 18.5l4-4 4 4',
+  ],
+  wave: ['M3 12h3l3-7 4 14 3-7h5'],
+  expand: ['M15 3h6v6', 'M9 21H3v-6', 'M21 3l-7 7', 'M3 21l7-7'],
+  ruler: [
+    'M3 17L17 3l4 4L7 21l-4-4z',
+    'M7 13l2 2',
+    'M10 10l2 2',
+    'M13 7l2 2',
+  ],
 } as const;
 
+export type IconName = keyof typeof paths;
+
 interface Props {
-  name: keyof typeof paths;
+  name: IconName;
   size?: number;
+  strokeWidth?: number;
   /** Accessible name. Omit for decorative icons (aria-hidden). */
   label?: string;
   class?: string;
 }
 
-const { name, size = 20, label, class: className } = Astro.props;
+const { name, size = 20, strokeWidth = 1.6, label, class: className } = Astro.props;
 ---
 
 <svg
@@ -44,7 +144,7 @@ const { name, size = 20, label, class: className } = Astro.props;
   height={size}
   fill="none"
   stroke="currentColor"
-  stroke-width="2"
+  stroke-width={strokeWidth}
   stroke-linecap="round"
   stroke-linejoin="round"
   class:list={['icon', className]}
@@ -53,7 +153,5 @@ const { name, size = 20, label, class: className } = Astro.props;
   aria-hidden={label ? undefined : 'true'}
   focusable={label ? undefined : 'false'}
 >
-  {paths[name].map((d) => (
-    <path d={d} />
-  ))}
+  {paths[name].map((d) => <path d={d} />)}
 </svg>

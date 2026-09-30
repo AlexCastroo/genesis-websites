@@ -1,0 +1,98 @@
+---
+/**
+ * Stitch headline pattern: light uppercase line + EB Garamond italic accent line,
+ * rendered as ONE heading so it is announced as a single title.
+ */
+interface Props {
+  level?: 1 | 2 | 3;
+  title: string;
+  accent?: string;
+  eyebrow?: string;
+  id?: string;
+  align?: 'start' | 'center';
+  size?: 'hero' | 'section' | 'card';
+  tone?: 'default' | 'inverse';
+}
+
+const {
+  level = 2,
+  title,
+  accent,
+  eyebrow,
+  id,
+  align = 'start',
+  size = 'section',
+  tone = 'default',
+} = Astro.props;
+const Heading = `h${level}` as 'h1' | 'h2' | 'h3';
+---
+
+<div
+  class:list={[
+    'display-title',
+    `display-title--${align}`,
+    `display-title--${size}`,
+    `display-title--${tone}`,
+  ]}
+>
+  {eyebrow && <p class="eyebrow display-title__eyebrow">{eyebrow}</p>}
+  <Heading id={id} class="display-title__heading">
+    <span class="display-title__main">{title}</span>
+    {accent && <span class="display-title__accent">{accent}</span>}
+  </Heading>
+</div>
+
+<style>
+  .display-title {
+    display: grid;
+    gap: var(--space-xs);
+  }
+
+  .display-title--center {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .display-title__heading {
+    font-weight: var(--fw-light);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--tracking-display);
+    text-transform: uppercase;
+  }
+
+  .display-title--hero .display-title__heading {
+    font-size: var(--step-5);
+  }
+
+  .display-title--section .display-title__heading {
+    font-size: var(--step-4);
+  }
+
+  .display-title--card .display-title__heading {
+    font-size: var(--step-3);
+  }
+
+  .display-title__main {
+    display: block;
+  }
+
+  .display-title__accent {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 0.78em;
+    font-style: italic;
+    line-height: 1.15;
+    letter-spacing: var(--tracking-tight);
+    text-transform: none;
+    color: var(--color-eyebrow);
+  }
+
+  .display-title--inverse .display-title__heading {
+    color: var(--color-text-inverse);
+  }
+
+  .display-title--inverse .display-title__accent,
+  .display-title--inverse .display-title__eyebrow {
+    color: var(--color-text-inverse-muted);
+  }
+</style>
