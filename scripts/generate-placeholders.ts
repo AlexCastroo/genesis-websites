@@ -1,5 +1,5 @@
 /**
- * Generates the UROZ brand assets (monogram icons, logo and default share image).
+ * Generates the SOHO PILATES brand assets (monogram icons, logo and default share image).
  * Replace with the final brand files when available.
  *   pnpm tsx scripts/generate-placeholders.ts
  */
@@ -14,13 +14,13 @@ const CREAM = '#fcf9f4';
 const ESPRESSO = '#33251d';
 const BROWN = '#755844';
 
-/** "U" monogram in a serif face on cream, used for favicon, touch icon and schema logo. */
+/** "S" monogram in a serif face on cream, used for favicon, touch icon and schema logo. */
 const monogram = (size: number, radius: number) =>
   Buffer.from(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 64 64">
       <rect width="64" height="64" rx="${radius}" fill="${CREAM}"/>
       <text x="32" y="46" text-anchor="middle" font-family="EB Garamond, Georgia, 'Times New Roman', serif"
-        font-size="42" fill="${ESPRESSO}">U</text>
+        font-size="42" fill="${ESPRESSO}">S</text>
     </svg>`,
   );
 
@@ -50,7 +50,7 @@ writeFileSync(
 );
 writeFileSync(
   out('public/favicon.svg'),
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${CREAM}"/><text x="32" y="46" text-anchor="middle" font-family="EB Garamond, Georgia, 'Times New Roman', serif" font-size="42" fill="${ESPRESSO}">U</text></svg>\n`,
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${CREAM}"/><text x="32" y="46" text-anchor="middle" font-family="EB Garamond, Georgia, 'Times New Roman', serif" font-size="42" fill="${ESPRESSO}">S</text></svg>\n`,
 );
 
 // Share image: studio photo with a warm scrim and the wordmark.
@@ -61,14 +61,14 @@ const overlay = Buffer.from(
       <stop offset="1" stop-color="${ESPRESSO}" stop-opacity="0.85"/>
     </linearGradient></defs>
     <rect width="1200" height="630" fill="url(#g)"/>
-    <text x="80" y="520" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="120"
-      letter-spacing="14" fill="${CREAM}">UROZ</text>
+    <text x="80" y="520" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="92"
+      letter-spacing="10" fill="${CREAM}">SOHO PILATES</text>
     <text x="84" y="570" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="24"
       letter-spacing="5" fill="#d9c2b6">PILATES REFORMER · SALAMANCA, MADRID</text>
     <rect x="84" y="590" width="120" height="3" fill="${BROWN}"/>
   </svg>`,
 );
-await sharp(out('src/assets/uroz/hero-studio.jpg'))
+await sharp(out('src/assets/soho/hero-studio.jpg'))
   .resize(1200, 630, { fit: 'cover' })
   .composite([{ input: overlay }])
   .jpeg({ quality: 82, mozjpeg: true })

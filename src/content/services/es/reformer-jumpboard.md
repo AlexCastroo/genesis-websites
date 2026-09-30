@@ -21,7 +21,7 @@ compare:
   flexibility: 1
   calm: 1
   level: Medio a avanzado
-image: ../../../assets/uroz/discipline-jumpboard.jpg
+image: ../../../assets/soho/discipline-jumpboard.jpg
 imageAlt: Sesión de reformer con tablero de saltos acolchado en un estudio luminoso de paredes texturizadas y plantas
 updated: 2026-09-30
 faqs:

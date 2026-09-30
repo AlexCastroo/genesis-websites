@@ -28,9 +28,9 @@ homeTeaser:
   title: Mat & postura consciente
   text: Control corporal integral sobre esterilla de lino orgánico, combinando propiocepción, respiración costal y centro activo.
   meta: 50 min • Suave & medio
-  image: ../../../assets/uroz/practice-mat.jpg
+  image: ../../../assets/soho/practice-mat.jpg
   imageAlt: Mujer realizando un ejercicio controlado de Pilates en esterilla con luz natural suave
-image: ../../../assets/uroz/discipline-mat-flow.jpg
+image: ../../../assets/soho/discipline-mat-flow.jpg
 imageAlt: Mujer con ropa de lino beige practicando Pilates en esterilla en un estudio minimalista bañado de sol
 updated: 2026-09-30
 faqs:

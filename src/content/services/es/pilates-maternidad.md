@@ -21,7 +21,7 @@ compare:
   flexibility: 2
   calm: 3
   level: Prenatal y posparto
-image: ../../../assets/uroz/discipline-maternity.jpg
+image: ../../../assets/soho/discipline-maternity.jpg
 imageAlt: Mujer embarazada practicando Pilates con apoyos naturales en un estudio de tonos arena y luz cálida
 updated: 2026-09-30
 faqs:

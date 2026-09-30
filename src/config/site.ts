@@ -54,9 +54,9 @@ export interface SiteConfig {
 }
 
 export const SITE: SiteConfig = {
-  url: 'https://urozpilates.example',
-  name: 'UROZ',
-  legalName: 'UROZ Pilates & Wellness Studio S.L.',
+  url: 'https://sohopilates.example',
+  name: 'SOHO PILATES',
+  legalName: 'SOHO PILATES & Wellness Studio S.L.',
   taxId: 'B00000000',
   entity: {
     schemaType: 'ExerciseGym',
@@ -65,7 +65,7 @@ export const SITE: SiteConfig = {
     areaServed: ['Madrid'],
   },
   contact: {
-    email: 'hola@urozpilates.example',
+    email: 'hola@sohopilates.example',
     phone: '+34600000000',
     whatsapp: '34600000000',
   },
@@ -82,7 +82,7 @@ export const SITE: SiteConfig = {
     { days: ['Sa'], opens: '09:00', closes: '14:00' },
   ],
   social: {
-    instagram: 'https://www.instagram.com/urozpilates.example',
+    instagram: 'https://www.instagram.com/sohopilates.example',
   },
   logo: '/logo.png',
   ogImage: '/og-default.jpg',

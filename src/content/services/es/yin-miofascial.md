@@ -26,9 +26,9 @@ homeTeaser:
   title: Fascia & liberación somática
   text: Descompresión articular, liberación miofascial y respiración guiada para soltar la sobrecarga del sistema nervioso.
   meta: 60 min • Restaurativo
-  image: ../../../assets/uroz/practice-restorative.jpg
+  image: ../../../assets/soho/practice-restorative.jpg
   imageAlt: Postura restaurativa con cojín y mantas de algodón orgánico en una sala con luz cálida indirecta
-image: ../../../assets/uroz/discipline-yin.jpg
+image: ../../../assets/soho/discipline-yin.jpg
 imageAlt: Estiramiento meditativo con rodillo de corcho y pelota de masaje sobre suelo de madera natural
 updated: 2026-09-30
 faqs:

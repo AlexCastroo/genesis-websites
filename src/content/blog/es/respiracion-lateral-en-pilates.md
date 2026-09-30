@@ -3,8 +3,8 @@ title: 'Respiración lateral: la base del Pilates'
 description: Qué es la respiración costal lateral, por qué es la base de cada ejercicio de Pilates y un ejercicio sencillo para practicarla en casa.
 translationKey: respiracion-lateral-en-pilates
 published: 2026-09-24
-author: UROZ
-image: ../../../assets/uroz/pricing-savasana.jpg
+author: SOHO PILATES
+image: ../../../assets/soho/pricing-savasana.jpg
 imageAlt: Mujer descansando en savasana sobre una esterilla de lino con luz de mañana
 tags: [respiración, técnica]
 ---
@@ -29,4 +29,4 @@ Consiste en dirigir el aire hacia los laterales y la parte posterior de la caja 
 4. Exhala por la boca, lentamente, sintiendo cómo las costillas se cierran y el ombligo se acerca a la columna.
 5. Repite ocho respiraciones sin prisa.
 
-Practícalo unos minutos al día y notarás cómo en clase cada movimiento se vuelve más controlado. En UROZ terminamos cada sesión con cinco minutos de respiración guiada para que integres esta sensación.
+Practícalo unos minutos al día y notarás cómo en clase cada movimiento se vuelve más controlado. En SOHO PILATES terminamos cada sesión con cinco minutos de respiración guiada para que integres esta sensación.

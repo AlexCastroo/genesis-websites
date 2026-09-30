@@ -2,7 +2,7 @@ export const es = {
   // ---------- Site ----------
   'site.tagline': 'Espacio para el movimiento, la calma y el equilibrio consciente.',
   'site.description':
-    'UROZ es un estudio boutique de Pilates Reformer, Mat y movimiento consciente en el barrio de Salamanca (Madrid), con grupos de máximo seis personas.',
+    'SOHO PILATES es un estudio boutique de Pilates Reformer, Mat y movimiento consciente en el barrio de Salamanca (Madrid), con grupos de máximo seis personas.',
   'site.location': 'Estudio boutique Japandi en el corazón de Madrid.',
 
   // ---------- Accessibility ----------
@@ -21,7 +21,7 @@ export const es = {
   'a11y.days': 'Días de la semana',
   'a11y.planGroups': 'Tipos de tarifa',
   'a11y.compareTable': 'Tabla comparativa de disciplinas',
-  'a11y.homeLink': 'UROZ, ir al inicio',
+  'a11y.homeLink': 'SOHO PILATES, ir al inicio',
 
   // ---------- Navigation ----------
   'nav.home': 'Inicio',
@@ -52,18 +52,18 @@ export const es = {
   'ctaBand.note1': 'Sin matrícula obligatoria',
   'ctaBand.note2': 'Cancelación flexible 12 h',
 
-  'whatsapp.general': 'Hola, me gustaría recibir información sobre las clases de UROZ.',
+  'whatsapp.general': 'Hola, me gustaría recibir información sobre las clases de SOHO PILATES.',
   'whatsapp.book': 'Hola, quiero reservar {className} el {day} a las {time}.',
   'whatsapp.waitlist':
     'Hola, quiero apuntarme a la lista de espera de {className} el {day} a las {time}.',
 
   // ---------- Meta ----------
-  'meta.home.title': 'UROZ — Pilates Reformer boutique en Salamanca, Madrid',
+  'meta.home.title': 'SOHO PILATES — Reformer boutique en Salamanca, Madrid',
   'meta.home.description':
     'Estudio boutique de Pilates Reformer y Mat en el barrio de Salamanca, Madrid. Grupos de máximo 6 personas, luz natural y atención personalizada.',
   'meta.about.title': 'El Estudio: un santuario Japandi en Madrid',
   'meta.about.description':
-    'Conoce el estudio UROZ: 320 m² de luz natural, reformers de madera, instructoras certificadas y una forma de moverse lejos de la hipercompetencia.',
+    'Conoce el estudio SOHO PILATES: 320 m² de luz natural, reformers de madera, instructoras certificadas y una forma de moverse lejos de la hipercompetencia.',
   'meta.services.title': 'Disciplinas: Reformer, Mat y Pilates prenatal',
   'meta.services.description':
     'Reformer Core, Mat Flow, Jumpboard, Pilates maternidad y liberación miofascial en grupos reducidos. Compara intensidad, duración y precio.',
@@ -75,10 +75,10 @@ export const es = {
     'Escríbenos por WhatsApp, llámanos o ven a Calle Serrano 45 (Madrid). Te respondemos en menos de 2 horas laborables para organizar tu primera clase.',
   'meta.faq.title': 'Preguntas frecuentes sobre nuestras clases',
   'meta.faq.description':
-    'Cancelaciones, bonos, qué llevar, experiencia previa y todo lo que necesitas saber antes de tu primera clase de Pilates Reformer en UROZ.',
+    'Cancelaciones, bonos, qué llevar, experiencia previa y todo lo que necesitas saber antes de tu primera clase de Pilates Reformer en SOHO PILATES.',
   'meta.blog.title': 'Blog de Pilates, postura y respiración',
   'meta.blog.description':
-    'Artículos sobre Pilates Reformer, respiración, postura y bienestar escritos por el equipo de instructoras del estudio UROZ en Salamanca, Madrid.',
+    'Artículos sobre Pilates Reformer, respiración, postura y bienestar escritos por el equipo de instructoras del estudio SOHO PILATES en Salamanca, Madrid.',
   'meta.notFound.description': 'La página que buscas no existe o ha cambiado de dirección.',
 
   // ---------- Home ----------
@@ -92,7 +92,7 @@ export const es = {
   'home.hero.live': 'Estudio en vivo',
   'home.hero.liveAlt':
     'Mujer con ropa de lino blanco en postura del guerrero al amanecer dentro del estudio',
-  'home.manifesto.eyebrow': 'El manifiesto UROZ',
+  'home.manifesto.eyebrow': 'El manifiesto SOHO PILATES',
   'home.manifesto.title': 'Un espacio para mujeres que eligen',
   'home.manifesto.accent': 'la armonía',
   'home.manifesto.index': '01 / Propósito',
@@ -110,7 +110,7 @@ export const es = {
   'home.stats.2.label': 'Luz natural',
   'home.stats.3.value': '320 m²',
   'home.stats.3.label': 'De calma y orden',
-  'home.arch.title': 'La filosofía UROZ',
+  'home.arch.title': 'La filosofía SOHO PILATES',
   'home.arch.quote': 'Lo fundamental no es cómo luce tu cuerpo, sino cómo lo habitas y sientes.',
   'home.arch.imageAlt':
     'Interior cálido del estudio con paredes de cal, lámpara de papel y mantas de lino dobladas',
@@ -120,7 +120,7 @@ export const es = {
   'home.practices.lead':
     'Cada formato está concebido con rigor anatómico para ganar fuerza profunda, amplitud articular y sosiego mental.',
   'home.ritual.eyebrow': 'La experiencia sensorial',
-  'home.ritual.title': 'Cada sesión en UROZ es un ritual completo de pausa',
+  'home.ritual.title': 'Cada sesión en SOHO PILATES es un ritual completo de pausa',
   'home.ritual.lead':
     'Cuidamos cada detalle arquitectónico y táctil para que tu visita empiece mucho antes de subirte al reformer. Desde el aroma botánico hasta el silencio previo a la práctica.',
   'home.ritual.1.title': 'Aromaterapia de sándalo y neroli',
@@ -150,7 +150,7 @@ export const es = {
   'about.architecture.eyebrow': 'Wabi-sabi & rigor',
   'about.architecture.title': 'Arquitectura del silencio',
   'about.architecture.body':
-    'Eliminamos cualquier estímulo visual invasivo: sin espejos estridentes que fomenten la comparación, sin relojes visibles. Cada elemento textil de UROZ está tejido en lino crudo y tintes vegetales, invitando al sistema nervioso a desacelerar desde el primer paso descalzo.',
+    'Eliminamos cualquier estímulo visual invasivo: sin espejos estridentes que fomenten la comparación, sin relojes visibles. Cada elemento textil de SOHO PILATES está tejido en lino crudo y tintes vegetales, invitando al sistema nervioso a desacelerar desde el primer paso descalzo.',
   'about.architecture.stat1.value': '320 m²',
   'about.architecture.stat1.label': 'Dedicados al bienestar',
   'about.architecture.stat2.value': '432 Hz',
@@ -161,16 +161,16 @@ export const es = {
   'about.philosophy.title': 'Movimiento consciente',
   'about.philosophy.accent': 'lejos de la hipercompetencia',
   'about.philosophy.p1':
-    'UROZ nació como un acto de resistencia frente a las salas de fitness estresantes, la música atronadora y las métricas obsesivas de quema calórica. Creemos que el bienestar genuino se cultiva con respiración rítmica, escucha miofascial y precisión anatómica.',
+    'SOHO PILATES nació como un acto de resistencia frente a las salas de fitness estresantes, la música atronadora y las métricas obsesivas de quema calórica. Creemos que el bienestar genuino se cultiva con respiración rítmica, escucha miofascial y precisión anatómica.',
   'about.philosophy.p2':
     'Inspirados por la sobriedad contemplativa japonesa y la ergonomía cálida nórdica, creamos un santuario donde cada sesión es un retorno al cuerpo. No venimos a agotarte: venimos a darte estabilidad, alineación y serenidad duradera para tu vida cotidiana.',
   'about.philosophy.quote':
     'Buscamos la forma precisa, el estiramiento orgánico y el silencio que permite escuchar el latido.',
-  'about.philosophy.quoteSource': 'Manifiesto UROZ',
+  'about.philosophy.quoteSource': 'Manifiesto SOHO PILATES',
   'about.founder.role': 'Fundadora & directora de práctica',
   'about.founder.quote': 'El cuerpo no se conquista, se comprende.',
   'about.founder.alt':
-    'La fundadora de UROZ practicando una extensión controlada en el reformer con luz de mañana',
+    'La fundadora de SOHO PILATES practicando una extensión controlada en el reformer con luz de mañana',
   'about.pillars.eyebrow': 'Esencia de la experiencia',
   'about.pillars.title': 'Los cuatro pilares',
   'about.pillars.accent': 'de nuestro cuidado holístico',
@@ -240,7 +240,7 @@ export const es = {
   'services.compare.score': '{n} de 3',
   'services.first.eyebrow': 'Tu primer día en el estudio',
   'services.first.title': '¿Primera vez',
-  'services.first.accent': 'en UROZ?',
+  'services.first.accent': 'en SOHO PILATES?',
   'services.first.lead':
     'No necesitas experiencia previa ni flexibilidad extraordinaria. Nuestro espacio está concebido para acompañarte desde el respeto a tu ritmo.',
   'services.first.arrival.title': 'Llegada anticipada recomendada',
@@ -285,7 +285,7 @@ export const es = {
   'pricing.plans.title': 'Tarifas',
   'pricing.tab.bonos': 'Clases sueltas & bonos',
   'pricing.tab.membresias': 'Membresías mensuales',
-  'pricing.commitment.title': 'Compromiso UROZ',
+  'pricing.commitment.title': 'Compromiso SOHO PILATES',
   'pricing.commitment.quote':
     'El control mental sobre el cuerpo es el principio del equilibrio natural.',
   'pricing.commitment.body':
@@ -360,7 +360,7 @@ export const es = {
   'faq.accent': 'antes de tu primera clase',
   'faq.lead': 'Si tu duda no está aquí, escríbenos y te respondemos personalmente.',
   'faq.general': 'Generales',
-  'blog.eyebrow': 'Diario UROZ',
+  'blog.eyebrow': 'Diario SOHO PILATES',
   'blog.title': 'Blog',
   'blog.accent': 'postura, respiración y calma',
   'blog.lead': 'Reflexiones y guías prácticas de nuestras instructoras.',
