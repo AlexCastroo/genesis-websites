@@ -1,36 +1,50 @@
 ---
-import heroImage from '../assets/hero.jpg';
+import { Image, Picture } from 'astro:assets';
+import archImage from '../assets/mova/arch-studio.jpg';
+import livePreview from '../assets/mova/hero-live-preview.jpg';
+import heroImage from '../assets/mova/hero-studio.jpg';
+import manifestoImage from '../assets/mova/manifesto-group.jpg';
+import roomImage from '../assets/mova/ritual-dressing-room.jpg';
+import teaImage from '../assets/mova/ritual-tea.jpg';
 import CtaBand from '../components/blocks/CtaBand.astro';
-import FaqList from '../components/blocks/FaqList.astro';
-import FeatureGrid from '../components/blocks/FeatureGrid.astro';
-import Hero from '../components/blocks/Hero.astro';
-import Button from '../components/ui/Button.astro';
-import Section from '../components/ui/Section.astro';
+import DisplayTitle from '../components/ui/DisplayTitle.astro';
+import Icon from '../components/ui/Icon.astro';
+import Pill from '../components/ui/Pill.astro';
 import { SITE } from '../config/site';
 import { localizePath, useTranslations } from '../i18n/utils';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { entrySlug } from '../lib/content';
-import { getFaqs, getServices } from '../lib/queries';
-import { faqPageNode, webPageNode } from '../lib/schema';
+import { getServices, getTestimonials } from '../lib/queries';
+import { webPageNode } from '../lib/schema';
 import type { ViewProps } from './types';
 
 type Props = ViewProps;
 
 const { lang, path, alternates } = Astro.props;
 const t = useTranslations(lang);
-const services = (await getServices(lang)).slice(0, 3);
-const faqs = (await getFaqs(lang)).slice(0, 3).map((faq) => ({ q: faq.data.q, a: faq.data.a }));
+const [services, testimonials] = await Promise.all([getServices(lang), getTestimonials()]);
+const practices = services.filter((service) => service.data.homeTeaser);
 const stats = ([1, 2, 3] as const).map((n) => ({
   value: t(`home.stats.${n}.value`),
   label: t(`home.stats.${n}.label`),
 }));
+const rituals = [
+  { icon: 'spa', n: 1 },
+  { icon: 'group', n: 2 },
+  { icon: 'coffee', n: 3 },
+] as const;
+const initials = (name: string) =>
+  name
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
 
 const title = t('meta.home.title');
 const description = t('meta.home.description');
-const schema = [
-  webPageNode(SITE, { path, name: title, description, lang }),
-  ...(faqs.length > 0 ? [faqPageNode(SITE, path, faqs)] : []),
-];
+const schema = [webPageNode(SITE, { path, name: title, description, lang })];
+const trialHref = `${localizePath('pricing', lang)}#solicitud`;
 ---
 
 <BaseLayout
@@ -42,81 +56,848 @@ const schema = [
   schema={schema}
   isHome
 >
-  <Hero
-    eyebrow={t('home.hero.eyebrow')}
-    title={t('home.hero.title')}
-    lead={t('home.hero.lead')}
-    primary={{ label: t('cta.contact'), href: localizePath('contact', lang), track: 'cta_hero' }}
-    secondary={{ label: t('cta.services'), href: localizePath('services', lang) }}
-    image={heroImage}
-    imageAlt={t('home.hero.imageAlt')}
-  />
-
-  <Section id="services" title={t('home.services.title')} lead={t('home.services.lead')}>
-    <FeatureGrid
-      items={services.map((service) => ({
-        title: service.data.title,
-        text: service.data.summary,
-        href: localizePath('services', lang, entrySlug(service.id)),
-      }))}
+  <!-- 1. Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <Picture
+      src={heroImage}
+      alt={t('home.hero.imageAlt')}
+      formats={['avif', 'webp']}
+      widths={[640, 960, 1408]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="hero__bg"
     />
-    <p class="section-more">
-      <Button href={localizePath('services', lang)} variant="secondary">
-        {t('cta.allServices')}
-      </Button>
-    </p>
-  </Section>
-
-  <Section id="results" title={t('home.stats.title')} variant="muted">
-    <dl class="stats">
-      {stats.map((stat) => (
-        <div class="stats__item reveal">
-          <dt>{stat.label}</dt>
-          <dd>{stat.value}</dd>
+    <div class="hero__scrim" aria-hidden="true"></div>
+    <figure class="hero__live">
+      <Image
+        src={livePreview}
+        alt={t('home.hero.liveAlt')}
+        widths={[240, 480]}
+        sizes="240px"
+        class="hero__live-img"
+      />
+      <figcaption><Pill tone="glass" dot>{t('home.hero.live')}</Pill></figcaption>
+    </figure>
+    <div class="container hero__content">
+      <div class="hero__title">
+        <Pill tone="dark">{t('home.hero.eyebrow')}</Pill>
+        <DisplayTitle
+          id="hero-title"
+          level={1}
+          size="hero"
+          tone="inverse"
+          title={t('home.hero.title')}
+          accent={t('home.hero.accent')}
+        />
+      </div>
+      <div class="hero__aside">
+        <p>{t('home.hero.lead')}</p>
+        <div class="hero__actions">
+          <a href={trialHref} class="btn btn--light" data-track="cta_hero">{t('cta.trial')}</a>
+          <a href="#manifiesto" class="hero__down" aria-label={t('a11y.scrollDown')}>
+            <Icon name="arrow-down" size={18} />
+          </a>
         </div>
-      ))}
-    </dl>
-  </Section>
+      </div>
+    </div>
+  </section>
 
-  {faqs.length > 0 && (
-    <Section id="faq" title={t('home.faq.title')} width="narrow">
-      <FaqList items={faqs} />
-      <p class="section-more">
-        <Button href={localizePath('faq', lang)} variant="ghost">
-          {t('cta.allFaq')}
-        </Button>
-      </p>
-    </Section>
-  )}
+  <!-- 2. Manifesto -->
+  <section id="manifiesto" class="manifesto" aria-labelledby="manifesto-title">
+    <div class="container">
+      <div class="manifesto__header">
+        <DisplayTitle
+          id="manifesto-title"
+          eyebrow={t('home.manifesto.eyebrow')}
+          title={t('home.manifesto.title')}
+          accent={t('home.manifesto.accent')}
+        />
+        <p class="eyebrow manifesto__index">{t('home.manifesto.index')}</p>
+      </div>
+      <div class="manifesto__grid">
+        <div class="manifesto__text">
+          <div class="manifesto__card">
+            <svg class="manifesto__arcs" viewBox="0 0 240 110" aria-hidden="true" focusable="false">
+              <path d="M10 100 C 50 10, 110 10, 150 100" />
+              <path d="M90 100 C 130 10, 190 10, 230 100" />
+              <circle cx="120" cy="36" r="3" />
+              <circle cx="150" cy="100" r="3" />
+            </svg>
+            <p class="manifesto__p1">{t('home.manifesto.p1')}</p>
+            <p class="manifesto__p2">{t('home.manifesto.p2')}</p>
+          </div>
+          <dl class="stats">
+            {
+              stats.map((stat) => (
+                <div class="stats__item">
+                  <dt>{stat.label}</dt>
+                  <dd>{stat.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+        </div>
+        <figure class="manifesto__figure">
+          <Picture
+            src={manifestoImage}
+            alt={t('home.manifesto.imageAlt')}
+            formats={['avif', 'webp']}
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 900px) 55vw, 100vw"
+            class="manifesto__img"
+          />
+          <blockquote class="manifesto__quote">
+            <p>“{t('home.manifesto.quote')}”</p>
+          </blockquote>
+        </figure>
+      </div>
+    </div>
+  </section>
 
+  <!-- 3. M O V A arch -->
+  <section class="arch" aria-labelledby="arch-title">
+    <h2 id="arch-title" class="visually-hidden">{t('home.arch.title')}</h2>
+    <div class="arch__letters" aria-hidden="true">
+      <span>M</span><span class="arch__gap">O</span><span>V</span><span>A</span>
+    </div>
+    <figure class="arch__frame">
+      <Image
+        src={archImage}
+        alt={t('home.arch.imageAlt')}
+        widths={[320, 640]}
+        sizes="(min-width: 900px) 20rem, 60vw"
+        class="arch__img"
+      />
+      <blockquote class="arch__quote">
+        <p>“{t('home.arch.quote')}”</p>
+        <span aria-hidden="true">• • •</span>
+      </blockquote>
+    </figure>
+  </section>
+
+  <!-- 4. Practices -->
+  <section class="practices" aria-labelledby="practices-title">
+    <div class="container">
+      <div class="practices__header">
+        <div class="practices__intro">
+          <DisplayTitle
+            id="practices-title"
+            eyebrow={t('home.practices.eyebrow')}
+            title={t('home.practices.title')}
+            accent={t('home.practices.accent')}
+          />
+          <p class="lead">{t('home.practices.lead')}</p>
+        </div>
+        <a href={`${localizePath('pricing', lang)}#horario`} class="btn btn--primary">
+          {t('cta.schedule')}
+        </a>
+      </div>
+      <ul role="list" class="practices__grid">
+        {
+          practices.map((service) => {
+            const teaser = service.data.homeTeaser!;
+            return (
+              <li class="practice reveal">
+                <div class="practice__media">
+                  <Image
+                    src={teaser.image}
+                    alt={teaser.imageAlt}
+                    widths={[400, 700]}
+                    sizes="(min-width: 900px) 30vw, 100vw"
+                    class="practice__img"
+                  />
+                  <Pill tone="surface" class="practice__label">
+                    {teaser.label}
+                  </Pill>
+                </div>
+                <h3 class="practice__title">
+                  <a href={localizePath('services', lang, entrySlug(service.id))}>
+                    {teaser.title}
+                  </a>
+                </h3>
+                <p class="practice__text">{teaser.text}</p>
+                <p class="practice__meta">
+                  <span>{teaser.meta}</span>
+                  <Icon name="arrow-right" size={16} />
+                </p>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. Sensory ritual -->
+  <section class="ritual" aria-labelledby="ritual-title">
+    <div class="container">
+      <div class="ritual__card">
+        <div class="ritual__text">
+          <p class="eyebrow">{t('home.ritual.eyebrow')}</p>
+          <h2 id="ritual-title" class="ritual__title">{t('home.ritual.title')}</h2>
+          <p class="ritual__lead">{t('home.ritual.lead')}</p>
+          <ul role="list" class="ritual__list">
+            {
+              rituals.map(({ icon, n }) => (
+                <li>
+                  <Icon name={icon} size={20} />
+                  <div>
+                    <h3>{t(`home.ritual.${n}.title`)}</h3>
+                    <p>{t(`home.ritual.${n}.body`)}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="ritual__images">
+          <Image
+            src={teaImage}
+            alt={t('home.ritual.teaAlt')}
+            widths={[320, 640]}
+            sizes="(min-width: 900px) 20vw, 45vw"
+            class="ritual__img ritual__img--tea"
+          />
+          <Image
+            src={roomImage}
+            alt={t('home.ritual.roomAlt')}
+            widths={[320, 640]}
+            sizes="(min-width: 900px) 20vw, 45vw"
+            class="ritual__img ritual__img--room"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Testimonials -->
+  <section class="voices" aria-labelledby="voices-title">
+    <div class="container">
+      <DisplayTitle
+        id="voices-title"
+        eyebrow={t('home.testimonials.eyebrow')}
+        title={t('home.testimonials.title')}
+        align="center"
+        size="card"
+      />
+      <ul role="list" class="voices__grid">
+        {
+          testimonials.map((item) => (
+            <li class="voice reveal">
+              <figure>
+                <blockquote>
+                  <p>“{item.data.quote}”</p>
+                </blockquote>
+                <figcaption>
+                  <span class="voice__avatar" aria-hidden="true">
+                    {initials(item.data.name)}
+                  </span>
+                  <span>
+                    <strong>{item.data.name}</strong>
+                    <span class="voice__detail">{item.data.detail}</span>
+                  </span>
+                </figcaption>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7. Invitation -->
   <CtaBand lang={lang} />
 </BaseLayout>
 
 <style>
-  .section-more {
-    margin-block-start: var(--space-l);
+  /* ---------- 1. Hero ---------- */
+  .hero {
+    position: relative;
+    display: grid;
+    align-items: end;
+    min-height: clamp(34rem, calc(100svh - var(--header-height)), 58rem);
+    padding-block: var(--space-2xl) var(--space-xl);
+    overflow: hidden;
+    color: var(--color-text-inverse);
+    isolation: isolate;
+  }
+
+  .hero :global(.hero__bg) {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      rgb(51 37 29 / 0.72) 0%,
+      rgb(51 37 29 / 0.35) 45%,
+      rgb(51 37 29 / 0.05) 75%
+    );
+  }
+
+  .hero__live {
+    display: none;
+  }
+
+  .hero__content {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  .hero__title {
+    display: grid;
+    gap: var(--space-s);
+    justify-items: start;
+  }
+
+  .hero__aside {
+    display: grid;
+    gap: var(--space-m);
+    max-width: 30rem;
+  }
+
+  .hero__aside p {
+    font-weight: var(--fw-light);
+    line-height: var(--lh-relaxed);
+    color: rgb(255 255 255 / 0.88);
+  }
+
+  .hero__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .hero__down {
+    display: inline-grid;
+    place-items: center;
+    width: var(--control-height);
+    height: var(--control-height);
+    color: var(--color-text-inverse);
+    background: rgb(255 255 255 / 0.12);
+    border: 1px solid rgb(255 255 255 / 0.3);
+    border-radius: var(--radius-full);
+    backdrop-filter: blur(8px);
+  }
+
+  @media (min-width: 900px) {
+    .hero__content {
+      grid-template-columns: 1.4fr 1fr;
+      align-items: end;
+    }
+
+    .hero__live {
+      position: absolute;
+      top: var(--space-xl);
+      right: calc(var(--container-pad) + 8%);
+      display: grid;
+      width: 12rem;
+      padding: 0.5rem;
+      background: rgb(255 255 255 / 0.35);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero__live :global(.hero__live-img) {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: calc(var(--radius-lg) - 0.5rem);
+    }
+
+    .hero__live figcaption {
+      position: absolute;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+  }
+
+  /* ---------- 2. Manifesto ---------- */
+  .manifesto {
+    padding-block: var(--space-2xl);
+  }
+
+  .manifesto__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--space-m);
+    margin-block-end: var(--space-xl);
+  }
+
+  .manifesto__index {
+    color: var(--color-text-muted);
+  }
+
+  .manifesto__grid {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  .manifesto__text {
+    display: grid;
+    gap: var(--space-s);
+    align-content: start;
+  }
+
+  .manifesto__card {
+    display: grid;
+    gap: var(--space-s);
+    padding: var(--space-l);
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-lg);
+  }
+
+  .manifesto__arcs {
+    width: 100%;
+    max-width: 14rem;
+    margin-inline: auto;
+    fill: none;
+    stroke: var(--color-border-strong);
+    stroke-dasharray: 3 5;
+  }
+
+  .manifesto__arcs circle {
+    fill: var(--color-eyebrow);
+    stroke: none;
+  }
+
+  .manifesto__p1 {
+    font-size: var(--step-1);
+    font-weight: var(--fw-medium);
+    line-height: var(--lh-snug);
+  }
+
+  .manifesto__p2 {
+    font-weight: var(--fw-light);
+    color: var(--color-text-muted);
   }
 
   .stats {
     display: grid;
-    gap: var(--space-l);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xs);
   }
 
   .stats__item {
     display: flex;
     flex-direction: column-reverse;
+    align-items: center;
     gap: var(--space-3xs);
+    padding: var(--space-s) var(--space-2xs);
+    text-align: center;
+    background: var(--color-surface-strong);
+    border-radius: var(--radius-md);
   }
 
   .stats dd {
-    font-size: var(--step-5);
-    font-weight: var(--fw-bold);
+    font-family: var(--font-serif);
+    font-size: var(--step-2);
     line-height: 1;
-    letter-spacing: var(--tracking-tight);
   }
 
   .stats dt {
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--color-text-muted);
+  }
+
+  .manifesto__figure {
+    position: relative;
+  }
+
+  .manifesto__figure :global(.manifesto__img) {
+    width: 100%;
+    height: 100%;
+    min-height: 22rem;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
+  }
+
+  .manifesto__quote {
+    position: absolute;
+    top: var(--space-m);
+    left: var(--space-m);
+    max-width: min(26rem, calc(100% - 2 * var(--space-m)));
+    padding: var(--space-s) var(--space-m);
+    font-size: var(--step-0);
+    line-height: var(--lh-normal);
+    color: var(--color-text);
+    background: rgb(255 255 255 / 0.9);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 900px) {
+    .manifesto__grid {
+      grid-template-columns: 5fr 7fr;
+      gap: var(--space-xl);
+    }
+  }
+
+  /* ---------- 3. Arch ---------- */
+  .arch {
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding-block: var(--space-2xl);
+    overflow: hidden;
+    background: var(--color-bg-subtle);
+  }
+
+  .arch__letters {
+    display: none;
+  }
+
+  .arch__frame {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: min(18rem, 70vw);
+    aspect-ratio: 5 / 8;
+    overflow: hidden;
+    border-radius: 999px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .arch__frame :global(.arch__img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .arch__quote {
+    position: relative;
+    display: grid;
+    gap: var(--space-2xs);
+    justify-items: center;
+    width: 75%;
+    padding: var(--space-s);
+    font-size: var(--step-0);
+    line-height: var(--lh-normal);
+    text-align: center;
+    background: rgb(255 255 255 / 0.92);
+    border-radius: var(--radius-sm);
+  }
+
+  .arch__quote span {
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-size: 0.625rem;
+    color: var(--color-eyebrow);
+  }
+
+  @media (min-width: 900px) {
+    .arch__letters {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: center;
+      padding-inline: var(--container-pad);
+      font-size: clamp(8rem, 16vw, 16rem);
+      font-weight: var(--fw-light);
+      line-height: 1;
+      text-align: center;
+      color: var(--color-surface-strong);
+      user-select: none;
+    }
+
+    .arch__gap {
+      visibility: hidden;
+    }
+
+    .arch__frame {
+      width: 18rem;
+    }
+  }
+
+  /* ---------- 4. Practices ---------- */
+  .practices {
+    padding-block: var(--space-2xl);
+  }
+
+  .practices__header {
+    display: grid;
+    gap: var(--space-m);
+    margin-block-end: var(--space-xl);
+  }
+
+  .practices__intro {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .practices__header > .btn {
+    justify-self: start;
+  }
+
+  @media (min-width: 900px) {
+    .practices__header {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+  }
+
+  .practices__grid {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  @media (min-width: 900px) {
+    .practices__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .practice {
+    position: relative;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    gap: var(--space-xs);
+    padding: var(--space-s) var(--space-s) var(--space-m);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
+    transition:
+      box-shadow var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+
+  .practice:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .practice:has(a:focus-visible) {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+  }
+
+  .practice__media {
+    position: relative;
+    margin-block-end: var(--space-2xs);
+  }
+
+  .practice__media :global(.practice__img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+  }
+
+  .practice__media :global(.practice__label) {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+  }
+
+  .practice__title {
+    padding-inline: var(--space-2xs);
+    font-size: var(--step-2);
+  }
+
+  .practice__title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .practice__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .practice__title a:focus-visible {
+    outline: none;
+  }
+
+  .practice__text {
+    padding-inline: var(--space-2xs);
+    font-size: var(--step--1);
+    font-weight: var(--fw-light);
+    color: var(--color-text-muted);
+  }
+
+  .practice__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: var(--space-2xs);
+    padding-block-start: var(--space-s);
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+  }
+
+  /* ---------- 5. Ritual ---------- */
+  .ritual {
+    padding-block: var(--space-2xl);
+    background: var(--color-bg-muted);
+  }
+
+  .ritual__card {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+    padding: clamp(1.5rem, 0.5rem + 4vw, 4rem);
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+  }
+
+  .ritual__text {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .ritual__title {
+    font-size: var(--step-3);
+    font-weight: var(--fw-regular);
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+
+  .ritual__lead {
+    font-weight: var(--fw-light);
+    color: var(--color-text-muted);
+  }
+
+  .ritual__list {
+    display: grid;
+    gap: var(--space-s);
+    margin-block-start: var(--space-2xs);
+  }
+
+  .ritual__list li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-xs);
+    align-items: start;
+  }
+
+  .ritual__list :global(.icon) {
+    margin-block-start: 0.2rem;
+    color: var(--color-eyebrow);
+  }
+
+  .ritual__list h3 {
+    font-size: var(--step-0);
+    font-weight: var(--fw-medium);
+  }
+
+  .ritual__list p {
+    font-size: var(--step--1);
+    font-weight: var(--fw-light);
+    color: var(--color-text-muted);
+  }
+
+  .ritual__images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xs);
+    align-items: center;
+  }
+
+  .ritual__images :global(.ritual__img) {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+  }
+
+  .ritual__images :global(.ritual__img--tea) {
+    aspect-ratio: 1;
+  }
+
+  .ritual__images :global(.ritual__img--room) {
+    aspect-ratio: 4 / 5;
+  }
+
+  @media (min-width: 900px) {
+    .ritual__card {
+      grid-template-columns: 1fr 1.1fr;
+    }
+  }
+
+  /* ---------- 6. Testimonials ---------- */
+  .voices {
+    padding-block: var(--space-2xl) var(--space-l);
+  }
+
+  .voices__grid {
+    display: grid;
+    gap: var(--space-m);
+    max-width: 64rem;
+    margin: var(--space-xl) auto 0;
+  }
+
+  @media (min-width: 900px) {
+    .voices__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .voice figure {
+    display: grid;
+    gap: var(--space-m);
+    height: 100%;
+    padding: var(--space-l);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
+  }
+
+  .voice blockquote {
+    font-size: var(--step-1);
+    line-height: var(--lh-normal);
+  }
+
+  .voice figcaption {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--step--1);
+  }
+
+  .voice figcaption strong {
+    display: block;
+    font-weight: var(--fw-medium);
+  }
+
+  .voice__detail {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .voice__avatar {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex: none;
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    color: var(--color-eyebrow);
+    background: var(--color-highlight);
+    border-radius: var(--radius-full);
   }
 </style>
