@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary": "#755844", "on-surface-variant": "#4e4540", "primary": "#33251d", "surface-tint": "#6c5b51", "surface-variant": "#e5e2dd", "on-secondary-fixed": "#2b1707", "on-primary-fixed": "#251911", "on-error": "#ffffff", "on-secondary-container": "#7a5c48", "inverse-primary": "#d9c2b6", "on-tertiary-fixed": "#25190b", "tertiary-fixed-dim": "#d8c3ad", "background": "#fcf9f4", "error": "#ba1a1a", "on-secondary": "#ffffff", "on-background": "#1c1c19", "tertiary-fixed": "#f5dfc8", "secondary-container": "#ffd8bf", "surface-container-low": "#f6f3ee", "on-tertiary": "#ffffff", "surface-bright": "#fcf9f4", "outline": "#80756f", "on-secondary-fixed-variant": "#5b412f", "secondary-fixed-dim": "#e5bfa7", "surface-dim": "#dcdad5", "outline-variant": "#d2c4bd", "on-surface": "#1c1c19", "on-primary-fixed-variant": "#53443a", "inverse-on-surface": "#f3f0eb", "secondary-fixed": "#ffdcc5", "surface-container-lowest": "#ffffff", "surface-container": "#f0ede9", "primary-container": "#4a3b32", "surface-container-highest": "#e5e2dd", "error-container": "#ffdad6", "on-tertiary-container": "#baa691", "inverse-surface": "#31302d", "tertiary": "#332617", "primary-fixed-dim": "#d9c2b6", "on-primary-container": "#baa599", "on-primary": "#ffffff", "tertiary-container": "#4a3c2c", "on-error-container": "#93000a", "surface-container-high": "#ebe8e3", "on-tertiary-fixed-variant": "#534433", "primary-fixed": "#f6ded1", "surface": "#fcf9f4" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "margin-tablet": "3rem", "space-xs": "0.375rem", "gutter-desktop": "2.5rem", "space-2xl": "6rem", "margin-desktop": "5rem", "gutter": "1.5rem", "space-md": "1.25rem", "space-sm": "0.75rem", "space-xl": "3.5rem", "margin": "1.25rem", "space-lg": "2rem" }, "fontFamily": { "headline-lg-italic": [ "EB Garamond" ], "display-hero-italic-mobile": [ "EB Garamond" ], "headline-lg": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ], "label-editorial": [ "EB Garamond" ], "display-hero-italic": [ "EB Garamond" ], "body-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "display-hero-mobile": [ "Plus Jakarta Sans" ], "display-hero": [ "Plus Jakarta Sans" ], "label-caps": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ] }, "fontSize": { "headline-lg-italic": [ "2.6rem", { "lineHeight": "3rem", "letterSpacing": "0.01em", "fontWeight": "400" } ], "display-hero-italic-mobile": [ "2.5rem", { "lineHeight": "3rem", "letterSpacing": "0.01em", "fontWeight": "400" } ], "headline-lg": [ "2.25rem", { "lineHeight": "2.8rem", "letterSpacing": "0.04em", "fontWeight": "400" } ], "body-lg": [ "1.125rem", { "lineHeight": "1.8rem", "fontWeight": "400" } ], "label-editorial": [ "1.125rem", { "lineHeight": "1.4rem", "fontWeight": "400" } ], "display-hero-italic": [ "4.5rem", { "lineHeight": "4.75rem", "letterSpacing": "0.01em", "fontWeight": "400" } ], "body-sm": [ "0.8125rem", { "lineHeight": "1.4rem", "fontWeight": "400" } ], "body-md": [ "0.9375rem", { "lineHeight": "1.6rem", "fontWeight": "400" } ], "display-hero-mobile": [ "2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "0.04em", "fontWeight": "400" } ], "display-hero": [ "4rem", { "lineHeight": "4.5rem", "letterSpacing": "0.06em", "fontWeight": "400" } ], "label-caps": [ "0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.12em", "fontWeight": "600" } ], "headline-md": [ "1.5rem", { "lineHeight": "2rem", "letterSpacing": "0.02em", "fontWeight": "500" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-fixed"><header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl shadow-[0_16px_40px_-12px_rgba(74,59,50,0.06),0_2px_6px_rgba(74,59,50,0.02)] transition-all duration-300"><div class="h-20 w-full px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg flex-1 justify-start"><div class="flex items-center gap-space-sm"><img alt="MOVA Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XVbgARFqPK37OT9QwoYZtCxPgksJEsrN0mLt0E6gxGmOlIZRMAczRIp6gdHDGh-Xg5ir5zC9hz_ncROcaok-1PbaqZGNXXgPnB3A6bNVfBLyjZ8Oh9rEtEYCcF4cx_fMTVHETvMAC3Ch7rT6ansBraIFdEKEeGn4riTAH_95liFQ9FNg-IVBL-kUUx8wepcF_iMtjNHV8uPX9nBzKtDYhNp_voQlVW35rEQFxxA63RdQxcltRD-iXWnEA"/><span class="font-label-caps text-label-caps tracking-widest text-primary uppercase">MOVA</span></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="text-primary font-medium"><a class="font-body-sm text-body-sm tracking-wider text-on-surface-variant hover:text-primary transition-colors" data-path="inicio" href="#">Inicio</a><a class="font-body-sm text-body-sm tracking-wider text-on-surface-variant hover:text-primary transition-colors" data-path="el-estudio" href="#">El Estudio</a><a aria-current="page" class="tracking-wider transition-colors text-primary font-medium" data-path="disciplinas" href="#">Disciplinas</a><a class="font-body-sm text-body-sm tracking-wider text-on-surface-variant hover:text-primary transition-colors" data-path="precios-y-horarios" href="#">Precios &amp; Horarios</a></nav></div><div class="flex items-center justify-center"><a class="font-headline-lg-italic text-headline-lg-italic text-primary tracking-widest hover:opacity-90 transition-opacity" data-path="inicio" href="#">MOVA</a></div><div class="flex items-center gap-space-md flex-1 justify-end"><nav class="hidden lg:flex items-center gap-space-md" data-active-classes="text-primary font-medium"><a class="font-body-sm text-body-sm tracking-wider text-on-surface-variant hover:text-primary transition-colors" data-path="whatsapp" href="#">WhatsApp</a><a class="font-body-sm text-body-sm tracking-wider text-on-surface-variant hover:text-primary transition-colors" data-path="contacto" href="#">Contacto</a></nav><a class="inline-flex items-center justify-center bg-primary-container text-on-primary font-body-sm text-body-sm px-space-md py-space-xs rounded-full hover:bg-primary transition-all shadow-[0_4px_16px_rgba(74,59,50,0.12)] whitespace-nowrap" data-path="reserva-clase-de-prueba" href="#">Reservar clase de prueba</a><a class="flex-shrink-0 transition-opacity hover:opacity-85" data-path="mi-perfil" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant/40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbJtYx7x8zOAK1s6OdaC74quqcHjsz7hAu_UjqXFyHFL5zGr6N4Nz_9iMwDVNcQFwS6ELFoqMlMljjxMnzO0nEs1hNqK6eB5dcsVaaBYfh6YB8Gld23qBzE1zOPDmqAJ8YncPn8cFkOygNMWf_kmQFFKY1DdTvG4ChJPVUZAijp3-Gg4gNr_R6YOwz93QLkR9dyPedOUyWgAYYPd6VgRUUdYTBDv9LkkVikHOtX2wXqIy8aur4cYrp"/></a></div></div></header><main class="w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Breathing Space & Ambient Glow -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[340px] bg-secondary-container/20 rounded-full blur-[110px] pointer-events-none"></div>
+<!-- Hero Header: Conscious Practices -->
+<section class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop pt-space-xl pb-space-lg">
+<div class="max-w-5xl">
+<div class="inline-flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-full text-secondary mb-space-md">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Catálogo de Disciplinas</span>
+</div>
+<h1 class="text-primary font-headline-lg text-headline-lg md:text-[3.25rem] md:leading-[3.6rem] uppercase tracking-wide">
+          PRÁCTICAS CONSCIENTES <br/>
+<span class="font-headline-lg-italic text-headline-lg-italic md:text-[3.75rem] md:leading-[4rem] text-secondary lowercase font-normal italic">a tu propio ritmo</span>
+</h1>
+<div class="mt-space-md grid grid-cols-1 md:grid-cols-12 gap-gutter items-end">
+<p class="md:col-span-8 font-body-lg text-body-lg text-on-surface-variant font-light leading-relaxed">
+            Desde el fortalecimiento milimétrico del <em class="font-label-editorial text-secondary not-italic font-medium">core</em> profundo hasta la liberación miofascial más restauradora. Espacios íntimos de máximo 6 personas concebidos para redescubrir la armonía entre cuerpo, respiración y serenidad mental.
+          </p>
+<div class="md:col-span-4 flex md:justify-end">
+<div class="flex items-center gap-space-sm text-secondary font-label-caps text-label-caps tracking-wider uppercase">
+<span class="material-symbols-outlined text-base">nest_eco_leaf</span>
+<span>Atención personalizada · Máx. 6 plazas</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Discipline Filter -->
+<section class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop pb-space-lg sticky top-20 z-20 bg-background/90 backdrop-blur-md">
+<div class="flex items-center gap-space-xs overflow-x-auto no-scrollbar py-space-xs" id="disciplineFilter">
+<button class="filter-pill active-pill whitespace-nowrap px-space-md py-space-xs rounded-full font-body-sm text-body-sm transition-all duration-300 bg-primary-container text-on-primary shadow-sm" data-filter="all" type="button">
+          Todas las prácticas
+        </button>
+<button class="filter-pill whitespace-nowrap px-space-md py-space-xs rounded-full font-body-sm text-body-sm transition-all duration-300 bg-surface-container text-on-surface-variant hover:bg-surface-variant" data-filter="reformer" type="button">
+          Reformer Pilates
+        </button>
+<button class="filter-pill whitespace-nowrap px-space-md py-space-xs rounded-full font-body-sm text-body-sm transition-all duration-300 bg-surface-container text-on-surface-variant hover:bg-surface-variant" data-filter="mat" type="button">
+          Mat Pilates
+        </button>
+<button class="filter-pill whitespace-nowrap px-space-md py-space-xs rounded-full font-body-sm text-body-sm transition-all duration-300 bg-surface-container text-on-surface-variant hover:bg-surface-variant" data-filter="maternity" type="button">
+          Pilates Pre &amp; Postnatal
+        </button>
+<button class="filter-pill whitespace-nowrap px-space-md py-space-xs rounded-full font-body-sm text-body-sm transition-all duration-300 bg-surface-container text-on-surface-variant hover:bg-surface-variant" data-filter="restorative" type="button">
+          Restorative &amp; Stretching
+        </button>
+</div>
+</section>
+<!-- Cards Mosaic: Detailed Disciplines -->
+<section class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop py-space-md">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop" id="cardsGrid">
+<!-- CARD 1: Reformer Core & Align (Featured Hero Card) -->
+<article class="discipline-card lg:col-span-12 bg-surface-container-low rounded-lg p-space-md md:p-space-xl transition-all duration-300 hover:shadow-[0_20px_48px_-16px_rgba(74,59,50,0.08)] flex flex-col lg:flex-row gap-gutter-desktop items-center" data-category="reformer">
+<div class="w-full lg:w-1/2 relative overflow-hidden rounded-lg aspect-[4/3] group">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" data-alt="Warm sunlit boutique Japandi reformer studio with high oak ceilings, linen drapes, and smooth reformer beds made of pale birch wood and warm beige upholstery, cinematic natural light and architectural serenity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOjgq8pxDu_5Q8AptdHIwMUws2UmJOi-OGQdlFDfjH0GEKMMJ8UXTZA0n-h-OzSWU2Y62v6i9630cnCtTUSxT0TeGGfqnVhfmXUB1gC4FsW1R6Cl0ZJnw1ddZKem_PZr8zXcBhALto2iJbq7j4HRBoLFl6RwCT3Ct3eqz65na-ti6A2Xws2pq3KvKQA-pVz8hPJZiP65OaXMNyXv5szKaq-MDGCObLzy1fUerrrGtEy_frzoeAIch2"/>
+<div class="absolute top-4 left-4 backdrop-blur-md bg-background/85 px-space-sm py-1 rounded-full text-primary font-label-caps text-label-caps uppercase tracking-wider flex items-center gap-1.5 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              Práctica Insignia
+            </div>
+<div class="absolute bottom-4 right-4 backdrop-blur-md bg-primary-container/90 text-on-primary px-space-sm py-1 rounded-full font-body-sm text-body-sm">
+              6 plazas exclusivas
+            </div>
+</div>
+<div class="w-full lg:w-1/2 flex flex-col justify-between h-full">
+<div>
+<div class="flex items-center gap-space-xs mb-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-caps text-label-caps uppercase">Multinivel consciente</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-secondary">55 minutos</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Intensidad Media-Alta</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight mb-space-xs">
+                Reformer Core &amp; Align
+              </h2>
+<p class="font-label-editorial text-label-editorial text-secondary italic mb-space-sm">
+                Alineación postural, elongación dinámica y tono muscular sin impacto.
+              </p>
+<p class="font-body-md text-body-md text-on-surface-variant font-light leading-relaxed mb-space-md">
+                Nuestra clase más representativa. Empleamos los resortes de tensión graduada del reformer para asistir el movimiento biomecánicamente óptimo. La resistencia fluida estabiliza la cintura escapular, descomprime la columna lumbar y esculpe la musculatura interna profunda.
+              </p>
+<!-- Benefits tags -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs mb-space-lg">
+<div class="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-space-xs rounded-full">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span class="font-body-sm text-body-sm text-primary">Corrección de hiperlordosis</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-space-xs rounded-full">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span class="font-body-sm text-body-sm text-primary">Fortalecimiento del transverso</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-space-xs rounded-full">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span class="font-body-sm text-body-sm text-primary">Movilidad articular en 3D</span>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-space-xs rounded-full">
+<span class="material-symbols-outlined text-secondary text-sm">check_circle</span>
+<span class="font-body-sm text-body-sm text-primary">Respiración diafragmática</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-sm pt-space-sm">
+<div class="flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-primary font-semibold">28€</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ clase suelta (bonos disponibles)</span>
+</div>
+<a class="inline-flex items-center justify-center gap-space-xs bg-primary-container text-on-primary font-body-sm text-body-sm px-space-lg py-space-xs rounded-full hover:bg-primary transition-all duration-300 shadow-[0_4px_20px_rgba(74,59,50,0.15)] group" data-path="reserva-clase-de-prueba" href="#">
+<span>Reservar sesión</span>
+<span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- CARD 2: Mat Flow & Sculpt -->
+<article class="discipline-card lg:col-span-6 bg-surface-container-low rounded-lg p-space-md md:p-space-lg transition-all duration-300 hover:shadow-[0_16px_40px_-12px_rgba(74,59,50,0.06)] flex flex-col justify-between" data-category="mat">
+<div>
+<div class="relative overflow-hidden rounded-lg aspect-[16/10] mb-space-md group">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" data-alt="Serene woman in neutral beige linen activewear performing mindful mat pilates in a sun-drenched Scandinavian minimalist studio with light timber floors and soft textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu54KWII1IbQuBebTWLgR6psZCUFcrY9fCujFc-9kKnExbIzugLlzKbxIE3C7bpo1H32NG0YZSqfP2bLF6kLa7TS74uNMjYONfrOxpuq7wQ1XgjtL--gaLBUh9ZDcSIDXW-v8NAOXvLTBFfLu9G1x35OWa-56YHB6Qu0k0Uaz8M6QROicDHfF2gOESIILsa45qnX7MhWhkxnQBNrDIGsU22cCEardN2aFux4LsqpB8xScmtCjidSV8"/>
+<div class="absolute top-4 left-4 backdrop-blur-md bg-background/85 px-space-sm py-1 rounded-full text-primary font-label-caps text-label-caps uppercase tracking-wider">
+                Suelo &amp; Accesorios
+              </div>
+<div class="absolute bottom-4 right-4 bg-surface-container-lowest/90 px-space-sm py-0.5 rounded-full font-body-sm text-body-sm text-primary">
+                50 min
+              </div>
+</div>
+<div class="flex items-center gap-space-xs mb-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-caps text-label-caps uppercase">Intensidad Media</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-secondary">Máx. 8 alumnas</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary tracking-tight mb-space-xs">
+              Mat Flow &amp; Sculpt
+            </h3>
+<p class="font-label-editorial text-label-editorial text-secondary italic mb-space-sm">
+              Control respiratorio, longitud muscular y resistencia pura con gravedad.
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant font-light leading-relaxed mb-space-md">
+              Una secuencia continua sobre esterilla donde el cuerpo es su propio contrapeso. Incorporamos implementos táctiles como el aro mágico (Pilates Ring), pelotas blandas de estabilidad (Overball) y bandas de resistencia suaves para desafiar la resistencia isométrica y tonificar hombros, glúteos y centro.
+            </p>
+<!-- Accesorios pill bar -->
+<div class="flex flex-wrap gap-1.5 mb-space-md">
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Aro Pilates</span>
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Overball 22cm</span>
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Therabands</span>
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Esterillas de corcho</span>
+</div>
+</div>
+<div class="pt-space-sm flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary font-medium">20€ <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">/ sesión</span></span>
+<a class="inline-flex items-center gap-1.5 text-primary hover:text-secondary font-body-sm text-body-sm transition-colors group" data-path="reserva-clase-de-prueba" href="#">
+<span>Reservar sesión</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- CARD 3: Reformer Jumpboard & Cardio -->
+<article class="discipline-card lg:col-span-6 bg-surface-container-low rounded-lg p-space-md md:p-space-lg transition-all duration-300 hover:shadow-[0_16px_40px_-12px_rgba(74,59,50,0.06)] flex flex-col justify-between" data-category="reformer">
+<div>
+<div class="relative overflow-hidden rounded-lg aspect-[16/10] mb-space-md group">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" data-alt="Dynamic yet elegant Pilates Reformer session with padded jumpboard attachment, soft morning light in an airy cream studio space with textured walls and natural plants" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqSX1WMGmklnnL2P7Oy9bIfnxNnFKgjKvFflyM86iRXNdHv8ZYJY2wIevZlIG3kUQm4wNB9l7Zp6epOheceWsdSmD0LMyTbvyHr--RwaKF1LgsSZexZXn55Xm8ZFQhkUdYNC1f9-8cdRw61DaCh4ie31Z7LiLpZaXj5y-l74ZhMU3cLdA8ek7FSpNnrw-B39qp_TPX1FQQLyXR48RJ5T6K6ykCHK2GqhLL-tsF4JaOIXeO7cn3liaz"/>
+<div class="absolute top-4 left-4 backdrop-blur-md bg-background/85 px-space-sm py-1 rounded-full text-primary font-label-caps text-label-caps uppercase tracking-wider">
+                Cardio Zero Impact
+              </div>
+<div class="absolute bottom-4 right-4 bg-surface-container-lowest/90 px-space-sm py-0.5 rounded-full font-body-sm text-body-sm text-primary">
+                50 min
+              </div>
+</div>
+<div class="flex items-center gap-space-xs mb-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-caps text-label-caps uppercase">Intensidad Dinámica</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-secondary">6 plazas</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary tracking-tight mb-space-xs">
+              Reformer Jumpboard &amp; Cardio
+            </h3>
+<p class="font-label-editorial text-label-editorial text-secondary italic mb-space-sm">
+              Ritmo cardiovascular y drenaje linfático sin daño articular.
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant font-light leading-relaxed mb-space-md">
+              Saltar en posición horizontal elimina por completo la fuerza de gravedad sobre tobillos, rodillas y discos lumbares. El tablero acolchado permite intervalos aeróbicos rítmicos y retadores combinados con series de resistencia en muelles medios para tonificar piernas y activar el sistema circulatorio.
+            </p>
+<div class="flex flex-wrap gap-1.5 mb-space-md">
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Cero impacto espinal</span>
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Gasto metabólico</span>
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Agilidad y balance</span>
+</div>
+</div>
+<div class="pt-space-sm flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary font-medium">28€ <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">/ sesión</span></span>
+<a class="inline-flex items-center gap-1.5 text-primary hover:text-secondary font-body-sm text-body-sm transition-colors group" data-path="reserva-clase-de-prueba" href="#">
+<span>Reservar sesión</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- CARD 4: Pilates Maternidad Consciente -->
+<article class="discipline-card lg:col-span-6 bg-surface-container-low rounded-lg p-space-md md:p-space-lg transition-all duration-300 hover:shadow-[0_16px_40px_-12px_rgba(74,59,50,0.06)] flex flex-col justify-between" data-category="maternity">
+<div>
+<div class="relative overflow-hidden rounded-lg aspect-[16/10] mb-space-md group">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" data-alt="Pregnant woman gently practicing mindful supported pilates with natural props, warm ambient light, organic linen fabric, serene and nurturing atmosphere in a warm sand studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMF1lYJvPz4DG0QS66-xSIugA5gdZGUZstwjXQ_FKdDzu4Tac-lOdOEp3ECbxC6JKuOPVu9aCEiXoYISZ8Wn_14tQW41hkjR8VUza73UUWkrRZ__GENhqYzkUoK-ECQnParCrhPlk3sIzY4drmqpcvNVZ2iffwXJcRJaFrbAcoZtpexa8Z86FnlA5nc0a0X3C8ISpRiXhsXYqWiDSQGbpHGg-9RWRleX2Q-H3IpHN8gBFjGSJ-c3YV"/>
+<div class="absolute top-4 left-4 backdrop-blur-md bg-background/85 px-space-sm py-1 rounded-full text-primary font-label-caps text-label-caps uppercase tracking-wider">
+                Especialidad Médica &amp; Cuidado
+              </div>
+<div class="absolute bottom-4 right-4 bg-surface-container-lowest/90 px-space-sm py-0.5 rounded-full font-body-sm text-body-sm text-primary">
+                55 min
+              </div>
+</div>
+<div class="flex items-center gap-space-xs mb-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-caps text-label-caps uppercase">Prenatal &amp; Postparto</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-secondary">Máx. 5 plazas</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary tracking-tight mb-space-xs">
+              Pilates Maternidad Consciente
+            </h3>
+<p class="font-label-editorial text-label-editorial text-secondary italic mb-space-sm">
+              Suelo pélvico, descompresión lumbosacra y reconexión amorosa.
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant font-light leading-relaxed mb-space-md">
+              Diseñado por fisioterapeutas especializadas en suelo pélvico. Tanto si estás transitando el segundo o tercer trimestre de gestación como si buscas cerrar diástasis abdominal tras el parto, adaptamos cada resorte y apoyo con cojines posturales para prevenir lumbalgias y generar serenidad física y emocional.
+            </p>
+<div class="flex flex-wrap gap-1.5 mb-space-md">
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Prevención de diástasis</span>
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Movilidad de pelvis</span>
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Acompañamiento clínico</span>
+</div>
+</div>
+<div class="pt-space-sm flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary font-medium">30€ <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">/ sesión</span></span>
+<a class="inline-flex items-center gap-1.5 text-primary hover:text-secondary font-body-sm text-body-sm transition-colors group" data-path="reserva-clase-de-prueba" href="#">
+<span>Reservar sesión</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- CARD 5: Yin & Miofascial Release -->
+<article class="discipline-card lg:col-span-6 bg-surface-container-low rounded-lg p-space-md md:p-space-lg transition-all duration-300 hover:shadow-[0_16px_40px_-12px_rgba(74,59,50,0.06)] flex flex-col justify-between" data-category="restorative">
+<div>
+<div class="relative overflow-hidden rounded-lg aspect-[16/10] mb-space-md group">
+<img class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" data-alt="Close up meditative stretching and myofascial release with cork roller and massage ball on serene natural wood floor, soft shadows, warm beige tones, tranquil stillness" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiByCgsQavXMTRlOuwN_ybgIE1S8VBP8zF_xmGNWBME0FuOucT-HuG32FxEhvQmBRJr6dPCt3KMjDt6Gi1xEj7LEZO-5tCUBSflhisTgS36EfhyUKrxxbZVEwlba9yIDcE18IrKRvHDnPqAX6mBgNcGfj2QXiKcDlxLnTe4izhaJIyX8iX5_FmM_ntwVR26i2j6v_gn7hwsp11kki7ZgmNnwZwY_DWcjXeQ-EVjIDfEDu4cYU3RFGG"/>
+<div class="absolute top-4 left-4 backdrop-blur-md bg-background/85 px-space-sm py-1 rounded-full text-primary font-label-caps text-label-caps uppercase tracking-wider">
+                Restauración Profunda
+              </div>
+<div class="absolute bottom-4 right-4 bg-surface-container-lowest/90 px-space-sm py-0.5 rounded-full font-body-sm text-body-sm text-primary">
+                60 min
+              </div>
+</div>
+<div class="flex items-center gap-space-xs mb-space-xs">
+<span class="px-space-xs py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-caps text-label-caps uppercase">Intensidad Suave</span>
+<span class="text-outline-variant">•</span>
+<span class="font-body-sm text-body-sm text-secondary">Máx. 8 alumnas</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary tracking-tight mb-space-xs">
+              Yin &amp; Miofascial Release
+            </h3>
+<p class="font-label-editorial text-label-editorial text-secondary italic mb-space-sm">
+              Rodillos de espuma, esferas de automasaje y respiración consciente.
+            </p>
+<p class="font-body-md text-body-md text-on-surface-variant font-light leading-relaxed mb-space-md">
+              El antídoto contra el estrés contemporáneo y las sobrecargas mecánicas. Mediante la presión sostenida con esferas de corcho y rodillos sobre puntos gatillo, hidratamos el tejido conectivo fascial, liberamos adherencias tensionales en cuello y caderas, e inducimos al sistema nervioso en un estado vagal de relajación plena.
+            </p>
+<div class="flex flex-wrap gap-1.5 mb-space-md">
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Puntos gatillo</span>
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Calma nerviosa</span>
+<span class="text-xs bg-surface-container px-2.5 py-1 rounded-full text-on-surface-variant font-body-sm">Flexibilidad pasiva</span>
+</div>
+</div>
+<div class="pt-space-sm flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary font-medium">22€ <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">/ sesión</span></span>
+<a class="inline-flex items-center gap-1.5 text-primary hover:text-secondary font-body-sm text-body-sm transition-colors group" data-path="reserva-clase-de-prueba" href="#">
+<span>Reservar sesión</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</article>
+</div>
+</section>
+<!-- Interactive Discipline Level Comparator / Matrix -->
+<section class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl">
+<div class="bg-surface-container rounded-lg p-space-md md:p-space-xl">
+<div class="max-w-2xl mb-space-lg">
+<span class="font-label-caps text-label-caps uppercase text-secondary tracking-widest block mb-1">Guía Visual Rápida</span>
+<h3 class="font-headline-md text-headline-md text-primary">Comparativa de enfoques</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Descubre qué práctica resuena más con el momento físico en el que te encuentras.</p>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm border-collapse min-w-[600px]">
+<thead>
+<tr class="text-primary font-medium uppercase font-label-caps tracking-wider border-b border-outline-variant/30">
+<th class="py-space-sm font-semibold">Disciplina</th>
+<th class="py-space-sm font-semibold">Tono / Fuerza</th>
+<th class="py-space-sm font-semibold">Flexibilidad</th>
+<th class="py-space-sm font-semibold">Calma Mental</th>
+<th class="py-space-sm font-semibold">Nivel Ideal</th>
+</tr>
+</thead>
+<tbody class="text-on-surface-variant divide-y divide-outline-variant/20">
+<tr>
+<td class="py-space-sm font-medium text-primary">Reformer Core &amp; Align</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-space-sm">Todos los niveles</td>
+</tr>
+<tr>
+<td class="py-space-sm font-medium text-primary">Mat Flow &amp; Sculpt</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-space-sm">Principiante a Medio</td>
+</tr>
+<tr>
+<td class="py-space-sm font-medium text-primary">Reformer Jumpboard</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-space-sm">Medio a Avanzado</td>
+</tr>
+<tr>
+<td class="py-space-sm font-medium text-primary">Yin &amp; Miofascial</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+<span class="w-3 h-1.5 rounded-full bg-surface-variant"></span>
+</div>
+</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</td>
+<td class="py-space-sm">
+<div class="flex gap-1 text-secondary">
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+<span class="w-3 h-1.5 rounded-full bg-secondary"></span>
+</div>
+</td>
+<td class="py-space-sm">Restaurativo integral</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<!-- Section 4: Beginners Onboarding Guide -->
+<section class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl">
+<div class="bg-surface-container-lowest rounded-lg p-space-md md:p-space-2xl shadow-[0_16px_40px_-12px_rgba(74,59,50,0.04)]">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+<div class="lg:col-span-5 space-y-space-md">
+<span class="font-label-caps text-label-caps uppercase text-secondary tracking-widest block">Tu Primer Día en el Estudio</span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">
+              ¿Primera vez <br/>
+<span class="font-headline-lg-italic text-headline-lg-italic text-secondary lowercase font-normal italic">en MOVA?</span>
+</h2>
+<p class="font-body-md text-body-md text-on-surface-variant font-light leading-relaxed">
+              No necesitas experiencia previa ni flexibilidad extraordinaria. Nuestro espacio ha sido concebido para acompañarte desde el absoluto respeto a tu ritmo biomecánico.
+            </p>
+<div class="p-space-md rounded-DEFAULT bg-surface-container-low border-l-2 border-secondary space-y-space-xs">
+<div class="flex items-center gap-space-xs text-primary font-medium">
+<span class="material-symbols-outlined text-secondary">schedule</span>
+<span class="font-body-md text-body-md font-semibold">Llegada anticipada recomendada</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Llega 15 minutos antes de la hora pactada para tu primera sesión. Es el tiempo dedicado a tu inducción personalizada y calzado consciente.
+              </p>
+</div>
+</div>
+<div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Step 1 -->
+<div class="bg-surface-container-low p-space-md rounded-DEFAULT flex flex-col justify-between">
+<div>
+<span class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-label-caps text-label-caps mb-space-sm font-semibold">01</span>
+<h4 class="font-headline-md text-headline-md text-primary text-base font-semibold mb-space-xs">Evaluación Postural (15 min)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light leading-relaxed">
+                  Tu instructora conversará sobre lesiones previas, patrones cervicales y estado del suelo pélvico para adaptar los muelles a tu fisionomía.
+                </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-1.5 text-secondary text-xs font-label-caps uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">tune</span>
+                Personalización total
+              </div>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-low p-space-md rounded-DEFAULT flex flex-col justify-between">
+<div>
+<span class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-label-caps text-label-caps mb-space-sm font-semibold">02</span>
+<h4 class="font-headline-md text-headline-md text-primary text-base font-semibold mb-space-xs">Qué traer contigo</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light leading-relaxed">
+                  Indumentaria cómoda y elástica (sin cremalleras para cuidar las tapicerías) y calcetines con suela antideslizante (grip socks).
+                </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-1.5 text-secondary text-xs font-label-caps uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">checkroom</span>
+                Disponibles en tienda
+              </div>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-low p-space-md rounded-DEFAULT flex flex-col justify-between">
+<div>
+<span class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-label-caps text-label-caps mb-space-sm font-semibold">03</span>
+<h4 class="font-headline-md text-headline-md text-primary text-base font-semibold mb-space-xs">Todo incluido en cabina</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light leading-relaxed">
+                  Toallas de algodón egipcio, infusiones biológicas calientes, agua mineralizada y taquillas individuales con código digital.
+                </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-1.5 text-secondary text-xs font-label-caps uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">spa</span>
+                Comfort hotel boutique
+              </div>
+</div>
+<!-- Step 4 -->
+<div class="bg-surface-container-low p-space-md rounded-DEFAULT flex flex-col justify-between">
+<div>
+<span class="w-8 h-8 rounded-full bg-secondary/10 text-secondary flex items-center justify-center font-label-caps text-label-caps mb-space-sm font-semibold">04</span>
+<h4 class="font-headline-md text-headline-md text-primary text-base font-semibold mb-space-xs">Descompresión final</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant font-light leading-relaxed">
+                  Cada sesión concluye con 5 minutos de respiración diafragmática y toallas aromatizadas con aceites esenciales de cedro y bergamota.
+                </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center gap-1.5 text-secondary text-xs font-label-caps uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">air</span>
+                Cierre restaurativo
+              </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Interactive Level Advisor & Final CTA -->
+<section class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl">
+<div class="relative overflow-hidden bg-primary text-on-primary rounded-xl p-space-md md:p-space-2xl">
+<!-- Subtle background texture circle -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-primary-container/40 blur-3xl pointer-events-none"></div>
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<div class="lg:col-span-7 space-y-space-md">
+<span class="font-label-caps text-label-caps uppercase text-secondary-fixed tracking-widest block">Asesoramiento Holístico</span>
+<h2 class="font-headline-lg text-headline-lg md:text-[2.75rem] md:leading-[3.2rem] text-surface font-light tracking-tight">
+              ¿No sabes qué práctica <br/>
+<span class="font-headline-lg-italic text-headline-lg-italic text-primary-fixed italic font-normal">iniciar primero?</span>
+</h2>
+<p class="font-body-lg text-body-lg text-inverse-primary max-w-xl font-light leading-relaxed">
+              Escríbenos directamente para que nuestro equipo de coordinación deportiva diseñe un itinerario según tus objetivos: aliviar dolor de espalda, tonificar o encontrar calma.
+            </p>
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm pt-space-xs">
+<a class="inline-flex items-center justify-center gap-space-xs bg-secondary-fixed text-on-secondary-fixed font-body-sm text-body-sm px-space-lg py-space-sm rounded-full hover:bg-white transition-all duration-300 font-medium shadow-md" href="https://wa.me/" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-lg">chat</span>
+<span>Consultar por WhatsApp</span>
+</a>
+<button class="inline-flex items-center justify-center gap-space-xs border border-primary-fixed-dim/40 text-surface hover:bg-surface/10 font-body-sm text-body-sm px-space-lg py-space-sm rounded-full transition-all duration-300" id="openQuizBtn" type="button">
+<span class="material-symbols-outlined text-lg">quiz</span>
+<span>Hacer test de 1 minuto</span>
+</button>
+</div>
+</div>
+<!-- Interactive Micro Widget: Level Quiz Mini Box -->
+<div class="lg:col-span-5 bg-surface-container-lowest/10 backdrop-blur-xl p-space-lg rounded-lg border border-primary-fixed-dim/20 text-surface" id="quizContainer">
+<div id="quizStep1">
+<div class="flex items-center justify-between text-xs font-label-caps text-secondary-fixed tracking-wider uppercase mb-space-sm">
+<span>Paso 1 de 2</span>
+<span>Test Rápido</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-base text-surface font-medium mb-space-sm">
+                ¿Cuál es tu prioridad principal hoy?
+              </h3>
+<div class="space-y-space-xs" id="quizOptions">
+<button class="quiz-option w-full text-left p-space-xs px-space-sm rounded-full bg-surface-container-lowest/15 hover:bg-surface-container-lowest/30 transition-colors text-xs flex items-center justify-between" data-result="reformer" type="button">
+<span>Tonificar abdomen y corregir postura</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+<button class="quiz-option w-full text-left p-space-xs px-space-sm rounded-full bg-surface-container-lowest/15 hover:bg-surface-container-lowest/30 transition-colors text-xs flex items-center justify-between" data-result="restorative" type="button">
+<span>Aliviar tensión muscular y estrés diario</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+<button class="quiz-option w-full text-left p-space-xs px-space-sm rounded-full bg-surface-container-lowest/15 hover:bg-surface-container-lowest/30 transition-colors text-xs flex items-center justify-between" data-result="maternity" type="button">
+<span>Cuidado de embarazo o posparto</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="hidden space-y-space-sm" id="quizResult">
+<div class="flex items-center gap-1.5 text-secondary-fixed text-xs font-label-caps uppercase">
+<span class="material-symbols-outlined text-sm">recommend</span>
+<span>Tu recomendación MOVA</span>
+</div>
+<div class="font-headline-md text-headline-md text-lg text-surface" id="recommendedTitle">Reformer Core &amp; Align</div>
+<p class="font-body-sm text-body-sm text-inverse-primary" id="recommendedDesc">
+                La práctica ideal para alinear cadenas musculares con la máxima seguridad asistida por resortes.
+              </p>
+<div class="pt-space-xs flex items-center gap-space-sm">
+<a class="bg-secondary-fixed text-on-secondary-fixed text-xs font-body-sm px-space-md py-1.5 rounded-full inline-block font-medium" data-path="reserva-clase-de-prueba" href="#">Reservar prueba</a>
+<button class="text-xs text-inverse-primary underline" id="resetQuiz" type="button">Volver a calcular</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<script>
+  // Filter Functionality for Practice Cards
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.discipline-card');
+
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const filter = pill.getAttribute('data-filter');
+
+        // Update pills styling
+        filterPills.forEach(p => {
+          p.classList.remove('bg-primary-container', 'text-on-primary', 'shadow-sm');
+          p.classList.add('bg-surface-container', 'text-on-surface-variant');
+        });
+        pill.classList.remove('bg-surface-container', 'text-on-surface-variant');
+        pill.classList.add('bg-primary-container', 'text-on-primary', 'shadow-sm');
+
+        // Filter cards
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('hidden');
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(8px)';
+            setTimeout(() => {
+              card.classList.add('hidden');
+            }, 200);
+          }
+        });
+      });
+    });
+
+    // Micro interactive Quiz logic
+    const quizStep1 = document.getElementById('quizStep1');
+    const quizResult = document.getElementById('quizResult');
+    const quizOptions = document.querySelectorAll('.quiz-option');
+    const recTitle = document.getElementById('recommendedTitle');
+    const recDesc = document.getElementById('recommendedDesc');
+    const resetQuizBtn = document.getElementById('resetQuiz');
+    const openQuizBtn = document.getElementById('openQuizBtn');
+
+    const resultData = {
+      reformer: {
+        title: "Reformer Core & Align",
+        desc: "Tu mejor elección para reactivar la faja lumbo-abdominal sin compresión discal y con apoyo ergonómico."
+      },
+      restorative: {
+        title: "Yin & Miofascial Release",
+        desc: "Ideal para liberar tensión en hombros y espalda baja, restableciendo la elasticidad del tejido conectivo."
+      },
+      maternity: {
+        title: "Pilates Maternidad Consciente",
+        desc: "Acompañamiento especializado enfocado en suelo pélvico, diafragma y estabilidad articular."
+      }
+    };
+
+    quizOptions.forEach(opt => {
+      opt.addEventListener('click', () => {
+        const resKey = opt.getAttribute('data-result');
+        const match = resultData[resKey] || resultData.reformer;
+        recTitle.textContent = match.title;
+        recDesc.textContent = match.desc;
+
+        quizStep1.classList.add('hidden');
+        quizResult.classList.remove('hidden');
+      });
+    });
+
+    if (resetQuizBtn) {
+      resetQuizBtn.addEventListener('click', () => {
+        quizResult.classList.add('hidden');
+        quizStep1.classList.remove('hidden');
+      });
+    }
+
+    if (openQuizBtn) {
+      openQuizBtn.addEventListener('click', () => {
+        document.getElementById('quizContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+  });
+</script></main><footer class="w-full bg-surface-container-low text-on-surface mt-space-2xl"><div class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop pt-space-2xl pb-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter-desktop"><div class="lg:col-span-4 space-y-space-md"><div class="font-display-hero-italic text-headline-lg-italic md:text-display-hero-italic text-primary leading-none">MOVA</div><p class="font-label-editorial text-label-editorial text-secondary max-w-sm italic">Espacio para el movimiento, la calma y el equilibrio consciente.</p><div class="pt-space-xs"><span class="font-body-sm text-body-sm text-on-surface-variant">Estudio boutique Japandi en el corazón de Madrid.</span></div></div><div class="lg:col-span-2 space-y-space-sm"><h3 class="font-label-caps text-label-caps uppercase tracking-wider text-primary">Navegación</h3><ul class="space-y-space-xs"><li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="inicio" href="#">Inicio</a></li><li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="el-estudio" href="#">El Estudio</a></li><li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="disciplinas" href="#">Disciplinas</a></li><li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="precios-y-horarios" href="#">Tarifas &amp; Horarios</a></li></ul></div><div class="lg:col-span-2 space-y-space-sm"><h3 class="font-label-caps text-label-caps uppercase tracking-wider text-primary">Prácticas</h3><ul class="space-y-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant">Reformer Pilates</li><li class="font-body-sm text-body-sm text-on-surface-variant">Mat Pilates</li><li class="font-body-sm text-body-sm text-on-surface-variant">Yoga Flow</li><li class="font-body-sm text-body-sm text-on-surface-variant">Estiramiento Miofascial</li></ul></div><div class="lg:col-span-4 space-y-space-md"><div class="space-y-space-xs"><h3 class="font-label-caps text-label-caps uppercase tracking-wider text-primary">Horarios &amp; Ubicación</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Calle Serrano 45, Salamanca, 28001 Madrid</p><p class="font-body-sm text-body-sm text-on-surface-variant">Lunes a Viernes: 7:30 - 21:00<br/>Sábados: 9:00 - 14:00</p></div><div class="space-y-space-xs pt-space-xs"><h3 class="font-label-caps text-label-caps uppercase tracking-wider text-primary">Newsletter de bienestar</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Reflexiones sobre postura, calma mental y convocatorias privadas.</p><div class="flex items-center gap-space-xs"><input class="flex-1 bg-surface-container-lowest px-space-sm py-space-xs rounded-full font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none" placeholder="Tu correo electrónico" type="email"/><button class="bg-secondary text-on-secondary px-space-md py-space-xs rounded-full font-body-sm text-body-sm hover:bg-primary transition-colors whitespace-nowrap" type="button">Suscribirse</button></div></div></div></div><div class="mt-space-2xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm"><span class="font-body-sm text-body-sm text-on-surface-variant">© 2024 MOVA Pilates &amp; Wellness Studio. Todos los derechos reservados.</span><div class="flex items-center gap-space-md"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="aviso-legal" href="#">Aviso Legal</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="politica-de-privacidad" href="#">Privacidad</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="politica-de-cookies" href="#">Cookies</a></div></div></div></footer></body></html>

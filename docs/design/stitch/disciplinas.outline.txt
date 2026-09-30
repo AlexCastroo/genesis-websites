@@ -1,0 +1,295 @@
+"!DOCTYPE html>"
+  <header>
+  <img alt=MOVA Brand Logo>
+  "MOVA"
+    <nav>
+    <a inicio>
+    "Inicio"
+    <a el-estudio>
+    "El Estudio"
+    <a disciplinas>
+    "Disciplinas"
+    <a precios-y-horarios>
+    "Precios &amp; Horarios"
+  <a inicio>
+  "MOVA"
+    <nav>
+    <a whatsapp>
+    "WhatsApp"
+    <a contacto>
+    "Contacto"
+  <a reserva-clase-de-prueba>
+  "Reservar clase de prueba"
+  <a mi-perfil>
+  <img alt=Profile>
+  <main>
+  "!-- Top Breathing Space & Ambient Glow -->"
+  "!-- Hero Header: Conscious Practices -->"
+    <section>
+    "Catálogo de Disciplinas"
+    <h1>
+    "PRÁCTICAS CONSCIENTES"
+    "a tu propio ritmo"
+    "Desde el fortalecimiento milimétrico del"
+    "core"
+    "profundo hasta la liberación miofascial más restauradora. Espacios íntimos de máximo 6 personas concebidos para redescubrir la armonía entre cuerpo, respiración y serenidad mental."
+    "nest_eco_leaf"
+    "Atención personalizada · Máx. 6 plazas"
+  "!-- Interactive Discipline Filter -->"
+    <section>
+    <button >
+    "Todas las prácticas"
+    <button >
+    "Reformer Pilates"
+    <button >
+    "Mat Pilates"
+    <button >
+    "Pilates Pre &amp; Postnatal"
+    <button >
+    "Restorative &amp; Stretching"
+  "!-- Cards Mosaic: Detailed Disciplines -->"
+    <section>
+    "!-- CARD 1: Reformer Core & Align (Featured Hero Card) -->"
+    <img alt=Warm sunlit boutique Japandi reformer studio with high oak ceilings, linen drapes, and smooth reformer beds made of pale birch wood and warm beige upholstery, cinematic natural light and architectural serenity>
+    "Práctica Insignia"
+    "6 plazas exclusivas"
+    "Multinivel consciente"
+    "•"
+    "55 minutos"
+    "•"
+    "Intensidad Media-Alta"
+    <h2>
+    "Reformer Core &amp; Align"
+    "Alineación postural, elongación dinámica y tono muscular sin impacto."
+    "Nuestra clase más representativa. Empleamos los resortes de tensión graduada del reformer para asistir el movimiento biomecánicamente óptimo. La resistencia fluida estabiliza la cintura escapular, descomprime la columna lumbar y esculpe la musculatura interna profunda."
+    "!-- Benefits tags -->"
+    "check_circle"
+    "Corrección de hiperlordosis"
+    "check_circle"
+    "Fortalecimiento del transverso"
+    "check_circle"
+    "Movilidad articular en 3D"
+    "check_circle"
+    "Respiración diafragmática"
+    "28€"
+    "/ clase suelta (bonos disponibles)"
+    <a reserva-clase-de-prueba>
+    "Reservar sesión"
+    "arrow_forward"
+    "!-- CARD 2: Mat Flow & Sculpt -->"
+    <img alt=Serene woman in neutral beige linen activewear performing mindful mat pilates in a sun-drenched Scandinavian minimalist studio with light timber floors and soft textures>
+    "Suelo &amp; Accesorios"
+    "50 min"
+    "Intensidad Media"
+    "•"
+    "Máx. 8 alumnas"
+    <h3>
+    "Mat Flow &amp; Sculpt"
+    "Control respiratorio, longitud muscular y resistencia pura con gravedad."
+    "Una secuencia continua sobre esterilla donde el cuerpo es su propio contrapeso. Incorporamos implementos táctiles como el aro mágico (Pilates Ring), pelotas blandas de estabilidad (Overball) y bandas de resistencia suaves para desafiar la resistencia isométrica y tonificar hombros, glúteos y centro."
+    "!-- Accesorios pill bar -->"
+    "Aro Pilates"
+    "Overball 22cm"
+    "Therabands"
+    "Esterillas de corcho"
+    "20€"
+    "/ sesión"
+    <a reserva-clase-de-prueba>
+    "Reservar sesión"
+    "arrow_forward"
+    "!-- CARD 3: Reformer Jumpboard & Cardio -->"
+    <img alt=Dynamic yet elegant Pilates Reformer session with padded jumpboard attachment, soft morning light in an airy cream studio space with textured walls and natural plants>
+    "Cardio Zero Impact"
+    "50 min"
+    "Intensidad Dinámica"
+    "•"
+    "6 plazas"
+    <h3>
+    "Reformer Jumpboard &amp; Cardio"
+    "Ritmo cardiovascular y drenaje linfático sin daño articular."
+    "Saltar en posición horizontal elimina por completo la fuerza de gravedad sobre tobillos, rodillas y discos lumbares. El tablero acolchado permite intervalos aeróbicos rítmicos y retadores combinados con series de resistencia en muelles medios para tonificar piernas y activar el sistema circulatorio."
+    "Cero impacto espinal"
+    "Gasto metabólico"
+    "Agilidad y balance"
+    "28€"
+    "/ sesión"
+    <a reserva-clase-de-prueba>
+    "Reservar sesión"
+    "arrow_forward"
+    "!-- CARD 4: Pilates Maternidad Consciente -->"
+    <img alt=Pregnant woman gently practicing mindful supported pilates with natural props, warm ambient light, organic linen fabric, serene and nurturing atmosphere in a warm sand studio>
+    "Especialidad Médica &amp; Cuidado"
+    "55 min"
+    "Prenatal &amp; Postparto"
+    "•"
+    "Máx. 5 plazas"
+    <h3>
+    "Pilates Maternidad Consciente"
+    "Suelo pélvico, descompresión lumbosacra y reconexión amorosa."
+    "Diseñado por fisioterapeutas especializadas en suelo pélvico. Tanto si estás transitando el segundo o tercer trimestre de gestación como si buscas cerrar diástasis abdominal tras el parto, adaptamos cada resorte y apoyo con cojines posturales para prevenir lumbalgias y generar serenidad física y emocional."
+    "Prevención de diástasis"
+    "Movilidad de pelvis"
+    "Acompañamiento clínico"
+    "30€"
+    "/ sesión"
+    <a reserva-clase-de-prueba>
+    "Reservar sesión"
+    "arrow_forward"
+    "!-- CARD 5: Yin & Miofascial Release -->"
+    <img alt=Close up meditative stretching and myofascial release with cork roller and massage ball on serene natural wood floor, soft shadows, warm beige tones, tranquil stillness>
+    "Restauración Profunda"
+    "60 min"
+    "Intensidad Suave"
+    "•"
+    "Máx. 8 alumnas"
+    <h3>
+    "Yin &amp; Miofascial Release"
+    "Rodillos de espuma, esferas de automasaje y respiración consciente."
+    "El antídoto contra el estrés contemporáneo y las sobrecargas mecánicas. Mediante la presión sostenida con esferas de corcho y rodillos sobre puntos gatillo, hidratamos el tejido conectivo fascial, liberamos adherencias tensionales en cuello y caderas, e inducimos al sistema nervioso en un estado vagal de relajación plena."
+    "Puntos gatillo"
+    "Calma nerviosa"
+    "Flexibilidad pasiva"
+    "22€"
+    "/ sesión"
+    <a reserva-clase-de-prueba>
+    "Reservar sesión"
+    "arrow_forward"
+  "!-- Interactive Discipline Level Comparator / Matrix -->"
+    <section>
+    "Guía Visual Rápida"
+    <h3>
+    "Comparativa de enfoques"
+    "Descubre qué práctica resuena más con el momento físico en el que te encuentras."
+      <table>
+      <tr>
+      "Disciplina"
+      "Tono / Fuerza"
+      "Flexibilidad"
+      "Calma Mental"
+      "Nivel Ideal"
+      <tr>
+      "Reformer Core &amp; Align"
+      "Todos los niveles"
+      <tr>
+      "Mat Flow &amp; Sculpt"
+      "Principiante a Medio"
+      <tr>
+      "Reformer Jumpboard"
+      "Medio a Avanzado"
+      <tr>
+      "Yin &amp; Miofascial"
+      "Restaurativo integral"
+  "!-- Section 4: Beginners Onboarding Guide -->"
+    <section>
+    "Tu Primer Día en el Estudio"
+    <h2>
+    "¿Primera vez"
+    "en MOVA?"
+    "No necesitas experiencia previa ni flexibilidad extraordinaria. Nuestro espacio ha sido concebido para acompañarte desde el absoluto respeto a tu ritmo biomecánico."
+    "schedule"
+    "Llegada anticipada recomendada"
+    "Llega 15 minutos antes de la hora pactada para tu primera sesión. Es el tiempo dedicado a tu inducción personalizada y calzado consciente."
+    "!-- Step 1 -->"
+    "01"
+    <h4>
+    "Evaluación Postural (15 min)"
+    "Tu instructora conversará sobre lesiones previas, patrones cervicales y estado del suelo pélvico para adaptar los muelles a tu fisionomía."
+    "tune"
+    "Personalización total"
+    "!-- Step 2 -->"
+    "02"
+    <h4>
+    "Qué traer contigo"
+    "Indumentaria cómoda y elástica (sin cremalleras para cuidar las tapicerías) y calcetines con suela antideslizante (grip socks)."
+    "checkroom"
+    "Disponibles en tienda"
+    "!-- Step 3 -->"
+    "03"
+    <h4>
+    "Todo incluido en cabina"
+    "Toallas de algodón egipcio, infusiones biológicas calientes, agua mineralizada y taquillas individuales con código digital."
+    "spa"
+    "Comfort hotel boutique"
+    "!-- Step 4 -->"
+    "04"
+    <h4>
+    "Descompresión final"
+    "Cada sesión concluye con 5 minutos de respiración diafragmática y toallas aromatizadas con aceites esenciales de cedro y bergamota."
+    "air"
+    "Cierre restaurativo"
+  "!-- Section 5: Interactive Level Advisor & Final CTA -->"
+    <section>
+    "!-- Subtle background texture circle -->"
+    "Asesoramiento Holístico"
+    <h2>
+    "¿No sabes qué práctica"
+    "iniciar primero?"
+    "Escríbenos directamente para que nuestro equipo de coordinación deportiva diseñe un itinerario según tus objetivos: aliviar dolor de espalda, tonificar o encontrar calma."
+    <a >
+    "chat"
+    "Consultar por WhatsApp"
+    <button >
+    "quiz"
+    "Hacer test de 1 minuto"
+    "!-- Interactive Micro Widget: Level Quiz Mini Box -->"
+    "Paso 1 de 2"
+    "Test Rápido"
+    <h3>
+    "¿Cuál es tu prioridad principal hoy?"
+    <button >
+    "Tonificar abdomen y corregir postura"
+    "chevron_right"
+    <button >
+    "Aliviar tensión muscular y estrés diario"
+    "chevron_right"
+    <button >
+    "Cuidado de embarazo o posparto"
+    "chevron_right"
+    "recommend"
+    "Tu recomendación MOVA"
+    "Reformer Core &amp; Align"
+    "La práctica ideal para alinear cadenas musculares con la máxima seguridad asistida por resortes."
+    <a reserva-clase-de-prueba>
+    "Reservar prueba"
+    <button >
+    "Volver a calcular"
+  <footer>
+  "MOVA"
+  "Espacio para el movimiento, la calma y el equilibrio consciente."
+  "Estudio boutique Japandi en el corazón de Madrid."
+  <h3>
+  "Navegación"
+    <ul>
+    <a inicio>
+    "Inicio"
+    <a el-estudio>
+    "El Estudio"
+    <a disciplinas>
+    "Disciplinas"
+    <a precios-y-horarios>
+    "Tarifas &amp; Horarios"
+  <h3>
+  "Prácticas"
+    <ul>
+    "Reformer Pilates"
+    "Mat Pilates"
+    "Yoga Flow"
+    "Estiramiento Miofascial"
+  <h3>
+  "Horarios &amp; Ubicación"
+  "Calle Serrano 45, Salamanca, 28001 Madrid"
+  "Lunes a Viernes: 7:30 - 21:00"
+  "Sábados: 9:00 - 14:00"
+  <h3>
+  "Newsletter de bienestar"
+  "Reflexiones sobre postura, calma mental y convocatorias privadas."
+  <input placeholder="Tu correo electrónico" type="email">
+  <button >
+  "Suscribirse"
+  "© 2024 MOVA Pilates &amp; Wellness Studio. Todos los derechos reservados."
+  <a aviso-legal>
+  "Aviso Legal"
+  <a politica-de-privacidad>
+  "Privacidad"
+  <a politica-de-cookies>
+  "Cookies"

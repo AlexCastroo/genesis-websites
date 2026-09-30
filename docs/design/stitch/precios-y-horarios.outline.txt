@@ -1,0 +1,321 @@
+"!DOCTYPE html>"
+  <header>
+  <img alt=MOVA Brand Logo>
+  "MOVA"
+    <nav>
+    <a inicio>
+    "Inicio"
+    <a el-estudio>
+    "El Estudio"
+    <a disciplinas>
+    "Disciplinas"
+    <a precios-y-horarios>
+    "Precios &amp; Horarios"
+  <a inicio>
+  "MOVA"
+    <nav>
+    <a whatsapp>
+    "WhatsApp"
+    <a contacto>
+    "Contacto"
+  <a reserva-clase-de-prueba>
+  "Reservar clase de prueba"
+  <a mi-perfil>
+  <img alt=Profile>
+  <main>
+  "!-- Top Ambient Banner & Header Intro -->"
+    <section>
+    "Transparencia &amp; Consciencia"
+    <h1>
+    "INVIERTE EN TI"
+    "sin compromisos ocultos"
+    "Planes diseñados con la flexibilidad que tu ritmo diario necesita. Prácticas en grupos reducidos de máximo 6 personas o acompañamiento individual en nuestro santuario de luz natural."
+    "!-- Pricing Tab Switcher -->"
+    <button >
+    "Clases Sueltas &amp; Bonos"
+    <button >
+    "Membresías Mensuales"
+  "!-- Pricing Cards Grid -->"
+    <section>
+    "!-- Bonos & Packs View -->"
+    "!-- Card: Clase de Prueba -->"
+    "Recomendado"
+    "Bienvenida al estudio"
+    "spa"
+    <h3>
+    "Clase de Prueba Primerizos"
+    "Tu primer contacto con MOVA. Evaluamos tu alineación corporal antes de adentrarte en el movimiento suave."
+    "18€"
+    "/ sesión única"
+    "check"
+    "Análisis postural de 15 minutos"
+    "check"
+    "Elección entre Reformer o Mat Pilates"
+    "check"
+    "Infusión herbal orgánica de bienvenida"
+    <button >
+    "Reservar mi primera clase"
+    "arrow_forward"
+    "!-- Card: Bono 5 Sesiones -->"
+    "Flexibilidad"
+    "self_improvement"
+    <h3>
+    "Bono 5 Sesiones"
+    "Ideal para compaginar el movimiento consciente con viajes regulares o agendas dinámicas."
+    "120€"
+    "/ bono completo (24€/clase)"
+    "check"
+    "Válido durante 2 meses"
+    "check"
+    "Cancelación flexible hasta 12 horas antes"
+    "check"
+    "Válido para Reformer, Mat y Yoga Flow"
+    <button >
+    "Adquirir Bono 5"
+    "!-- Card: Bono 10 Sesiones (Highlighted) -->"
+    "Opción más elegida"
+    "star"
+    <h3>
+    "Bono 10 Sesiones"
+    "Para cultivar una práctica constante y percibir la transformación biomecánica profunda en tu postura."
+    "210€"
+    "/ bono (21€/clase)"
+    "check"
+    "Válido durante 4 meses"
+    "check"
+    "1 sesión de recuperación gratuita incluida"
+    "check"
+    "Reserva prioritaria con 14 días de antelación"
+    "check"
+    "Acceso a locker privado durante tu estancia"
+    <button >
+    "Comprar Bono 10"
+    "north_east"
+    "!-- Membresías View (Hidden by default or toggled) -->"
+    "!-- Unlimited Sanctuary Card -->"
+    "Membresía Integral"
+    "all_inclusive"
+    <h3>
+    "Unlimited Sanctuary"
+    "Una inmersión continua para quienes integran el movimiento como ritual matutino irrenunciable."
+    "180€"
+    "/ mes sin permanencia"
+    "check"
+    "Acceso ilimitado a clases de Mat Pilates &amp; Yoga"
+    "check"
+    "8 sesiones de Reformer Studio al mes"
+    "check"
+    "Prioridad absoluta de lista de espera"
+    "check"
+    "Acceso exclusivo a masterclasses y sonoterapia trimestral"
+    <button >
+    "Suscribirme al Sanctuary"
+    "!-- Clase Privada One-on-One -->"
+    "Personalizado &amp; Terapéutico"
+    "person"
+    <h3>
+    "Clase Privada One-on-One"
+    "Sesión exclusiva enfocada en rehabilitación, perfeccionamiento biomecánico o preparación pre y postnatal."
+    "65€"
+    "/ sesión 60 min"
+    "check"
+    "Atención 100% dedicada con instructor Máster"
+    "check"
+    "Uso combinado de Cadillac, Reformer y Chair"
+    "check"
+    "Plan de seguimiento postural personalizado en app"
+    <button >
+    "Consultar disponibilidad privada"
+  "!-- Visual Break / Atmosphere Quote Banner -->"
+    <section>
+    "Compromiso MOVA"
+    <h3>
+    ""El control mental sobre el cuerpo es el principio del equilibrio natural.""
+    "Nuestras máquinas Reformer de madera de arce natural y cuerdas de tacto suave garantizan una práctica silenciosa, orgánica y sin impactos articulares."
+    <img alt=Close up of a tranquil woman resting in savasana on a soft linen yoga mat with warm morning light filtering through shoji blinds, earth tones, soft focus, japandi style>
+    <img alt=Aesthetic wooden reformer carriage in light maple wood with natural linen straps and neutral floorboards in a minimal Madrid Pilates studio>
+  "!-- Interactive Weekly Schedule Section -->"
+    <section>
+    "Disponibilidad en vivo"
+    <h2>
+    "Horario Semanal"
+    "Turnos de 55 minutos. Máximo 6 personas por clase en máquina."
+    "!-- Day Selector Pill Strip -->"
+    <button >
+    "Lun"
+    <button >
+    "Mar"
+    <button >
+    "Mié"
+    <button >
+    "Jue"
+    <button >
+    "Vie"
+    <button >
+    "Sáb"
+    "!-- Schedule Time Slots Container -->"
+    "!-- Slot: Mañana -->"
+    "wb_sunny"
+    <h4>
+    "Franja Mañanas (Despertar Vital)"
+    "!-- 07:30 -->"
+    "07:30"
+    "Reformer Flow"
+    "Lucía Gómez"
+    "2 plazas libres"
+    <button >
+    "Reservar"
+    "!-- 09:00 -->"
+    "09:00"
+    "Mat Pilates Core"
+    "Elena Mas"
+    "Última plaza"
+    <button >
+    "Reservar"
+    "!-- 10:30 -->"
+    "10:30"
+    "Reformer Alignment"
+    "Sofía Serrano"
+    "3 plazas libres"
+    <button >
+    "Reservar"
+    "!-- Slot: Mediodía -->"
+    "light_mode"
+    <h4>
+    "Franja Mediodía (Pausa Activa)"
+    "!-- 13:30 -->"
+    "13:30"
+    "Express Reformer"
+    "Lucía Gómez"
+    "4 plazas libres"
+    <button >
+    "Reservar"
+    "!-- 14:30 -->"
+    "14:30"
+    "Estiramiento Miofascial"
+    "David Nogués"
+    "2 plazas libres"
+    <button >
+    "Reservar"
+    "!-- Slot: Tarde -->"
+    "bedtime"
+    <h4>
+    "Franja Tardes (Descompresión &amp; Fuerza)"
+    "!-- 17:30 -->"
+    "17:30"
+    "Reformer Athletic"
+    "Elena Mas"
+    "Completo (Lista espera)"
+    <button >
+    "Anotarme"
+    "!-- 18:45 -->"
+    "18:45"
+    "Reformer Dynamic"
+    "Sofía Serrano"
+    "2 plazas libres"
+    <button >
+    "Reservar"
+    "!-- 20:00 -->"
+    "20:00"
+    "Restorative Yin Yoga"
+    "Carmen Soler"
+    "3 plazas libres"
+    <button >
+    "Reservar"
+  "!-- Editorial Split: FAQ + Direct Booking Form -->"
+    <section>
+    "!-- FAQ Left Column -->"
+    "Claridad en tu proceso"
+    <h2>
+    "Preguntas Frecuentes"
+    "Resolvemos tus dudas para que llegues al estudio con la mente en calma y dispuesta al bienestar."
+    "!-- Item 1 -->"
+    "¿Qué política de cancelación tenéis?"
+    "Permitimos cancelar o reprogramar sin ningún coste hasta 12 horas antes del inicio de la sesión a través de nuestra plataforma web o enlace directo en WhatsApp. Si cancelas fuera de plazo, la sesión se descontará automáticamente de tu bono."
+    "!-- Item 2 -->"
+    "¿Necesito experiencia previa con máquinas Reformer?"
+    "En absoluto. Para quienes no han utilizado un Reformer antes, recomendamos nuestra 'Clase de Prueba Primerizos', donde el instructor te enseñará a calibrar la resistencia de los muelles, ajustar las correas y moverte con total seguridad."
+    "!-- Item 3 -->"
+    "¿Puedo congelar mi bono si viajo?"
+    "Sí. Si vas a ausentarte de Madrid por viaje laboral, vacaciones o prescripción médica durante más de 10 días continuados, podemos pausar la vigencia de tu bono hasta un máximo de 30 días naturales con un simple mensaje."
+    "!-- Item 4 -->"
+    "¿Disponen de toallas y duchas?"
+    "Sí. Contamos con vestuarios individuales equipados con duchas de agua purificada, toallas de algodón orgánico, secadores Dyson y cosmética botánica natural para que puedas continuar tu día sin interrupciones."
+    "!-- Quick Reservation Form Column -->"
+    "Paso Inmediato"
+    "M"
+    <h3>
+    "Solicita tu plaza o clase de prueba"
+    "Déjanos tus datos y nos pondremos en contacto contigo por WhatsApp o llamada en menos de 2 horas laborables para confirmar tu horario ideal."
+      <form>
+      <label>
+      "Nombre completo"
+      <input placeholder="Elena Castillo" type="text">
+      <label>
+      "Teléfono (WhatsApp)"
+      <input placeholder="+34 600 000 000" type="tel">
+      <label>
+      "Correo electrónico"
+      <input placeholder="elena@ejemplo.com" type="email">
+      <label>
+      "Interés principal"
+      <select >
+      "Clase Prueba Primerizos (18€)"
+      "Bono 5 Sesiones (120€)"
+      "Bono 10 Sesiones (210€)"
+      "Unlimited Sanctuary (180€/mes)"
+      "Sesión Privada One-on-One (65€)"
+      <label>
+      "Franja preferida"
+      <select >
+      "Mañanas (07:30 - 11:30)"
+      "Mediodía (13:30 - 15:30)"
+      "Tardes (17:30 - 20:30)"
+      "Sábados mañana"
+      <button >
+      "Confirmar solicitud de clase"
+      "arrow_forward"
+      "¡Gracias! Nos pondremos en contacto contigo para asignarte esterilla o Reformer."
+    "verified_user"
+    "Sin pagos anticipados requeridos para solicitar información."
+  "!-- Interactive Logic Scripts -->"
+  <footer>
+  "MOVA"
+  "Espacio para el movimiento, la calma y el equilibrio consciente."
+  "Estudio boutique Japandi en el corazón de Madrid."
+  <h3>
+  "Navegación"
+    <ul>
+    <a inicio>
+    "Inicio"
+    <a el-estudio>
+    "El Estudio"
+    <a disciplinas>
+    "Disciplinas"
+    <a precios-y-horarios>
+    "Tarifas &amp; Horarios"
+  <h3>
+  "Prácticas"
+    <ul>
+    "Reformer Pilates"
+    "Mat Pilates"
+    "Yoga Flow"
+    "Estiramiento Miofascial"
+  <h3>
+  "Horarios &amp; Ubicación"
+  "Calle Serrano 45, Salamanca, 28001 Madrid"
+  "Lunes a Viernes: 7:30 - 21:00"
+  "Sábados: 9:00 - 14:00"
+  <h3>
+  "Newsletter de bienestar"
+  "Reflexiones sobre postura, calma mental y convocatorias privadas."
+  <input placeholder="Tu correo electrónico" type="email">
+  <button >
+  "Suscribirse"
+  "© 2024 MOVA Pilates &amp; Wellness Studio. Todos los derechos reservados."
+  <a aviso-legal>
+  "Aviso Legal"
+  <a politica-de-privacidad>
+  "Privacidad"
+  <a politica-de-cookies>
+  "Cookies"

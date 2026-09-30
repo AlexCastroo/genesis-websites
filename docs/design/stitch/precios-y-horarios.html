@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "secondary": "#755844", "on-surface-variant": "#4e4540", "primary": "#33251d", "surface-tint": "#6c5b51", "surface-variant": "#e5e2dd", "on-secondary-fixed": "#2b1707", "on-primary-fixed": "#251911", "on-error": "#ffffff", "on-secondary-container": "#7a5c48", "inverse-primary": "#d9c2b6", "on-tertiary-fixed": "#25190b", "tertiary-fixed-dim": "#d8c3ad", "background": "#fcf9f4", "error": "#ba1a1a", "on-secondary": "#ffffff", "on-background": "#1c1c19", "tertiary-fixed": "#f5dfc8", "secondary-container": "#ffd8bf", "surface-container-low": "#f6f3ee", "on-tertiary": "#ffffff", "surface-bright": "#fcf9f4", "outline": "#80756f", "on-secondary-fixed-variant": "#5b412f", "secondary-fixed-dim": "#e5bfa7", "surface-dim": "#dcdad5", "outline-variant": "#d2c4bd", "on-surface": "#1c1c19", "on-primary-fixed-variant": "#53443a", "inverse-on-surface": "#f3f0eb", "secondary-fixed": "#ffdcc5", "surface-container-lowest": "#ffffff", "surface-container": "#f0ede9", "primary-container": "#4a3b32", "surface-container-highest": "#e5e2dd", "error-container": "#ffdad6", "on-tertiary-container": "#baa691", "inverse-surface": "#31302d", "tertiary": "#332617", "primary-fixed-dim": "#d9c2b6", "on-primary-container": "#baa599", "on-primary": "#ffffff", "tertiary-container": "#4a3c2c", "on-error-container": "#93000a", "surface-container-high": "#ebe8e3", "on-tertiary-fixed-variant": "#534433", "primary-fixed": "#f6ded1", "surface": "#fcf9f4" }, "borderRadius": { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, "spacing": { "margin-tablet": "3rem", "space-xs": "0.375rem", "gutter-desktop": "2.5rem", "space-2xl": "6rem", "margin-desktop": "5rem", "gutter": "1.5rem", "space-md": "1.25rem", "space-sm": "0.75rem", "space-xl": "3.5rem", "margin": "1.25rem", "space-lg": "2rem" }, "fontFamily": { "headline-lg-italic": [ "EB Garamond" ], "display-hero-italic-mobile": [ "EB Garamond" ], "headline-lg": [ "Plus Jakarta Sans" ], "body-lg": [ "Plus Jakarta Sans" ], "label-editorial": [ "EB Garamond" ], "display-hero-italic": [ "EB Garamond" ], "body-sm": [ "Plus Jakarta Sans" ], "body-md": [ "Plus Jakarta Sans" ], "display-hero-mobile": [ "Plus Jakarta Sans" ], "display-hero": [ "Plus Jakarta Sans" ], "label-caps": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ] }, "fontSize": { "headline-lg-italic": [ "2.6rem", { "lineHeight": "3rem", "letterSpacing": "0.01em", "fontWeight": "400" } ], "display-hero-italic-mobile": [ "2.5rem", { "lineHeight": "3rem", "letterSpacing": "0.01em", "fontWeight": "400" } ], "headline-lg": [ "2.25rem", { "lineHeight": "2.8rem", "letterSpacing": "0.04em", "fontWeight": "400" } ], "body-lg": [ "1.125rem", { "lineHeight": "1.8rem", "fontWeight": "400" } ], "label-editorial": [ "1.125rem", { "lineHeight": "1.4rem", "fontWeight": "400" } ], "display-hero-italic": [ "4.5rem", { "lineHeight": "4.75rem", "letterSpacing": "0.01em", "fontWeight": "400" } ], "body-sm": [ "0.8125rem", { "lineHeight": "1.4rem", "fontWeight": "400" } ], "body-md": [ "0.9375rem", { "lineHeight": "1.6rem", "fontWeight": "400" } ], "display-hero-mobile": [ "2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "0.04em", "fontWeight": "400" } ], "display-hero": [ "4rem", { "lineHeight": "4.5rem", "letterSpacing": "0.06em", "fontWeight": "400" } ], "label-caps": [ "0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.12em", "fontWeight": "600" } ], "headline-md": [ "1.5rem", { "lineHeight": "2rem", "letterSpacing": "0.02em", "fontWeight": "500" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-fixed"><header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl shadow-[0_16px_40px_-12px_rgba(74,59,50,0.06),0_2px_6px_rgba(74,59,50,0.02)] transition-all duration-300"><div class="h-20 w-full px-margin md:px-margin-tablet lg:px-margin-desktop flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-lg flex-1 justify-start"><div class="flex items-center gap-space-sm"><img alt="MOVA Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XVbgARFqPK37OT9QwoYZtCxPgksJEsrN0mLt0E6gxGmOlIZRMAczRIp6gdHDGh-Xg5ir5zC9hz_ncROcaok-1PbaqZGNXXgPnB3A6bNVfBLyjZ8Oh9rEtEYCcF4cx_fMTVHETvMAC3Ch7rT6ansBraIFdEKEeGn4riTAH_95liFQ9FNg-IVBL-kUUx8wepcF_iMtjNHV8uPX9nBzKtDYhNp_voQlVW35rEQFxxA63RdQxcltRD-iXWnEA"/><span class="font-label-caps text-label-caps tracking-widest text-primary uppercase">MOVA</span></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="text-primary font-medium"><a class="font-body-sm text-body-sm tracking-wider text-on-surface-variant hover:text-primary transition-colors" data-path="inicio" href="#">Inicio</a><a class="font-body-sm text-body-sm tracking-wider text-on-surface-variant hover:text-primary transition-colors" data-path="el-estudio" href="#">El Estudio</a><a class="font-body-sm text-body-sm tracking-wider text-on-surface-variant hover:text-primary transition-colors" data-path="disciplinas" href="#">Disciplinas</a><a aria-current="page" class="tracking-wider transition-colors text-primary font-medium" data-path="precios-y-horarios" href="#">Precios &amp; Horarios</a></nav></div><div class="flex items-center justify-center"><a class="font-headline-lg-italic text-headline-lg-italic text-primary tracking-widest hover:opacity-90 transition-opacity" data-path="inicio" href="#">MOVA</a></div><div class="flex items-center gap-space-md flex-1 justify-end"><nav class="hidden lg:flex items-center gap-space-md" data-active-classes="text-primary font-medium"><a class="font-body-sm text-body-sm tracking-wider text-on-surface-variant hover:text-primary transition-colors" data-path="whatsapp" href="#">WhatsApp</a><a class="font-body-sm text-body-sm tracking-wider text-on-surface-variant hover:text-primary transition-colors" data-path="contacto" href="#">Contacto</a></nav><a class="inline-flex items-center justify-center bg-primary-container text-on-primary font-body-sm text-body-sm px-space-md py-space-xs rounded-full hover:bg-primary transition-all shadow-[0_4px_16px_rgba(74,59,50,0.12)] whitespace-nowrap" data-path="reserva-clase-de-prueba" href="#">Reservar clase de prueba</a><a class="flex-shrink-0 transition-opacity hover:opacity-85" data-path="mi-perfil" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant/40" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbJtYx7x8zOAK1s6OdaC74quqcHjsz7hAu_UjqXFyHFL5zGr6N4Nz_9iMwDVNcQFwS6ELFoqMlMljjxMnzO0nEs1hNqK6eB5dcsVaaBYfh6YB8Gld23qBzE1zOPDmqAJ8YncPn8cFkOygNMWf_kmQFFKY1DdTvG4ChJPVUZAijp3-Gg4gNr_R6YOwz93QLkR9dyPedOUyWgAYYPd6VgRUUdYTBDv9LkkVikHOtX2wXqIy8aur4cYrp"/></a></div></div></header><main class="w-full pt-20 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Ambient Banner & Header Intro -->
+<section class="relative w-full px-margin md:px-margin-tablet lg:px-margin-desktop pt-space-xl pb-space-lg">
+<div class="max-w-4xl mx-auto text-center space-y-space-sm">
+<div class="inline-flex items-center gap-2 bg-surface-container-high px-4 py-1.5 rounded-full text-secondary">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="font-label-caps text-label-caps tracking-widest uppercase">Transparencia &amp; Consciencia</span>
+</div>
+<div class="space-y-1">
+<h1 class="font-headline-lg text-headline-lg md:text-display-hero text-primary tracking-tight">
+          INVIERTE EN TI
+        </h1>
+<p class="font-headline-lg-italic text-headline-lg-italic text-secondary italic">
+          sin compromisos ocultos
+        </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl mx-auto pt-2">
+        Planes diseñados con la flexibilidad que tu ritmo diario necesita. Prácticas en grupos reducidos de máximo 6 personas o acompañamiento individual en nuestro santuario de luz natural.
+      </p>
+<!-- Pricing Tab Switcher -->
+<div class="pt-space-md flex justify-center">
+<div class="inline-flex p-1.5 bg-surface-container rounded-full shadow-inner" id="pricing-toggle-group">
+<button class="px-space-md py-space-xs rounded-full font-label-caps text-label-caps tracking-wider transition-all duration-200 bg-primary-container text-on-primary shadow-sm" id="tab-bonos" onclick="switchPricingTab('bonos')" type="button">
+            Clases Sueltas &amp; Bonos
+          </button>
+<button class="px-space-md py-space-xs rounded-full font-label-caps text-label-caps tracking-wider text-on-surface-variant hover:text-primary transition-all duration-200" id="tab-membresias" onclick="switchPricingTab('membresias')" type="button">
+            Membresías Mensuales
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Cards Grid -->
+<section class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop py-space-md">
+<!-- Bonos & Packs View -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter transition-opacity duration-300" id="view-bonos">
+<!-- Card: Clase de Prueba -->
+<div class="relative bg-surface-container-low rounded-lg p-space-lg flex flex-col justify-between hover:shadow-lg transition-all duration-300 group">
+<div class="absolute -top-3 right-6 bg-secondary text-on-secondary px-3.5 py-1 rounded-full font-label-caps text-label-caps uppercase tracking-widest shadow-sm">
+          Recomendado
+        </div>
+<div>
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Bienvenida al estudio</span>
+<span class="material-symbols-outlined text-secondary text-xl">spa</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Clase de Prueba Primerizos</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-2">
+            Tu primer contacto con MOVA. Evaluamos tu alineación corporal antes de adentrarte en el movimiento suave.
+          </p>
+<div class="mt-space-md pt-space-xs flex items-baseline gap-1">
+<span class="font-headline-lg-italic text-headline-lg-italic text-primary">18€</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ sesión única</span>
+</div>
+<div class="mt-space-md space-y-space-xs">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Análisis postural de 15 minutos</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Elección entre Reformer o Mat Pilates</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Infusión herbal orgánica de bienvenida</span>
+</div>
+</div>
+</div>
+<div class="pt-space-lg mt-auto">
+<button class="w-full bg-primary-container text-on-primary py-3 rounded-full font-label-caps text-label-caps uppercase tracking-wider hover:bg-primary transition-colors shadow-sm flex items-center justify-center gap-2">
+            Reservar mi primera clase
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Card: Bono 5 Sesiones -->
+<div class="bg-surface-container rounded-lg p-space-lg flex flex-col justify-between hover:shadow-lg transition-all duration-300">
+<div>
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Flexibilidad</span>
+<span class="material-symbols-outlined text-secondary text-xl">self_improvement</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Bono 5 Sesiones</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-2">
+            Ideal para compaginar el movimiento consciente con viajes regulares o agendas dinámicas.
+          </p>
+<div class="mt-space-md pt-space-xs flex items-baseline gap-1">
+<span class="font-headline-lg-italic text-headline-lg-italic text-primary">120€</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ bono completo (24€/clase)</span>
+</div>
+<div class="mt-space-md space-y-space-xs">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Válido durante 2 meses</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Cancelación flexible hasta 12 horas antes</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Válido para Reformer, Mat y Yoga Flow</span>
+</div>
+</div>
+</div>
+<div class="pt-space-lg mt-auto">
+<button class="w-full bg-surface-container-highest text-primary py-3 rounded-full font-label-caps text-label-caps uppercase tracking-wider hover:bg-surface-dim transition-colors flex items-center justify-center gap-2">
+            Adquirir Bono 5
+          </button>
+</div>
+</div>
+<!-- Card: Bono 10 Sesiones (Highlighted) -->
+<div class="bg-primary text-on-primary rounded-lg p-space-lg flex flex-col justify-between hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+<div class="absolute -right-12 -bottom-12 w-48 h-48 bg-primary-container rounded-full opacity-40 pointer-events-none"></div>
+<div>
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-caps text-label-caps text-inverse-primary uppercase">Opción más elegida</span>
+<span class="material-symbols-outlined text-inverse-primary text-xl">star</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-primary">Bono 10 Sesiones</h3>
+<p class="font-body-sm text-body-sm text-on-primary-container pt-2">
+            Para cultivar una práctica constante y percibir la transformación biomecánica profunda en tu postura.
+          </p>
+<div class="mt-space-md pt-space-xs flex items-baseline gap-1">
+<span class="font-headline-lg-italic text-headline-lg-italic text-on-primary">210€</span>
+<span class="font-body-sm text-body-sm text-on-primary-container">/ bono (21€/clase)</span>
+</div>
+<div class="mt-space-md space-y-space-xs">
+<div class="flex items-center gap-2 text-inverse-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-primary-fixed-dim">check</span>
+<span>Válido durante 4 meses</span>
+</div>
+<div class="flex items-center gap-2 text-inverse-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-primary-fixed-dim">check</span>
+<span>1 sesión de recuperación gratuita incluida</span>
+</div>
+<div class="flex items-center gap-2 text-inverse-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-primary-fixed-dim">check</span>
+<span>Reserva prioritaria con 14 días de antelación</span>
+</div>
+<div class="flex items-center gap-2 text-inverse-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-primary-fixed-dim">check</span>
+<span>Acceso a locker privado durante tu estancia</span>
+</div>
+</div>
+</div>
+<div class="pt-space-lg mt-auto relative z-10">
+<button class="w-full bg-surface text-primary py-3 rounded-full font-label-caps text-label-caps uppercase tracking-wider hover:bg-surface-container transition-colors shadow flex items-center justify-center gap-2">
+            Comprar Bono 10
+            <span class="material-symbols-outlined text-sm">north_east</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Membresías View (Hidden by default or toggled) -->
+<div class="hidden grid-cols-1 md:grid-cols-2 gap-gutter max-w-4xl mx-auto transition-opacity duration-300" id="view-membresias">
+<!-- Unlimited Sanctuary Card -->
+<div class="bg-surface-container-low rounded-lg p-space-lg flex flex-col justify-between border-0 shadow-sm hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Membresía Integral</span>
+<span class="material-symbols-outlined text-secondary text-xl">all_inclusive</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Unlimited Sanctuary</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-2">
+            Una inmersión continua para quienes integran el movimiento como ritual matutino irrenunciable.
+          </p>
+<div class="mt-space-md pt-space-xs flex items-baseline gap-1">
+<span class="font-headline-lg-italic text-headline-lg-italic text-primary">180€</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ mes sin permanencia</span>
+</div>
+<div class="mt-space-md space-y-space-xs">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Acceso ilimitado a clases de Mat Pilates &amp; Yoga</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>8 sesiones de Reformer Studio al mes</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Prioridad absoluta de lista de espera</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Acceso exclusivo a masterclasses y sonoterapia trimestral</span>
+</div>
+</div>
+</div>
+<div class="pt-space-lg">
+<button class="w-full bg-primary-container text-on-primary py-3 rounded-full font-label-caps text-label-caps uppercase tracking-wider hover:bg-primary transition-colors">
+            Suscribirme al Sanctuary
+          </button>
+</div>
+</div>
+<!-- Clase Privada One-on-One -->
+<div class="bg-surface-container rounded-lg p-space-lg flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between pb-space-sm">
+<span class="font-label-caps text-label-caps text-secondary uppercase">Personalizado &amp; Terapéutico</span>
+<span class="material-symbols-outlined text-secondary text-xl">person</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Clase Privada One-on-One</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-2">
+            Sesión exclusiva enfocada en rehabilitación, perfeccionamiento biomecánico o preparación pre y postnatal.
+          </p>
+<div class="mt-space-md pt-space-xs flex items-baseline gap-1">
+<span class="font-headline-lg-italic text-headline-lg-italic text-primary">65€</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">/ sesión 60 min</span>
+</div>
+<div class="mt-space-md space-y-space-xs">
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Atención 100% dedicada con instructor Máster</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Uso combinado de Cadillac, Reformer y Chair</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-base text-secondary">check</span>
+<span>Plan de seguimiento postural personalizado en app</span>
+</div>
+</div>
+</div>
+<div class="pt-space-lg">
+<button class="w-full bg-surface-container-highest text-primary py-3 rounded-full font-label-caps text-label-caps uppercase tracking-wider hover:bg-surface-dim transition-colors">
+            Consultar disponibilidad privada
+          </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Break / Atmosphere Quote Banner -->
+<section class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl">
+<div class="bg-surface-container-high rounded-xl p-space-lg md:p-space-xl flex flex-col md:flex-row items-center justify-between gap-gutter">
+<div class="space-y-space-xs max-w-xl">
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-widest">Compromiso MOVA</span>
+<h3 class="font-headline-lg-italic text-headline-lg-italic text-primary">
+          "El control mental sobre el cuerpo es el principio del equilibrio natural."
+        </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Nuestras máquinas Reformer de madera de arce natural y cuerdas de tacto suave garantizan una práctica silenciosa, orgánica y sin impactos articulares.
+        </p>
+</div>
+<div class="flex-shrink-0 flex items-center gap-space-md">
+<div class="w-28 h-28 rounded-full overflow-hidden bg-surface-variant shadow-inner">
+<img class="w-full h-full object-cover" data-alt="Close up of a tranquil woman resting in savasana on a soft linen yoga mat with warm morning light filtering through shoji blinds, earth tones, soft focus, japandi style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABoyh5ApO4fWoUrcC8AL_sKEkMsGk3afAkMgOm86fZlukaWwXJRg38DvOiIkN5zwceY-Sk191-LQpK26GmdvVFkZvYCy9qLgoEEKCqhtgLAs7TqZQLoFKPQSfnpTyI4xT-BVi-gBc-at1H0UN3ieXyJpfXXvboBtvMahRd8oGArbbqpPXMwtPHX8m3JLlPqnF-PZpc4-EfNpzUlREcYhRz5IxwAx7lCIwWpAcF-cxJdVE35mdR77H6"/>
+</div>
+<div class="w-36 h-36 rounded-2xl overflow-hidden bg-surface-variant shadow-md -ml-6 -mt-4">
+<img class="w-full h-full object-cover" data-alt="Aesthetic wooden reformer carriage in light maple wood with natural linen straps and neutral floorboards in a minimal Madrid Pilates studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwyf7LjdFzUq5A8rMVn821gzbdXNSLis_jYOvBPJ-cjUlKxpgG2PUqNHTZ9LmlDw8LTBHL_7AzjR-c_iXX84yrX7hnkZ1sfDUKaHCaqMHQbzoZSvkhXSVjoH_siZZEAYKkmBI1OEhpWFKue8un0s7RAjA3yfnBoXCVBDRgCKUGnzH5qcO7UF7HWd178hiubweZbKV5bG6XDzEY2Cp-I6blXsQ_z3iVgTd2hPUzVhinZAjwLkGserUK"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Weekly Schedule Section -->
+<section class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop py-space-xl bg-surface-container-low rounded-xl">
+<div class="max-w-6xl mx-auto space-y-space-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary">Disponibilidad en vivo</span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">Horario Semanal</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Turnos de 55 minutos. Máximo 6 personas por clase en máquina.</p>
+</div>
+<!-- Day Selector Pill Strip -->
+<div class="flex items-center gap-1.5 overflow-x-auto pb-2" id="day-selector">
+<button class="day-btn px-4 py-2 rounded-full font-label-caps text-label-caps uppercase bg-primary text-on-primary transition-colors" data-day="lunes" onclick="filterDay(this, 'lunes')" type="button">Lun</button>
+<button class="day-btn px-4 py-2 rounded-full font-label-caps text-label-caps uppercase bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors" data-day="martes" onclick="filterDay(this, 'martes')" type="button">Mar</button>
+<button class="day-btn px-4 py-2 rounded-full font-label-caps text-label-caps uppercase bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors" data-day="miercoles" onclick="filterDay(this, 'miercoles')" type="button">Mié</button>
+<button class="day-btn px-4 py-2 rounded-full font-label-caps text-label-caps uppercase bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors" data-day="jueves" onclick="filterDay(this, 'jueves')" type="button">Jue</button>
+<button class="day-btn px-4 py-2 rounded-full font-label-caps text-label-caps uppercase bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors" data-day="viernes" onclick="filterDay(this, 'viernes')" type="button">Vie</button>
+<button class="day-btn px-4 py-2 rounded-full font-label-caps text-label-caps uppercase bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors" data-day="sabado" onclick="filterDay(this, 'sabado')" type="button">Sáb</button>
+</div>
+</div>
+<!-- Schedule Time Slots Container -->
+<div class="space-y-space-md">
+<!-- Slot: Mañana -->
+<div class="space-y-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg">wb_sunny</span>
+<h4 class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">Franja Mañanas (Despertar Vital)</h4>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+<!-- 07:30 -->
+<div class="bg-surface rounded-DEFAULT p-space-md flex flex-col justify-between shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-primary font-semibold">07:30</span>
+<span class="bg-surface-container-high text-secondary px-2.5 py-0.5 rounded-full font-label-caps text-label-caps">Reformer Flow</span>
+</div>
+<div class="pt-3">
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Lucía Gómez</p>
+<div class="flex items-center justify-between pt-2">
+<span class="inline-flex items-center gap-1 text-xs text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 2 plazas libres
+                  </span>
+<button class="font-label-caps text-label-caps uppercase tracking-wider text-primary underline hover:text-secondary">Reservar</button>
+</div>
+</div>
+</div>
+<!-- 09:00 -->
+<div class="bg-surface rounded-DEFAULT p-space-md flex flex-col justify-between shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-primary font-semibold">09:00</span>
+<span class="bg-surface-container-high text-secondary px-2.5 py-0.5 rounded-full font-label-caps text-label-caps">Mat Pilates Core</span>
+</div>
+<div class="pt-3">
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Elena Mas</p>
+<div class="flex items-center justify-between pt-2">
+<span class="inline-flex items-center gap-1 text-xs text-error font-medium">
+<span class="w-2 h-2 rounded-full bg-error"></span> Última plaza
+                  </span>
+<button class="font-label-caps text-label-caps uppercase tracking-wider text-primary underline hover:text-secondary">Reservar</button>
+</div>
+</div>
+</div>
+<!-- 10:30 -->
+<div class="bg-surface rounded-DEFAULT p-space-md flex flex-col justify-between shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-primary font-semibold">10:30</span>
+<span class="bg-surface-container-high text-secondary px-2.5 py-0.5 rounded-full font-label-caps text-label-caps">Reformer Alignment</span>
+</div>
+<div class="pt-3">
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Sofía Serrano</p>
+<div class="flex items-center justify-between pt-2">
+<span class="inline-flex items-center gap-1 text-xs text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 3 plazas libres
+                  </span>
+<button class="font-label-caps text-label-caps uppercase tracking-wider text-primary underline hover:text-secondary">Reservar</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slot: Mediodía -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg">light_mode</span>
+<h4 class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">Franja Mediodía (Pausa Activa)</h4>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
+<!-- 13:30 -->
+<div class="bg-surface rounded-DEFAULT p-space-md flex flex-col justify-between shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-primary font-semibold">13:30</span>
+<span class="bg-surface-container-high text-secondary px-2.5 py-0.5 rounded-full font-label-caps text-label-caps">Express Reformer</span>
+</div>
+<div class="pt-3">
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Lucía Gómez</p>
+<div class="flex items-center justify-between pt-2">
+<span class="inline-flex items-center gap-1 text-xs text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 4 plazas libres
+                  </span>
+<button class="font-label-caps text-label-caps uppercase tracking-wider text-primary underline hover:text-secondary">Reservar</button>
+</div>
+</div>
+</div>
+<!-- 14:30 -->
+<div class="bg-surface rounded-DEFAULT p-space-md flex flex-col justify-between shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-primary font-semibold">14:30</span>
+<span class="bg-surface-container-high text-secondary px-2.5 py-0.5 rounded-full font-label-caps text-label-caps">Estiramiento Miofascial</span>
+</div>
+<div class="pt-3">
+<p class="font-body-sm text-body-sm text-on-surface font-medium">David Nogués</p>
+<div class="flex items-center justify-between pt-2">
+<span class="inline-flex items-center gap-1 text-xs text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 2 plazas libres
+                  </span>
+<button class="font-label-caps text-label-caps uppercase tracking-wider text-primary underline hover:text-secondary">Reservar</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Slot: Tarde -->
+<div class="space-y-space-xs pt-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-lg">bedtime</span>
+<h4 class="font-label-caps text-label-caps uppercase tracking-wider text-secondary">Franja Tardes (Descompresión &amp; Fuerza)</h4>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+<!-- 17:30 -->
+<div class="bg-surface rounded-DEFAULT p-space-md flex flex-col justify-between shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-primary font-semibold">17:30</span>
+<span class="bg-surface-container-high text-secondary px-2.5 py-0.5 rounded-full font-label-caps text-label-caps">Reformer Athletic</span>
+</div>
+<div class="pt-3">
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Elena Mas</p>
+<div class="flex items-center justify-between pt-2">
+<span class="inline-flex items-center gap-1 text-xs text-error font-medium">
+<span class="w-2 h-2 rounded-full bg-error"></span> Completo (Lista espera)
+                  </span>
+<button class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant underline hover:text-primary">Anotarme</button>
+</div>
+</div>
+</div>
+<!-- 18:45 -->
+<div class="bg-surface rounded-DEFAULT p-space-md flex flex-col justify-between shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-primary font-semibold">18:45</span>
+<span class="bg-surface-container-high text-secondary px-2.5 py-0.5 rounded-full font-label-caps text-label-caps">Reformer Dynamic</span>
+</div>
+<div class="pt-3">
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Sofía Serrano</p>
+<div class="flex items-center justify-between pt-2">
+<span class="inline-flex items-center gap-1 text-xs text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 2 plazas libres
+                  </span>
+<button class="font-label-caps text-label-caps uppercase tracking-wider text-primary underline hover:text-secondary">Reservar</button>
+</div>
+</div>
+</div>
+<!-- 20:00 -->
+<div class="bg-surface rounded-DEFAULT p-space-md flex flex-col justify-between shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start">
+<span class="font-headline-md text-headline-md text-primary font-semibold">20:00</span>
+<span class="bg-surface-container-high text-secondary px-2.5 py-0.5 rounded-full font-label-caps text-label-caps">Restorative Yin Yoga</span>
+</div>
+<div class="pt-3">
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Carmen Soler</p>
+<div class="flex items-center justify-between pt-2">
+<span class="inline-flex items-center gap-1 text-xs text-secondary font-medium">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> 3 plazas libres
+                  </span>
+<button class="font-label-caps text-label-caps uppercase tracking-wider text-primary underline hover:text-secondary">Reservar</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Editorial Split: FAQ + Direct Booking Form -->
+<section class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop py-space-2xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop">
+<!-- FAQ Left Column -->
+<div class="lg:col-span-6 space-y-space-md">
+<div>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary">Claridad en tu proceso</span>
+<h2 class="font-headline-lg text-headline-lg text-primary tracking-tight">Preguntas Frecuentes</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-1">
+            Resolvemos tus dudas para que llegues al estudio con la mente en calma y dispuesta al bienestar.
+          </p>
+</div>
+<div class="space-y-space-sm" id="faq-accordion">
+<!-- Item 1 -->
+<div class="bg-surface-container rounded-lg p-space-md transition-all cursor-pointer faq-item" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary text-base font-medium">¿Qué política de cancelación tenéis?</span>
+<span class="material-symbols-outlined text-secondary transform transition-transform duration-200 icon-arrow">expand_more</span>
+</div>
+<div class="faq-content hidden pt-3 font-body-sm text-body-sm text-on-surface-variant">
+              Permitimos cancelar o reprogramar sin ningún coste hasta 12 horas antes del inicio de la sesión a través de nuestra plataforma web o enlace directo en WhatsApp. Si cancelas fuera de plazo, la sesión se descontará automáticamente de tu bono.
+            </div>
+</div>
+<!-- Item 2 -->
+<div class="bg-surface-container rounded-lg p-space-md transition-all cursor-pointer faq-item" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary text-base font-medium">¿Necesito experiencia previa con máquinas Reformer?</span>
+<span class="material-symbols-outlined text-secondary transform transition-transform duration-200 icon-arrow">expand_more</span>
+</div>
+<div class="faq-content hidden pt-3 font-body-sm text-body-sm text-on-surface-variant">
+              En absoluto. Para quienes no han utilizado un Reformer antes, recomendamos nuestra 'Clase de Prueba Primerizos', donde el instructor te enseñará a calibrar la resistencia de los muelles, ajustar las correas y moverte con total seguridad.
+            </div>
+</div>
+<!-- Item 3 -->
+<div class="bg-surface-container rounded-lg p-space-md transition-all cursor-pointer faq-item" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary text-base font-medium">¿Puedo congelar mi bono si viajo?</span>
+<span class="material-symbols-outlined text-secondary transform transition-transform duration-200 icon-arrow">expand_more</span>
+</div>
+<div class="faq-content hidden pt-3 font-body-sm text-body-sm text-on-surface-variant">
+              Sí. Si vas a ausentarte de Madrid por viaje laboral, vacaciones o prescripción médica durante más de 10 días continuados, podemos pausar la vigencia de tu bono hasta un máximo de 30 días naturales con un simple mensaje.
+            </div>
+</div>
+<!-- Item 4 -->
+<div class="bg-surface-container rounded-lg p-space-md transition-all cursor-pointer faq-item" onclick="toggleFaq(this)">
+<div class="flex items-center justify-between">
+<span class="font-headline-md text-headline-md text-primary text-base font-medium">¿Disponen de toallas y duchas?</span>
+<span class="material-symbols-outlined text-secondary transform transition-transform duration-200 icon-arrow">expand_more</span>
+</div>
+<div class="faq-content hidden pt-3 font-body-sm text-body-sm text-on-surface-variant">
+              Sí. Contamos con vestuarios individuales equipados con duchas de agua purificada, toallas de algodón orgánico, secadores Dyson y cosmética botánica natural para que puedas continuar tu día sin interrupciones.
+            </div>
+</div>
+</div>
+</div>
+<!-- Quick Reservation Form Column -->
+<div class="lg:col-span-6 bg-surface-container-high rounded-xl p-space-lg md:p-space-xl flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-secondary">Paso Inmediato</span>
+<span class="font-headline-lg-italic text-headline-lg-italic text-secondary text-2xl">M</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Solicita tu plaza o clase de prueba</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant pt-1 mb-6">
+            Déjanos tus datos y nos pondremos en contacto contigo por WhatsApp o llamada en menos de 2 horas laborables para confirmar tu horario ideal.
+          </p>
+<form class="space-y-4" onsubmit="event.preventDefault(); showSuccessBooking();">
+<div>
+<label class="block font-label-caps text-label-caps uppercase text-on-surface-variant mb-1">Nombre completo</label>
+<input class="w-full bg-surface-container-lowest px-4 py-3 rounded-full font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-1 focus:ring-primary shadow-sm" placeholder="Elena Castillo" required="" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-caps text-label-caps uppercase text-on-surface-variant mb-1">Teléfono (WhatsApp)</label>
+<input class="w-full bg-surface-container-lowest px-4 py-3 rounded-full font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-1 focus:ring-primary shadow-sm" placeholder="+34 600 000 000" required="" type="tel"/>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps uppercase text-on-surface-variant mb-1">Correo electrónico</label>
+<input class="w-full bg-surface-container-lowest px-4 py-3 rounded-full font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:ring-1 focus:ring-primary shadow-sm" placeholder="elena@ejemplo.com" required="" type="email"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block font-label-caps text-label-caps uppercase text-on-surface-variant mb-1">Interés principal</label>
+<select class="w-full bg-surface-container-lowest px-4 py-3 rounded-full font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-sm appearance-none cursor-pointer">
+<option>Clase Prueba Primerizos (18€)</option>
+<option>Bono 5 Sesiones (120€)</option>
+<option>Bono 10 Sesiones (210€)</option>
+<option>Unlimited Sanctuary (180€/mes)</option>
+<option>Sesión Privada One-on-One (65€)</option>
+</select>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps uppercase text-on-surface-variant mb-1">Franja preferida</label>
+<select class="w-full bg-surface-container-lowest px-4 py-3 rounded-full font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-sm appearance-none cursor-pointer">
+<option>Mañanas (07:30 - 11:30)</option>
+<option>Mediodía (13:30 - 15:30)</option>
+<option>Tardes (17:30 - 20:30)</option>
+<option>Sábados mañana</option>
+</select>
+</div>
+</div>
+<div class="pt-2">
+<button class="w-full bg-primary-container text-on-primary py-3.5 rounded-full font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary transition-all shadow-md flex items-center justify-center gap-2" id="submit-booking-btn" type="submit">
+<span>Confirmar solicitud de clase</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="hidden text-center font-body-sm text-body-sm text-secondary pt-2" id="booking-msg">
+              ¡Gracias! Nos pondremos en contacto contigo para asignarte esterilla o Reformer.
+            </div>
+</form>
+</div>
+<div class="pt-6 border-0 flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-lg">verified_user</span>
+<span class="font-body-sm text-body-sm text-xs">Sin pagos anticipados requeridos para solicitar información.</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Logic Scripts -->
+<script>
+    function switchPricingTab(type) {
+      const viewBonos = document.getElementById('view-bonos');
+      const viewMembresias = document.getElementById('view-membresias');
+      const btnBonos = document.getElementById('tab-bonos');
+      const btnMembresias = document.getElementById('tab-membresias');
+
+      if (type === 'bonos') {
+        viewBonos.classList.remove('hidden');
+        viewBonos.classList.add('grid');
+        viewMembresias.classList.add('hidden');
+        viewMembresias.classList.remove('grid');
+
+        btnBonos.className = 'px-space-md py-space-xs rounded-full font-label-caps text-label-caps tracking-wider transition-all duration-200 bg-primary-container text-on-primary shadow-sm';
+        btnMembresias.className = 'px-space-md py-space-xs rounded-full font-label-caps text-label-caps tracking-wider text-on-surface-variant hover:text-primary transition-all duration-200';
+      } else {
+        viewMembresias.classList.remove('hidden');
+        viewMembresias.classList.add('grid');
+        viewBonos.classList.add('hidden');
+        viewBonos.classList.remove('grid');
+
+        btnMembresias.className = 'px-space-md py-space-xs rounded-full font-label-caps text-label-caps tracking-wider transition-all duration-200 bg-primary-container text-on-primary shadow-sm';
+        btnBonos.className = 'px-space-md py-space-xs rounded-full font-label-caps text-label-caps tracking-wider text-on-surface-variant hover:text-primary transition-all duration-200';
+      }
+    }
+
+    function toggleFaq(element) {
+      const content = element.querySelector('.faq-content');
+      const arrow = element.querySelector('.icon-arrow');
+      const isHidden = content.classList.contains('hidden');
+
+      // Close all others
+      document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.icon-arrow').forEach(a => a.classList.remove('rotate-180'));
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+      }
+    }
+
+    function filterDay(button, day) {
+      document.querySelectorAll('.day-btn').forEach(btn => {
+        btn.className = 'day-btn px-4 py-2 rounded-full font-label-caps text-label-caps uppercase bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors';
+      });
+      button.className = 'day-btn px-4 py-2 rounded-full font-label-caps text-label-caps uppercase bg-primary text-on-primary transition-colors';
+    }
+
+    function showSuccessBooking() {
+      const btn = document.getElementById('submit-booking-btn');
+      const msg = document.getElementById('booking-msg');
+      btn.innerText = 'Solicitud Enviada con Éxito';
+      btn.classList.add('opacity-75');
+      btn.disabled = true;
+      msg.classList.remove('hidden');
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low text-on-surface mt-space-2xl"><div class="w-full px-margin md:px-margin-tablet lg:px-margin-desktop pt-space-2xl pb-space-xl"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter-desktop"><div class="lg:col-span-4 space-y-space-md"><div class="font-display-hero-italic text-headline-lg-italic md:text-display-hero-italic text-primary leading-none">MOVA</div><p class="font-label-editorial text-label-editorial text-secondary max-w-sm italic">Espacio para el movimiento, la calma y el equilibrio consciente.</p><div class="pt-space-xs"><span class="font-body-sm text-body-sm text-on-surface-variant">Estudio boutique Japandi en el corazón de Madrid.</span></div></div><div class="lg:col-span-2 space-y-space-sm"><h3 class="font-label-caps text-label-caps uppercase tracking-wider text-primary">Navegación</h3><ul class="space-y-space-xs"><li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="inicio" href="#">Inicio</a></li><li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="el-estudio" href="#">El Estudio</a></li><li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="disciplinas" href="#">Disciplinas</a></li><li class="leading-none"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="precios-y-horarios" href="#">Tarifas &amp; Horarios</a></li></ul></div><div class="lg:col-span-2 space-y-space-sm"><h3 class="font-label-caps text-label-caps uppercase tracking-wider text-primary">Prácticas</h3><ul class="space-y-space-xs"><li class="font-body-sm text-body-sm text-on-surface-variant">Reformer Pilates</li><li class="font-body-sm text-body-sm text-on-surface-variant">Mat Pilates</li><li class="font-body-sm text-body-sm text-on-surface-variant">Yoga Flow</li><li class="font-body-sm text-body-sm text-on-surface-variant">Estiramiento Miofascial</li></ul></div><div class="lg:col-span-4 space-y-space-md"><div class="space-y-space-xs"><h3 class="font-label-caps text-label-caps uppercase tracking-wider text-primary">Horarios &amp; Ubicación</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Calle Serrano 45, Salamanca, 28001 Madrid</p><p class="font-body-sm text-body-sm text-on-surface-variant">Lunes a Viernes: 7:30 - 21:00<br/>Sábados: 9:00 - 14:00</p></div><div class="space-y-space-xs pt-space-xs"><h3 class="font-label-caps text-label-caps uppercase tracking-wider text-primary">Newsletter de bienestar</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Reflexiones sobre postura, calma mental y convocatorias privadas.</p><div class="flex items-center gap-space-xs"><input class="flex-1 bg-surface-container-lowest px-space-sm py-space-xs rounded-full font-body-sm text-body-sm text-on-surface placeholder:text-outline focus:outline-none" placeholder="Tu correo electrónico" type="email"/><button class="bg-secondary text-on-secondary px-space-md py-space-xs rounded-full font-body-sm text-body-sm hover:bg-primary transition-colors whitespace-nowrap" type="button">Suscribirse</button></div></div></div></div><div class="mt-space-2xl pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm"><span class="font-body-sm text-body-sm text-on-surface-variant">© 2024 MOVA Pilates &amp; Wellness Studio. Todos los derechos reservados.</span><div class="flex items-center gap-space-md"><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="aviso-legal" href="#">Aviso Legal</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="politica-de-privacidad" href="#">Privacidad</a><a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" data-path="politica-de-cookies" href="#">Cookies</a></div></div></div></footer></body></html>

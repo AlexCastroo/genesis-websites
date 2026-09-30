@@ -1,0 +1,216 @@
+"!DOCTYPE html>"
+  <header>
+  <img alt=MOVA Brand Logo>
+  "MOVA"
+    <nav>
+    <a inicio>
+    "Inicio"
+    <a el-estudio>
+    "El Estudio"
+    <a disciplinas>
+    "Disciplinas"
+    <a precios-y-horarios>
+    "Precios &amp; Horarios"
+  <a inicio>
+  "MOVA"
+    <nav>
+    <a whatsapp>
+    "WhatsApp"
+    <a contacto>
+    "Contacto"
+  <a reserva-clase-de-prueba>
+  "Reservar clase de prueba"
+  <a mi-perfil>
+  <img alt=Profile>
+  <main>
+  "!-- CABECERA EDITORIAL SERENA -->"
+    <section>
+    "El Estudio • Filosofía Japandi"
+    <h1>
+    "Nuestro Santuario"
+    "diseñado para respirar"
+    "Un enclave arquitectónico en tonos arena, maderas de roble macizo y lino orgánico donde la acústica tratada y la luz matinal te devuelven a tu centro, lejos de la urgencia urbana."
+    "!-- Editorial Canvas Collage with Sun Shadows -->"
+    <img alt=Sunlit minimalist Japandi Pilates studio interior with blonde oak flooring, white linen curtains softly diffusing morning light, wooden reformers arranged neatly, potted bonsai and beige plaster walls in a warm earthy palette>
+    "sunny"
+    "Luz natural tamizada orientación sur"
+    "Sala Principal"
+    "01"
+    "Wabi-Sabi &amp; Rigor"
+    <h2>
+    "Arquitectura del Silencio"
+    "Eliminamos cualquier estímulo visual invasivo: sin espejos estridentes que fomenten la comparación, sin relojes visibles. Cada elemento textil de MOVA está tejido en lino crudo y tintes vegetales, invitando al sistema nervioso a desacelerar desde el primer paso descalzo."
+    "320 m²"
+    "Dedicados al bienestar"
+    "432 Hz"
+    "Afinación armónica"
+    <img alt=Close up architectural detail of Japanese ceramic tea cup on raw oak wood tray with dried eucalyptus and natural textured stone background>
+    ""Menos ruido, más presencia.""
+    "spa"
+  "!-- HISTORIA Y FILOSOFÍA: ARCO ARQUITECTÓNICO & MANIFIESTO -->"
+    <section>
+    "!-- Architectural Arch Image -->"
+    "!-- Outer subtle halo -->"
+    "!-- Inner Arch Frame -->"
+    <img alt=Graceful female founder practicing intentional controlled Reformer Pilates extension in a warm studio lit by soft morning beams wearing off-white minimalist linen attire>
+    "Fundadora &amp; Directora de Práctica"
+    "Clara Mendoza"
+    ""El cuerpo no se conquista, se comprende.""
+    "!-- Manifest Column -->"
+    "Nuestra Filosofía"
+    <h2>
+    "Movimiento Consciente"
+    "lejos de la hipercompetencia"
+    "MOVA nació como un acto de resistencia frente a las salas de fitness estresantes, la música atronadora y las métricas obsesivas de quema calórica. Creemos firmemente que el bienestar genuino se cultiva con respiración rítmica, escucha miofascial y precisión anatómica."
+    "Inspirados por la sobriedad contemplativa japonesa y la ergonomía cálida nórdica, creamos un santuario donde cada sesión es un retorno al cuerpo. No venimos a agotarte; venimos a otorgarte estabilidad, alineación axial y serenidad duradera para tu vida cotidiana."
+    "!-- Quote Block with bespoke styling -->"
+    "«Buscamos la forma precisa, el estiramiento orgánico y el silencio que permite escuchar el latido.»"
+    "— Manifiesto MOVA, 2024"
+  "!-- LOS PILARES DE MOVA (4 Tarjetas Minimalistas Marfil) -->"
+    <section>
+    "Esencia de la Experiencia"
+    <h2>
+    "Los Cuatro Pilares"
+    "de nuestro cuidado holístico"
+    "Cada detalle ha sido curado rigurosamente para propiciar una desconexión reparadora y un progreso motriz seguro."
+    "!-- Pilar 1 -->"
+    "groups"
+    "01 • Personalización"
+    <h3>
+    "Grupos Reducidos"
+    "Máximo 6 personas por sesión. Asegura que la instructora conozca tu historial lesional, ajuste cada resorte y guíe tus alineaciones al milímetro en tiempo real."
+    "Atención 1 a 1"
+    "north_east"
+    "!-- Pilar 2 -->"
+    "precision_manufacturing"
+    "02 • Tecnología Natural"
+    <h3>
+    "Máquinas de Precisión"
+    "Reformers artesanales de madera noble de arce y roble, equipados con muelles de tensión ultrasuave que protegen articulaciones y vértebras sin sacudidas mecánicas."
+    "Equipos Handcrafted"
+    "north_east"
+    "!-- Pilar 3 -->"
+    "air"
+    "03 • Calma Inmersiva"
+    <h3>
+    "Ambiente Multisensorial"
+    "Difusión pasiva de aceites esenciales de cedro japonés (hinoki) y bergamota orgánica, acompañada de frecuencias continuas a 432Hz para inducir estados de relajación alfa."
+    "Aromaterapia Pura"
+    "north_east"
+    "!-- Pilar 4 -->"
+    "nest_eco_leaf"
+    "04 • Pausa &amp; Conversación"
+    <h3>
+    "Comunidad Íntima"
+    "Nuestro Tea Lounge ofrece infusiones botánicas biodinámicas de cultivo silvestre y agua termal de manantial para asimilar la práctica sin prisa tras terminar la sesión."
+    "Organic Tea Bar"
+    "north_east"
+  "!-- CONOCE A LAS INSTRUCTORAS -->"
+    <section>
+    "Guías del Movimiento"
+    <h2>
+    "Nuestras Instructorass"
+    "rigor anatómico y empatía"
+    "Profesionales certificadas internacionalmente con amplia trayectoria en rehabilitación funcional y movimiento terapéutico."
+    "!-- Instructora 1 -->"
+    <img alt=Editorial portrait of female Pilates instructor with braided hair, dressed in warm neutral beige organic cotton top, serene expression, warm soft ambient light and clean architectural background>
+    "Clara Mendoza"
+    "Clásica Romana &amp; Fundadora"
+    "self_improvement"
+    "«Buscamos la inteligencia corporal: que reconozcas cada vértebra como un espacio de descanso y fortaleza.»"
+    "!-- Instructora 2 -->"
+    <img alt=Editorial portrait of blonde female wellness instructor with gentle smile, wearing minimalist ribbed tank top, soft sunlight touching cheek, Japandi aesthetic background>
+    "Elena Sanchís"
+    "Biomecánica &amp; Fascia"
+    "fitness_center"
+    "«La postura correcta no se fuerza; se despierta liberando las cadenas miofasciales de tensión acumulada.»"
+    "!-- Instructora 3 -->"
+    <img alt=Editorial portrait of yoga therapist female with hair tied softly back, serene meditative gaze, wearing warm oatmeal linen clothes, textured clay wall in background>
+    "Marina Valdés"
+    "Yoga Terapéutico &amp; Respiración"
+    "vital_signs"
+    "«El pranayama y la quietud son el ancla que transforma una clase física en un verdadero renacimiento mental.»"
+  "!-- RECORRIDO FOTOGRÁFICO POR LOS RINCONES (Bento Mosaic) -->"
+    <section>
+    "Atmósfera &amp; Espacios"
+    <h2>
+    "Nuestros Rincones"
+    "diseño pensado para los cinco sentidos"
+    "Explora las estancias concebidas para envolverte en serenidad antes, durante y después de tu práctica."
+    "!-- Bento Grid Gallery -->"
+    "!-- Big Card 1: Sala Reformer -->"
+    <img alt=Wide angle view of modern bright reformer pilates studio room with light oak floors, bespoke wooden reformers aligned neatly with neutral tone straps, tall arched windows and white curtains>
+    "Espacio Central"
+    <h3>
+    "Sala de Reformer Clásico"
+    "6 Reformers de Roble"
+    "!-- Card 2: Vestuarios Microcemento -->"
+    <img alt=Luxury boutique spa dressing room with seamless warm microcement surfaces, round frameless backlit mirror, natural stone sink basin and soft ambient illumination>
+    "Intimidad &amp; Spa"
+    <h3>
+    "Vestuarios en Microcemento"
+    "Duchas de lluvia, amenities orgánicos y toallas de lino waffle."
+    "!-- Card 3: Sala Mat & Meditación -->"
+    <img alt=Peaceful meditation and mat pilates room with circular tatami cushions, cork blocks, natural textured plaster wall and diffused lantern floor light>
+    "Suelo Radiante"
+    <h3>
+    "Sala Mat &amp; Meditación"
+    "Mats de caucho natural y mantas de lana merina."
+    "!-- Card 4: Tea Lounge & Recepción -->"
+    <img alt=Quiet Japandi reception lounge with low oak bench, ceramic teaware, organic dried grasses in rough terracotta vase, soft sunlight on linen cushions>
+    "Bienvenida Calma"
+    <h3>
+    "The Tea &amp; Water Lounge"
+    "Degustación Libre"
+  "!-- LLAMADA A LA ACCIÓN EDITORIAL (Visita Guiada / Clase Inicial) -->"
+    <section>
+    "!-- Decorative radial ambient blur -->"
+    "Tu primera toma de contacto"
+    <h2>
+    "Siente la atmósfera en persona."
+    "Visita guiada o clase inicial con evaluación de postura."
+    "Permítenos mostrarte el estudio, evaluar tu movilidad articular y sugerirte el programa más afín a tus necesidades. Una experiencia sin compromiso en un entorno pensado para ti."
+    <a reserva-clase-de-prueba>
+    "Reservar clase inicial (35€)"
+    <a contacto>
+    "Solicitar recorrido guiado gratuito →"
+  <footer>
+  "MOVA"
+  "Espacio para el movimiento, la calma y el equilibrio consciente."
+  "Estudio boutique Japandi en el corazón de Madrid."
+  <h3>
+  "Navegación"
+    <ul>
+    <a inicio>
+    "Inicio"
+    <a el-estudio>
+    "El Estudio"
+    <a disciplinas>
+    "Disciplinas"
+    <a precios-y-horarios>
+    "Tarifas &amp; Horarios"
+  <h3>
+  "Prácticas"
+    <ul>
+    "Reformer Pilates"
+    "Mat Pilates"
+    "Yoga Flow"
+    "Estiramiento Miofascial"
+  <h3>
+  "Horarios &amp; Ubicación"
+  "Calle Serrano 45, Salamanca, 28001 Madrid"
+  "Lunes a Viernes: 7:30 - 21:00"
+  "Sábados: 9:00 - 14:00"
+  <h3>
+  "Newsletter de bienestar"
+  "Reflexiones sobre postura, calma mental y convocatorias privadas."
+  <input placeholder="Tu correo electrónico" type="email">
+  <button >
+  "Suscribirse"
+  "© 2024 MOVA Pilates &amp; Wellness Studio. Todos los derechos reservados."
+  <a aviso-legal>
+  "Aviso Legal"
+  <a politica-de-privacidad>
+  "Privacidad"
+  <a politica-de-cookies>
+  "Cookies"

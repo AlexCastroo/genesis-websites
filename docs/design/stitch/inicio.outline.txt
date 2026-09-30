@@ -1,0 +1,208 @@
+"!DOCTYPE html>"
+  <header>
+  <img alt=MOVA Brand Logo>
+  "MOVA"
+    <nav>
+    <a inicio>
+    "Inicio"
+    <a el-estudio>
+    "El Estudio"
+    <a disciplinas>
+    "Disciplinas"
+    <a precios-y-horarios>
+    "Precios &amp; Horarios"
+  <a inicio>
+  "MOVA"
+    <nav>
+    <a whatsapp>
+    "WhatsApp"
+    <a contacto>
+    "Contacto"
+  <a reserva-clase-de-prueba>
+  "Reservar clase de prueba"
+  <a mi-perfil>
+  <img alt=Profile>
+  <main>
+  "!-- HERO SECTION -->"
+    <section>
+    "!-- Atmospheric Background Image with Warm Sunlight -->"
+    "!-- Gentle Scrim Gradient for Readability -->"
+    "!-- Floating Preview Snapshot (As seen in reference image) -->"
+    <img alt=Graceful woman in white linen activewear in warrior yoga pose during sunrise inside a minimalist airy Pilates studio with pale neutral walls and golden sunlight accents.>
+    "Estudio en vivo"
+    "!-- Hero Content Container -->"
+    "!-- Left Hero Typography -->"
+    "Boutique Pilates &amp; Mindful Movement"
+    <h1>
+    "Espacio para el movimiento"
+    "y el equilibrio"
+    "!-- Right Side Supporting Text & Primary CTA -->"
+    "Pilates reformer, mat y respiración consciente para quienes eligen cuidar su cuerpo sin prisas, ruidos ni comparaciones."
+    <a >
+    "Reservar clase de prueba"
+    <a >
+    "arrow_downward"
+  "!-- SECTION 2: PHILOSOPHY & MANIFESTO -->"
+    <section>
+    "!-- Section Header -->"
+    "El Manifiesto MOVA"
+    <h2>
+    "Un espacio para mujeres que eligen"
+    "la armonía"
+    "01 / Propósito"
+    "!-- Asymmetrical Content Grid Inspired by Reference Layout -->"
+    "!-- Left Column: Zen Diagram Aesthetic Card -->"
+    "!-- Subtle Zen Curve Diagram --> [svg]"
+    "Hemos creado un refugio donde reconectar con tu cuerpo desde la calma, la atención plena y la precisión anatómica."
+    "Aquí no existen marcas ni expectativas externas: únicamente respiración acompasada, fuerza sutil y silencio restaurador."
+    "!-- Studio Core Pillars Chips -->"
+    "6"
+    "Máx. alumnas"
+    "100%"
+    "Luz natural"
+    "75m²"
+    "Paz y orden"
+    "!-- Right Column: Warm Group Practice Image Composition -->"
+    <img alt=Three mindful women seated in serene meditation posture on natural linen mats in a sunny, quiet Japandi Pilates studio with pale wood finishes, plants in textured ceramic pots, and gentle morning sunbeams.>
+    "!-- Atmospheric Editorial Quote Banner Floating on Top Left -->"
+    "“Yoga, pilates y estiramiento consciente ayudan a serenar la mente, tonificar con suavidad y restablecer el diálogo con tu respiración.”"
+  "!-- SECTION 3: THE ICONIC 'M O V A' TYPOGRAPHIC ARCH BLOCK (Reference match) -->"
+    <section>
+    "!-- Gigantic Architectural Backdrop Letters M O V A -->"
+    "M"
+    "O"
+    "!-- Hidden placeholder to preserve spacing for the arch cut-out -->"
+    "V"
+    "A"
+    "!-- Centerpiece Architectural Arch Silhouette replacing 'O' -->"
+    "!-- Inner Studio Visual Viewport -->"
+    "!-- Floating Central Philosophy Pill Card inside Arch -->"
+    "“Lo fundamental no es cómo luce tu cuerpo, sino cómo lo habitas y sientes.”"
+  "!-- SECTION 4: DISCIPLINES & PRACTICES -->"
+    <section>
+    "!-- Section Header with CTA -->"
+    "Nuestras Prácticas"
+    <h2>
+    "Encuentra la práctica que resuena"
+    "contigo hoy"
+    "Cada formato está concebido con rigor anatómico para ganar fuerza profunda, amplitud articular y sosiego mental."
+    <a >
+    "Ver horarios de clase"
+    "!-- Practice Cards Grid -->"
+    "!-- Discipline 1: Reformer Pilates -->"
+    <img alt=Close-up aesthetic shot of an artisanal maple wood Reformer Pilates carriage with creamy neutral leather straps and springs, resting in a peaceful sunlit studio.>
+    "Reformer"
+    <h3>
+    "Reformer Pilates"
+    "Fuerza profunda, alineación postural de columna y resistencia fluida guiada por muelles de tensión regulable."
+    "55 Min • Nivel Todos"
+    "arrow_forward"
+    "!-- Discipline 2: Mat Pilates & Core -->"
+    <img alt=Woman exercising on a neutral textured yoga mat performing a controlled Pilates teaser movement with focused serene facial expression in soft daylight.>
+    "Mat &amp; Flow"
+    <h3>
+    "Mat &amp; Postura Consciente"
+    "Control corporal integral sobre esterilla de lino orgánico, combinando propiocepción, respiración costal y centro activo."
+    "50 Min • Suave &amp; Medio"
+    "arrow_forward"
+    "!-- Discipline 3: Fascia Release & Breath -->"
+    <img alt=Restorative Yin Yoga pose with bolster and organic cotton blankets in a serene room with warm indirect LED cove lighting and cedarwood aromas.>
+    "Restaurativo"
+    <h3>
+    "Fascia &amp; Liberación Somática"
+    "Descompresión articular, liberación miofascial y respiración guiada para soltar la sobrecarga del sistema nervioso."
+    "60 Min • Restaurativo"
+    "arrow_forward"
+  "!-- SECTION 5: SENSORY EXPERIENCE DETAILS (The Studio Ritual) -->"
+    <section>
+    "La Experiencia Sensorial"
+    <h3>
+    "Cada sesión en MOVA es un ritual completo de pausa"
+    "Cuidamos cada detalle arquitectónico y táctil para que tu visita empiece mucho antes de subirte al reformer. Desde el aroma botánico hasta el silencio previo a la práctica."
+    "!-- Feature Bullet List -->"
+      <ul>
+      "spa"
+      <h4>
+      "Aromaterapia de sándalo y neroli"
+      "Mezcla botánica exclusiva para favorecer la inhalación profunda."
+      "group"
+      <h4>
+      "Grupos reducidos de 6 personas"
+      "Acompañamiento cercano y correcciones individuales sin prisas."
+      "coffee"
+      <h4>
+      "Infusión orgánica de cortesía"
+      "Té hojicha tostado y agua aromatizada al terminar cada clase."
+    <img alt=Minimalist Japanese ceramic teacup filled with hot herbal infusion on a natural pale travertine stone tray with botanical stem.>
+    <img alt=Warm dressing room area of boutique wellness studio with natural oak lockers, round mirror reflecting soft warm ambient light and soft waffle-cotton towels.>
+  "!-- SECTION 6: INTIMATE VOICES & TESTIMONIALS -->"
+    <section>
+    "Comunidad Silenciosa"
+    <h2>
+    "Sentir el cambio desde la primera sesión"
+    "!-- Quote 1 -->"
+    "“Llegué con dolor lumbar recurrente y la tensión típica del trabajo. En MOVA no sentí la presión de sudar sin sentido, sino la alegría de redescubrir cómo respira mi columna.”"
+    "CS"
+    "Clara Serrano"
+    "Alumna de Reformer Pilates • 8 meses"
+    "!-- Quote 2 -->"
+    "“El diseño del espacio transmite paz antes de pisar el mat. Los grupos de solo 6 personas hacen que la profesora te guíe en cada milímetro de movimiento. Es mi hora sagrada de la semana.”"
+    "LV"
+    "Lucía Valdés"
+    "Alumna de Mat &amp; Somática • 1 año"
+  "!-- SECTION 7: FINAL CALL TO RECONNECT (INVITATION CARD) -->"
+    <section>
+    "!-- Decorative Warm Background Glow Elements -->"
+    "Comienza tu camino"
+    <h2>
+    "Tu primera sesión de prueba"
+    "te espera en calma"
+    "Te invitamos a conocer el estudio, conversar sobre tus objetivos o lesiones y disfrutar de una sesión guiada con atención personalizada en Salamanca, Madrid."
+    <a >
+    "Reservar clase por 20€"
+    <a >
+    "Consultar por WhatsApp"
+    "check_circle"
+    "Sin matrícula obligatoria"
+    "check_circle"
+    "Cancelación flexible 24h"
+  <footer>
+  "MOVA"
+  "Espacio para el movimiento, la calma y el equilibrio consciente."
+  "Estudio boutique Japandi en el corazón de Madrid."
+  <h3>
+  "Navegación"
+    <ul>
+    <a inicio>
+    "Inicio"
+    <a el-estudio>
+    "El Estudio"
+    <a disciplinas>
+    "Disciplinas"
+    <a precios-y-horarios>
+    "Tarifas &amp; Horarios"
+  <h3>
+  "Prácticas"
+    <ul>
+    "Reformer Pilates"
+    "Mat Pilates"
+    "Yoga Flow"
+    "Estiramiento Miofascial"
+  <h3>
+  "Horarios &amp; Ubicación"
+  "Calle Serrano 45, Salamanca, 28001 Madrid"
+  "Lunes a Viernes: 7:30 - 21:00"
+  "Sábados: 9:00 - 14:00"
+  <h3>
+  "Newsletter de bienestar"
+  "Reflexiones sobre postura, calma mental y convocatorias privadas."
+  <input placeholder="Tu correo electrónico" type="email">
+  <button >
+  "Suscribirse"
+  "© 2024 MOVA Pilates &amp; Wellness Studio. Todos los derechos reservados."
+  <a aviso-legal>
+  "Aviso Legal"
+  <a politica-de-privacidad>
+  "Privacidad"
+  <a politica-de-cookies>
+  "Cookies"
