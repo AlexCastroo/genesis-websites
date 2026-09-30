@@ -1,8 +1,9 @@
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 import { SITE } from './src/config/site';
-import { defaultLocale, isMultilingual, localeCodes, locales } from './src/i18n/config';
+import { defaultLocale, locales, type Lang } from './src/i18n/config';
 import { collectContentMeta } from './src/lib/content-meta';
+import { absoluteUrl } from './src/lib/seo';
 
 const contentMeta = collectContentMeta(new URL('./src/content/', import.meta.url));
 
@@ -29,19 +30,29 @@ export default defineConfig({
   ],
   integrations: [
     sitemap({
-      i18n: isMultilingual
-        ? {
-            defaultLocale,
-            locales: Object.fromEntries(localeCodes.map((lang) => [lang, locales[lang].hreflang])),
-          }
-        : undefined,
       filter: (page) => {
         const path = toPath(page);
         return path !== '/404' && !contentMeta.noindex.has(path);
       },
+      // Built-in sitemap i18n only pairs identical paths; our slugs are translated, so links
+      // come from translationKey groups (see collectContentMeta).
       serialize: (item) => {
-        const lastmod = contentMeta.lastmod.get(toPath(item.url));
-        return lastmod ? { ...item, lastmod: lastmod.toISOString() } : item;
+        const path = toPath(item.url);
+        const lastmod = contentMeta.lastmod.get(path);
+        const alternates = contentMeta.alternates.get(path);
+        const links: { lang: string; url: string }[] = alternates
+          ? Object.entries(alternates).map(([lang, href]) => ({
+              lang: locales[lang as Lang].hreflang,
+              url: absoluteUrl(SITE.url, href as string),
+            }))
+          : [];
+        const defaultHref = alternates?.[defaultLocale];
+        if (defaultHref) links.push({ lang: 'x-default', url: absoluteUrl(SITE.url, defaultHref) });
+        return {
+          ...item,
+          ...(lastmod && { lastmod: lastmod.toISOString() }),
+          ...(links.length > 0 && { links }),
+        };
       },
     }),
   ],
