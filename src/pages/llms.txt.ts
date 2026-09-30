@@ -55,7 +55,7 @@ export const GET: APIRoute = async () => {
       ...Object.values(SITE.social).filter(Boolean),
     ].filter((item): item is string => Boolean(item)),
     languages: localeCodes
-      .filter((code) => code !== lang)
+      .filter((code): boolean => code !== lang)
       .map((code) => ({ title: locales[code].label, url: url(localizePath('home', code)) })),
   });
 

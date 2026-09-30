@@ -42,7 +42,7 @@ const hreflangs = hreflangLinks(alternates, {
 const ogAlternates =
   hreflangs.length > 0
     ? (Object.keys(alternates) as Lang[])
-        .filter((code) => code !== lang)
+        .filter((code): boolean => code !== lang)
         .map((code) => locales[code].og)
     : [];
 const rssHref = lang === defaultLocale ? '/rss.xml' : `/${lang}/rss.xml`;
