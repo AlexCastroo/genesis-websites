@@ -2,34 +2,91 @@
 import type { Lang } from '../../i18n/config';
 import type { Crumb } from '../../lib/schema';
 import Breadcrumbs from '../layout/Breadcrumbs.astro';
+import DisplayTitle from '../ui/DisplayTitle.astro';
+import Pill from '../ui/Pill.astro';
 
 interface Props {
   lang: Lang;
   crumbs: Crumb[];
   title: string;
+  accent?: string;
+  eyebrow?: string;
   lead?: string;
+  align?: 'split' | 'center';
 }
 
-const { lang, crumbs, title, lead } = Astro.props;
+const { lang, crumbs, title, accent, eyebrow, lead, align = 'split' } = Astro.props;
 ---
 
-<div class="page-header">
+<div class:list={['page-header', `page-header--${align}`]}>
   <div class="container page-header__inner">
     <Breadcrumbs lang={lang} items={crumbs} />
-    <h1>{title}</h1>
-    {lead && <p class="lead">{lead}</p>}
-    <slot />
+    <div class="page-header__body">
+      <div class="page-header__title">
+        {eyebrow && <Pill dot>{eyebrow}</Pill>}
+        <DisplayTitle
+          level={1}
+          size="hero"
+          title={title}
+          accent={accent}
+          align={align === 'center' ? 'center' : 'start'}
+        />
+      </div>
+      {
+        (lead || Astro.slots.has('default')) && (
+          <div class="page-header__aside">
+            {lead && <p class="lead">{lead}</p>}
+            <slot />
+          </div>
+        )
+      }
+    </div>
   </div>
 </div>
 
 <style>
   .page-header {
-    padding-block: var(--space-xl) var(--space-l);
-    border-bottom: var(--border-width) solid var(--color-border);
+    padding-block: var(--space-l) var(--space-xl);
   }
 
   .page-header__inner {
     display: grid;
+    gap: var(--space-l);
+  }
+
+  .page-header__body {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .page-header__title {
+    display: grid;
     gap: var(--space-s);
+    justify-items: start;
+  }
+
+  .page-header__aside {
+    display: grid;
+    gap: var(--space-s);
+    align-content: end;
+  }
+
+  .page-header--center .page-header__body,
+  .page-header--center .page-header__title,
+  .page-header--center .page-header__aside {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .page-header--center .page-header__aside :global(.lead) {
+    margin-inline: auto;
+  }
+
+  @media (min-width: 900px) {
+    .page-header--split .page-header__body {
+      grid-template-columns: 1.3fr 1fr;
+      align-items: end;
+      gap: var(--space-xl);
+    }
   }
 </style>

@@ -6,7 +6,7 @@
  * Uses CHROME_PATH or the default Chrome/Edge install locations.
  */
 import { execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const args = process.argv.slice(2);
@@ -44,18 +44,34 @@ const slug = path === '/' ? 'home' : path.replace(/^\/|\/$/g, '').replace(/\//g,
 mkdirSync('.superpowers/shots', { recursive: true });
 const out = resolve(option('out', `.superpowers/shots/${slug}-${width}${noJs ? '-nojs' : ''}.png`));
 
+// Chrome's window cannot be narrower than ~500 px: smaller viewports are emulated
+// with an iframe of the requested width inside a 500 px window.
+// The wrapper is written into dist/ (served by `pnpm preview`, same origin) and removed after.
+const MIN_WINDOW = 500;
+const pageUrl = `${base}${path}`;
+const wrapper = resolve('dist/__viewport.html');
+const narrow = width < MIN_WINDOW;
+if (narrow) {
+  writeFileSync(
+    wrapper,
+    `<!doctype html><body style="margin:0"><iframe src="${path}" width="${width}" height="${height}" style="border:0;display:block"></iframe></body>`,
+  );
+}
+const url = narrow ? `${base}/__viewport.html` : pageUrl;
+
 execFileSync(
   chrome,
   [
     '--headless=new',
     '--disable-gpu',
     '--hide-scrollbars',
-    `--window-size=${width},${height}`,
+    `--window-size=${Math.max(width, MIN_WINDOW)},${height}`,
     '--virtual-time-budget=4000',
     ...(noJs ? ['--blink-settings=scriptEnabled=false'] : []),
     `--screenshot=${out}`,
-    `${base}${path}`,
+    url,
   ],
   { stdio: 'ignore' },
 );
+if (narrow) rmSync(wrapper, { force: true });
 console.log(out);

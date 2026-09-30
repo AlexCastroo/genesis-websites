@@ -24,17 +24,16 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
     position: relative;
     container-type: inline-size;
     height: 100%;
-    background: var(--color-surface);
-    border: var(--border-width) solid var(--color-border);
-    border-radius: var(--radius-md);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
     transition:
-      border-color var(--duration-fast) var(--ease-out),
-      box-shadow var(--duration-fast) var(--ease-out);
+      transform var(--duration-base) var(--ease-out),
+      box-shadow var(--duration-base) var(--ease-out);
   }
 
   .card:has(a):hover {
-    border-color: var(--color-text);
     box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
   }
 
   .card:has(a:focus-visible) {
@@ -56,7 +55,7 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
   }
 
   .card__title {
-    font-size: var(--step-1);
+    font-size: var(--step-2);
   }
 
   .card__title a {
@@ -76,6 +75,7 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
   }
 
   .card__body {
+    font-weight: var(--fw-light);
     color: var(--color-text-muted);
   }
 </style>

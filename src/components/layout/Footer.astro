@@ -4,7 +4,8 @@ import { SITE } from '../../config/site';
 import type { Lang } from '../../i18n/config';
 import { localizePath, useTranslations } from '../../i18n/utils';
 import { entrySlug } from '../../lib/content';
-import { getLegal } from '../../lib/queries';
+import { formatOpeningDays } from '../../lib/hours';
+import { getLegal, getServices } from '../../lib/queries';
 
 interface Props {
   lang: Lang;
@@ -12,7 +13,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const legal = await getLegal(lang);
+const [legal, services] = await Promise.all([getLegal(lang), getServices(lang)]);
 const gaEnabled = Boolean(import.meta.env.PUBLIC_GA_ID);
 const socialLabels: Record<string, string> = {
   linkedin: 'LinkedIn',
@@ -25,53 +26,67 @@ const socialLabels: Record<string, string> = {
 const socials = Object.entries(SITE.social).filter((entry): entry is [string, string] =>
   Boolean(entry[1]),
 );
-const phoneHref = SITE.contact.phone
-  ? `tel:${SITE.contact.phone.replace(/[^\d+]/g, '')}`
+const address = SITE.address
+  ? `${SITE.address.street}, ${SITE.address.postalCode} ${SITE.address.locality}`
   : undefined;
+const hours = (SITE.openingHours ?? []).map(
+  (slot) =>
+    `${formatOpeningDays(slot.days, (day) => t(`days.${day}`), { to: t('common.to'), and: t('common.and') })}: ${slot.opens} – ${slot.closes}`,
+);
 const year = new Date().getFullYear();
-// Avoid "S.L.." when the legal name already ends with a period.
 const owner = SITE.legalName.endsWith('.') ? SITE.legalName : `${SITE.legalName}.`;
-const footerNav = [...mainNav, { route: 'contact' as const, label: 'nav.contact' as const }];
 ---
 
 <footer class="site-footer">
   <div class="container site-footer__grid">
     <div class="site-footer__brand">
-      <p class="site-footer__name">{SITE.name}</p>
-      <p class="text-muted">{t('site.tagline')}</p>
+      <p class="site-footer__logo">{SITE.name}</p>
+      <p class="site-footer__tagline">{t('site.tagline')}</p>
+      <p class="site-footer__location">{t('site.location')}</p>
     </div>
 
     <nav aria-label={t('a11y.footerNav')}>
-      <h2 class="site-footer__title">{t('footer.explore')}</h2>
+      <h2 class="site-footer__title">{t('footer.navigation')}</h2>
       <ul role="list">
-        {footerNav.map((item) => (
-          <li>
-            <a href={navHref(item, lang, '')}>{t(item.label)}</a>
-          </li>
-        ))}
+        {
+          mainNav.map((item) => (
+            <li>
+              <a href={navHref(item, lang, '')}>{t(item.label)}</a>
+            </li>
+          ))
+        }
+        <li><a href={localizePath('contact', lang)}>{t('nav.contact')}</a></li>
+        <li><a href={localizePath('blog', lang)}>{t('nav.blog')}</a></li>
       </ul>
     </nav>
 
     <div>
-      <h2 class="site-footer__title">{t('footer.contact')}</h2>
+      <h2 class="site-footer__title">{t('footer.practices')}</h2>
       <ul role="list">
-        <li>
-          <a href={`mailto:${SITE.contact.email}`} data-track="contact_email">
-            {SITE.contact.email}
-          </a>
-        </li>
-        {phoneHref && (
-          <li>
-            <a href={phoneHref} data-track="contact_phone">
-              {SITE.contact.phone}
-            </a>
-          </li>
-        )}
+        {
+          services.map((service) => (
+            <li>
+              <a href={localizePath('services', lang, entrySlug(service.id))}>
+                {service.data.title}
+              </a>
+            </li>
+          ))
+        }
       </ul>
-      {socials.length > 0 && (
-        <>
-          <h2 class="site-footer__title">{t('footer.follow')}</h2>
-          <ul role="list">
+    </div>
+
+    <div>
+      <h2 class="site-footer__title">{t('footer.hours')}</h2>
+      <address class="site-footer__contact">
+        {address && <p>{address}</p>}
+        {hours.map((line) => <p>{line}</p>)}
+        <p>
+          <a href={`mailto:${SITE.contact.email}`} data-track="contact_email">{SITE.contact.email}</a>
+        </p>
+      </address>
+      {
+        socials.length > 0 && (
+          <ul role="list" class="site-footer__social">
             {socials.map(([network, url]) => (
               <li>
                 <a href={url} target="_blank" rel="noopener noreferrer me">
@@ -81,82 +96,125 @@ const footerNav = [...mainNav, { route: 'contact' as const, label: 'nav.contact'
               </li>
             ))}
           </ul>
-        </>
-      )}
+        )
+      }
     </div>
-
-    <nav aria-label={t('a11y.legalNav')}>
-      <h2 class="site-footer__title">{t('footer.legal')}</h2>
-      <ul role="list">
-        {legal.map((entry) => (
-          <li>
-            <a href={localizePath('legal', lang, entrySlug(entry.id))}>{entry.data.title}</a>
-          </li>
-        ))}
-        {gaEnabled && (
-          <li>
-            <button type="button" class="link-button" data-consent-open>
-              {t('cookies.settings')}
-            </button>
-          </li>
-        )}
-      </ul>
-    </nav>
   </div>
 
   <div class="container site-footer__bottom">
-    <p>
-      <small>
-        © {year} {owner} {t('footer.rights')}
-      </small>
-    </p>
+    <p>© {year} {owner} {t('footer.rights')}</p>
+    <nav aria-label={t('a11y.legalNav')}>
+      <ul role="list">
+        {
+          legal.map((entry) => (
+            <li>
+              <a href={localizePath('legal', lang, entrySlug(entry.id))}>{entry.data.title}</a>
+            </li>
+          ))
+        }
+        {
+          gaEnabled && (
+            <li>
+              <button type="button" class="link-button" data-consent-open>
+                {t('cookies.settings')}
+              </button>
+            </li>
+          )
+        }
+      </ul>
+    </nav>
   </div>
 </footer>
 
 <style>
   .site-footer {
     margin-block-start: auto;
-    padding-block: var(--space-xl) var(--space-m);
+    padding-block: var(--space-2xl) var(--space-l);
     background: var(--color-bg-subtle);
-    border-top: var(--border-width) solid var(--color-border);
+    font-size: var(--step--1);
   }
 
   .site-footer__grid {
     display: grid;
-    gap: var(--space-l);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+    gap: var(--space-xl) var(--space-l);
   }
 
-  .site-footer__name {
+  @media (min-width: 600px) {
+    .site-footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .site-footer__grid {
+      grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+    }
+  }
+
+  .site-footer__logo {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 2.4rem + 2.5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+  }
+
+  .site-footer__tagline {
+    max-width: 28ch;
+    margin-block: var(--space-m) var(--space-s);
+    font-family: var(--font-serif);
     font-size: var(--step-1);
-    font-weight: var(--fw-bold);
+    font-style: italic;
+    color: var(--color-eyebrow);
   }
 
   .site-footer__title {
-    margin-block: var(--space-s) var(--space-2xs);
-    font-size: var(--step--1);
+    margin-block-end: var(--space-s);
+    font-size: 0.75rem;
+    font-weight: var(--fw-semibold);
     letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
-    color: var(--color-text-muted);
-  }
-
-  .site-footer__title:first-child {
-    margin-block-start: 0;
+    color: var(--color-text);
   }
 
   ul {
     display: grid;
-    gap: var(--space-3xs);
+    gap: var(--space-2xs);
   }
 
   a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  a:hover {
     color: var(--color-text);
+    text-decoration: underline;
+  }
+
+  .site-footer__contact {
+    display: grid;
+    gap: var(--space-3xs);
+    font-style: normal;
+    color: var(--color-text-muted);
+  }
+
+  .site-footer__social {
+    margin-block-start: var(--space-s);
   }
 
   .site-footer__bottom {
-    margin-block-start: var(--space-l);
-    padding-block-start: var(--space-s);
-    border-top: var(--border-width) solid var(--color-border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-s);
+    margin-block-start: var(--space-2xl);
     color: var(--color-text-muted);
+  }
+
+  .site-footer__bottom ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-m);
   }
 </style>

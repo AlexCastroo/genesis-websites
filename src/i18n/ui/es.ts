@@ -370,6 +370,8 @@ export const es = {
   'blog.empty': 'Todavía no hay artículos publicados.',
   'blog.rss': 'Suscríbete por RSS',
   'common.updated': 'Última actualización:',
+  'common.to': 'a',
+  'common.and': 'y',
   'legal.eyebrow': 'Información legal',
   'legal.identity': 'Datos identificativos',
   'legal.holder': 'Titular',

@@ -1,9 +1,9 @@
 ---
-import { ctaNav, mainNav, navHref } from '../../config/nav';
+import { ctaNav, mainNav, navHref, secondaryNav, type NavItem } from '../../config/nav';
 import { SITE } from '../../config/site';
 import type { Lang } from '../../i18n/config';
 import { localizePath, useTranslations, type Alternates } from '../../i18n/utils';
-import Button from '../ui/Button.astro';
+import { whatsappLink } from '../../lib/whatsapp';
 import Icon from '../ui/Icon.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 
@@ -15,57 +15,97 @@ interface Props {
 
 const { lang, path, alternates } = Astro.props;
 const t = useTranslations(lang);
+const whatsapp = SITE.contact.whatsapp
+  ? whatsappLink(SITE.contact.whatsapp, t('whatsapp.general'))
+  : '';
+const secondary = secondaryNav.filter((item) => item.href !== 'whatsapp' || whatsapp);
+const home = localizePath('home', lang);
+const ctaHref = navHref(ctaNav, lang, whatsapp);
 
-const currentState = (href: string) => {
-  if (path === href) return 'page';
-  if (path.startsWith(`${href}/`)) return 'true';
-  return undefined;
+const link = (item: NavItem) => {
+  const href = navHref(item, lang, whatsapp);
+  const current: 'page' | 'true' | undefined =
+    path === href ? 'page' : href !== home && path.startsWith(`${href}/`) ? 'true' : undefined;
+  return { href, current, external: item.external ?? false, label: t(item.label) };
 };
 ---
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a href={localizePath('home', lang)} class="site-header__brand">
-      <svg aria-hidden="true" viewBox="0 0 64 64" width="32" height="32">
-        <rect width="64" height="64" rx="14" fill="currentColor"></rect>
-        <circle cx="32" cy="32" r="12" fill="var(--color-accent)"></circle>
-      </svg>
-      <span>{SITE.name}</span>
-    </a>
+    <nav class="site-header__primary" aria-label={t('a11y.mainNav')}>
+      <ul role="list">
+        {
+          mainNav.map(link).map((item) => (
+            <li>
+              <a href={item.href} aria-current={item.current}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
 
-    <button
-      type="button"
-      class="site-header__toggle"
-      aria-expanded="false"
-      aria-controls="site-menu"
-      aria-label={t('a11y.menuOpen')}
-      data-menu-toggle
-      data-label-open={t('a11y.menuOpen')}
-      data-label-close={t('a11y.menuClose')}
-    >
-      <Icon name="menu" size={24} class="icon-open" />
-      <Icon name="close" size={24} class="icon-close" />
-    </button>
+    <a href={home} class="site-header__brand">{SITE.name}</a>
+
+    <div class="site-header__end">
+      <nav class="site-header__secondary" aria-label={t('a11y.secondaryNav')}>
+        <ul role="list">
+          {
+            secondary.map(link).map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={item.current}
+                  {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {item.label}
+                  {item.external && <span class="visually-hidden"> {t('a11y.newTab')}</span>}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <LanguageSwitcher lang={lang} alternates={alternates} />
+      <a href={ctaHref} class="btn btn--primary site-header__cta" data-track="cta_header">
+        {t(ctaNav.label)}
+      </a>
+      <button
+        type="button"
+        class="site-header__toggle"
+        aria-expanded="false"
+        aria-controls="site-menu"
+        aria-label={t('a11y.menuOpen')}
+        data-menu-toggle
+        data-label-open={t('a11y.menuOpen')}
+        data-label-close={t('a11y.menuClose')}
+      >
+        <Icon name="menu" size={24} class="icon-open" />
+        <Icon name="close" size={24} class="icon-close" />
+      </button>
+    </div>
 
     <div id="site-menu" class="site-menu">
       <nav aria-label={t('a11y.mainNav')}>
         <ul role="list" class="site-menu__list">
-          {mainNav.map((item) => {
-            const href = navHref(item, lang, `https://wa.me/${SITE.contact.whatsapp ?? ''}`);
-            return (
+          {
+            [...mainNav, ...secondary].map(link).map((item) => (
               <li>
-                <a href={href} aria-current={currentState(href)}>
-                  {t(item.label)}
+                <a
+                  href={item.href}
+                  aria-current={item.current}
+                  {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                >
+                  {item.label}
+                  {item.external && <span class="visually-hidden"> {t('a11y.newTab')}</span>}
                 </a>
               </li>
-            );
-          })}
+            ))
+          }
         </ul>
       </nav>
-      <LanguageSwitcher lang={lang} alternates={alternates} />
-      <Button href={navHref(ctaNav, lang, '')} track="cta_header">
-        {t(ctaNav.label)}
-      </Button>
+      <a href={ctaHref} class="btn btn--primary btn--block">{t(ctaNav.label)}</a>
     </div>
   </div>
 </header>
@@ -75,7 +115,7 @@ const currentState = (href: string) => {
   const menu = document.getElementById('site-menu');
 
   if (toggle && menu) {
-    const desktop = window.matchMedia('(min-width: 900px)');
+    const desktop = window.matchMedia('(min-width: 1200px)');
     const setOpen = (open: boolean) => {
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute(
@@ -104,8 +144,12 @@ const currentState = (href: string) => {
     position: sticky;
     top: 0;
     z-index: var(--z-sticky);
-    background: var(--color-bg);
-    border-bottom: var(--border-width) solid var(--color-border);
+    background: rgb(252 249 244 / 0.82);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+      0 16px 40px -12px rgb(74 59 50 / 0.06),
+      0 2px 6px rgb(74 59 50 / 0.02);
   }
 
   .site-header__inner {
@@ -118,14 +162,59 @@ const currentState = (href: string) => {
     min-height: var(--header-height);
   }
 
-  .site-header__brand {
-    display: inline-flex;
+  .site-header__primary,
+  .site-header__secondary {
+    display: none;
+  }
+
+  .site-header__primary ul,
+  .site-header__secondary ul {
+    display: flex;
     align-items: center;
-    gap: var(--space-2xs);
-    font-size: var(--step-1);
-    font-weight: var(--fw-bold);
+    gap: var(--space-m);
+  }
+
+  .site-header__primary a,
+  .site-header__secondary a {
+    font-size: var(--step--1);
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .site-header__primary a:hover,
+  .site-header__secondary a:hover,
+  .site-header__primary a[aria-current],
+  .site-header__secondary a[aria-current] {
+    color: var(--color-text);
+  }
+
+  .site-header__primary a[aria-current='page'] {
+    font-weight: var(--fw-medium);
+  }
+
+  .site-header__brand {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.6rem);
+    font-style: italic;
+    line-height: 1;
+    letter-spacing: 0.12em;
     color: var(--color-text);
     text-decoration: none;
+  }
+
+  .site-header__end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-s);
+  }
+
+  .site-header__cta {
+    display: none;
+    min-height: 2.5rem;
+    padding-inline: 1.25rem;
   }
 
   .site-header__toggle {
@@ -133,9 +222,10 @@ const currentState = (href: string) => {
     place-items: center;
     width: var(--control-height);
     height: var(--control-height);
+    color: var(--color-text);
     background: transparent;
     border: 0;
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-full);
   }
 
   .site-header__toggle[aria-expanded='true'] :global(.icon-open),
@@ -143,7 +233,7 @@ const currentState = (href: string) => {
     display: none;
   }
 
-  /* Mobile: menu hidden until toggled. Without JS it is always visible (in flow). */
+  /* Mobile panel: hidden until toggled; without JS it is shown in the flow. */
   .site-menu {
     display: none;
   }
@@ -153,12 +243,11 @@ const currentState = (href: string) => {
     top: 100%;
     inset-inline: 0;
     display: grid;
-    gap: var(--space-m);
+    gap: var(--space-l);
     max-height: calc(100svh - var(--header-height));
     overflow-y: auto;
     padding: var(--space-m) var(--container-pad) var(--space-l);
     background: var(--color-bg);
-    border-bottom: var(--border-width) solid var(--color-border);
     box-shadow: var(--shadow-lg);
   }
 
@@ -182,52 +271,39 @@ const currentState = (href: string) => {
     display: block;
     padding-block: var(--space-2xs);
     font-size: var(--step-2);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--fw-light);
+    letter-spacing: var(--tracking-display);
+    text-transform: uppercase;
     color: var(--color-text);
     text-decoration: none;
   }
 
   .site-menu__list a[aria-current] {
-    color: var(--color-accent);
+    color: var(--color-eyebrow);
   }
 
-  @media (min-width: 900px) {
-    .site-header__toggle,
-    :global(.no-js) .site-header__toggle {
-      display: none;
+  @media (min-width: 600px) {
+    .site-header__cta {
+      display: inline-flex;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .site-header__inner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
     }
 
+    .site-header__primary,
+    .site-header__secondary {
+      display: block;
+    }
+
+    .site-header__toggle,
     .site-menu,
     .site-menu[data-open],
     :global(.no-js) .site-menu {
-      position: static;
-      display: flex;
-      align-items: center;
-      gap: var(--space-m);
-      width: auto;
-      max-height: none;
-      overflow: visible;
-      padding: 0;
-      background: none;
-      border: 0;
-      box-shadow: none;
-    }
-
-    .site-menu__list {
-      display: flex;
-      gap: var(--space-m);
-    }
-
-    .site-menu__list a {
-      padding-block: 0;
-      font-size: var(--step-0);
-    }
-
-    .site-menu__list a[aria-current] {
-      color: var(--color-text);
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 0.4em;
+      display: none;
     }
   }
 </style>

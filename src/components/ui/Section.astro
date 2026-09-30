@@ -1,12 +1,16 @@
 ---
 import { slugify } from '../../lib/content';
+import DisplayTitle from './DisplayTitle.astro';
 
 interface Props {
   id?: string;
   title: string;
+  accent?: string;
+  eyebrow?: string;
   lead?: string;
-  variant?: 'default' | 'muted';
+  variant?: 'default' | 'muted' | 'subtle';
   width?: 'default' | 'narrow';
+  align?: 'start' | 'center';
   /** Keep the heading for screen readers and outline, hide it visually. */
   titleHidden?: boolean;
 }
@@ -14,9 +18,12 @@ interface Props {
 const {
   id,
   title,
+  accent,
+  eyebrow,
   lead,
   variant = 'default',
   width = 'default',
+  align = 'start',
   titleHidden = false,
 } = Astro.props;
 const titleId = `${id ?? slugify(title)}-title`;
@@ -24,12 +31,25 @@ const titleId = `${id ?? slugify(title)}-title`;
 
 <section id={id} class:list={['section', `section--${variant}`]} aria-labelledby={titleId}>
   <div class:list={['container', { 'container--narrow': width === 'narrow' }]}>
-    <div class="section__header">
-      <h2 id={titleId} class:list={{ 'visually-hidden': titleHidden }}>
-        {title}
-      </h2>
-      {lead && <p class="lead">{lead}</p>}
-    </div>
+    {
+      titleHidden ? (
+        <h2 id={titleId} class="visually-hidden">
+          {title}
+        </h2>
+      ) : (
+        <div class:list={['section__header', `section__header--${align}`]}>
+          <DisplayTitle
+            id={titleId}
+            level={2}
+            title={title}
+            accent={accent}
+            eyebrow={eyebrow}
+            align={align}
+          />
+          {lead && <p class="lead">{lead}</p>}
+        </div>
+      )
+    }
     <slot />
   </div>
 </section>
@@ -40,12 +60,21 @@ const titleId = `${id ?? slugify(title)}-title`;
   }
 
   .section--muted {
+    background: var(--color-bg-muted);
+  }
+
+  .section--subtle {
     background: var(--color-bg-subtle);
   }
 
   .section__header {
     display: grid;
-    gap: var(--space-xs);
-    margin-block-end: var(--space-l);
+    gap: var(--space-s);
+    margin-block-end: var(--space-xl);
+  }
+
+  .section__header--center {
+    justify-items: center;
+    text-align: center;
   }
 </style>
