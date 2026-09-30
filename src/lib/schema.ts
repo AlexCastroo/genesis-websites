@@ -76,6 +76,11 @@ export function schemaIds(site: Pick<SiteConfig, 'url'>) {
   return { website: `${home}#website`, organization: `${home}#organization` };
 }
 
+/** JSON for an inline <script>: "<" is escaped so no string in the data can close the element. */
+export function serializeJsonLd(data: JsonLdNode): string {
+  return JSON.stringify(data).replace(/</g, '\\u003c');
+}
+
 export function graph(nodes: JsonLdNode[]): JsonLdNode {
   return { '@context': 'https://schema.org', '@graph': nodes };
 }

@@ -41,8 +41,14 @@ server {
 
     include /etc/nginx/snippets/redirects.conf;
 
+    # No "$uri/": a directory without .html (e.g. /legal) would 301 to /legal/ and the
+    # trailing-slash rewrite above would send it back — an infinite loop. 404 instead.
+    location = / {
+        try_files /index.html =404;
+    }
+
     location / {
-        try_files $uri $uri.html $uri/ =404;
+        try_files $uri $uri.html =404;
     }
 
     error_page 404 /404.html;

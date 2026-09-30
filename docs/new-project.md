@@ -27,7 +27,7 @@
 7. **Imágenes** — sustituir `public/favicon.svg`, `public/favicon.ico`, `public/apple-touch-icon.png` (180×180), `public/logo.png` (cuadrado ≥ 112 px), `public/og-default.jpg` (1200×630) y `src/assets/hero.jpg`. `pnpm tsx scripts/generate-placeholders.ts` regenera los genéricos.
 8. **Variables de entorno** — copiar `.env.example` a `.env`:
    - `PUBLIC_GA_ID` (vacío = sin analítica ni banner de cookies).
-   - `PUBLIC_CONTACT_ENDPOINT` (vacío = sin formulario) y `CONTACT_ORIGIN` (origen del endpoint para la CSP de Nginx).
+   - `PUBLIC_CONTACT_ENDPOINT` (vacío = sin formulario); la CSP de Nginx permite su origen automáticamente.
 9. **Redirecciones** de URLs antiguas — `src/config/redirects.ts`.
 10. **Comprobar** — `pnpm check && pnpm build && pnpm verify`.
 11. **Desplegar** — `docker compose up -d --build` en el servidor, detrás del proxy/TLS que se configure a mano. Activar HSTS en `deploy/nginx/default.conf.template` solo cuando HTTPS funcione.

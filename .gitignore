@@ -5,6 +5,7 @@ dist/
 .env.*
 !.env.example
 deploy/nginx/redirects.conf
+deploy/nginx/contact-origin
 coverage/
 *.log
 .DS_Store

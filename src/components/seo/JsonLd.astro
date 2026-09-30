@@ -1,10 +1,11 @@
 ---
+import { serializeJsonLd, type JsonLdNode } from '../../lib/schema';
+
 interface Props {
-  data: Record<string, unknown>;
+  data: JsonLdNode;
 }
 
-// Escape "<" so no string inside the data can close the <script> element.
-const json = JSON.stringify(Astro.props.data).replace(/</g, '\u003c');
+const json = serializeJsonLd(Astro.props.data);
 ---
 
 <script type="application/ld+json" set:html={json} />

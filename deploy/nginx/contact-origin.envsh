@@ -1,0 +1,8 @@
+#!/bin/sh
+# Sourced by the nginx image entrypoint before templates are rendered.
+# CONTACT_ORIGIN is derived at build time from PUBLIC_CONTACT_ENDPOINT, so the CSP
+# always allows the endpoint the form was built with. An explicit env var still wins.
+if [ -z "${CONTACT_ORIGIN:-}" ] && [ -f /etc/nginx/contact-origin ]; then
+  CONTACT_ORIGIN="$(cat /etc/nginx/contact-origin)"
+fi
+export CONTACT_ORIGIN="${CONTACT_ORIGIN:-}"

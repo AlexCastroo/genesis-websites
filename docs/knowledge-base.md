@@ -257,7 +257,7 @@ GEO = que ChatGPT, Perplexity, Claude, Google AI Overviews o Copilot **entiendan
 - **docker-compose**: sistema de ficheros de solo lectura, `tmpfs` para `/tmp` y `/etc/nginx/conf.d`, healthcheck.
 - **Nginx** (`deploy/nginx/default.conf.template`):
   - `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy`, `Permissions-Policy`, `Cross-Origin-Opener-Policy`.
-  - CSP ajustada a GA y al origen del formulario (`CONTACT_ORIGIN`, inyectado por envsubst).
+  - CSP ajustada a GA y al origen del formulario (origen derivado de `PUBLIC_CONTACT_ENDPOINT` en el build; `CONTACT_ORIGIN` solo lo sobrescribe).
   - Caché: `/_astro/*` inmutable 1 año, HTML `no-cache`, resto 1 día.
   - `server_tokens off`, gzip, 301 sin barra final, 404 propia, include de redirects generado.
   - **HSTS comentado**: activarlo solo con HTTPS operativo en el dominio final.

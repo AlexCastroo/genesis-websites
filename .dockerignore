@@ -7,6 +7,7 @@ dist
 !.env.example
 .superpowers
 deploy/nginx/redirects.conf
+deploy/nginx/contact-origin
 docs
 coverage
 *.log

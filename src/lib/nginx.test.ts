@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { renderNginxRedirects } from './nginx';
+import { contactOrigin, renderNginxRedirects } from './nginx';
 
 describe('renderNginxRedirects', () => {
   it('renders one exact-match 301 per redirect with a generated header', () => {
@@ -34,5 +34,24 @@ describe('renderNginxRedirects', () => {
         { from: '/a', to: '/c' },
       ]),
     ).toThrow(/duplicate/);
+  });
+});
+
+describe('contactOrigin', () => {
+  it('derives the CSP origin from the form endpoint', () => {
+    expect(contactOrigin('https://formspree.io/f/abc123')).toBe('https://formspree.io');
+    expect(contactOrigin('https://api.example.com:8443/leads?x=1')).toBe(
+      'https://api.example.com:8443',
+    );
+  });
+
+  it('returns an empty string when there is no endpoint', () => {
+    expect(contactOrigin(undefined)).toBe('');
+    expect(contactOrigin('')).toBe('');
+  });
+
+  it('rejects endpoints that are not absolute http(s) URLs', () => {
+    expect(() => contactOrigin('/api/contact')).toThrow(/PUBLIC_CONTACT_ENDPOINT/);
+    expect(() => contactOrigin('javascript:alert(1)')).toThrow(/PUBLIC_CONTACT_ENDPOINT/);
   });
 });

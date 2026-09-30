@@ -4,7 +4,7 @@
 
 - [ ] `SITE.url` = dominio definitivo (canonical, sitemap, schema y `llms.txt` lo heredan)
 - [ ] Datos de `site.ts` completos y reales (nombre, razón social, NIF, contacto, dirección, horarios)
-- [ ] `.env` de producción definido (GA, endpoint del formulario, `CONTACT_ORIGIN`)
+- [ ] `.env` de producción definido (GA y endpoint del formulario)
 - [ ] Redirecciones 301 de URLs antiguas en `src/config/redirects.ts`
 - [ ] Contenido de ejemplo sustituido; ninguna página dice «de ejemplo»
 

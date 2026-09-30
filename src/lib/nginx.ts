@@ -17,6 +17,21 @@ function validate(rule: Redirect): void {
   if (rule.from === rule.to) throw new Error(`${label}: points to itself`);
 }
 
+/** CSP origin (connect-src / form-action) of the contact form endpoint; '' when there is none. */
+export function contactOrigin(endpoint: string | undefined): string {
+  if (!endpoint) return '';
+  let url: URL;
+  try {
+    url = new URL(endpoint);
+  } catch {
+    throw new Error(`PUBLIC_CONTACT_ENDPOINT must be an absolute http(s) URL, got "${endpoint}"`);
+  }
+  if (url.protocol !== 'https:' && url.protocol !== 'http:') {
+    throw new Error(`PUBLIC_CONTACT_ENDPOINT must be an absolute http(s) URL, got "${endpoint}"`);
+  }
+  return url.origin;
+}
+
 /** Renders src/config/redirects.ts as Nginx exact-match 301 locations. */
 export function renderNginxRedirects(list: Redirect[]): string {
   const seen = new Set<string>();

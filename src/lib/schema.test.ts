@@ -8,6 +8,7 @@ import {
   graph,
   organizationNode,
   schemaIds,
+  serializeJsonLd,
   serviceNode,
   webPageNode,
   websiteNode,
@@ -157,5 +158,14 @@ describe('page-level nodes', () => {
       '@context': 'https://schema.org',
       '@graph': [{ '@type': 'WebSite' }],
     });
+  });
+});
+
+describe('serializeJsonLd', () => {
+  it('escapes "<" so content can never close the surrounding <script>', () => {
+    const json = serializeJsonLd({ text: 'a </script><img src=x onerror=alert(1)>' });
+    expect(json).not.toContain('<');
+    expect(json).toContain('\\u003c/script>');
+    expect(JSON.parse(json)).toEqual({ text: 'a </script><img src=x onerror=alert(1)>' });
   });
 });
