@@ -70,31 +70,27 @@ const externalAttrs = { target: '_blank', rel: 'noopener noreferrer' };
         >
           {primary.label}
         </a>
-        {
-          secondary && (
-            <a
-              href={secondary.href}
-              class="btn btn--ghost-light"
-              data-track="cta_band_secondary"
-              {...(secondary.external ? externalAttrs : {})}
-            >
-              {secondary.label}
-              {secondary.external && <span class="visually-hidden"> {t('a11y.newTab')}</span>}
-            </a>
-          )
-        }
+        {secondary && (
+          <a
+            href={secondary.href}
+            class="btn btn--ghost-light"
+            data-track="cta_band_secondary"
+            {...(secondary.external ? externalAttrs : {})}
+          >
+            {secondary.label}
+            {secondary.external && <span class="visually-hidden"> {t('a11y.newTab')}</span>}
+          </a>
+        )}
       </div>
-      {
-        notes.length > 0 && (
-          <ul role="list" class="cluster cta-band__notes">
-            {notes.map((note) => (
-              <li>
-                <Icon name="check-circle" size={16} /> {note}
-              </li>
-            ))}
-          </ul>
-        )
-      }
+      {notes.length > 0 && (
+        <ul role="list" class="cluster cta-band__notes">
+          {notes.map((note) => (
+            <li>
+              <Icon name="check-circle" size={16} /> {note}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   </div>
 </section>

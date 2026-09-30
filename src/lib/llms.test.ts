@@ -28,3 +28,18 @@ describe('buildLlms', () => {
     expect(txt.endsWith('\n')).toBe(true);
   });
 });
+
+describe('buildLlms extra sections', () => {
+  it('appends extra sections before contact and skips empty ones', () => {
+    const txt = buildLlms({
+      ...input,
+      extra: [
+        { title: 'Pricing', lines: ['- Trial class: 18 EUR'] },
+        { title: 'Empty', lines: [] },
+      ],
+    });
+    expect(txt).toContain('## Pricing\n\n- Trial class: 18 EUR');
+    expect(txt).not.toContain('## Empty');
+    expect(txt.indexOf('## Pricing')).toBeLessThan(txt.indexOf('## Contact'));
+  });
+});

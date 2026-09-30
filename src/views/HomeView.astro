@@ -77,7 +77,11 @@ const trialHref = `${localizePath('pricing', lang)}#solicitud`;
         sizes="240px"
         class="hero__live-img"
       />
-      <figcaption><Pill tone="glass" dot>{t('home.hero.live')}</Pill></figcaption>
+      <figcaption>
+        <Pill tone="glass" dot>
+          {t('home.hero.live')}
+        </Pill>
+      </figcaption>
     </figure>
     <div class="container hero__content">
       <div class="hero__title">
@@ -94,7 +98,9 @@ const trialHref = `${localizePath('pricing', lang)}#solicitud`;
       <div class="hero__aside">
         <p>{t('home.hero.lead')}</p>
         <div class="hero__actions">
-          <a href={trialHref} class="btn btn--light" data-track="cta_hero">{t('cta.trial')}</a>
+          <a href={trialHref} class="btn btn--light" data-track="cta_hero">
+            {t('cta.trial')}
+          </a>
           <a href="#manifiesto" class="hero__down" aria-label={t('a11y.scrollDown')}>
             <Icon name="arrow-down" size={18} />
           </a>
@@ -128,14 +134,12 @@ const trialHref = `${localizePath('pricing', lang)}#solicitud`;
             <p class="manifesto__p2">{t('home.manifesto.p2')}</p>
           </div>
           <dl class="stats">
-            {
-              stats.map((stat) => (
-                <div class="stats__item">
-                  <dt>{stat.label}</dt>
-                  <dd>{stat.value}</dd>
-                </div>
-              ))
-            }
+            {stats.map((stat) => (
+              <div class="stats__item">
+                <dt>{stat.label}</dt>
+                <dd>{stat.value}</dd>
+              </div>
+            ))}
           </dl>
         </div>
         <figure class="manifesto__figure">
@@ -157,9 +161,14 @@ const trialHref = `${localizePath('pricing', lang)}#solicitud`;
 
   <!-- 3. M O V A arch -->
   <section class="arch" aria-labelledby="arch-title">
-    <h2 id="arch-title" class="visually-hidden">{t('home.arch.title')}</h2>
+    <h2 id="arch-title" class="visually-hidden">
+      {t('home.arch.title')}
+    </h2>
     <div class="arch__letters" aria-hidden="true">
-      <span>M</span><span class="arch__gap">O</span><span>V</span><span>A</span>
+      <span>M</span>
+      <span class="arch__gap">O</span>
+      <span>V</span>
+      <span>A</span>
     </div>
     <figure class="arch__frame">
       <Image
@@ -194,37 +203,33 @@ const trialHref = `${localizePath('pricing', lang)}#solicitud`;
         </a>
       </div>
       <ul role="list" class="practices__grid">
-        {
-          practices.map((service) => {
-            const teaser = service.data.homeTeaser!;
-            return (
-              <li class="practice reveal">
-                <div class="practice__media">
-                  <Image
-                    src={teaser.image}
-                    alt={teaser.imageAlt}
-                    widths={[400, 700]}
-                    sizes="(min-width: 900px) 30vw, 100vw"
-                    class="practice__img"
-                  />
-                  <Pill tone="surface" class="practice__label">
-                    {teaser.label}
-                  </Pill>
-                </div>
-                <h3 class="practice__title">
-                  <a href={localizePath('services', lang, entrySlug(service.id))}>
-                    {teaser.title}
-                  </a>
-                </h3>
-                <p class="practice__text">{teaser.text}</p>
-                <p class="practice__meta">
-                  <span>{teaser.meta}</span>
-                  <Icon name="arrow-right" size={16} />
-                </p>
-              </li>
-            );
-          })
-        }
+        {practices.map((service) => {
+          const teaser = service.data.homeTeaser!;
+          return (
+            <li class="practice reveal">
+              <div class="practice__media">
+                <Image
+                  src={teaser.image}
+                  alt={teaser.imageAlt}
+                  widths={[400, 700]}
+                  sizes="(min-width: 900px) 30vw, 100vw"
+                  class="practice__img"
+                />
+                <Pill tone="surface" class="practice__label">
+                  {teaser.label}
+                </Pill>
+              </div>
+              <h3 class="practice__title">
+                <a href={localizePath('services', lang, entrySlug(service.id))}>{teaser.title}</a>
+              </h3>
+              <p class="practice__text">{teaser.text}</p>
+              <p class="practice__meta">
+                <span>{teaser.meta}</span>
+                <Icon name="arrow-right" size={16} />
+              </p>
+            </li>
+          );
+        })}
       </ul>
     </div>
   </section>
@@ -235,20 +240,20 @@ const trialHref = `${localizePath('pricing', lang)}#solicitud`;
       <div class="ritual__card">
         <div class="ritual__text">
           <p class="eyebrow">{t('home.ritual.eyebrow')}</p>
-          <h2 id="ritual-title" class="ritual__title">{t('home.ritual.title')}</h2>
+          <h2 id="ritual-title" class="ritual__title">
+            {t('home.ritual.title')}
+          </h2>
           <p class="ritual__lead">{t('home.ritual.lead')}</p>
           <ul role="list" class="ritual__list">
-            {
-              rituals.map(({ icon, n }) => (
-                <li>
-                  <Icon name={icon} size={20} />
-                  <div>
-                    <h3>{t(`home.ritual.${n}.title`)}</h3>
-                    <p>{t(`home.ritual.${n}.body`)}</p>
-                  </div>
-                </li>
-              ))
-            }
+            {rituals.map(({ icon, n }) => (
+              <li>
+                <Icon name={icon} size={20} />
+                <div>
+                  <h3>{t(`home.ritual.${n}.title`)}</h3>
+                  <p>{t(`home.ritual.${n}.body`)}</p>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
         <div class="ritual__images">
@@ -282,26 +287,24 @@ const trialHref = `${localizePath('pricing', lang)}#solicitud`;
         size="card"
       />
       <ul role="list" class="voices__grid">
-        {
-          testimonials.map((item) => (
-            <li class="voice reveal">
-              <figure>
-                <blockquote>
-                  <p>“{item.data.quote}”</p>
-                </blockquote>
-                <figcaption>
-                  <span class="voice__avatar" aria-hidden="true">
-                    {initials(item.data.name)}
-                  </span>
-                  <span>
-                    <strong>{item.data.name}</strong>
-                    <span class="voice__detail">{item.data.detail}</span>
-                  </span>
-                </figcaption>
-              </figure>
-            </li>
-          ))
-        }
+        {testimonials.map((item) => (
+          <li class="voice reveal">
+            <figure>
+              <blockquote>
+                <p>“{item.data.quote}”</p>
+              </blockquote>
+              <figcaption>
+                <span class="voice__avatar" aria-hidden="true">
+                  {initials(item.data.name)}
+                </span>
+                <span>
+                  <strong>{item.data.name}</strong>
+                  <span class="voice__detail">{item.data.detail}</span>
+                </span>
+              </figcaption>
+            </figure>
+          </li>
+        ))}
       </ul>
     </div>
   </section>

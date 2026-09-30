@@ -129,7 +129,8 @@ export const es = {
   'home.ritual.2.body': 'Acompañamiento cercano y correcciones individuales sin prisas.',
   'home.ritual.3.title': 'Infusión orgánica de cortesía',
   'home.ritual.3.body': 'Té hojicha tostado y agua aromatizada al terminar cada clase.',
-  'home.ritual.teaAlt': 'Taza de cerámica japonesa con infusión caliente sobre una bandeja de travertino',
+  'home.ritual.teaAlt':
+    'Taza de cerámica japonesa con infusión caliente sobre una bandeja de travertino',
   'home.ritual.roomAlt':
     'Vestuario del estudio con taquillas de roble, espejo redondo y toallas de algodón',
   'home.testimonials.eyebrow': 'Comunidad silenciosa',
@@ -418,27 +419,6 @@ export const es = {
   'daysShort.Fr': 'Vie',
   'daysShort.Sa': 'Sáb',
   'daysShort.Su': 'Dom',
-
-  // ---------- Legacy (base views; removed as each view is rebuilt) ----------
-  'cta.contact': 'Reservar clase de prueba',
-  'cta.services': 'Ver disciplinas',
-  'footer.explore': 'Navegación',
-  'footer.contact': 'Contacto',
-  'home.services.title': 'Nuestras prácticas',
-  'home.services.lead': 'Cada formato está concebido con rigor anatómico.',
-  'home.stats.title': 'El estudio en cifras',
-  'home.faq.title': 'Preguntas frecuentes',
-  'home.cta.title': 'Tu primera sesión de prueba',
-  'home.cta.lead': 'Te invitamos a conocer el estudio.',
-  'about.story.title': 'Nuestra historia',
-  'about.story.body': 'MOVA nació como un acto de resistencia frente a las salas de fitness.',
-  'about.values.title': 'Los cuatro pilares',
-  'about.values.1.title': 'Grupos reducidos',
-  'about.values.1.body': 'Máximo 6 personas por sesión.',
-  'about.values.2.title': 'Máquinas de precisión',
-  'about.values.2.body': 'Reformers artesanales de madera.',
-  'about.values.3.title': 'Ambiente multisensorial',
-  'about.values.3.body': 'Aromaterapia y calma.',
 } as const;
 
 export type UiKey = keyof typeof es;

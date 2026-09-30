@@ -34,37 +34,35 @@ const link = (item: NavItem) => {
   <div class="container site-header__inner">
     <nav class="site-header__primary" aria-label={t('a11y.mainNav')}>
       <ul role="list">
-        {
-          mainNav.map(link).map((item) => (
-            <li>
-              <a href={item.href} aria-current={item.current}>
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
+        {mainNav.map(link).map((item) => (
+          <li>
+            <a href={item.href} aria-current={item.current}>
+              {item.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
 
-    <a href={home} class="site-header__brand">{SITE.name}</a>
+    <a href={home} class="site-header__brand">
+      {SITE.name}
+    </a>
 
     <div class="site-header__end">
       <nav class="site-header__secondary" aria-label={t('a11y.secondaryNav')}>
         <ul role="list">
-          {
-            secondary.map(link).map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  aria-current={item.current}
-                  {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                >
-                  {item.label}
-                  {item.external && <span class="visually-hidden"> {t('a11y.newTab')}</span>}
-                </a>
-              </li>
-            ))
-          }
+          {secondary.map(link).map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={item.current}
+                {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                {item.label}
+                {item.external && <span class="visually-hidden"> {t('a11y.newTab')}</span>}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
       <LanguageSwitcher lang={lang} alternates={alternates} />
@@ -89,23 +87,23 @@ const link = (item: NavItem) => {
     <div id="site-menu" class="site-menu">
       <nav aria-label={t('a11y.mainNav')}>
         <ul role="list" class="site-menu__list">
-          {
-            [...mainNav, ...secondary].map(link).map((item) => (
-              <li>
-                <a
-                  href={item.href}
-                  aria-current={item.current}
-                  {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                >
-                  {item.label}
-                  {item.external && <span class="visually-hidden"> {t('a11y.newTab')}</span>}
-                </a>
-              </li>
-            ))
-          }
+          {[...mainNav, ...secondary].map(link).map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={item.current}
+                {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                {item.label}
+                {item.external && <span class="visually-hidden"> {t('a11y.newTab')}</span>}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
-      <a href={ctaHref} class="btn btn--primary btn--block">{t(ctaNav.label)}</a>
+      <a href={ctaHref} class="btn btn--primary btn--block">
+        {t(ctaNav.label)}
+      </a>
     </div>
   </div>
 </header>

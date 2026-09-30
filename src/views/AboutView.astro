@@ -86,13 +86,14 @@ const schema = [
           class="sanctuary__room-img"
         />
         <figcaption>
-          <Pill tone="glass" icon="sun">{t('about.room.light')}</Pill>
+          <Pill tone="glass" icon="sun">
+            {t('about.room.light')}
+          </Pill>
           <span class="sanctuary__label">{t('about.room.label')}</span>
         </figcaption>
       </figure>
       <div class="sanctuary__side">
-        <article class="sanctuary__card">
-          <p class="sanctuary__index" aria-hidden="true">{t('about.architecture.index')}</p>
+        <article class="sanctuary__card" data-index={t('about.architecture.index')}>
           <p class="eyebrow">{t('about.architecture.eyebrow')}</p>
           <h2 id="architecture-title" class="sanctuary__title">
             {t('about.architecture.title')}
@@ -138,15 +139,13 @@ const schema = [
             sizes="(min-width: 900px) 30vw, 90vw"
             class="philosophy__img"
           />
-          {
-            founder && (
-              <figcaption class="philosophy__caption">
-                <span class="eyebrow">{t('about.founder.role')}</span>
-                <strong>{founder.data.name}</strong>
-                <q>{t('about.founder.quote')}</q>
-              </figcaption>
-            )
-          }
+          {founder && (
+            <figcaption class="philosophy__caption">
+              <span class="eyebrow">{t('about.founder.role')}</span>
+              <strong>{founder.data.name}</strong>
+              <q>{t('about.founder.quote')}</q>
+            </figcaption>
+          )}
         </div>
       </figure>
       <div class="philosophy__text">
@@ -182,21 +181,19 @@ const schema = [
         <p class="lead">{t('about.pillars.lead')}</p>
       </div>
       <ul role="list" class="pillars__grid">
-        {
-          pillars.map((pillar) => (
-            <li class="pillar reveal">
-              <span class="pillar__icon">
-                <Icon name={pillar.icon} size={20} />
-              </span>
-              <p class="eyebrow">{pillar.eyebrow}</p>
-              <h3>{pillar.title}</h3>
-              <p class="pillar__body">{pillar.body}</p>
-              <p class="pillar__tag">
-                {pillar.tag} <Icon name="arrow-up-right" size={14} />
-              </p>
-            </li>
-          ))
-        }
+        {pillars.map((pillar) => (
+          <li class="pillar reveal">
+            <span class="pillar__icon">
+              <Icon name={pillar.icon} size={20} />
+            </span>
+            <p class="eyebrow">{pillar.eyebrow}</p>
+            <h3>{pillar.title}</h3>
+            <p class="pillar__body">{pillar.body}</p>
+            <p class="pillar__tag">
+              {pillar.tag} <Icon name="arrow-up-right" size={14} />
+            </p>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
@@ -214,33 +211,31 @@ const schema = [
         <p class="team__lead">{t('about.team.lead')}</p>
       </div>
       <ul role="list" class="team__grid">
-        {
-          team.map((member) => (
-            <li class="member reveal">
-              <figure>
-                <div class="member__photo">
-                  <Image
-                    src={member.data.image}
-                    alt={member.data.imageAlt}
-                    widths={[360, 640]}
-                    sizes="(min-width: 900px) 28vw, 90vw"
-                    class="member__img"
-                  />
-                  <figcaption class="member__badge">
-                    <span>
-                      <strong>{member.data.name}</strong>
-                      <span class="member__role">{member.data.role}</span>
-                    </span>
-                    <Icon name={member.data.icon as IconName} size={18} />
-                  </figcaption>
-                </div>
-                <blockquote class="member__quote">
-                  <p>«{member.data.quote}»</p>
-                </blockquote>
-              </figure>
-            </li>
-          ))
-        }
+        {team.map((member) => (
+          <li class="member reveal">
+            <figure>
+              <div class="member__photo">
+                <Image
+                  src={member.data.image}
+                  alt={member.data.imageAlt}
+                  widths={[360, 640]}
+                  sizes="(min-width: 900px) 28vw, 90vw"
+                  class="member__img"
+                />
+                <figcaption class="member__badge">
+                  <span>
+                    <strong>{member.data.name}</strong>
+                    <span class="member__role">{member.data.role}</span>
+                  </span>
+                  <Icon name={member.data.icon as IconName} size={18} />
+                </figcaption>
+              </div>
+              <blockquote class="member__quote">
+                <p>«{member.data.quote}»</p>
+              </blockquote>
+            </figure>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
@@ -259,24 +254,26 @@ const schema = [
         <p class="lead">{t('about.spaces.lead')}</p>
       </div>
       <ul role="list" class="spaces__grid">
-        {
-          spaces.map((space) => (
-            <li class:list={['space reveal', { 'space--wide': space.data.wide }]}>
-              <Image
-                src={space.data.image}
-                alt={space.data.imageAlt}
-                widths={[480, 900]}
-                sizes={space.data.wide ? '(min-width: 900px) 60vw, 100vw' : '(min-width: 900px) 35vw, 100vw'}
-                class="space__img"
-              />
-              <div class="space__text">
-                <p class="eyebrow">{space.data.eyebrow}</p>
-                <h3>{space.data.name}</h3>
-                <p class="space__detail">{space.data.detail}</p>
-              </div>
-            </li>
-          ))
-        }
+        {spaces.map((space) => (
+          <li class:list={['space reveal', { 'space--wide': space.data.wide }]}>
+            <Image
+              src={space.data.image}
+              alt={space.data.imageAlt}
+              widths={[480, 900]}
+              sizes={
+                space.data.wide
+                  ? '(min-width: 900px) 60vw, 100vw'
+                  : '(min-width: 900px) 35vw, 100vw'
+              }
+              class="space__img"
+            />
+            <div class="space__text">
+              <p class="eyebrow">{space.data.eyebrow}</p>
+              <h3>{space.data.name}</h3>
+              <p class="space__detail">{space.data.detail}</p>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
@@ -358,7 +355,9 @@ const schema = [
     border-radius: var(--radius-xl);
   }
 
-  .sanctuary__index {
+  /* Decorative number: generated content so it is not read or contrast-checked as text. */
+  .sanctuary__card::before {
+    content: attr(data-index) / '';
     position: absolute;
     top: var(--space-m);
     right: var(--space-l);

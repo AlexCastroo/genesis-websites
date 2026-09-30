@@ -1,6 +1,6 @@
 ---
 title: Reformer Core & Align
-seoTitle: "Reformer Core & Align: clase de Reformer"
+seoTitle: 'Reformer Core & Align: clase de Reformer'
 description: Clase de Reformer Pilates en grupos de 6 en Salamanca, Madrid. Alineación postural, core profundo y tono muscular sin impacto. 55 minutos, todos los niveles.
 translationKey: reformer-core-align
 order: 1

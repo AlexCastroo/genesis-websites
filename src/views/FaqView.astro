@@ -51,7 +51,14 @@ const schema = [
   alternates={alternates}
   schema={schema}
 >
-  <PageHeader lang={lang} crumbs={crumbs} title={t('faq.title')} lead={t('faq.lead')} />
+  <PageHeader
+    lang={lang}
+    crumbs={crumbs}
+    eyebrow={t('faq.eyebrow')}
+    title={t('faq.title')}
+    accent={t('faq.accent')}
+    lead={t('faq.lead')}
+  />
   {[...groups].map(([category, items]) => (
     <Section id={slugify(category)} title={category} width="narrow">
       <FaqList items={items} />

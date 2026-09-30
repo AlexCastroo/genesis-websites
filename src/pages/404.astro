@@ -1,6 +1,8 @@
 ---
+import DisplayTitle from '../components/ui/DisplayTitle.astro';
+import Pill from '../components/ui/Pill.astro';
 import { mainNav, navHref } from '../config/nav';
-import { defaultLocale, localeCodes, locales } from '../i18n/config';
+import { defaultLocale, isMultilingual, localeCodes, locales } from '../i18n/config';
 import { localizePath, useTranslations } from '../i18n/utils';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -17,26 +19,39 @@ const t = useTranslations(lang);
   noindex
 >
   <div class="container container--narrow section-pad not-found">
-    <h1>{t('notFound.title')}</h1>
+    <Pill dot>{t('notFound.eyebrow')}</Pill>
+    <DisplayTitle
+      level={1}
+      size="hero"
+      align="center"
+      title={t('notFound.title')}
+      accent={t('notFound.accent')}
+    />
     <p class="lead">{t('notFound.lead')}</p>
-    <p>{t('notFound.links')}</p>
-    <ul>
-      {localeCodes.map((code) => (
+    <p class="eyebrow">{t('notFound.links')}</p>
+    <ul role="list" class="not-found__links">
+      {mainNav.map((item) => (
         <li>
-          <a
-            href={localizePath('home', code)}
-            hreflang={locales[code].hreflang}
-            lang={locales[code].hreflang}
-          >
-            {locales[code].label}
+          <a href={navHref(item, lang, '')} class="btn btn--secondary">
+            {t(item.label)}
           </a>
         </li>
       ))}
-      {mainNav.map((item) => (
-        <li>
-          <a href={navHref(item, lang, '')}>{t(item.label)}</a>
-        </li>
-      ))}
+      {isMultilingual &&
+        localeCodes
+          .filter((code): boolean => code !== lang)
+          .map((code) => (
+            <li>
+              <a
+                href={localizePath('home', code)}
+                hreflang={locales[code].hreflang}
+                lang={locales[code].hreflang}
+                class="btn btn--secondary"
+              >
+                {locales[code].label}
+              </a>
+            </li>
+          ))}
     </ul>
   </div>
 </BaseLayout>
@@ -44,10 +59,15 @@ const t = useTranslations(lang);
 <style>
   .not-found {
     display: grid;
-    gap: var(--space-s);
+    gap: var(--space-m);
+    justify-items: center;
+    text-align: center;
   }
 
-  ul {
-    padding-inline-start: 1.25em;
+  .not-found__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2xs);
   }
 </style>

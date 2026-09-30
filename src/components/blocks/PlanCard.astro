@@ -27,13 +27,11 @@ const dark = data.highlight === 'dark';
     <span class="plan__note">{data.priceNote}</span>
   </p>
   <ul role="list" class="plan__features">
-    {
-      data.features.map((feature) => (
-        <li>
-          <Icon name="check" size={16} /> {feature}
-        </li>
-      ))
-    }
+    {data.features.map((feature) => (
+      <li>
+        <Icon name="check" size={16} /> {feature}
+      </li>
+    ))}
   </ul>
   <a
     href={`${localizePath('pricing', lang)}#solicitud`}
@@ -45,7 +43,8 @@ const dark = data.highlight === 'dark';
     data-plan={plan.data.translationKey}
     data-track="plan_cta"
   >
-    {data.cta}<span class="visually-hidden">: {data.name}</span>
+    {data.cta}
+    <span class="visually-hidden">: {data.name}</span>
     <Icon name={dark ? 'arrow-up-right' : 'arrow-right'} size={16} />
   </a>
 </article>

@@ -1,27 +1,26 @@
 /**
- * Generates neutral placeholder images. Run once per new project, then replace them with brand assets:
+ * Generates the MOVA brand assets (monogram icons, logo and default share image).
+ * Replace with the final brand files when available.
  *   pnpm tsx scripts/generate-placeholders.ts
  */
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
 const root = new URL('..', import.meta.url);
 const out = (path: string) => fileURLToPath(new URL(path, root));
 
-const mark = (size: number) =>
-  Buffer.from(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0a0a0a"/><circle cx="32" cy="32" r="12" fill="#b91c1c"/></svg>`,
-  );
+const CREAM = '#fcf9f4';
+const ESPRESSO = '#33251d';
+const BROWN = '#755844';
 
-const scene = (width: number, height: number) =>
+/** "M" monogram in a serif face on cream, used for favicon, touch icon and schema logo. */
+const monogram = (size: number, radius: number) =>
   Buffer.from(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
-      <rect width="100%" height="100%" fill="#f4f4f5"/>
-      <circle cx="${width * 0.72}" cy="${height * 0.42}" r="${height * 0.28}" fill="#e4e4e7"/>
-      <rect x="${width * 0.08}" y="${height * 0.3}" width="${width * 0.4}" height="${height * 0.08}" rx="8" fill="#0a0a0a"/>
-      <rect x="${width * 0.08}" y="${height * 0.45}" width="${width * 0.3}" height="${height * 0.04}" rx="6" fill="#a1a1aa"/>
-      <rect x="0" y="${height - 16}" width="${width}" height="16" fill="#b91c1c"/>
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 64 64">
+      <rect width="64" height="64" rx="${radius}" fill="${CREAM}"/>
+      <text x="32" y="46" text-anchor="middle" font-family="EB Garamond, Georgia, 'Times New Roman', serif"
+        font-size="42" fill="${ESPRESSO}">M</text>
     </svg>`,
   );
 
@@ -43,18 +42,38 @@ function pngToIco(png: Buffer, size: number): Buffer {
   return Buffer.concat([header, entry, png]);
 }
 
-mkdirSync(out('src/assets/'), { recursive: true });
-mkdirSync(out('public/'), { recursive: true });
+await sharp(monogram(512, 0)).png().toFile(out('public/logo.png'));
+await sharp(monogram(180, 0)).png().toFile(out('public/apple-touch-icon.png'));
+writeFileSync(
+  out('public/favicon.ico'),
+  pngToIco(await sharp(monogram(32, 12)).png().toBuffer(), 32),
+);
+writeFileSync(
+  out('public/favicon.svg'),
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${CREAM}"/><text x="32" y="46" text-anchor="middle" font-family="EB Garamond, Georgia, 'Times New Roman', serif" font-size="42" fill="${ESPRESSO}">M</text></svg>\n`,
+);
 
-await sharp(scene(1600, 1067)).jpeg({ quality: 80 }).toFile(out('src/assets/hero.jpg'));
-await sharp(scene(1200, 630)).jpeg({ quality: 85 }).toFile(out('public/og-default.jpg'));
-await sharp(mark(512)).png().toFile(out('public/logo.png'));
-await sharp(mark(180))
-  .flatten({ background: '#ffffff' })
-  .png()
-  .toFile(out('public/apple-touch-icon.png'));
-writeFileSync(out('public/favicon.ico'), pngToIco(await sharp(mark(32)).png().toBuffer(), 32));
+// Share image: studio photo with a warm scrim and the wordmark.
+const overlay = Buffer.from(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+    <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0.35" stop-color="${ESPRESSO}" stop-opacity="0"/>
+      <stop offset="1" stop-color="${ESPRESSO}" stop-opacity="0.85"/>
+    </linearGradient></defs>
+    <rect width="1200" height="630" fill="url(#g)"/>
+    <text x="80" y="520" font-family="EB Garamond, Georgia, serif" font-style="italic" font-size="120"
+      letter-spacing="14" fill="${CREAM}">MOVA</text>
+    <text x="84" y="570" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="24"
+      letter-spacing="5" fill="#d9c2b6">PILATES REFORMER · SALAMANCA, MADRID</text>
+    <rect x="84" y="590" width="120" height="3" fill="${BROWN}"/>
+  </svg>`,
+);
+await sharp(out('src/assets/mova/hero-studio.jpg'))
+  .resize(1200, 630, { fit: 'cover' })
+  .composite([{ input: overlay }])
+  .jpeg({ quality: 82, mozjpeg: true })
+  .toFile(out('public/og-default.jpg'));
 
 console.log(
-  'Placeholders written: src/assets/hero.jpg, public/{og-default.jpg,logo.png,apple-touch-icon.png,favicon.ico}',
+  'Brand assets written: public/{logo.png,apple-touch-icon.png,favicon.ico,favicon.svg,og-default.jpg}',
 );

@@ -1,8 +1,8 @@
-translationKey: "sala-reformer"
+translationKey: 'sala-reformer'
 order: 1
-eyebrow: "Espacio central"
-name: "Sala de Reformer Clásico"
-detail: "6 reformers de roble"
-image: "../../../assets/mova/space-reformer-room.jpg"
-imageAlt: "Sala de reformer luminosa con suelo de roble claro, reformers de madera alineados y ventanales en arco"
+eyebrow: 'Espacio central'
+name: 'Sala de Reformer Clásico'
+detail: '6 reformers de roble'
+image: '../../../assets/mova/space-reformer-room.jpg'
+imageAlt: 'Sala de reformer luminosa con suelo de roble claro, reformers de madera alineados y ventanales en arco'
 wide: true

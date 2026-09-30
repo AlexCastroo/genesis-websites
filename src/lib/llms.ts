@@ -16,6 +16,8 @@ export interface LlmsInput {
   posts: LlmsLink[];
   contact: string[];
   languages: LlmsLink[];
+  /** Business-specific sections (pricing, timetable…) rendered before Contact. */
+  extra?: { title: string; lines: string[] }[];
 }
 
 const link = (item: LlmsLink) =>
@@ -37,6 +39,7 @@ export function buildLlms(input: LlmsInput): string {
     input.faqs.flatMap((faq) => [`### ${faq.q}`, '', faq.a, '']),
   );
   section('Blog', input.posts.map(link));
+  for (const extra of input.extra ?? []) section(extra.title, extra.lines);
   section(
     'Contact',
     input.contact.map((item) => `- ${item}`),

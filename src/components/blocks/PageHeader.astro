@@ -32,14 +32,12 @@ const { lang, crumbs, title, accent, eyebrow, lead, align = 'split' } = Astro.pr
           align={align === 'center' ? 'center' : 'start'}
         />
       </div>
-      {
-        (lead || Astro.slots.has('default')) && (
-          <div class="page-header__aside">
-            {lead && <p class="lead">{lead}</p>}
-            <slot />
-          </div>
-        )
-      }
+      {(lead || Astro.slots.has('default')) && (
+        <div class="page-header__aside">
+          {lead && <p class="lead">{lead}</p>}
+          <slot />
+        </div>
+      )}
     </div>
   </div>
 </div>

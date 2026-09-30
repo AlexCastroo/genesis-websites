@@ -43,7 +43,14 @@ const schema = [
   alternates={alternates}
   schema={schema}
 >
-  <PageHeader lang={lang} crumbs={crumbs} title={t('blog.title')} lead={t('blog.lead')}>
+  <PageHeader
+    lang={lang}
+    crumbs={crumbs}
+    eyebrow={t('blog.eyebrow')}
+    title={t('blog.title')}
+    accent={t('blog.accent')}
+    lead={t('blog.lead')}
+  >
     <p>
       <a href={rssHref} class="rss-link">
         <Icon name="rss" size={16} /> {t('blog.rss')}

@@ -29,6 +29,7 @@ const schema = [
   }),
   breadcrumbNode(SITE, path, crumbs),
 ];
+const hasForm = Boolean(import.meta.env.PUBLIC_CONTACT_ENDPOINT);
 ---
 
 <BaseLayout
@@ -39,30 +40,79 @@ const schema = [
   alternates={alternates}
   schema={schema}
 >
-  <PageHeader lang={lang} crumbs={crumbs} title={t('contact.title')} lead={t('contact.lead')} />
-  <div class="container section-pad contact-grid">
-    <section aria-labelledby="contact-info-title">
-      <h2 id="contact-info-title">{t('contact.info.title')}</h2>
+  <PageHeader
+    lang={lang}
+    crumbs={crumbs}
+    eyebrow={t('contact.eyebrow')}
+    title={t('contact.title')}
+    accent={t('contact.accent')}
+    lead={t('contact.lead')}
+  />
+  <div class:list={['container contact-grid', { 'contact-grid--single': !hasForm }]}>
+    <section class="contact-card" aria-labelledby="contact-info-title">
+      <h2 id="contact-info-title" class="contact-card__title">
+        {t('contact.info.title')}
+      </h2>
       <ContactInfo lang={lang} />
     </section>
-    <ContactForm lang={lang} />
+    {hasForm && (
+      <div class="contact-card contact-card--form">
+        <ContactForm lang={lang} />
+      </div>
+    )}
   </div>
 </BaseLayout>
 
 <style>
   .contact-grid {
     display: grid;
-    gap: var(--space-xl);
-  }
-
-  .contact-grid h2 {
-    margin-block-end: var(--space-m);
-    font-size: var(--step-2);
+    gap: var(--space-m);
+    padding-block-end: var(--space-2xl);
   }
 
   @media (min-width: 900px) {
     .contact-grid {
-      grid-template-columns: 1fr 1.3fr;
+      grid-template-columns: 1fr 1.2fr;
     }
+
+    .contact-grid--single {
+      grid-template-columns: minmax(0, 36rem);
+    }
+  }
+
+  .contact-card {
+    padding: clamp(1.25rem, 0.5rem + 3vw, 3rem);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-xl);
+  }
+
+  .contact-card--form {
+    background: var(--color-bg-muted);
+  }
+
+  .contact-card__title {
+    margin-block-end: var(--space-l);
+    font-size: var(--step-2);
+    font-weight: var(--fw-regular);
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+
+  .contact-card--form :global(h2) {
+    font-size: var(--step-2);
+    font-weight: var(--fw-regular);
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+
+  .contact-card--form :global(input:not([type='checkbox'])),
+  .contact-card--form :global(textarea) {
+    background: var(--color-surface);
+    border-color: transparent;
+    border-radius: var(--radius-md);
+  }
+
+  .contact-card--form :global(input:not([type='checkbox'])) {
+    border-radius: var(--radius-full);
   }
 </style>

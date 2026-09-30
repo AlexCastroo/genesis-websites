@@ -76,49 +76,51 @@ const whatsapp = SITE.contact.whatsapp
     accent={t('services.accent')}
     lead={t('services.lead')}
   >
-    <p class="catalogue-note"><Icon name="leaf" size={16} /> {t('services.note')}</p>
+    <p class="catalogue-note">
+      <Icon name="leaf" size={16} /> {t('services.note')}
+    </p>
   </PageHeader>
 
   <section class="catalogue" aria-labelledby="catalogue-title">
     <div class="container">
-      <h2 id="catalogue-title" class="visually-hidden">{t('meta.services.title')}</h2>
+      <h2 id="catalogue-title" class="visually-hidden">
+        {t('meta.services.title')}
+      </h2>
       <div class="js-only">
-      <div class="catalogue__filters" role="group" aria-label={t('a11y.filterPractices')} data-filter>
-        <button type="button" class="chip" data-value="all" aria-pressed="true">
-          {t('services.filterAll')}
-        </button>
-        {
-          filters.map((category) => (
+        <div
+          class="catalogue__filters"
+          role="group"
+          aria-label={t('a11y.filterPractices')}
+          data-filter
+        >
+          <button type="button" class="chip" data-value="all" aria-pressed="true">
+            {t('services.filterAll')}
+          </button>
+          {filters.map((category) => (
             <button type="button" class="chip" data-value={category} aria-pressed="false">
               {t(`services.category.${category}`)}
             </button>
-          ))
-        }
-      </div>
+          ))}
+        </div>
       </div>
       <p
         class="visually-hidden"
         aria-live="polite"
         data-filter-status
         data-template={t('services.count', { count: '{count}' })}
-      >
-      </p>
+      ></p>
 
       <ul role="list" class="catalogue__grid">
-        {
-          featured && (
-            <li class="catalogue__featured" data-filter-item data-category={featured.data.category}>
-              <DisciplineCard lang={lang} entry={featured} variant="featured" headingLevel={3} />
-            </li>
-          )
-        }
-        {
-          rest.map((service) => (
-            <li data-filter-item data-category={service.data.category}>
-              <DisciplineCard lang={lang} entry={service} headingLevel={3} />
-            </li>
-          ))
-        }
+        {featured && (
+          <li class="catalogue__featured" data-filter-item data-category={featured.data.category}>
+            <DisciplineCard lang={lang} entry={featured} variant="featured" headingLevel={3} />
+          </li>
+        )}
+        {rest.map((service) => (
+          <li data-filter-item data-category={service.data.category}>
+            <DisciplineCard lang={lang} entry={service} headingLevel={3} />
+          </li>
+        ))}
       </ul>
     </div>
   </section>
@@ -128,7 +130,9 @@ const whatsapp = SITE.contact.whatsapp
     <div class="container">
       <div class="compare__card">
         <p class="eyebrow">{t('services.compare.eyebrow')}</p>
-        <h2 id="compare-title" class="compare__title">{t('services.compare.title')}</h2>
+        <h2 id="compare-title" class="compare__title">
+          {t('services.compare.title')}
+        </h2>
         <p class="compare__lead">{t('services.compare.lead')}</p>
         <div class="compare__scroll" role="region" aria-labelledby="compare-title" tabindex="0">
           <table>
@@ -136,38 +140,38 @@ const whatsapp = SITE.contact.whatsapp
             <thead>
               <tr>
                 <th scope="col">{t('services.compare.discipline')}</th>
-                {compareColumns.map((column) => <th scope="col">{t(`services.compare.${column}`)}</th>)}
+                {compareColumns.map((column) => (
+                  <th scope="col">{t(`services.compare.${column}`)}</th>
+                ))}
                 <th scope="col">{t('services.compare.level')}</th>
               </tr>
             </thead>
             <tbody>
-              {
-                services.map((service) => (
-                  <tr>
-                    <th scope="row">
-                      <a href={localizePath('services', lang, entrySlug(service.id))}>
-                        {service.data.title}
-                      </a>
-                    </th>
-                    {compareColumns.map((column) => {
-                      const score = service.data.compare[column];
-                      return (
-                        <td>
-                          <span class="dots" aria-hidden="true">
-                            {[1, 2, 3].map((n) => (
-                              <span class:list={['dot', { 'is-on': n <= score }]} />
-                            ))}
-                          </span>
-                          <span class="visually-hidden">
-                            {t('services.compare.score', { n: score })}
-                          </span>
-                        </td>
-                      );
-                    })}
-                    <td>{service.data.compare.level}</td>
-                  </tr>
-                ))
-              }
+              {services.map((service) => (
+                <tr>
+                  <th scope="row">
+                    <a href={localizePath('services', lang, entrySlug(service.id))}>
+                      {service.data.title}
+                    </a>
+                  </th>
+                  {compareColumns.map((column) => {
+                    const score = service.data.compare[column];
+                    return (
+                      <td>
+                        <span class="dots" aria-hidden="true">
+                          {[1, 2, 3].map((n) => (
+                            <span class:list={['dot', { 'is-on': n <= score }]} />
+                          ))}
+                        </span>
+                        <span class="visually-hidden">
+                          {t('services.compare.score', { n: score })}
+                        </span>
+                      </td>
+                    );
+                  })}
+                  <td>{service.data.compare.level}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -197,20 +201,18 @@ const whatsapp = SITE.contact.whatsapp
           </aside>
         </div>
         <ol role="list" class="first__steps">
-          {
-            steps.map((step) => (
-              <li class="step">
-                <span class="step__number" aria-hidden="true">
-                  0{step.n}
-                </span>
-                <h3>{step.title}</h3>
-                <p class="step__body">{step.body}</p>
-                <p class="step__tag">
-                  <Icon name={step.icon} size={14} /> {step.tag}
-                </p>
-              </li>
-            ))
-          }
+          {steps.map((step) => (
+            <li class="step">
+              <span class="step__number" aria-hidden="true">
+                0{step.n}
+              </span>
+              <h3>{step.title}</h3>
+              <p class="step__body">{step.body}</p>
+              <p class="step__tag">
+                <Icon name={step.icon} size={14} /> {step.tag}
+              </p>
+            </li>
+          ))}
         </ol>
       </div>
     </div>

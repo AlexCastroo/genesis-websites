@@ -1,5 +1,5 @@
 ---
-title: "Respiración lateral: la base del Pilates"
+title: 'Respiración lateral: la base del Pilates'
 description: Qué es la respiración costal lateral, por qué es la base de cada ejercicio de Pilates y un ejercicio sencillo para practicarla en casa.
 translationKey: respiracion-lateral-en-pilates
 published: 2026-09-24

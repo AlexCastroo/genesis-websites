@@ -48,30 +48,28 @@ const owner = SITE.legalName.endsWith('.') ? SITE.legalName : `${SITE.legalName}
     <nav aria-label={t('a11y.footerNav')}>
       <h2 class="site-footer__title">{t('footer.navigation')}</h2>
       <ul role="list">
-        {
-          mainNav.map((item) => (
-            <li>
-              <a href={navHref(item, lang, '')}>{t(item.label)}</a>
-            </li>
-          ))
-        }
-        <li><a href={localizePath('contact', lang)}>{t('nav.contact')}</a></li>
-        <li><a href={localizePath('blog', lang)}>{t('nav.blog')}</a></li>
+        {mainNav.map((item) => (
+          <li>
+            <a href={navHref(item, lang, '')}>{t(item.label)}</a>
+          </li>
+        ))}
+        <li>
+          <a href={localizePath('contact', lang)}>{t('nav.contact')}</a>
+        </li>
+        <li>
+          <a href={localizePath('blog', lang)}>{t('nav.blog')}</a>
+        </li>
       </ul>
     </nav>
 
     <div>
       <h2 class="site-footer__title">{t('footer.practices')}</h2>
       <ul role="list">
-        {
-          services.map((service) => (
-            <li>
-              <a href={localizePath('services', lang, entrySlug(service.id))}>
-                {service.data.title}
-              </a>
-            </li>
-          ))
-        }
+        {services.map((service) => (
+          <li>
+            <a href={localizePath('services', lang, entrySlug(service.id))}>{service.data.title}</a>
+          </li>
+        ))}
       </ul>
     </div>
 
@@ -79,48 +77,48 @@ const owner = SITE.legalName.endsWith('.') ? SITE.legalName : `${SITE.legalName}
       <h2 class="site-footer__title">{t('footer.hours')}</h2>
       <address class="site-footer__contact">
         {address && <p>{address}</p>}
-        {hours.map((line) => <p>{line}</p>)}
+        {hours.map((line) => (
+          <p>{line}</p>
+        ))}
         <p>
-          <a href={`mailto:${SITE.contact.email}`} data-track="contact_email">{SITE.contact.email}</a>
+          <a href={`mailto:${SITE.contact.email}`} data-track="contact_email">
+            {SITE.contact.email}
+          </a>
         </p>
       </address>
-      {
-        socials.length > 0 && (
-          <ul role="list" class="site-footer__social">
-            {socials.map(([network, url]) => (
-              <li>
-                <a href={url} target="_blank" rel="noopener noreferrer me">
-                  {socialLabels[network] ?? network}
-                  <span class="visually-hidden"> {t('a11y.newTab')}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        )
-      }
+      {socials.length > 0 && (
+        <ul role="list" class="site-footer__social">
+          {socials.map(([network, url]) => (
+            <li>
+              <a href={url} target="_blank" rel="noopener noreferrer me">
+                {socialLabels[network] ?? network}
+                <span class="visually-hidden"> {t('a11y.newTab')}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   </div>
 
   <div class="container site-footer__bottom">
-    <p>© {year} {owner} {t('footer.rights')}</p>
+    <p>
+      © {year} {owner} {t('footer.rights')}
+    </p>
     <nav aria-label={t('a11y.legalNav')}>
       <ul role="list">
-        {
-          legal.map((entry) => (
-            <li>
-              <a href={localizePath('legal', lang, entrySlug(entry.id))}>{entry.data.title}</a>
-            </li>
-          ))
-        }
-        {
-          gaEnabled && (
-            <li>
-              <button type="button" class="link-button" data-consent-open>
-                {t('cookies.settings')}
-              </button>
-            </li>
-          )
-        }
+        {legal.map((entry) => (
+          <li>
+            <a href={localizePath('legal', lang, entrySlug(entry.id))}>{entry.data.title}</a>
+          </li>
+        ))}
+        {gaEnabled && (
+          <li>
+            <button type="button" class="link-button" data-consent-open>
+              {t('cookies.settings')}
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   </div>

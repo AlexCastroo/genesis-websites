@@ -1,6 +1,6 @@
 ---
 title: Mat Flow & Sculpt
-seoTitle: "Mat Flow & Sculpt: Pilates en esterilla"
+seoTitle: 'Mat Flow & Sculpt: Pilates en esterilla'
 description: Mat Pilates con aro, overball y bandas en grupos reducidos en Salamanca, Madrid. Control respiratorio, longitud muscular y tono en 50 minutos.
 translationKey: mat-flow-sculpt
 order: 2

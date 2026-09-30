@@ -12,19 +12,17 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
 ---
 
 <div class="faq-list">
-  {
-    items.map((item) => (
-      <details class="faq">
-        <summary>
-          <Heading class="faq__q">{item.q}</Heading>
-          <Icon name="chevron-down" size={18} class="faq__chevron" />
-        </summary>
-        <div class="faq__a">
-          <p>{item.a}</p>
-        </div>
-      </details>
-    ))
-  }
+  {items.map((item) => (
+    <details class="faq">
+      <summary>
+        <Heading class="faq__q">{item.q}</Heading>
+        <Icon name="chevron-down" size={18} class="faq__chevron" />
+      </summary>
+      <div class="faq__a">
+        <p>{item.a}</p>
+      </div>
+    </details>
+  ))}
 </div>
 
 <style>

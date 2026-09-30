@@ -2,7 +2,15 @@ import { describe, expect, it } from 'vitest';
 import { formatOpeningDays } from './hours';
 
 const name = (day: string) =>
-  ({ Mo: 'lunes', Tu: 'martes', We: 'miércoles', Th: 'jueves', Fr: 'viernes', Sa: 'sábado', Su: 'domingo' })[day]!;
+  ({
+    Mo: 'lunes',
+    Tu: 'martes',
+    We: 'miércoles',
+    Th: 'jueves',
+    Fr: 'viernes',
+    Sa: 'sábado',
+    Su: 'domingo',
+  })[day]!;
 
 describe('formatOpeningDays', () => {
   it('collapses three or more consecutive days into a range', () => {

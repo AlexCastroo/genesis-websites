@@ -2,6 +2,8 @@
 import { SITE } from '../../config/site';
 import type { Lang } from '../../i18n/config';
 import { useTranslations } from '../../i18n/utils';
+import { formatOpeningDays } from '../../lib/hours';
+import { whatsappLink } from '../../lib/whatsapp';
 import Icon from '../ui/Icon.astro';
 
 interface Props {
@@ -12,45 +14,33 @@ const { lang } = Astro.props;
 const t = useTranslations(lang);
 const { contact, address, openingHours } = SITE;
 const phoneHref = contact.phone ? `tel:${contact.phone.replace(/[^\d+]/g, '')}` : undefined;
-const whatsappHref = contact.whatsapp ? `https://wa.me/${contact.whatsapp}` : undefined;
+const whatsappHref = contact.whatsapp
+  ? whatsappLink(contact.whatsapp, t('whatsapp.general'))
+  : undefined;
 const addressText = address
-  ? [address.street, `${address.postalCode} ${address.locality}`, address.region]
-      .filter(Boolean)
-      .join(', ')
+  ? [address.street, `${address.postalCode} ${address.locality}`].join(', ')
   : undefined;
 const mapHref = addressText
   ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${SITE.name}, ${addressText}`)}`
   : undefined;
+const hours = (openingHours ?? []).map((slot) => ({
+  days: formatOpeningDays(slot.days, (day) => t(`days.${day}`), {
+    to: t('common.to'),
+    and: t('common.and'),
+  }),
+  time: `${slot.opens} – ${slot.closes}`,
+}));
 ---
 
 <address class="contact-info">
   <dl>
-    <div>
-      <dt>
-        <Icon name="mail" /> {t('contact.email')}
-      </dt>
-      <dd>
-        <a href={`mailto:${contact.email}`} data-track="contact_email">
-          {contact.email}
-        </a>
-      </dd>
-    </div>
-    {phoneHref && (
-      <div>
-        <dt>
-          <Icon name="phone" /> {t('contact.phone')}
-        </dt>
-        <dd>
-          <a href={phoneHref} data-track="contact_phone">
-            {contact.phone}
-          </a>
-        </dd>
-      </div>
-    )}
     {whatsappHref && (
       <div>
         <dt>
-          <Icon name="chat" /> {t('contact.whatsapp')}
+          <span class="icon-circle">
+            <Icon name="whatsapp" />
+          </span>
+          {t('contact.whatsapp')}
         </dt>
         <dd>
           <a
@@ -59,16 +49,47 @@ const mapHref = addressText
             rel="noopener noreferrer"
             data-track="contact_whatsapp"
           >
-            +{contact.whatsapp}
+            {t('cta.whatsapp')}
             <span class="visually-hidden"> {t('a11y.newTab')}</span>
           </a>
         </dd>
       </div>
     )}
+    {phoneHref && (
+      <div>
+        <dt>
+          <span class="icon-circle">
+            <Icon name="phone" />
+          </span>
+          {t('contact.phone')}
+        </dt>
+        <dd>
+          <a href={phoneHref} data-track="contact_phone">
+            {contact.phone}
+          </a>
+        </dd>
+      </div>
+    )}
+    <div>
+      <dt>
+        <span class="icon-circle">
+          <Icon name="mail" />
+        </span>
+        {t('contact.email')}
+      </dt>
+      <dd>
+        <a href={`mailto:${contact.email}`} data-track="contact_email">
+          {contact.email}
+        </a>
+      </dd>
+    </div>
     {addressText && (
       <div>
         <dt>
-          <Icon name="map-pin" /> {t('contact.address')}
+          <span class="icon-circle">
+            <Icon name="map-pin" />
+          </span>
+          {t('contact.address')}
         </dt>
         <dd>
           {addressText}
@@ -80,16 +101,19 @@ const mapHref = addressText
         </dd>
       </div>
     )}
-    {openingHours && openingHours.length > 0 && (
+    {hours.length > 0 && (
       <div>
         <dt>
-          <Icon name="clock" /> {t('contact.hours')}
+          <span class="icon-circle">
+            <Icon name="clock" />
+          </span>
+          {t('contact.hours')}
         </dt>
         <dd>
           <ul role="list">
-            {openingHours.map((hours) => (
+            {hours.map((slot) => (
               <li>
-                {hours.days.map((day) => t(`days.${day}`)).join(', ')}: {hours.opens}–{hours.closes}
+                {slot.days}: {slot.time}
               </li>
             ))}
           </ul>
@@ -109,15 +133,28 @@ const mapHref = addressText
     gap: var(--space-m);
   }
 
+  dl > div {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    column-gap: var(--space-s);
+  }
+
   dt {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2xs);
-    font-weight: var(--fw-semibold);
+    display: contents;
+    font-weight: var(--fw-medium);
+  }
+
+  dt :global(.icon-circle) {
+    grid-row: span 2;
   }
 
   dd {
-    margin-inline-start: calc(20px + var(--space-2xs));
+    grid-column: 2;
+    font-size: var(--step--1);
     color: var(--color-text-muted);
+  }
+
+  dd a {
+    color: var(--color-text);
   }
 </style>

@@ -18,7 +18,9 @@ const [plans, privacy] = await Promise.all([getPlans(), findLegal(lang, 'privacy
 const slots = (['morning', 'midday', 'evening', 'saturday'] as const).map((slot) =>
   t(`form.slot.${slot}`),
 );
-const phoneHref = SITE.contact.phone ? `tel:${SITE.contact.phone.replace(/[^\d+]/g, '')}` : undefined;
+const phoneHref = SITE.contact.phone
+  ? `tel:${SITE.contact.phone.replace(/[^\d+]/g, '')}`
+  : undefined;
 const whatsapp = SITE.contact.whatsapp
   ? whatsappLink(SITE.contact.whatsapp, t('whatsapp.general'))
   : undefined;
@@ -27,100 +29,107 @@ const whatsapp = SITE.contact.whatsapp
 <section id="solicitud" class="request" aria-labelledby="request-title">
   <div class="request__head">
     <p class="eyebrow">{t('form.eyebrow')}</p>
-    <span class="request__mark" aria-hidden="true">M</span>
+    <span class="request__mark" aria-hidden="true">
+      M
+    </span>
   </div>
-  <h2 id="request-title" class="request__title">{t('form.title')}</h2>
+  <h2 id="request-title" class="request__title">
+    {t('form.title')}
+  </h2>
   <p class="request__lead">{endpoint ? t('form.lead') : t('form.noEndpoint')}</p>
 
-  {
-    endpoint ? (
-      <form
-        class="request__form"
-        method="post"
-        action={endpoint}
-        data-contact-form
-        data-msg-sending={t('contact.form.sending')}
-        data-msg-success={t('form.success')}
-        data-msg-error={t('contact.form.error')}
-      >
-        <div class="field field--full">
-          <label for="rq-name">{t('contact.form.name')}</label>
-          <input id="rq-name" name="name" type="text" autocomplete="name" required />
-        </div>
-        <div class="field">
-          <label for="rq-phone">{t('contact.form.phone')}</label>
-          <input id="rq-phone" name="phone" type="tel" autocomplete="tel" required />
-        </div>
-        <div class="field">
-          <label for="rq-email">{t('contact.form.email')}</label>
-          <input id="rq-email" name="email" type="email" autocomplete="email" required />
-        </div>
-        <div class="field">
-          <label for="rq-interest">{t('form.interest')}</label>
-          <select id="rq-interest" name="interest">
-            {plans.map((plan) => (
-              <option value={plan.data.translationKey}>
-                {plan.data.name} ({plan.data.price} €)
-              </option>
-            ))}
-          </select>
-        </div>
-        <div class="field">
-          <label for="rq-slot">{t('form.slot')}</label>
-          <select id="rq-slot" name="slot">
-            {slots.map((slot) => (
-              <option>{slot}</option>
-            ))}
-          </select>
-        </div>
-        <div class="request__honeypot" aria-hidden="true">
-          <label for="rq-website">Website</label>
-          <input id="rq-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
-        </div>
-        <div class="field field--full request__consent">
-          <input id="rq-privacy" name="privacy" type="checkbox" value="accepted" required />
-          <label for="rq-privacy">
-            {t('contact.form.privacy')}{' '}
-            {privacy ? (
-              <a href={localizePath('legal', lang, entrySlug(privacy.id))}>
-                {t('contact.form.privacyLink')}
-              </a>
-            ) : (
-              t('contact.form.privacyLink')
-            )}
-          </label>
-        </div>
-        <button type="submit" class="btn btn--primary btn--block field--full">
-          {t('form.submit')}
-          <Icon name="arrow-right" size={16} />
-        </button>
-        <p class="request__status field--full" role="status" aria-live="polite" data-form-status />
-      </form>
-    ) : (
-      <ul role="list" class="request__contact">
-        {whatsapp && (
-          <li>
-            <a href={whatsapp} class="btn btn--primary btn--block" target="_blank" rel="noopener noreferrer">
-              <Icon name="whatsapp" size={18} /> {t('cta.whatsapp')}
-              <span class="visually-hidden"> {t('a11y.newTab')}</span>
+  {endpoint ? (
+    <form
+      class="request__form"
+      method="post"
+      action={endpoint}
+      data-contact-form
+      data-msg-sending={t('contact.form.sending')}
+      data-msg-success={t('form.success')}
+      data-msg-error={t('contact.form.error')}
+    >
+      <div class="field field--full">
+        <label for="rq-name">{t('contact.form.name')}</label>
+        <input id="rq-name" name="name" type="text" autocomplete="name" required />
+      </div>
+      <div class="field">
+        <label for="rq-phone">{t('contact.form.phone')}</label>
+        <input id="rq-phone" name="phone" type="tel" autocomplete="tel" required />
+      </div>
+      <div class="field">
+        <label for="rq-email">{t('contact.form.email')}</label>
+        <input id="rq-email" name="email" type="email" autocomplete="email" required />
+      </div>
+      <div class="field">
+        <label for="rq-interest">{t('form.interest')}</label>
+        <select id="rq-interest" name="interest">
+          {plans.map((plan) => (
+            <option value={plan.data.translationKey}>
+              {plan.data.name} ({plan.data.price} €)
+            </option>
+          ))}
+        </select>
+      </div>
+      <div class="field">
+        <label for="rq-slot">{t('form.slot')}</label>
+        <select id="rq-slot" name="slot">
+          {slots.map((slot) => (
+            <option>{slot}</option>
+          ))}
+        </select>
+      </div>
+      <div class="request__honeypot" aria-hidden="true">
+        <label for="rq-website">Website</label>
+        <input id="rq-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <div class="field field--full request__consent">
+        <input id="rq-privacy" name="privacy" type="checkbox" value="accepted" required />
+        <label for="rq-privacy">
+          {t('contact.form.privacy')}{' '}
+          {privacy ? (
+            <a href={localizePath('legal', lang, entrySlug(privacy.id))}>
+              {t('contact.form.privacyLink')}
             </a>
-          </li>
-        )}
-        {phoneHref && (
-          <li>
-            <a href={phoneHref} class="btn btn--secondary btn--block">
-              <Icon name="phone" size={18} /> {SITE.contact.phone}
-            </a>
-          </li>
-        )}
+          ) : (
+            t('contact.form.privacyLink')
+          )}
+        </label>
+      </div>
+      <button type="submit" class="btn btn--primary btn--block field--full">
+        {t('form.submit')}
+        <Icon name="arrow-right" size={16} />
+      </button>
+      <p class="request__status field--full" role="status" aria-live="polite" data-form-status />
+    </form>
+  ) : (
+    <ul role="list" class="request__contact">
+      {whatsapp && (
         <li>
-          <a href={`mailto:${SITE.contact.email}`} class="btn btn--secondary btn--block">
-            <Icon name="mail" size={18} /> {SITE.contact.email}
+          <a
+            href={whatsapp}
+            class="btn btn--primary btn--block"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Icon name="whatsapp" size={18} /> {t('cta.whatsapp')}
+            <span class="visually-hidden"> {t('a11y.newTab')}</span>
           </a>
         </li>
-      </ul>
-    )
-  }
+      )}
+      {phoneHref && (
+        <li>
+          <a href={phoneHref} class="btn btn--secondary btn--block">
+            <Icon name="phone" size={18} /> {SITE.contact.phone}
+          </a>
+        </li>
+      )}
+      <li>
+        <a href={`mailto:${SITE.contact.email}`} class="btn btn--secondary btn--block">
+          <Icon name="mail" size={18} /> {SITE.contact.email}
+        </a>
+      </li>
+    </ul>
+  )}
 
   <p class="request__note">
     <Icon name="shield-check" size={16} />

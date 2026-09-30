@@ -32,82 +32,84 @@ const statusLabel = (spots: number) => {
       <div class="schedule__header">
         <div>
           <p class="eyebrow">{t('pricing.schedule.eyebrow')}</p>
-          <h2 id="schedule-title" class="schedule__title">{t('pricing.schedule.title')}</h2>
+          <h2 id="schedule-title" class="schedule__title">
+            {t('pricing.schedule.title')}
+          </h2>
           <p class="schedule__lead">{t('pricing.schedule.lead')}</p>
         </div>
         <div class="js-only">
           <div class="schedule__days" data-tablist aria-label={t('a11y.days')}>
-            {
-              days.map(({ day }) => (
-                <button type="button" class="day" data-tab={day}>
-                  <span aria-hidden="true">{t(`daysShort.${day}`)}</span>
-                  <span class="visually-hidden">{t(`days.${day}`)}</span>
-                </button>
-              ))
-            }
+            {days.map(({ day }) => (
+              <button type="button" class="day" data-tab={day}>
+                <span aria-hidden="true">{t(`daysShort.${day}`)}</span>
+                <span class="visually-hidden">{t(`days.${day}`)}</span>
+              </button>
+            ))}
           </div>
         </div>
       </div>
 
-      {
-        days.map(({ day, bands }) => (
-          <div class="schedule__panel" data-tab-panel={day}>
-            <h3 class="schedule__day" data-tab-title>
-              {t(`days.${day}`)}
-            </h3>
-            {bands.map(({ band, slots }) => (
-              <div class="band">
-                <h4 class="band__title">
-                  <Icon name={bandIcon[band]} size={16} />
-                  {t(`pricing.band.${band}`)}
-                </h4>
-                <ul role="list" class="band__slots">
-                  {slots.map((slot) => {
-                    const status = spotsStatus(slot.spots);
-                    const action =
-                      status.action === 'waitlist'
-                        ? t('pricing.action.waitlist')
-                        : t('pricing.action.book');
-                    const vars = { className: slot.className, day: t(`days.${day}`), time: slot.time };
-                    const message =
-                      status.action === 'waitlist'
-                        ? t('whatsapp.waitlist', vars)
-                        : t('whatsapp.book', vars);
-                    const href = phone ? whatsappLink(phone, message) : fallback;
-                    return (
-                      <li class="slot">
-                        <div class="slot__top">
-                          <p class="slot__time">{slot.time}</p>
-                          <p class="slot__class">{slot.className}</p>
-                        </div>
-                        <p class="slot__instructor">{slot.instructor}</p>
-                        <div class="slot__bottom">
-                          <p class:list={['slot__status', `slot__status--${status.tone}`]}>
-                            <span class="slot__dot" aria-hidden="true" />
-                            {statusLabel(slot.spots)}
-                          </p>
-                          <a
-                            href={href}
-                            class="slot__action"
-                            data-track={`schedule_${status.action}`}
-                            {...(phone ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                          >
-                            <span aria-hidden="true">{action}</span>
-                            <span class="visually-hidden">
-                              {t('pricing.action.label', { action, ...vars })}
-                              {phone && ` ${t('a11y.newTab')}`}
-                            </span>
-                          </a>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ))}
-          </div>
-        ))
-      }
+      {days.map(({ day, bands }) => (
+        <div class="schedule__panel" data-tab-panel={day}>
+          <h3 class="schedule__day" data-tab-title>
+            {t(`days.${day}`)}
+          </h3>
+          {bands.map(({ band, slots }) => (
+            <div class="band">
+              <h4 class="band__title">
+                <Icon name={bandIcon[band]} size={16} />
+                {t(`pricing.band.${band}`)}
+              </h4>
+              <ul role="list" class="band__slots">
+                {slots.map((slot) => {
+                  const status = spotsStatus(slot.spots);
+                  const action =
+                    status.action === 'waitlist'
+                      ? t('pricing.action.waitlist')
+                      : t('pricing.action.book');
+                  const vars = {
+                    className: slot.className,
+                    day: t(`days.${day}`),
+                    time: slot.time,
+                  };
+                  const message =
+                    status.action === 'waitlist'
+                      ? t('whatsapp.waitlist', vars)
+                      : t('whatsapp.book', vars);
+                  const href = phone ? whatsappLink(phone, message) : fallback;
+                  return (
+                    <li class="slot">
+                      <div class="slot__top">
+                        <p class="slot__time">{slot.time}</p>
+                        <p class="slot__class">{slot.className}</p>
+                      </div>
+                      <p class="slot__instructor">{slot.instructor}</p>
+                      <div class="slot__bottom">
+                        <p class:list={['slot__status', `slot__status--${status.tone}`]}>
+                          <span class="slot__dot" aria-hidden="true" />
+                          {statusLabel(slot.spots)}
+                        </p>
+                        <a
+                          href={href}
+                          class="slot__action"
+                          data-track={`schedule_${status.action}`}
+                          {...(phone ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        >
+                          <span aria-hidden="true">{action}</span>
+                          <span class="visually-hidden">
+                            {t('pricing.action.label', { action, ...vars })}
+                            {phone && ` ${t('a11y.newTab')}`}
+                          </span>
+                        </a>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   </div>
 </section>

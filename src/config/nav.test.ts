@@ -13,14 +13,14 @@ describe('navHref', () => {
   });
 
   it('appends an in-page anchor to the route', () => {
-    expect(navHref({ route: 'pricing', href: '#solicitud', label: 'cta.trial' }, defaultLocale, wa)).toBe(
-      `${localizePath('pricing', defaultLocale)}#solicitud`,
-    );
+    expect(
+      navHref({ route: 'pricing', href: '#solicitud', label: 'cta.trial' }, defaultLocale, wa),
+    ).toBe(`${localizePath('pricing', defaultLocale)}#solicitud`);
   });
 
   it('uses the WhatsApp link for the whatsapp placeholder', () => {
-    expect(navHref({ href: 'whatsapp', label: 'nav.whatsapp', external: true }, defaultLocale, wa)).toBe(
-      wa,
-    );
+    expect(
+      navHref({ href: 'whatsapp', label: 'nav.whatsapp', external: true }, defaultLocale, wa),
+    ).toBe(wa);
   });
 });

@@ -67,7 +67,13 @@ const schema = [
   publishedTime={published.toISOString()}
   modifiedTime={(updated ?? published).toISOString()}
 >
-  <PageHeader lang={lang} crumbs={crumbs} title={title} lead={description}>
+  <PageHeader
+    lang={lang}
+    crumbs={crumbs}
+    eyebrow={t('blog.eyebrow')}
+    title={title}
+    lead={description}
+  >
     <p class="cluster post-meta">
       <span>
         {t('blog.by')} {author}

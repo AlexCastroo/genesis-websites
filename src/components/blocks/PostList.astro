@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import type { Lang } from '../../i18n/config';
 import { localizePath, useTranslations } from '../../i18n/utils';
 import { entrySlug } from '../../lib/content';
 import { formatDate, toIsoDate } from '../../lib/dates';
+import Icon from '../ui/Icon.astro';
 
 interface Props {
   lang: Lang;
@@ -23,15 +25,29 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
     {posts.map((post) => (
       <li class="reveal">
         <article class="post-card">
-          <Heading class="post-card__title">
-            <a href={localizePath('blog', lang, entrySlug(post.id))}>{post.data.title}</a>
-          </Heading>
-          <p class="post-card__meta">
-            <time datetime={toIsoDate(post.data.published)}>
-              {formatDate(post.data.published, lang)}
-            </time>
-          </p>
-          <p>{post.data.description}</p>
+          {post.data.image && (
+            <Image
+              src={post.data.image}
+              alt={post.data.imageAlt ?? ''}
+              widths={[400, 700]}
+              sizes="(min-width: 900px) 40vw, 100vw"
+              class="post-card__img"
+            />
+          )}
+          <div class="post-card__body">
+            <p class="post-card__meta">
+              <time datetime={toIsoDate(post.data.published)}>
+                {formatDate(post.data.published, lang)}
+              </time>
+            </p>
+            <Heading class="post-card__title">
+              <a href={localizePath('blog', lang, entrySlug(post.id))}>{post.data.title}</a>
+            </Heading>
+            <p class="post-card__text">{post.data.description}</p>
+            <p class="post-card__more" aria-hidden="true">
+              <Icon name="arrow-right" size={16} />
+            </p>
+          </div>
         </article>
       </li>
     ))}
@@ -41,19 +57,65 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
 <style>
   .post-list {
     display: grid;
-    gap: var(--space-l);
-    max-width: var(--container-narrow);
+    gap: var(--space-m);
+  }
+
+  @media (min-width: 900px) {
+    .post-list {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .post-card {
+    position: relative;
+    display: grid;
+    gap: var(--space-s);
+    height: 100%;
+    padding: var(--space-s);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
+    transition:
+      box-shadow var(--duration-base) var(--ease-out),
+      transform var(--duration-base) var(--ease-out);
+  }
+
+  .post-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+
+  .post-card:has(a:focus-visible) {
+    outline: var(--focus-ring);
+    outline-offset: var(--focus-offset);
+  }
+
+  .post-card :global(.post-card__img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+  }
+
+  .post-card__body {
     display: grid;
     gap: var(--space-2xs);
-    padding-block-end: var(--space-l);
-    border-bottom: var(--border-width) solid var(--color-border);
+    padding: var(--space-2xs) var(--space-xs) var(--space-xs);
+  }
+
+  .post-card__meta {
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
   }
 
   .post-card__title {
     font-size: var(--step-2);
+    font-weight: var(--fw-regular);
+    letter-spacing: 0.01em;
+    text-transform: none;
   }
 
   .post-card__title a {
@@ -61,12 +123,23 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
     text-decoration: none;
   }
 
-  .post-card__title a:hover {
-    text-decoration: underline;
+  .post-card__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
   }
 
-  .post-card__meta {
+  .post-card__title a:focus-visible {
+    outline: none;
+  }
+
+  .post-card__text {
     font-size: var(--step--1);
     color: var(--color-text-muted);
+  }
+
+  .post-card__more {
+    color: var(--color-eyebrow);
   }
 </style>

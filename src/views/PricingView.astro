@@ -77,34 +77,32 @@ const schema = [
   <!-- Plans -->
   <section class="plans" aria-labelledby="plans-title">
     <div class="container" data-tabs>
-      <h2 id="plans-title" class="visually-hidden">{t('pricing.plans.title')}</h2>
+      <h2 id="plans-title" class="visually-hidden">
+        {t('pricing.plans.title')}
+      </h2>
       <div class="js-only">
         <div class="plans__tabs" data-tablist aria-label={t('a11y.planGroups')}>
-          {
-            groups.map(({ group, label }) => (
-              <button type="button" class="plans__tab" data-tab={group}>
-                {label}
-              </button>
-            ))
-          }
+          {groups.map(({ group, label }) => (
+            <button type="button" class="plans__tab" data-tab={group}>
+              {label}
+            </button>
+          ))}
         </div>
       </div>
-      {
-        groups.map(({ group, label, plans: groupPlans }) => (
-          <div class="plans__panel" data-tab-panel={group}>
-            <h3 class="plans__group" data-tab-title>
-              {label}
-            </h3>
-            <ul role="list" class="plans__grid">
-              {groupPlans.map((plan) => (
-                <li>
-                  <PlanCard lang={lang} plan={plan} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))
-      }
+      {groups.map(({ group, label, plans: groupPlans }) => (
+        <div class="plans__panel" data-tab-panel={group}>
+          <h3 class="plans__group" data-tab-title>
+            {label}
+          </h3>
+          <ul role="list" class="plans__grid">
+            {groupPlans.map((plan) => (
+              <li>
+                <PlanCard lang={lang} plan={plan} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -113,7 +111,9 @@ const schema = [
     <div class="container">
       <div class="commitment__card">
         <div class="commitment__text">
-          <h2 id="commitment-title" class="eyebrow">{t('pricing.commitment.title')}</h2>
+          <h2 id="commitment-title" class="eyebrow">
+            {t('pricing.commitment.title')}
+          </h2>
           <blockquote class="commitment__quote">
             <p>“{t('pricing.commitment.quote')}”</p>
           </blockquote>
@@ -146,7 +146,9 @@ const schema = [
     <div class="container closing__grid">
       <div class="closing__faq">
         <p class="eyebrow">{t('pricing.faq.eyebrow')}</p>
-        <h2 id="pricing-faq-title" class="closing__title">{t('pricing.faq.title')}</h2>
+        <h2 id="pricing-faq-title" class="closing__title">
+          {t('pricing.faq.title')}
+        </h2>
         <p class="closing__lead">{t('pricing.faq.lead')}</p>
         <FaqList items={pricingFaqs} />
       </div>

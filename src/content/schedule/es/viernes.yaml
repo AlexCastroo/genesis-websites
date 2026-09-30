@@ -1,43 +1,43 @@
-translationKey: "viernes"
-day: "Fr"
+translationKey: 'viernes'
+day: 'Fr'
 slots:
-  - time: "07:30"
-    className: "Estiramiento Miofascial"
-    instructor: "Carmen Soler"
-    band: "morning"
+  - time: '07:30'
+    className: 'Estiramiento Miofascial'
+    instructor: 'Carmen Soler'
+    band: 'morning'
     spots: 2
-  - time: "09:00"
-    className: "Reformer Athletic"
-    instructor: "Lucía Gómez"
-    band: "morning"
+  - time: '09:00'
+    className: 'Reformer Athletic'
+    instructor: 'Lucía Gómez'
+    band: 'morning'
     spots: 3
-  - time: "10:30"
-    className: "Reformer Dynamic"
-    instructor: "Elena Mas"
-    band: "morning"
+  - time: '10:30'
+    className: 'Reformer Dynamic'
+    instructor: 'Elena Mas'
+    band: 'morning'
     spots: 1
-  - time: "13:30"
-    className: "Restorative Yin Yoga"
-    instructor: "Sofía Serrano"
-    band: "midday"
+  - time: '13:30'
+    className: 'Restorative Yin Yoga'
+    instructor: 'Sofía Serrano'
+    band: 'midday'
     spots: 4
-  - time: "14:30"
-    className: "Reformer Flow"
-    instructor: "David Nogués"
-    band: "midday"
+  - time: '14:30'
+    className: 'Reformer Flow'
+    instructor: 'David Nogués'
+    band: 'midday'
     spots: 2
-  - time: "17:30"
-    className: "Mat Pilates Core"
-    instructor: "Carmen Soler"
-    band: "evening"
+  - time: '17:30'
+    className: 'Mat Pilates Core'
+    instructor: 'Carmen Soler'
+    band: 'evening'
     spots: 4
-  - time: "18:45"
-    className: "Reformer Alignment"
-    instructor: "Lucía Gómez"
-    band: "evening"
+  - time: '18:45'
+    className: 'Reformer Alignment'
+    instructor: 'Lucía Gómez'
+    band: 'evening'
     spots: 0
-  - time: "20:00"
-    className: "Express Reformer"
-    instructor: "Elena Mas"
-    band: "evening"
+  - time: '20:00'
+    className: 'Express Reformer'
+    instructor: 'Elena Mas'
+    band: 'evening'
     spots: 3

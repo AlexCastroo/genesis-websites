@@ -1,16 +1,16 @@
-translationKey: "bono-10"
-group: "bonos"
+translationKey: 'bono-10'
+group: 'bonos'
 order: 3
-eyebrow: "Opción más elegida"
-icon: "star"
-name: "Bono 10 Sesiones"
-description: "Para cultivar una práctica constante y percibir la transformación biomecánica profunda en tu postura."
+eyebrow: 'Opción más elegida'
+icon: 'star'
+name: 'Bono 10 Sesiones'
+description: 'Para cultivar una práctica constante y percibir la transformación biomecánica profunda en tu postura.'
 price: 210
-priceNote: "/ bono (21 € por clase)"
+priceNote: '/ bono (21 € por clase)'
 features:
-  - "Válido durante 4 meses"
-  - "1 sesión de recuperación gratuita incluida"
-  - "Reserva prioritaria con 14 días de antelación"
-  - "Acceso a locker privado durante tu estancia"
-cta: "Comprar Bono 10"
-highlight: "dark"
+  - 'Válido durante 4 meses'
+  - '1 sesión de recuperación gratuita incluida'
+  - 'Reserva prioritaria con 14 días de antelación'
+  - 'Acceso a locker privado durante tu estancia'
+cta: 'Comprar Bono 10'
+highlight: 'dark'

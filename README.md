@@ -36,6 +36,23 @@ Plantilla Astro para arrancar la web de **cualquier negocio** con SEO técnico, 
 | Imágenes de marca                                                                          | `public/` (favicon, logo, OG) y `src/assets/`                         |
 | Analítica / formulario                                                                     | `.env` (ver `.env.example`)                                           |
 
+## Proyecto: MOVA Pilates (rama `feat/pilates-mova`)
+
+Web del estudio boutique MOVA construida sobre esta base a partir del diseño de Google Stitch (referencia en `docs/design/stitch/`: HTML original, textos y capturas de las 4 pantallas).
+
+| Qué actualizar                                                               | Dónde                                                 |
+| ---------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Disciplinas (texto, precio, duración, intensidad, comparativa)               | `src/content/services/es/*.md`                        |
+| Tarifas y bonos (la clase de prueba `trial` fija el precio de todos los CTA) | `src/content/plans/es/*.yaml`                         |
+| Horario semanal y plazas (`spots: 0` = completo, `1` = última plaza)         | `src/content/schedule/es/<dia>.yaml`                  |
+| Instructoras, testimonios y espacios                                         | `src/content/{team,testimonials,spaces}/es/*.yaml`    |
+| Textos de las páginas                                                        | `src/i18n/ui/es.ts`                                   |
+| Paleta y tipografía MOVA                                                     | `src/styles/tokens.css`, fuentes en `astro.config.ts` |
+| Imágenes (de maqueta, generadas por IA)                                      | `src/assets/mova/` — sustituir por fotos reales       |
+| Iconos, logo e imagen OG                                                     | `pnpm tsx scripts/generate-placeholders.ts`           |
+
+Comprobación visual local: `pnpm build && pnpm preview` y en otra terminal `pnpm screenshot disciplinas --width=375` (capturas en `.superpowers/shots/`).
+
 ## Documentación
 
 - [Crear un proyecto nuevo desde la base](docs/new-project.md)

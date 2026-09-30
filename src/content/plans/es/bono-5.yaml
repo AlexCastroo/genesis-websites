@@ -1,15 +1,15 @@
-translationKey: "bono-5"
-group: "bonos"
+translationKey: 'bono-5'
+group: 'bonos'
 order: 2
-eyebrow: "Flexibilidad"
-icon: "meditation"
-name: "Bono 5 Sesiones"
-description: "Ideal para compaginar el movimiento consciente con viajes regulares o agendas dinámicas."
+eyebrow: 'Flexibilidad'
+icon: 'meditation'
+name: 'Bono 5 Sesiones'
+description: 'Ideal para compaginar el movimiento consciente con viajes regulares o agendas dinámicas.'
 price: 120
-priceNote: "/ bono completo (24 € por clase)"
+priceNote: '/ bono completo (24 € por clase)'
 features:
-  - "Válido durante 2 meses"
-  - "Cancelación flexible hasta 12 horas antes"
-  - "Válido para Reformer, Mat y Yoga Flow"
-cta: "Adquirir Bono 5"
-highlight: "none"
+  - 'Válido durante 2 meses'
+  - 'Cancelación flexible hasta 12 horas antes'
+  - 'Válido para Reformer, Mat y Yoga Flow'
+cta: 'Adquirir Bono 5'
+highlight: 'none'

@@ -36,7 +36,9 @@ if (!chrome) {
 // Chrome exits 0 even when the page fails to load: check the server first.
 const probe = await fetch(`${base}${path}`).catch(() => undefined);
 if (!probe?.ok) {
-  console.error(`${base}${path} is not reachable (HTTP ${probe?.status ?? 'no response'}). Start pnpm preview first.`);
+  console.error(
+    `${base}${path} is not reachable (HTTP ${probe?.status ?? 'no response'}). Start pnpm preview first.`,
+  );
   process.exit(1);
 }
 

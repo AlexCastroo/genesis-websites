@@ -42,7 +42,9 @@ export async function findLegal(
   return (await getLegal(lang)).find((entry) => entry.data.translationKey === translationKey);
 }
 
-export async function getPlans(group?: 'bonos' | 'membresias'): Promise<CollectionEntry<'plans'>[]> {
+export async function getPlans(
+  group?: 'bonos' | 'membresias',
+): Promise<CollectionEntry<'plans'>[]> {
   const entries = await getCollection('plans', (entry) => !group || entry.data.group === group);
   const groupOrder = ['bonos', 'membresias'];
   return entries.sort(

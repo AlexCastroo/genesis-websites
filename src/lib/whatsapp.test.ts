@@ -8,7 +8,10 @@ describe('whatsappLink', () => {
 
   it('url-encodes the prefilled message, including accents and symbols', () => {
     expect(
-      whatsappLink('34600000000', 'Hola, quiero reservar Mat & Core el miércoles a las 09:00 +info'),
+      whatsappLink(
+        '34600000000',
+        'Hola, quiero reservar Mat & Core el miércoles a las 09:00 +info',
+      ),
     ).toBe(
       'https://wa.me/34600000000?text=Hola%2C%20quiero%20reservar%20Mat%20%26%20Core%20el%20mi%C3%A9rcoles%20a%20las%2009%3A00%20%2Binfo',
     );

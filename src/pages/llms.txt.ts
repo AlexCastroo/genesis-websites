@@ -4,17 +4,18 @@ import { defaultLocale, localeCodes, locales } from '../i18n/config';
 import { localizePath, useTranslations } from '../i18n/utils';
 import { entrySlug } from '../lib/content';
 import { buildLlms } from '../lib/llms';
-import { getFaqs, getPosts, getServices } from '../lib/queries';
+import { getFaqs, getPlans, getPosts, getServices } from '../lib/queries';
 import { absoluteUrl } from '../lib/seo';
 
 export const GET: APIRoute = async () => {
   const lang = defaultLocale;
   const t = useTranslations(lang);
   const url = (path: string) => absoluteUrl(SITE.url, path);
-  const [services, faqs, posts] = await Promise.all([
+  const [services, faqs, posts, plans] = await Promise.all([
     getServices(lang),
     getFaqs(lang),
     getPosts(lang),
+    getPlans(),
   ]);
   const address = SITE.address
     ? `${SITE.address.street}, ${SITE.address.postalCode} ${SITE.address.locality}, ${SITE.address.country}`
@@ -40,7 +41,7 @@ export const GET: APIRoute = async () => {
     services: services.map((service) => ({
       title: service.data.title,
       url: url(localizePath('services', lang, entrySlug(service.id))),
-      note: service.data.summary,
+      note: `${service.data.summary} Price: ${service.data.price} EUR ${service.data.priceNote}.`,
     })),
     faqs: faqs.map((faq) => ({ q: faq.data.q, a: faq.data.a })),
     posts: posts.slice(0, 10).map((post) => ({
@@ -54,6 +55,19 @@ export const GET: APIRoute = async () => {
       `Contact page: ${url(localizePath('contact', lang))}`,
       ...Object.values(SITE.social).filter(Boolean),
     ].filter((item): item is string => Boolean(item)),
+    extra: [
+      {
+        title: 'Pricing',
+        lines: plans.map(
+          (plan) =>
+            `- ${plan.data.name}: ${plan.data.price} EUR ${plan.data.priceNote}. ${plan.data.description}`,
+        ),
+      },
+      {
+        title: 'Timetable',
+        lines: [`- Weekly class timetable: ${url(`${localizePath('pricing', lang)}#horario`)}`],
+      },
+    ],
     languages: localeCodes
       .filter((code): boolean => code !== lang)
       .map((code) => ({ title: locales[code].label, url: url(localizePath('home', code)) })),

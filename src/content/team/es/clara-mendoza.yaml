@@ -1,9 +1,9 @@
-translationKey: "clara-mendoza"
+translationKey: 'clara-mendoza'
 order: 1
-name: "Clara Mendoza"
-role: "Clásica romana & fundadora"
-icon: "meditation"
-quote: "Buscamos la inteligencia corporal: que reconozcas cada vértebra como un espacio de descanso y fortaleza."
-image: "../../../assets/mova/team-clara.jpg"
-imageAlt: "Retrato de Clara Mendoza, instructora de Pilates con trenzas y camiseta de algodón beige"
+name: 'Clara Mendoza'
+role: 'Clásica romana & fundadora'
+icon: 'meditation'
+quote: 'Buscamos la inteligencia corporal: que reconozcas cada vértebra como un espacio de descanso y fortaleza.'
+image: '../../../assets/mova/team-clara.jpg'
+imageAlt: 'Retrato de Clara Mendoza, instructora de Pilates con trenzas y camiseta de algodón beige'
 founder: true
