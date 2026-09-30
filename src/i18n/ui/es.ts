@@ -210,7 +210,7 @@ export const es = {
   'about.cta.accent': 'en persona',
   'about.cta.lead':
     'Visita guiada o clase inicial con evaluación de postura. Te mostramos el estudio, evaluamos tu movilidad y te sugerimos el programa más afín a tus necesidades, sin compromiso.',
-  'about.cta.primary': 'Reservar clase inicial',
+  'about.cta.primary': 'Reservar clase inicial ({price} €)',
   'about.cta.secondary': 'Solicitar recorrido guiado',
 
   // ---------- Disciplines ----------

@@ -1,11 +1,17 @@
 ---
+import { Image, Picture } from 'astro:assets';
+import founderImage from '../assets/mova/founder.jpg';
+import mainRoom from '../assets/mova/studio-main-room.jpg';
+import teaDetail from '../assets/mova/studio-tea-detail.jpg';
 import CtaBand from '../components/blocks/CtaBand.astro';
-import FeatureGrid from '../components/blocks/FeatureGrid.astro';
 import PageHeader from '../components/blocks/PageHeader.astro';
-import Section from '../components/ui/Section.astro';
+import DisplayTitle from '../components/ui/DisplayTitle.astro';
+import Icon, { type IconName } from '../components/ui/Icon.astro';
+import Pill from '../components/ui/Pill.astro';
 import { SITE } from '../config/site';
 import { localizePath, useTranslations } from '../i18n/utils';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSpaces, getTeam, getTrialPlan } from '../lib/queries';
 import { breadcrumbNode, webPageNode, type Crumb } from '../lib/schema';
 import type { ViewProps } from './types';
 
@@ -13,16 +19,29 @@ type Props = ViewProps;
 
 const { lang, path, alternates } = Astro.props;
 const t = useTranslations(lang);
+const [team, spaces, trial] = await Promise.all([getTeam(), getSpaces(), getTrialPlan()]);
+const founder = team.find((member) => member.data.founder);
+const pillars = (
+  [
+    [1, 'group'],
+    [2, 'tune'],
+    [3, 'air'],
+    [4, 'leaf'],
+  ] as const
+).map(([n, icon]) => ({
+  icon: icon as IconName,
+  eyebrow: t(`about.pillars.${n}.eyebrow`),
+  title: t(`about.pillars.${n}.title`),
+  body: t(`about.pillars.${n}.body`),
+  tag: t(`about.pillars.${n}.tag`),
+}));
+
 const title = t('meta.about.title');
 const description = t('meta.about.description');
 const crumbs: Crumb[] = [
   { name: t('nav.home'), path: localizePath('home', lang) },
   { name: t('nav.about'), path },
 ];
-const values = ([1, 2, 3] as const).map((n) => ({
-  title: t(`about.values.${n}.title`),
-  text: t(`about.values.${n}.body`),
-}));
 const schema = [
   webPageNode(SITE, {
     path,
@@ -44,14 +63,724 @@ const schema = [
   alternates={alternates}
   schema={schema}
 >
-  <PageHeader lang={lang} crumbs={crumbs} title={t('about.title')} lead={t('about.lead')} />
-  <Section id="story" title={t('about.story.title')} width="narrow">
-    <div class="prose">
-      <p>{t('about.story.body')}</p>
+  <PageHeader
+    lang={lang}
+    crumbs={crumbs}
+    eyebrow={t('about.eyebrow')}
+    title={t('about.title')}
+    accent={t('about.accent')}
+    lead={t('about.lead')}
+  />
+
+  <!-- Sanctuary -->
+  <section class="sanctuary" aria-labelledby="architecture-title">
+    <div class="container sanctuary__grid">
+      <figure class="sanctuary__room">
+        <Picture
+          src={mainRoom}
+          alt={t('about.room.alt')}
+          formats={['avif', 'webp']}
+          widths={[480, 800, 1200]}
+          sizes="(min-width: 900px) 55vw, 100vw"
+          loading="eager"
+          class="sanctuary__room-img"
+        />
+        <figcaption>
+          <Pill tone="glass" icon="sun">{t('about.room.light')}</Pill>
+          <span class="sanctuary__label">{t('about.room.label')}</span>
+        </figcaption>
+      </figure>
+      <div class="sanctuary__side">
+        <article class="sanctuary__card">
+          <p class="sanctuary__index" aria-hidden="true">{t('about.architecture.index')}</p>
+          <p class="eyebrow">{t('about.architecture.eyebrow')}</p>
+          <h2 id="architecture-title" class="sanctuary__title">
+            {t('about.architecture.title')}
+          </h2>
+          <p class="sanctuary__body">{t('about.architecture.body')}</p>
+          <dl class="sanctuary__stats">
+            <div>
+              <dt>{t('about.architecture.stat1.label')}</dt>
+              <dd>{t('about.architecture.stat1.value')}</dd>
+            </div>
+            <div>
+              <dt>{t('about.architecture.stat2.label')}</dt>
+              <dd>{t('about.architecture.stat2.value')}</dd>
+            </div>
+          </dl>
+        </article>
+        <figure class="sanctuary__quote">
+          <Image
+            src={teaDetail}
+            alt={t('about.quoteAlt')}
+            widths={[400, 700]}
+            sizes="(min-width: 900px) 30vw, 100vw"
+            class="sanctuary__quote-img"
+          />
+          <blockquote>
+            <p>“{t('about.quote')}”</p>
+          </blockquote>
+          <Icon name="spa" size={22} class="sanctuary__quote-icon" />
+        </figure>
+      </div>
     </div>
-  </Section>
-  <Section id="values" title={t('about.values.title')} variant="muted">
-    <FeatureGrid items={values} />
-  </Section>
-  <CtaBand lang={lang} />
+  </section>
+
+  <!-- Philosophy -->
+  <section class="philosophy" aria-labelledby="philosophy-title">
+    <div class="container philosophy__grid">
+      <figure class="philosophy__founder">
+        <div class="philosophy__frame">
+          <Image
+            src={founderImage}
+            alt={t('about.founder.alt')}
+            widths={[400, 700]}
+            sizes="(min-width: 900px) 30vw, 90vw"
+            class="philosophy__img"
+          />
+          {
+            founder && (
+              <figcaption class="philosophy__caption">
+                <span class="eyebrow">{t('about.founder.role')}</span>
+                <strong>{founder.data.name}</strong>
+                <q>{t('about.founder.quote')}</q>
+              </figcaption>
+            )
+          }
+        </div>
+      </figure>
+      <div class="philosophy__text">
+        <DisplayTitle
+          id="philosophy-title"
+          eyebrow={t('about.philosophy.eyebrow')}
+          title={t('about.philosophy.title')}
+          accent={t('about.philosophy.accent')}
+        />
+        <p>{t('about.philosophy.p1')}</p>
+        <p>{t('about.philosophy.p2')}</p>
+        <figure class="philosophy__quote">
+          <blockquote>
+            <p>«{t('about.philosophy.quote')}»</p>
+          </blockquote>
+          <figcaption class="eyebrow">— {t('about.philosophy.quoteSource')}</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pillars -->
+  <section class="pillars" aria-labelledby="pillars-title">
+    <div class="container">
+      <div class="pillars__header">
+        <DisplayTitle
+          id="pillars-title"
+          align="center"
+          eyebrow={t('about.pillars.eyebrow')}
+          title={t('about.pillars.title')}
+          accent={t('about.pillars.accent')}
+        />
+        <p class="lead">{t('about.pillars.lead')}</p>
+      </div>
+      <ul role="list" class="pillars__grid">
+        {
+          pillars.map((pillar) => (
+            <li class="pillar reveal">
+              <span class="pillar__icon">
+                <Icon name={pillar.icon} size={20} />
+              </span>
+              <p class="eyebrow">{pillar.eyebrow}</p>
+              <h3>{pillar.title}</h3>
+              <p class="pillar__body">{pillar.body}</p>
+              <p class="pillar__tag">
+                {pillar.tag} <Icon name="arrow-up-right" size={14} />
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="team" aria-labelledby="team-title">
+    <div class="container">
+      <div class="team__header">
+        <DisplayTitle
+          id="team-title"
+          eyebrow={t('about.team.eyebrow')}
+          title={t('about.team.title')}
+          accent={t('about.team.accent')}
+        />
+        <p class="team__lead">{t('about.team.lead')}</p>
+      </div>
+      <ul role="list" class="team__grid">
+        {
+          team.map((member) => (
+            <li class="member reveal">
+              <figure>
+                <div class="member__photo">
+                  <Image
+                    src={member.data.image}
+                    alt={member.data.imageAlt}
+                    widths={[360, 640]}
+                    sizes="(min-width: 900px) 28vw, 90vw"
+                    class="member__img"
+                  />
+                  <figcaption class="member__badge">
+                    <span>
+                      <strong>{member.data.name}</strong>
+                      <span class="member__role">{member.data.role}</span>
+                    </span>
+                    <Icon name={member.data.icon as IconName} size={18} />
+                  </figcaption>
+                </div>
+                <blockquote class="member__quote">
+                  <p>«{member.data.quote}»</p>
+                </blockquote>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Spaces -->
+  <section class="spaces" aria-labelledby="spaces-title">
+    <div class="container">
+      <div class="spaces__header">
+        <DisplayTitle
+          id="spaces-title"
+          align="center"
+          eyebrow={t('about.spaces.eyebrow')}
+          title={t('about.spaces.title')}
+          accent={t('about.spaces.accent')}
+        />
+        <p class="lead">{t('about.spaces.lead')}</p>
+      </div>
+      <ul role="list" class="spaces__grid">
+        {
+          spaces.map((space) => (
+            <li class:list={['space reveal', { 'space--wide': space.data.wide }]}>
+              <Image
+                src={space.data.image}
+                alt={space.data.imageAlt}
+                widths={[480, 900]}
+                sizes={space.data.wide ? '(min-width: 900px) 60vw, 100vw' : '(min-width: 900px) 35vw, 100vw'}
+                class="space__img"
+              />
+              <div class="space__text">
+                <p class="eyebrow">{space.data.eyebrow}</p>
+                <h3>{space.data.name}</h3>
+                <p class="space__detail">{space.data.detail}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand
+    lang={lang}
+    eyebrow={t('about.cta.eyebrow')}
+    title={t('about.cta.title')}
+    accent={t('about.cta.accent')}
+    lead={t('about.cta.lead')}
+    primary={{
+      label: t('about.cta.primary', { price: trial.data.price }),
+      href: `${localizePath('pricing', lang)}#solicitud`,
+    }}
+    secondary={{ label: t('about.cta.secondary'), href: localizePath('contact', lang) }}
+    notes={[]}
+  />
 </BaseLayout>
+
+<style>
+  /* ---------- Sanctuary ---------- */
+  .sanctuary {
+    padding-block-end: var(--space-2xl);
+  }
+
+  .sanctuary__grid {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .sanctuary__room {
+    position: relative;
+    min-height: 22rem;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+  }
+
+  .sanctuary__room :global(.sanctuary__room-img) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sanctuary__room figcaption {
+    position: absolute;
+    right: var(--space-m);
+    bottom: var(--space-m);
+    left: var(--space-m);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2xs);
+  }
+
+  .sanctuary__label {
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-text-inverse);
+    text-shadow: 0 1px 8px rgb(0 0 0 / 0.4);
+  }
+
+  .sanctuary__side {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .sanctuary__card {
+    position: relative;
+    display: grid;
+    gap: var(--space-s);
+    padding: var(--space-l);
+    background: var(--color-bg-muted);
+    border-radius: var(--radius-xl);
+  }
+
+  .sanctuary__index {
+    position: absolute;
+    top: var(--space-m);
+    right: var(--space-l);
+    font-family: var(--font-serif);
+    font-size: var(--step-4);
+    line-height: 1;
+    color: var(--color-border);
+  }
+
+  .sanctuary__title {
+    font-size: var(--step-2);
+    font-weight: var(--fw-regular);
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+
+  .sanctuary__body {
+    font-size: var(--step--1);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .sanctuary__stats {
+    display: flex;
+    gap: var(--space-m);
+    padding-block-start: var(--space-s);
+  }
+
+  .sanctuary__stats div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--space-3xs);
+  }
+
+  .sanctuary__stats div + div {
+    padding-inline-start: var(--space-m);
+    border-inline-start: 1px solid var(--color-border);
+  }
+
+  .sanctuary__stats dd {
+    font-size: var(--step-2);
+    font-weight: var(--fw-light);
+  }
+
+  .sanctuary__stats dt {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .sanctuary__quote {
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: 10rem;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    isolation: isolate;
+  }
+
+  .sanctuary__quote :global(.sanctuary__quote-img) {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sanctuary__quote::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg, rgb(51 37 29 / 0.75), rgb(51 37 29 / 0.25));
+  }
+
+  .sanctuary__quote blockquote {
+    max-width: 16ch;
+    padding: var(--space-m) var(--space-l);
+    font-size: var(--step-3);
+    font-style: normal;
+    line-height: 1.1;
+    color: var(--color-text-inverse);
+  }
+
+  .sanctuary__quote :global(.sanctuary__quote-icon) {
+    position: absolute;
+    right: var(--space-l);
+    bottom: var(--space-l);
+    color: var(--color-text-inverse);
+  }
+
+  @media (min-width: 900px) {
+    .sanctuary__grid {
+      grid-template-columns: 1.45fr 1fr;
+    }
+  }
+
+  /* ---------- Philosophy ---------- */
+  .philosophy {
+    padding-block: var(--space-2xl);
+    background: var(--color-bg-muted);
+  }
+
+  .philosophy__grid {
+    display: grid;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .philosophy__frame {
+    position: relative;
+    max-width: 26rem;
+    margin-inline: auto;
+    padding: 0.625rem;
+    background: var(--color-highlight);
+    border-radius: 12rem 12rem var(--radius-lg) var(--radius-lg);
+    transform: rotate(-2deg);
+  }
+
+  .philosophy__frame :global(.philosophy__img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 11.5rem 11.5rem var(--radius-md) var(--radius-md);
+  }
+
+  .philosophy__caption {
+    position: absolute;
+    right: 0.625rem;
+    bottom: 0.625rem;
+    left: 0.625rem;
+    display: grid;
+    gap: var(--space-3xs);
+    justify-items: center;
+    padding: var(--space-l) var(--space-s) var(--space-s);
+    text-align: center;
+    color: var(--color-text-inverse);
+    background: linear-gradient(to top, rgb(51 37 29 / 0.85), transparent);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+  }
+
+  .philosophy__caption .eyebrow {
+    color: var(--color-text-inverse-muted);
+  }
+
+  .philosophy__caption strong {
+    font-size: var(--step-1);
+    font-weight: var(--fw-light);
+  }
+
+  .philosophy__caption q {
+    font-size: var(--step--1);
+  }
+
+  .philosophy__text {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .philosophy__text > p {
+    font-size: var(--step--1);
+    line-height: var(--lh-relaxed);
+    color: var(--color-text-muted);
+  }
+
+  .philosophy__quote {
+    display: grid;
+    gap: var(--space-2xs);
+    margin-block-start: var(--space-s);
+    padding: var(--space-m) var(--space-l);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
+  }
+
+  .philosophy__quote blockquote {
+    font-size: var(--step-3);
+    font-style: normal;
+    line-height: 1.15;
+    color: var(--color-eyebrow);
+  }
+
+  .philosophy__quote figcaption {
+    color: var(--color-text);
+  }
+
+  @media (min-width: 900px) {
+    .philosophy__grid {
+      grid-template-columns: 1fr 1.4fr;
+    }
+  }
+
+  /* ---------- Pillars ---------- */
+  .pillars {
+    padding-block: var(--space-2xl);
+  }
+
+  .pillars__header {
+    display: grid;
+    gap: var(--space-s);
+    justify-items: center;
+    margin-block-end: var(--space-xl);
+    text-align: center;
+  }
+
+  .pillars__grid {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  @media (min-width: 600px) {
+    .pillars__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .pillars__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .pillar {
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto;
+    gap: var(--space-2xs);
+    padding: var(--space-m);
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
+  }
+
+  .pillar__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-block-end: var(--space-s);
+    color: var(--color-bg-inverse);
+    background: var(--color-highlight);
+    border-radius: var(--radius-full);
+  }
+
+  .pillar h3 {
+    margin-block-end: var(--space-2xs);
+  }
+
+  .pillar__body {
+    font-size: var(--step--1);
+    line-height: var(--lh-normal);
+    color: var(--color-text-muted);
+  }
+
+  .pillar__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    margin-block-start: var(--space-m);
+    font-size: 0.6875rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  /* ---------- Team ---------- */
+  .team {
+    padding-block: var(--space-2xl);
+    background: var(--color-bg-subtle);
+  }
+
+  .team__header {
+    display: grid;
+    gap: var(--space-s);
+    margin-block-end: var(--space-xl);
+  }
+
+  .team__lead {
+    max-width: 34ch;
+    font-size: var(--step--1);
+    color: var(--color-text-muted);
+  }
+
+  @media (min-width: 900px) {
+    .team__header {
+      grid-template-columns: 1fr auto;
+      align-items: end;
+    }
+  }
+
+  .team__grid {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  @media (min-width: 900px) {
+    .team__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .member figure {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .member__photo {
+    position: relative;
+  }
+
+  .member__photo :global(.member__img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: top;
+    border-radius: var(--radius-lg);
+  }
+
+  .member__badge {
+    position: absolute;
+    right: var(--space-s);
+    bottom: var(--space-s);
+    left: var(--space-s);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2xs);
+    padding: var(--space-xs) var(--space-s);
+    background: rgb(255 255 255 / 0.9);
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(12px);
+  }
+
+  .member__badge strong {
+    display: block;
+    font-size: var(--step--1);
+    font-weight: var(--fw-medium);
+  }
+
+  .member__role {
+    font-size: 0.625rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+  }
+
+  .member__quote {
+    font-size: var(--step-0);
+    line-height: var(--lh-normal);
+    color: var(--color-text-muted);
+  }
+
+  /* ---------- Spaces ---------- */
+  .spaces {
+    padding-block: var(--space-2xl);
+  }
+
+  .spaces__header {
+    display: grid;
+    gap: var(--space-s);
+    justify-items: center;
+    margin-block-end: var(--space-xl);
+    text-align: center;
+  }
+
+  .spaces__grid {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  @media (min-width: 900px) {
+    .spaces__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .space--wide {
+      grid-column: span 2;
+    }
+  }
+
+  .space {
+    position: relative;
+    min-height: 18rem;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    isolation: isolate;
+  }
+
+  .space :global(.space__img) {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .space::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to top, rgb(51 37 29 / 0.75), transparent 60%);
+  }
+
+  .space__text {
+    position: absolute;
+    right: var(--space-m);
+    bottom: var(--space-m);
+    left: var(--space-m);
+    display: grid;
+    gap: var(--space-3xs);
+    color: var(--color-text-inverse);
+  }
+
+  .space__text .eyebrow {
+    color: var(--color-text-inverse-muted);
+  }
+
+  .space__detail {
+    font-size: 0.75rem;
+    color: var(--color-text-inverse-muted);
+  }
+</style>
