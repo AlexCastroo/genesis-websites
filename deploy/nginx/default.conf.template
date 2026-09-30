@@ -1,0 +1,52 @@
+# Rendered by the nginx image's envsubst at start-up (only defined env vars are replaced).
+# ${CONTACT_ORIGIN} = origin of PUBLIC_CONTACT_ENDPOINT, e.g. https://formspree.io (may be empty).
+
+map $uri $cache_control {
+    default                     "public, max-age=86400";
+    ~^/_astro/                  "public, max-age=31536000, immutable";
+    ~\.html$                    "no-cache";
+    ~^/(robots|llms)\.txt$      "public, max-age=3600";
+    ~\.xml$                     "public, max-age=3600";
+}
+
+server {
+    listen 8080;
+    server_name _;
+    root /usr/share/nginx/html;
+    index index.html;
+
+    server_tokens off;
+    absolute_redirect off;
+    charset utf-8;
+    charset_types text/plain text/css text/xml application/xml application/rss+xml application/javascript application/json image/svg+xml;
+
+    gzip on;
+    gzip_vary on;
+    gzip_comp_level 6;
+    gzip_min_length 1024;
+    gzip_types text/plain text/css text/xml application/xml application/rss+xml application/javascript application/json image/svg+xml;
+
+    add_header Cache-Control $cache_control always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()" always;
+    add_header Cross-Origin-Opener-Policy "same-origin" always;
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com ${CONTACT_ORIGIN}; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; form-action 'self' ${CONTACT_ORIGIN}; frame-ancestors 'none'; base-uri 'self'; object-src 'none'" always;
+    # Enable ONLY once HTTPS works on the final domain (browsers cache it for a year):
+    # add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    # Canonical URLs have no trailing slash (except "/").
+    rewrite ^/(.+)/$ /$1 permanent;
+
+    include /etc/nginx/snippets/redirects.conf;
+
+    location / {
+        try_files $uri $uri.html $uri/ =404;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        internal;
+    }
+}
