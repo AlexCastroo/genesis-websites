@@ -15,7 +15,9 @@ const t = useTranslations(lang);
   <div class="container cta-band__inner">
     <h2 id="cta-band-title">{t('home.cta.title')}</h2>
     <p class="cta-band__lead">{t('home.cta.lead')}</p>
-    <Button href={localizePath('contact', lang)} track="cta_band">{t('cta.contact')}</Button>
+    <Button href={localizePath('contact', lang)} track="cta_band">
+      {t('cta.contact')}
+    </Button>
   </div>
 </section>
 

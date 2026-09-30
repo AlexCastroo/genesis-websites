@@ -50,22 +50,22 @@ const currentState = (href: string) => {
     <div id="site-menu" class="site-menu">
       <nav aria-label={t('a11y.mainNav')}>
         <ul role="list" class="site-menu__list">
-          {
-            mainNav.map((item) => {
-              const href = localizePath(item.route, lang);
-              return (
-                <li>
-                  <a href={href} aria-current={currentState(href)}>
-                    {t(item.label)}
-                  </a>
-                </li>
-              );
-            })
-          }
+          {mainNav.map((item) => {
+            const href = localizePath(item.route, lang);
+            return (
+              <li>
+                <a href={href} aria-current={currentState(href)}>
+                  {t(item.label)}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </nav>
       <LanguageSwitcher lang={lang} alternates={alternates} />
-      <Button href={localizePath(ctaNav.route, lang)} track="cta_header">{t(ctaNav.label)}</Button>
+      <Button href={localizePath(ctaNav.route, lang)} track="cta_header">
+        {t(ctaNav.label)}
+      </Button>
     </div>
   </div>
 </header>

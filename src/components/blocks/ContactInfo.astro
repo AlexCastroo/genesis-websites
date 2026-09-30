@@ -26,79 +26,76 @@ const mapHref = addressText
 <address class="contact-info">
   <dl>
     <div>
-      <dt><Icon name="mail" /> {t('contact.email')}</dt>
-      <dd><a href={`mailto:${contact.email}`} data-track="contact_email">{contact.email}</a></dd>
+      <dt>
+        <Icon name="mail" /> {t('contact.email')}
+      </dt>
+      <dd>
+        <a href={`mailto:${contact.email}`} data-track="contact_email">
+          {contact.email}
+        </a>
+      </dd>
     </div>
-    {
-      phoneHref && (
-        <div>
-          <dt>
-            <Icon name="phone" /> {t('contact.phone')}
-          </dt>
-          <dd>
-            <a href={phoneHref} data-track="contact_phone">
-              {contact.phone}
-            </a>
-          </dd>
-        </div>
-      )
-    }
-    {
-      whatsappHref && (
-        <div>
-          <dt>
-            <Icon name="chat" /> {t('contact.whatsapp')}
-          </dt>
-          <dd>
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track="contact_whatsapp"
-            >
-              +{contact.whatsapp}
-              <span class="visually-hidden"> {t('a11y.newTab')}</span>
-            </a>
-          </dd>
-        </div>
-      )
-    }
-    {
-      addressText && (
-        <div>
-          <dt>
-            <Icon name="map-pin" /> {t('contact.address')}
-          </dt>
-          <dd>
-            {addressText}
-            <br />
-            <a href={mapHref} target="_blank" rel="noopener noreferrer">
-              {t('contact.map')}
-              <span class="visually-hidden"> {t('a11y.newTab')}</span>
-            </a>
-          </dd>
-        </div>
-      )
-    }
-    {
-      openingHours && openingHours.length > 0 && (
-        <div>
-          <dt>
-            <Icon name="clock" /> {t('contact.hours')}
-          </dt>
-          <dd>
-            <ul role="list">
-              {openingHours.map((hours) => (
-                <li>
-                  {hours.days.map((day) => t(`days.${day}`)).join(', ')}: {hours.opens}–
-                  {hours.closes}
-                </li>
-              ))}
-            </ul>
-          </dd>
-        </div>
-      )
-    }
+    {phoneHref && (
+      <div>
+        <dt>
+          <Icon name="phone" /> {t('contact.phone')}
+        </dt>
+        <dd>
+          <a href={phoneHref} data-track="contact_phone">
+            {contact.phone}
+          </a>
+        </dd>
+      </div>
+    )}
+    {whatsappHref && (
+      <div>
+        <dt>
+          <Icon name="chat" /> {t('contact.whatsapp')}
+        </dt>
+        <dd>
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-track="contact_whatsapp"
+          >
+            +{contact.whatsapp}
+            <span class="visually-hidden"> {t('a11y.newTab')}</span>
+          </a>
+        </dd>
+      </div>
+    )}
+    {addressText && (
+      <div>
+        <dt>
+          <Icon name="map-pin" /> {t('contact.address')}
+        </dt>
+        <dd>
+          {addressText}
+          <br />
+          <a href={mapHref} target="_blank" rel="noopener noreferrer">
+            {t('contact.map')}
+            <span class="visually-hidden"> {t('a11y.newTab')}</span>
+          </a>
+        </dd>
+      </div>
+    )}
+    {openingHours && openingHours.length > 0 && (
+      <div>
+        <dt>
+          <Icon name="clock" /> {t('contact.hours')}
+        </dt>
+        <dd>
+          <ul role="list">
+            {openingHours.map((hours) => (
+              <li>
+                {hours.days.map((day) => t(`days.${day}`)).join(', ')}: {hours.opens}–{hours.closes}
+              </li>
+            ))}
+          </ul>
+        </dd>
+      </div>
+    )}
   </dl>
 </address>
 

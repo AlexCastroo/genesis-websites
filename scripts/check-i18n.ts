@@ -20,7 +20,9 @@ const warnings: string[] = [];
 
 // 1. Duplicate keys in dictionaries (JS silently keeps the last one).
 const uiDir = join(root, 'src/i18n/ui');
-for (const file of readdirSync(uiDir).filter((name) => name.endsWith('.ts') && name !== 'index.ts')) {
+for (const file of readdirSync(uiDir).filter(
+  (name) => name.endsWith('.ts') && name !== 'index.ts',
+)) {
   for (const key of findDuplicateKeys(readFileSync(join(uiDir, file), 'utf8'))) {
     errors.push(`src/i18n/ui/${file}: duplicate key "${key}"`);
   }

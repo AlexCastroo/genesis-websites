@@ -52,42 +52,41 @@ const schema = [
 >
   <PageHeader lang={lang} crumbs={crumbs} title={title}>
     <p class="text-muted">
-      <small
-        >{t('common.updated')}{' '}
-        <time datetime={toIsoDate(updated)}>{formatDate(updated, lang)}</time></small
-      >
+      <small>
+        {t('common.updated')} <time datetime={toIsoDate(updated)}>{formatDate(updated, lang)}</time>
+      </small>
     </p>
   </PageHeader>
 
   <div class="container container--narrow section-pad legal">
-    {
-      isLegalNotice && (
-        <section aria-labelledby="legal-identity">
-          <h2 id="legal-identity">{t('legal.identity')}</h2>
-          <dl class="legal-identity">
-            <dt>{t('legal.holder')}</dt>
-            <dd>{SITE.legalName}</dd>
-            {SITE.taxId && (
-              <>
-                <dt>{t('legal.taxId')}</dt>
-                <dd>{SITE.taxId}</dd>
-              </>
-            )}
-            {addressText && (
-              <>
-                <dt>{t('legal.address')}</dt>
-                <dd>{addressText}</dd>
-              </>
-            )}
-            <dt>{t('legal.email')}</dt>
-            <dd>
-              <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>
-            </dd>
-          </dl>
-        </section>
-      )
-    }
-    <div class="prose"><Content /></div>
+    {isLegalNotice && (
+      <section aria-labelledby="legal-identity">
+        <h2 id="legal-identity">{t('legal.identity')}</h2>
+        <dl class="legal-identity">
+          <dt>{t('legal.holder')}</dt>
+          <dd>{SITE.legalName}</dd>
+          {SITE.taxId && (
+            <>
+              <dt>{t('legal.taxId')}</dt>
+              <dd>{SITE.taxId}</dd>
+            </>
+          )}
+          {addressText && (
+            <>
+              <dt>{t('legal.address')}</dt>
+              <dd>{addressText}</dd>
+            </>
+          )}
+          <dt>{t('legal.email')}</dt>
+          <dd>
+            <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>
+          </dd>
+        </dl>
+      </section>
+    )}
+    <div class="prose">
+      <Content />
+    </div>
   </div>
 </BaseLayout>
 

@@ -16,29 +16,27 @@ const t = useTranslations(lang);
 const Heading = `h${headingLevel}` as 'h2' | 'h3';
 ---
 
-{
-  posts.length === 0 ? (
-    <p>{t('blog.empty')}</p>
-  ) : (
-    <ul role="list" class="post-list">
-      {posts.map((post) => (
-        <li class="reveal">
-          <article class="post-card">
-            <Heading class="post-card__title">
-              <a href={localizePath('blog', lang, entrySlug(post.id))}>{post.data.title}</a>
-            </Heading>
-            <p class="post-card__meta">
-              <time datetime={toIsoDate(post.data.published)}>
-                {formatDate(post.data.published, lang)}
-              </time>
-            </p>
-            <p>{post.data.description}</p>
-          </article>
-        </li>
-      ))}
-    </ul>
-  )
-}
+{posts.length === 0 ? (
+  <p>{t('blog.empty')}</p>
+) : (
+  <ul role="list" class="post-list">
+    {posts.map((post) => (
+      <li class="reveal">
+        <article class="post-card">
+          <Heading class="post-card__title">
+            <a href={localizePath('blog', lang, entrySlug(post.id))}>{post.data.title}</a>
+          </Heading>
+          <p class="post-card__meta">
+            <time datetime={toIsoDate(post.data.published)}>
+              {formatDate(post.data.published, lang)}
+            </time>
+          </p>
+          <p>{post.data.description}</p>
+        </article>
+      </li>
+    ))}
+  </ul>
+)}
 
 <style>
   .post-list {

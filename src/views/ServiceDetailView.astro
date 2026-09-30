@@ -12,13 +12,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { entrySlug } from '../lib/content';
 import { formatDate, toIsoDate } from '../lib/dates';
 import { getServices } from '../lib/queries';
-import {
-  breadcrumbNode,
-  faqPageNode,
-  serviceNode,
-  webPageNode,
-  type Crumb,
-} from '../lib/schema';
+import { breadcrumbNode, faqPageNode, serviceNode, webPageNode, type Crumb } from '../lib/schema';
 import type { ViewProps } from './types';
 
 interface Props extends ViewProps {
@@ -60,50 +54,45 @@ const schema = [
 >
   <PageHeader lang={lang} crumbs={crumbs} title={title} lead={summary}>
     <p class="text-muted">
-      <small
-        >{t('common.updated')}{' '}
-        <time datetime={toIsoDate(updated)}>{formatDate(updated, lang)}</time></small
-      >
+      <small>
+        {t('common.updated')} <time datetime={toIsoDate(updated)}>{formatDate(updated, lang)}</time>
+      </small>
     </p>
   </PageHeader>
 
   <div class="container section-pad detail">
-    {
-      image && (
-        <Picture
-          src={image}
-          alt={imageAlt ?? ''}
-          formats={['avif', 'webp']}
-          widths={[480, 800, 1200]}
-          sizes="(min-width: 900px) 760px, 100vw"
-          class="detail__image"
-        />
-      )
-    }
-    <div class="prose"><Content /></div>
+    {image && (
+      <Picture
+        src={image}
+        alt={imageAlt ?? ''}
+        formats={['avif', 'webp']}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 900px) 760px, 100vw"
+        class="detail__image"
+      />
+    )}
+    <div class="prose">
+      <Content />
+    </div>
   </div>
 
-  {
-    faqs.length > 0 && (
-      <Section id="faq" title={t('service.faq.title')} variant="muted" width="narrow">
-        <FaqList items={faqs} />
-      </Section>
-    )
-  }
+  {faqs.length > 0 && (
+    <Section id="faq" title={t('service.faq.title')} variant="muted" width="narrow">
+      <FaqList items={faqs} />
+    </Section>
+  )}
 
-  {
-    related.length > 0 && (
-      <Section id="related" title={t('service.related.title')}>
-        <FeatureGrid
-          items={related.map((service) => ({
-            title: service.data.title,
-            text: service.data.summary,
-            href: localizePath('services', lang, entrySlug(service.id)),
-          }))}
-        />
-      </Section>
-    )
-  }
+  {related.length > 0 && (
+    <Section id="related" title={t('service.related.title')}>
+      <FeatureGrid
+        items={related.map((service) => ({
+          title: service.data.title,
+          text: service.data.summary,
+          href: localizePath('services', lang, entrySlug(service.id)),
+        }))}
+      />
+    </Section>
+  )}
 
   <CtaBand lang={lang} />
 </BaseLayout>

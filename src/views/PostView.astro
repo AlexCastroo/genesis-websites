@@ -69,38 +69,41 @@ const schema = [
 >
   <PageHeader lang={lang} crumbs={crumbs} title={title} lead={description}>
     <p class="cluster post-meta">
-      <span>{t('blog.by')} {author}</span>
-      <span
-        >{t('blog.published')}{' '}
-        <time datetime={toIsoDate(published)}>{formatDate(published, lang)}</time></span
-      >
-      {
-        updated && (
-          <span>
-            {t('blog.updated')}{' '}
-            <time datetime={toIsoDate(updated)}>{formatDate(updated, lang)}</time>
-          </span>
-        )
-      }
+      <span>
+        {t('blog.by')} {author}
+      </span>
+      <span>
+        {t('blog.published')}{' '}
+        <time datetime={toIsoDate(published)}>{formatDate(published, lang)}</time>
+      </span>
+      {updated && (
+        <span>
+          {t('blog.updated')} <time datetime={toIsoDate(updated)}>{formatDate(updated, lang)}</time>
+        </span>
+      )}
       <span>{t('blog.readingTime', { minutes })}</span>
     </p>
   </PageHeader>
 
   <article class="container section-pad post">
-    {
-      image && (
-        <Picture
-          src={image}
-          alt={imageAlt ?? ''}
-          formats={['avif', 'webp']}
-          widths={[480, 800, 1200]}
-          sizes="(min-width: 900px) 760px, 100vw"
-          class="post__image"
-        />
-      )
-    }
-    <div class="prose"><Content /></div>
-    <p><Button href={localizePath('blog', lang)} variant="ghost">{t('cta.backToBlog')}</Button></p>
+    {image && (
+      <Picture
+        src={image}
+        alt={imageAlt ?? ''}
+        formats={['avif', 'webp']}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 900px) 760px, 100vw"
+        class="post__image"
+      />
+    )}
+    <div class="prose">
+      <Content />
+    </div>
+    <p>
+      <Button href={localizePath('blog', lang)} variant="ghost">
+        {t('cta.backToBlog')}
+      </Button>
+    </p>
   </article>
 
   <CtaBand lang={lang} />

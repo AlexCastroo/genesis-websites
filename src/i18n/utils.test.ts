@@ -23,9 +23,7 @@ describe('localizePath', () => {
   it.skipIf(!other)('prefixes non-default locales, including their home', () => {
     const lang = other!;
     expect(localizePath('home', lang)).toBe(`/${lang}`);
-    expect(localizePath('services', lang, 'alpha')).toBe(
-      `/${lang}/${routes.services[lang]}/alpha`,
-    );
+    expect(localizePath('services', lang, 'alpha')).toBe(`/${lang}/${routes.services[lang]}/alpha`);
   });
 });
 

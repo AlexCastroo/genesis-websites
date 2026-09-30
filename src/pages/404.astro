@@ -21,26 +21,22 @@ const t = useTranslations(lang);
     <p class="lead">{t('notFound.lead')}</p>
     <p>{t('notFound.links')}</p>
     <ul>
-      {
-        localeCodes.map((code) => (
-          <li>
-            <a
-              href={localizePath('home', code)}
-              hreflang={locales[code].hreflang}
-              lang={locales[code].hreflang}
-            >
-              {locales[code].label}
-            </a>
-          </li>
-        ))
-      }
-      {
-        mainNav.map((item) => (
-          <li>
-            <a href={localizePath(item.route, lang)}>{t(item.label)}</a>
-          </li>
-        ))
-      }
+      {localeCodes.map((code) => (
+        <li>
+          <a
+            href={localizePath('home', code)}
+            hreflang={locales[code].hreflang}
+            lang={locales[code].hreflang}
+          >
+            {locales[code].label}
+          </a>
+        </li>
+      ))}
+      {mainNav.map((item) => (
+        <li>
+          <a href={localizePath(item.route, lang)}>{t(item.label)}</a>
+        </li>
+      ))}
     </ul>
   </div>
 </BaseLayout>

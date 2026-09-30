@@ -14,17 +14,15 @@ const t = useTranslations(lang);
 
 <nav class="breadcrumbs" aria-label={t('a11y.breadcrumbs')}>
   <ol role="list">
-    {
-      items.map((item, index) => (
-        <li>
-          {index === items.length - 1 ? (
-            <span aria-current="page">{item.name}</span>
-          ) : (
-            <a href={item.path}>{item.name}</a>
-          )}
-        </li>
-      ))
-    }
+    {items.map((item, index) => (
+      <li>
+        {index === items.length - 1 ? (
+          <span aria-current="page">{item.name}</span>
+        ) : (
+          <a href={item.path}>{item.name}</a>
+        )}
+      </li>
+    ))}
   </ol>
 </nav>
 

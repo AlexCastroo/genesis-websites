@@ -17,26 +17,24 @@ const links = localeCodes.map((code) => ({
 }));
 ---
 
-{
-  isMultilingual && (
-    <nav class="lang-switcher" aria-label={t('a11y.langSwitcher')}>
-      <ul role="list">
-        {links.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              hreflang={locales[link.code].hreflang}
-              lang={locales[link.code].hreflang}
-              aria-current={link.current ? 'page' : undefined}
-            >
-              {locales[link.code].label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  )
-}
+{isMultilingual && (
+  <nav class="lang-switcher" aria-label={t('a11y.langSwitcher')}>
+    <ul role="list">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            hreflang={locales[link.code].hreflang}
+            lang={locales[link.code].hreflang}
+            aria-current={link.current ? 'page' : undefined}
+          >
+            {locales[link.code].label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
 
 <style>
   ul {

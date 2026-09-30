@@ -15,9 +15,9 @@ Small files your browser stores when you visit a website.
 
 ## Cookies we use
 
-| Cookie | Provider | Purpose | Duration |
-| --- | --- | --- | --- |
-| `_ga`, `_ga_*` | Google Analytics | Anonymous usage statistics | 2 years |
+| Cookie         | Provider         | Purpose                    | Duration |
+| -------------- | ---------------- | -------------------------- | -------- |
+| `_ga`, `_ga_*` | Google Analytics | Anonymous usage statistics | 2 years  |
 
 Analytics cookies are only enabled if you accept them in the cookie notice.
 

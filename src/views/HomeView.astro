@@ -61,35 +61,33 @@ const schema = [
       }))}
     />
     <p class="section-more">
-      <Button href={localizePath('services', lang)} variant="secondary">{t('cta.allServices')}</Button>
+      <Button href={localizePath('services', lang)} variant="secondary">
+        {t('cta.allServices')}
+      </Button>
     </p>
   </Section>
 
   <Section id="results" title={t('home.stats.title')} variant="muted">
     <dl class="stats">
-      {
-        stats.map((stat) => (
-          <div class="stats__item reveal">
-            <dt>{stat.label}</dt>
-            <dd>{stat.value}</dd>
-          </div>
-        ))
-      }
+      {stats.map((stat) => (
+        <div class="stats__item reveal">
+          <dt>{stat.label}</dt>
+          <dd>{stat.value}</dd>
+        </div>
+      ))}
     </dl>
   </Section>
 
-  {
-    faqs.length > 0 && (
-      <Section id="faq" title={t('home.faq.title')} width="narrow">
-        <FaqList items={faqs} />
-        <p class="section-more">
-          <Button href={localizePath('faq', lang)} variant="ghost">
-            {t('cta.allFaq')}
-          </Button>
-        </p>
-      </Section>
-    )
-  }
+  {faqs.length > 0 && (
+    <Section id="faq" title={t('home.faq.title')} width="narrow">
+      <FaqList items={faqs} />
+      <p class="section-more">
+        <Button href={localizePath('faq', lang)} variant="ghost">
+          {t('cta.allFaq')}
+        </Button>
+      </p>
+    </Section>
+  )}
 
   <CtaBand lang={lang} />
 </BaseLayout>

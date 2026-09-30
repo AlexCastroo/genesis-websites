@@ -49,7 +49,10 @@ mkdirSync(out('public/'), { recursive: true });
 await sharp(scene(1600, 1067)).jpeg({ quality: 80 }).toFile(out('src/assets/hero.jpg'));
 await sharp(scene(1200, 630)).jpeg({ quality: 85 }).toFile(out('public/og-default.jpg'));
 await sharp(mark(512)).png().toFile(out('public/logo.png'));
-await sharp(mark(180)).flatten({ background: '#ffffff' }).png().toFile(out('public/apple-touch-icon.png'));
+await sharp(mark(180))
+  .flatten({ background: '#ffffff' })
+  .png()
+  .toFile(out('public/apple-touch-icon.png'));
 writeFileSync(out('public/favicon.ico'), pngToIco(await sharp(mark(32)).png().toBuffer(), 32));
 
 console.log(

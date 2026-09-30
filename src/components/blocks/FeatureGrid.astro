@@ -16,13 +16,11 @@ const { items, headingLevel = 3 } = Astro.props;
 ---
 
 <ul role="list" class="grid-auto">
-  {
-    items.map((item) => (
-      <li class="reveal">
-        <Card title={item.title} href={item.href} headingLevel={headingLevel}>
-          <p>{item.text}</p>
-        </Card>
-      </li>
-    ))
-  }
+  {items.map((item) => (
+    <li class="reveal">
+      <Card title={item.title} href={item.href} headingLevel={headingLevel}>
+        <p>{item.text}</p>
+      </Card>
+    </li>
+  ))}
 </ul>

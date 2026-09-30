@@ -14,63 +14,60 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_ENDPOINT;
 const privacy = endpoint ? await findLegal(lang, 'privacy') : undefined;
 ---
 
-{
-  endpoint && (
-    <section aria-labelledby="contact-form-title">
-      <h2 id="contact-form-title">{t('contact.form.title')}</h2>
-      <form
-        class="contact-form"
-        method="post"
-        action={endpoint}
-        data-contact-form
-        data-msg-sending={t('contact.form.sending')}
-        data-msg-success={t('contact.form.success')}
-        data-msg-error={t('contact.form.error')}
-      >
-        <div>
-          <label for="cf-name">{t('contact.form.name')}</label>
-          <input id="cf-name" name="name" type="text" autocomplete="name" required />
-        </div>
-        <div>
-          <label for="cf-email">{t('contact.form.email')}</label>
-          <input id="cf-email" name="email" type="email" autocomplete="email" required />
-        </div>
-        <div>
-          <label for="cf-phone">
-            {t('contact.form.phone')}{' '}
-            <span class="text-muted">{t('contact.form.optional')}</span>
-          </label>
-          <input id="cf-phone" name="phone" type="tel" autocomplete="tel" />
-        </div>
-        <div>
-          <label for="cf-message">{t('contact.form.message')}</label>
-          <textarea id="cf-message" name="message" rows="6" required></textarea>
-        </div>
-        <div class="contact-form__honeypot" aria-hidden="true">
-          <label for="cf-website">Website</label>
-          <input id="cf-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
-        </div>
-        <div class="contact-form__consent">
-          <input id="cf-privacy" name="privacy" type="checkbox" value="accepted" required />
-          <label for="cf-privacy">
-            {t('contact.form.privacy')}{' '}
-            {privacy ? (
-              <a href={localizePath('legal', lang, entrySlug(privacy.id))}>
-                {t('contact.form.privacyLink')}
-              </a>
-            ) : (
-              t('contact.form.privacyLink')
-            )}
-          </label>
-        </div>
-        <button type="submit" class="btn btn--primary">
-          {t('contact.form.submit')}
-        </button>
-        <p class="contact-form__status" role="status" aria-live="polite" data-form-status></p>
-      </form>
-    </section>
-  )
-}
+{endpoint && (
+  <section aria-labelledby="contact-form-title">
+    <h2 id="contact-form-title">{t('contact.form.title')}</h2>
+    <form
+      class="contact-form"
+      method="post"
+      action={endpoint}
+      data-contact-form
+      data-msg-sending={t('contact.form.sending')}
+      data-msg-success={t('contact.form.success')}
+      data-msg-error={t('contact.form.error')}
+    >
+      <div>
+        <label for="cf-name">{t('contact.form.name')}</label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" required />
+      </div>
+      <div>
+        <label for="cf-email">{t('contact.form.email')}</label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" required />
+      </div>
+      <div>
+        <label for="cf-phone">
+          {t('contact.form.phone')} <span class="text-muted">{t('contact.form.optional')}</span>
+        </label>
+        <input id="cf-phone" name="phone" type="tel" autocomplete="tel" />
+      </div>
+      <div>
+        <label for="cf-message">{t('contact.form.message')}</label>
+        <textarea id="cf-message" name="message" rows="6" required></textarea>
+      </div>
+      <div class="contact-form__honeypot" aria-hidden="true">
+        <label for="cf-website">Website</label>
+        <input id="cf-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+      <div class="contact-form__consent">
+        <input id="cf-privacy" name="privacy" type="checkbox" value="accepted" required />
+        <label for="cf-privacy">
+          {t('contact.form.privacy')}{' '}
+          {privacy ? (
+            <a href={localizePath('legal', lang, entrySlug(privacy.id))}>
+              {t('contact.form.privacyLink')}
+            </a>
+          ) : (
+            t('contact.form.privacyLink')
+          )}
+        </label>
+      </div>
+      <button type="submit" class="btn btn--primary">
+        {t('contact.form.submit')}
+      </button>
+      <p class="contact-form__status" role="status" aria-live="polite" data-form-status></p>
+    </form>
+  </section>
+)}
 
 <script>
   import { trackEvent } from '../../lib/analytics-client';

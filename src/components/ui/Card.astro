@@ -13,7 +13,9 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
 <article class="card">
   <div class="card__inner">
     <Heading class="card__title">{href ? <a href={href}>{title}</a> : title}</Heading>
-    <div class="card__body"><slot /></div>
+    <div class="card__body">
+      <slot />
+    </div>
   </div>
 </article>
 

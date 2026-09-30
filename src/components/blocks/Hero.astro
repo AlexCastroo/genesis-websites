@@ -29,30 +29,28 @@ const { eyebrow, title, lead, primary, secondary, image, imageAlt = '' } = Astro
       <h1 id="hero-title">{title}</h1>
       <p class="lead">{lead}</p>
       <div class="cluster hero__actions">
-        <Button href={primary.href} track={primary.track}>{primary.label}</Button>
-        {
-          secondary && (
-            <Button href={secondary.href} variant="secondary" track={secondary.track}>
-              {secondary.label}
-            </Button>
-          )
-        }
+        <Button href={primary.href} track={primary.track}>
+          {primary.label}
+        </Button>
+        {secondary && (
+          <Button href={secondary.href} variant="secondary" track={secondary.track}>
+            {secondary.label}
+          </Button>
+        )}
       </div>
     </div>
-    {
-      image && (
-        <Picture
-          src={image}
-          alt={imageAlt}
-          formats={['avif', 'webp']}
-          widths={[480, 800, 1200, 1600]}
-          sizes="(min-width: 900px) 50vw, 100vw"
-          loading="eager"
-          fetchpriority="high"
-          class="hero__image"
-        />
-      )
-    }
+    {image && (
+      <Picture
+        src={image}
+        alt={imageAlt}
+        formats={['avif', 'webp']}
+        widths={[480, 800, 1200, 1600]}
+        sizes="(min-width: 900px) 50vw, 100vw"
+        loading="eager"
+        fetchpriority="high"
+        class="hero__image"
+      />
+    )}
   </div>
 </section>
 

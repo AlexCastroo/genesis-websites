@@ -4,8 +4,7 @@ import { localizePath } from '../i18n/utils';
 import { contentAlternates, planPages, STATIC_PAGES } from './pages';
 
 const other = localeCodes.find((lang) => lang !== defaultLocale);
-const entry = (id: string, translationKey: string) =>
-  ({ id, data: { translationKey } }) as never;
+const entry = (id: string, translationKey: string) => ({ id, data: { translationKey } }) as never;
 const empty = { services: [], posts: [], legal: [] };
 
 describe('planPages', () => {

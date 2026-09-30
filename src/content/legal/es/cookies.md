@@ -15,9 +15,9 @@ Son pequeños ficheros que el navegador guarda al visitar un sitio web.
 
 ## Cookies que utilizamos
 
-| Cookie | Proveedor | Finalidad | Duración |
-| --- | --- | --- | --- |
-| `_ga`, `_ga_*` | Google Analytics | Estadísticas de uso anónimas | 2 años |
+| Cookie         | Proveedor        | Finalidad                    | Duración |
+| -------------- | ---------------- | ---------------------------- | -------- |
+| `_ga`, `_ga_*` | Google Analytics | Estadísticas de uso anónimas | 2 años   |
 
 Las cookies analíticas solo se activan si las aceptas en el aviso de cookies.
 

@@ -24,7 +24,14 @@ const values = ([1, 2, 3] as const).map((n) => ({
   text: t(`about.values.${n}.body`),
 }));
 const schema = [
-  webPageNode(SITE, { path, type: 'AboutPage', name: title, description, lang, hasBreadcrumb: true }),
+  webPageNode(SITE, {
+    path,
+    type: 'AboutPage',
+    name: title,
+    description,
+    lang,
+    hasBreadcrumb: true,
+  }),
   breadcrumbNode(SITE, path, crumbs),
 ];
 ---
@@ -39,7 +46,9 @@ const schema = [
 >
   <PageHeader lang={lang} crumbs={crumbs} title={t('about.title')} lead={t('about.lead')} />
   <Section id="story" title={t('about.story.title')} width="narrow">
-    <div class="prose"><p>{t('about.story.body')}</p></div>
+    <div class="prose">
+      <p>{t('about.story.body')}</p>
+    </div>
   </Section>
   <Section id="values" title={t('about.values.title')} variant="muted">
     <FeatureGrid items={values} />

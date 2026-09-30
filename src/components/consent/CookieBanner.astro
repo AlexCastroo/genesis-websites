@@ -14,39 +14,30 @@ const enabled = Boolean(import.meta.env.PUBLIC_GA_ID);
 const cookiesPage = enabled ? await findLegal(lang, 'cookies') : undefined;
 ---
 
-{
-  enabled && (
-    <section
-      class="cookie-banner"
-      data-cookie-banner
-      aria-labelledby="cookie-banner-title"
-      hidden
-    >
-      <div class="cookie-banner__text">
-        <h2 id="cookie-banner-title">{t('cookies.title')}</h2>
-        <p>
-          {t('cookies.body')}
-          {cookiesPage && (
-            <>
-              {' '}
-              <a href={localizePath('legal', lang, entrySlug(cookiesPage.id))}>
-                {t('cookies.more')}
-              </a>
-            </>
-          )}
-        </p>
-      </div>
-      <div class="cluster cookie-banner__actions">
-        <button type="button" class="btn btn--secondary" data-consent="denied">
-          {t('cookies.reject')}
-        </button>
-        <button type="button" class="btn btn--secondary" data-consent="granted">
-          {t('cookies.accept')}
-        </button>
-      </div>
-    </section>
-  )
-}
+{enabled && (
+  <section class="cookie-banner" data-cookie-banner aria-labelledby="cookie-banner-title" hidden>
+    <div class="cookie-banner__text">
+      <h2 id="cookie-banner-title">{t('cookies.title')}</h2>
+      <p>
+        {t('cookies.body')}
+        {cookiesPage && (
+          <>
+            {' '}
+            <a href={localizePath('legal', lang, entrySlug(cookiesPage.id))}>{t('cookies.more')}</a>
+          </>
+        )}
+      </p>
+    </div>
+    <div class="cluster cookie-banner__actions">
+      <button type="button" class="btn btn--secondary" data-consent="denied">
+        {t('cookies.reject')}
+      </button>
+      <button type="button" class="btn btn--secondary" data-consent="granted">
+        {t('cookies.accept')}
+      </button>
+    </div>
+  </section>
+)}
 
 <script>
   import { setConsent, safeStorage } from '../../lib/analytics-client';
